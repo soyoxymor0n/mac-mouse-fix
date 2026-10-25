@@ -263,6 +263,8 @@ import Foundation
     
     override func viewWillAppear() {
         super.viewWillAppear()
+        /// The strip may have been built before the app's tabs were loaded. Rebuild it whenever this tab appears.
+        refreshAppTabStrip()
     }
     override func viewDidAppear() {
         super.viewDidAppear()
