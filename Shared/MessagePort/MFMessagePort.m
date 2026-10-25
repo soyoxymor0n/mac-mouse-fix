@@ -67,7 +67,7 @@
 
 ///     Notes from Helper:
 ///         CFMessagePortCreateRunLoopSource() used to crash when another instance of MMF Helper was already running.
-///         It would log this: `*** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x1b03, name = 'com.nuebling.mac-mouse-fix.helper'`
+///         It would log this: `*** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x1b03, name = 'com.soyoxymor0n.mac-mouse-fix.helper'`
 ///         I think the reason for this message is that the existing instance would already 'occupy' the kMFBundleIDHelper name.
 ///         Checking if `localPort != nil` should detect this case
 

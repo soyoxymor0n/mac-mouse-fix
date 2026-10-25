@@ -186,7 +186,7 @@ class ClickCycle: NSObject {
             
             /// ---
             /// Sep 2024 I just saw a crash in the console:
-            /// Thread 5 Crashed::  Dispatch queue: com.nuebling.mac-mouse-fix.buttons
+            /// Thread 5 Crashed::  Dispatch queue: com.soyoxymor0n.mac-mouse-fix.buttons
             /// ```
             /// Mac Mouse Fix Helper                     0x104873850 Swift runtime failure: Unexpectedly found nil while unwrapping an Optional value + 0 [inlined]
             /// Mac Mouse Fix Helper                     0x104873850 closure #1 in closure #1 in closure #1 in ClickCycle.handleClick(device:button:downNotUp:maxClickLevel:triggerCallback:) + 528

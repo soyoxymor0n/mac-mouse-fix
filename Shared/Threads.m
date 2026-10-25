@@ -160,7 +160,7 @@ void mfrunAndWait(CFRunLoopRef rl, void (^workload)(void)) {
 
         /// Setup thread
         _thread = [[NSThread alloc] initWithTarget:self selector:@selector(threadWorkload) object:nil];
-        _thread.name = @"com.nuebling.mac-mouse-fix.global-event-tap";
+        _thread.name = @"com.soyoxymor0n.mac-mouse-fix.global-event-tap";
         _thread.qualityOfService = NSQualityOfServiceUserInteractive;
         _thread.threadPriority = 1.0;
         [_thread start];

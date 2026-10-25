@@ -31,7 +31,7 @@ class ReplaceAnimations {
         if let cachedQueue = _fadeInDelayDispatchQueues[view] {
             return cachedQueue
         } else {
-            let newQueue = DispatchQueue.init(label: "com.nuebling.mac-mouse-fix.fadeInDelay.\(view.hash)", qos: .userInteractive, attributes: [], autoreleaseFrequency: .inherit, target: nil)
+            let newQueue = DispatchQueue.init(label: "com.soyoxymor0n.mac-mouse-fix.fadeInDelay.\(view.hash)", qos: .userInteractive, attributes: [], autoreleaseFrequency: .inherit, target: nil)
             _fadeInDelayDispatchQueues[view] = newQueue
             return newQueue
         }

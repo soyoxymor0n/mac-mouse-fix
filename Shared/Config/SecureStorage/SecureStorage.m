@@ -10,7 +10,7 @@
 /**
     Overview:
         This is a wrapper for reading/writing a dictionary in the keychain. [Oct 2026]
-        This dictionary is in a keychain item labeled `com.nuebling.mac-mouse-fix.secure-storage`.
+        This dictionary is in a keychain item labeled `com.soyoxymor0n.mac-mouse-fix.secure-storage`.
 
     Differences vs config.plist
         Good: The keychain is synced to all the users devices
@@ -63,7 +63,7 @@
 #define baseQuery \
     (id)kSecAttrSynchronizable: @YES, \
     (id)kSecClass: (id)kSecClassGenericPassword, \
-    (id)kSecAttrLabel: @"com.nuebling.mac-mouse-fix.secure-storage" /** "MFSecureStorage" */
+    (id)kSecAttrLabel: @"com.soyoxymor0n.mac-mouse-fix.secure-storage" /** "MFSecureStorage" */
 
 
 @implementation NSError (Additions)
