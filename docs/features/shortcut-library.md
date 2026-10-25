@@ -1,6 +1,6 @@
 # Shortcut library
 
-Status: proposal. Nothing here is built. No code was changed.
+Status: v1 implemented on `beta` (2026-10-25). Three apps only: Google Chrome, Microsoft Teams and Finder. Firefox, Safari, VS Code, Zoom and Slack are not in v1: their shortcuts could not be checked against the vendor's page in this session, and Slack's bundle ID could not be verified (Slack is not installed here). Not in v1: the Settings switch, the "Browse shortcuts" entry on Global, and the "Usually button 4" hint. Library entries appear at the top of the effect menu of that app's rows. Choosing one writes the same row as recording the key.
 
 ## 1. Summary
 

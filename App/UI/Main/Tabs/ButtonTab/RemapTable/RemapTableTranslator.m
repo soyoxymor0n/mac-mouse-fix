@@ -8,6 +8,7 @@
 //
 
 #import "RemapTableTranslator.h"
+#import "ShortcutLibrary.h"
 #import "Constants.h"
 #import "UIStrings.h"
 #import "SharedUtility.h"
@@ -393,6 +394,17 @@ static NSArray *getOneShotEffectsTable(NSDictionary *rowDict) {
         @"submenu": submenu
     } atIndex:keyCaptureIndex+1];
     
+    /// App-specific rows get the built-in shortcuts of that app at the top of the menu
+    NSString *app = rowDict[kMFRemapsKeyApp];
+    if (app.length > 0) {
+        NSArray *libraryEntries = [ShortcutLibrary effectsMenuEntriesForBundleID:app];
+        if (libraryEntries.count > 0) {
+            NSMutableArray *withLibrary = [libraryEntries mutableCopy];
+            [withLibrary addObject:separatorEffectsTableEntry()];
+            [withLibrary addObjectsFromArray:oneShotEffectsTable];
+            oneShotEffectsTable = withLibrary;
+        }
+    }
     return oneShotEffectsTable;
 }
 

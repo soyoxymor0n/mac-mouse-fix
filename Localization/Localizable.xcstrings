@@ -14804,6 +14804,116 @@
         }
       }
     },
+    "shortcut-library.chrome.back" : {
+      "comment" : "Effect menu entry. A built-in shortcut of the app.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        }
+      }
+    },
+    "shortcut-library.chrome.forward" : {
+      "comment" : "Effect menu entry. A built-in shortcut of the app.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forward"
+          }
+        }
+      }
+    },
+    "shortcut-library.chrome.next-tab" : {
+      "comment" : "Effect menu entry. A built-in shortcut of the app.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next tab"
+          }
+        }
+      }
+    },
+    "shortcut-library.chrome.previous-tab" : {
+      "comment" : "Effect menu entry. A built-in shortcut of the app.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Previous tab"
+          }
+        }
+      }
+    },
+    "shortcut-library.finder.enclosing-folder" : {
+      "comment" : "Effect menu entry. A built-in shortcut of the app.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to the enclosing folder"
+          }
+        }
+      }
+    },
+    "shortcut-library.finder.go-to-folder" : {
+      "comment" : "Effect menu entry. A built-in shortcut of the app.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to folder"
+          }
+        }
+      }
+    },
+    "shortcut-library.finder.mission-control" : {
+      "comment" : "Effect menu entry. A built-in shortcut of the app.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mission Control"
+          }
+        }
+      }
+    },
+    "shortcut-library.finder.new-folder" : {
+      "comment" : "Effect menu entry. A built-in shortcut of the app.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New folder"
+          }
+        }
+      }
+    },
+    "shortcut-library.teams.camera" : {
+      "comment" : "Effect menu entry. A built-in shortcut of the app.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn the camera on or off"
+          }
+        }
+      }
+    },
+    "shortcut-library.teams.mute" : {
+      "comment" : "Effect menu entry. A built-in shortcut of the app.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mute or unmute the mic"
+          }
+        }
+      }
+    },
     "system-settings-name" : {
       "comment" : "Note: The name of the system settings app in macOS 13 Ventura and later.",
       "localizations" : {
