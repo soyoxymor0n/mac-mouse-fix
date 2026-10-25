@@ -121,7 +121,7 @@ static NSDictionary *_Nullable subsetSwizzler(NSDictionary *remaps, NSDictionary
     if (activeApp != nil) {
         BOOL appHasRemaps = NO;
         for (NSDictionary *precond in remaps.allKeys) {
-            if ([activeApp isEqualToString:precond[kMFModificationPreconditionKeyApp]]) {
+            if ([precond[kMFModificationPreconditionKeyApp] isEqual:activeApp]) {
                 appHasRemaps = YES;
                 break;
             }
@@ -318,7 +318,7 @@ BOOL isSubMod(NSDictionary *modifiers, NSDictionary *potentialSubModifiers) {
     ///     Global preconds (without an app) are a subset of any app. App-specific preconds are only a subset of the same app.
 
     NSString *subApp = potentialSubModifiers[kMFModificationPreconditionKeyApp];
-    if (subApp != nil && ![subApp isEqualToString:modifiers[kMFModificationPreconditionKeyApp]]) return NO;
+    if (subApp != nil && ![modifiers[kMFModificationPreconditionKeyApp] isEqual:subApp]) return NO;
 
     /// Keyboard flags
     
