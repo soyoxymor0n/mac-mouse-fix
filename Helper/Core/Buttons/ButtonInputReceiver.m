@@ -208,6 +208,15 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEv
         return event;
     #endif
     
+#if MMF_TEST_INPUT
+    /// Test-only: record each tap decision so a real press can be inspected afterwards.
+    {
+        NSString *line = [NSString stringWithFormat:@"button=%lu down=%d pressure=%.2f clickState=%lld device=%@ sendingDevice=%@ eval=%@\n", (unsigned long)buttonNumber, (int)mouseDown, CGEventGetDoubleValueField(event, kCGMouseEventPressure), CGEventGetIntegerValueField(event, kCGMouseEventClickState), device == nil ? @"nil" : @"attached", iohidDevice == NULL ? @"none" : @"present", eval == kMFEventPassThroughRefusal ? @"refusal(consumed)" : @"approval(raw passes)"];
+        NSFileHandle *h = [NSFileHandle fileHandleForWritingAtPath:@"/tmp/mmf-tap-debug.log"];
+        if (!h) { [[NSFileManager defaultManager] createFileAtPath:@"/tmp/mmf-tap-debug.log" contents:nil attributes:nil]; h = [NSFileHandle fileHandleForWritingAtPath:@"/tmp/mmf-tap-debug.log"]; }
+        [h seekToEndOfFile]; [h writeData:[line dataUsingEncoding:NSUTF8StringEncoding]]; [h closeFile];
+    }
+#endif
     /// Let events pass through
     if (eval == kMFEventPassThroughRefusal) {
         return nil;
