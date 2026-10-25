@@ -1,6 +1,7 @@
 # App presets
 
-Status: proposal. Nothing here is built. No code was changed.
+Status: v1 implemented on `beta` (commit 573f80e200, 2026-10-25). Teams and Chrome only.
+Deviations from this plan: the data is Swift (`AppPresets.swift`), not a plist. Chrome uses the arrow keys (decision 5, option d). The banner sits inside the add field. The "Show" popover and a session Undo are not in v1: Restore Defaults on the tab undoes Add. Tested: banner text for both apps, Add writes the rows with the app key, Restore Defaults removes them and brings the banner back.
 
 ## 1. Summary
 
