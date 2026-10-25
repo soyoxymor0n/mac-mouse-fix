@@ -38,6 +38,8 @@ import Foundation
     private var appPickerPopover: NSPopover?
     /// The app whose tab is selected. nil is the global tab.
     private(set) var scopeApp: String?
+    /// Offers a built-in preset in an empty app tab
+    private var presetBanner: AppPresetBannerView?
     
     //
     // - MARK: IBActions
@@ -252,6 +254,10 @@ import Foundation
 
         /// Init app tabs
         refreshAppTabStrip()
+
+        /// Init the preset banner
+        installPresetBanner()
+        NotificationCenter.default.addObserver(self, selector: #selector(remapTableDidChange(_:)), name: NSNotification.Name(kMFRemapTableDidChangeNotification as String), object: nil)
     }
     
     func createTrackingArea() {
@@ -392,6 +398,46 @@ import Foundation
         appTabStrip = strip
     }
 
+    /// Adds the preset banner between the add field and the table. It is shown only in an empty app tab that has a preset.
+    private func installPresetBanner() {
+        /// Inside the add field, at its top. The area under the caption and the table is too tight for it.
+        guard let container = addField.contentView else { return }
+        let banner = AppPresetBannerView()
+        container.addSubview(banner)
+        NSLayoutConstraint.activate([
+            banner.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
+            banner.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
+            banner.topAnchor.constraint(equalTo: container.topAnchor, constant: 10),
+            banner.heightAnchor.constraint(equalToConstant: 34),
+        ])
+        banner.onAdd = { [weak self] in self?.addPreset() }
+        banner.isHidden = true
+        presetBanner = banner
+    }
+    
+    /// Shows the preset offer for an empty app tab that has a preset, and hides it otherwise
+    func updatePresetBanner() {
+        guard let banner = presetBanner else { return }
+        guard let app = scopeApp, let preset = AppPreset.preset(for: app), tableController.dataModel.count == 0 else {
+            banner.isHidden = true
+            return
+        }
+        banner.setText(String(format: MFLocalizedString("app-presets.banner", comment: ""), AppTabs.name(for: app), MFLocalizedString(preset.summaryKey, comment: "")))
+        banner.isHidden = false
+    }
+    
+    /// Writes the preset rows into the current app tab. The tab was empty before, so Restore Defaults on the tab undoes this.
+    private func addPreset() {
+        guard let app = scopeApp, let preset = AppPreset.preset(for: app) else { return }
+        replaceRows(forScope: app, with: preset.rows(forApp: app))
+        tableController.reloadAll()
+        updatePresetBanner()
+    }
+    
+    @objc private func remapTableDidChange(_ notification: Notification) {
+        updatePresetBanner()
+    }
+    
     /// Rebuilds the tab strip from the stored tab list
     func refreshAppTabStrip() {
         appTabStrip?.setTabs(appBundleIDs: AppTabs.allBundleIDs(), selectedScope: scopeApp)

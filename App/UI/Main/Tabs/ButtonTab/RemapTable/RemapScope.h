@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Posted by the remap table when its rows are loaded or written, so other UI can update.
+#define kMFRemapTableDidChangeNotification @"MFRemapTableDidChange"
+
 /// The remaps array (kMFConfigKeyRemaps) holds the global rows and the per-app rows together.
 /// A row belongs to the global scope if it has no `app` key, and to an app scope if its `app` key is that bundle ID.
 /// These helpers split and merge the array by scope, so that editing one scope never touches the rows of another.

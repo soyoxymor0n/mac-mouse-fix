@@ -74,6 +74,7 @@
     NSArray *remaps = [RemapScope remapsReplacingScope:self.scopeApp withRows:self.dataModel inRemaps:(NSArray *)config(kMFConfigKeyRemaps)];
     setConfig(kMFConfigKeyRemaps, remaps);
     commitConfig();
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMFRemapTableDidChangeNotification object:self];
 }
 
 /// Helper function for `handleEnterKeystrokeOptionSelected`
@@ -416,6 +417,7 @@ static void updateBorderColor(RemapTableController *object, BOOL isInitialAppear
     ///     These are too long and obnoxious and not really helpful in this situation.
 //    NSSet *capturedButtonsAfter = [RemapTableUtility getCapturedButtons];
 //    [CaptureToasts showButtonCaptureToastWithBeforeSet:capturedButtonsBefore afterSet:capturedButtonsAfter];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMFRemapTableDidChangeNotification object:self];
 }
 
 #pragma mark - Delegate & Controller

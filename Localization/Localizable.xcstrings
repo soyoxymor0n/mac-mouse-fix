@@ -316,6 +316,50 @@
         }
       }
     },
+    "app-presets.add" : {
+      "comment" : "Button in the preset banner. Adds the preset's buttons to this app tab.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        }
+      }
+    },
+    "app-presets.banner" : {
+      "comment" : "Banner in an empty app tab. %1$@ is the app name and the second %@ is the list of buttons, for example 'button 4 mic, button 5 camera'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A preset is available for %@: %@."
+          }
+        }
+      }
+    },
+    "app-presets.summary.chrome" : {
+      "comment" : "Short description of the Google Chrome preset, shown in the banner.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "button 4 back, button 5 forward"
+          }
+        }
+      }
+    },
+    "app-presets.summary.teams" : {
+      "comment" : "Short description of the Microsoft Teams preset, shown in the banner.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "button 4 mic, button 5 camera"
+          }
+        }
+      }
+    },
     "app-tabs.add.tooltip" : {
       "comment" : "Tooltip of the + button that adds an app tab.",
       "localizations" : {
