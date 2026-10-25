@@ -318,7 +318,7 @@ static NSDictionary *sideButtonActions;
 //    up.sendsSystemProfile = NO; /// This is no by default
     up.automaticallyDownloadsUpdates = NO;
     
-    BOOL checkForUpdates = [(id)config(@"General.checkForUpdates") boolValue];
+    BOOL checkForUpdates = NO; /// [Fork] Update checks disabled. The upstream appcast feed (SUFeedURL) is also removed from Info.plist.
     
     BOOL checkForPrereleases = [(id)config(@"General.checkForPrereleases") boolValue];
     
