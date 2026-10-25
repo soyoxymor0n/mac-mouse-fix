@@ -1,6 +1,6 @@
 # Community config sharing (opt-in)
 
-Status: evaluation only. Nothing here is built. No code was changed. This plan is not legal advice. Items marked "question for you" need a decision or a lawyer.
+Status: phase 0 done (2026-10-25). The curated repository is public at https://github.com/soyoxymor0n/mac-mouse-fix-setups (validator, fixtures, CI, one approving review on main). No app change and no server. Phases 1 and 2 (the in-app download, the upload) wait for your decisions on the controller question and the consent model. This plan is not legal advice. Items marked "question for you" need a decision or a lawyer.
 
 ## 1. Summary
 
