@@ -171,7 +171,8 @@ Phase 3: layout and release.
    Recommendation: (a) with (b). A survey needs an audience first.
 3. How are key codes stored, given layouts differ?
    (a) Physical key codes only, with a documented caveat. (b) Store the character and resolve it to a key code for the current layout at runtime. (c) Document only, and mark entries as tested or untested.
-   Recommendation: test Chrome's Command+[ on your German layout first. If it fails, choose (b). If it works, choose (a).
+   (d) For Chrome, use Command+Left and Command+Right (key codes 123 and 124), which Chrome lists for back and forward on Mac. Arrow keys do not change with the layout.
+   Recommendation: (d) for Chrome. For other entries, your Mac uses the Austrian layout (`com.apple.keylayout.Austrian`), so test each character-based entry on it before you choose (a) or (b).
 4. Who maintains the entries?
    (a) You alone. (b) Pull requests to the repository from `community-sharing.md`, with review. (c) Any user, through the community feature.
    Recommendation: (a) for v1. Move to (b) once the repository exists.

@@ -184,8 +184,8 @@ Phase 3: verification and release.
    (a) No, it only deletes rows, as now. (b) Yes, it restores the preset. (c) Show two buttons.
    Recommendation: (a). The banner comes back on its own, because the tab is empty again.
 5. Which keyboard layout do you use, and how should key codes be stored?
-   (a) Keep physical key codes and document the layout caveat. (b) Store the character and resolve it to a key code for the current layout at runtime. (c) Ship only presets tested on your layout.
-   Recommendation: test Chrome's Command+[ on your German layout first. If it fails, choose (b). If it works, choose (a).
+   (a) Keep physical key codes and document the layout caveat. (b) Store the character and resolve it to a key code for the current layout at runtime. (c) Ship only presets tested on your layout. (d) Use the arrow keys for Chrome: Command+Left (key code 123) and Command+Right (key code 124). Chrome's help page lists these for back and forward on Mac, and arrow keys are not character keys, so the layout does not change them.
+   Recommendation: (d) for Chrome, which needs no layout test. Keep (a) for letter keys such as M (46) and O (31), which sit in the same place on common European layouts. Your Mac uses the Austrian layout (`com.apple.keylayout.Austrian`, read from the system preferences on 2026-10-25), which has the same bracket problem as German. Confirm the letter keys in the layout test before relying on them.
 
 ## 10. Sources
 

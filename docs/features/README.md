@@ -12,7 +12,7 @@ Plans for three features after the per-app button tabs. All three are proposals.
 
 Presets
 - Which presets ship in v1: Teams and Chrome only (recommended), or more? ([app-presets.md, section 9](app-presets.md#9-open-decisions-for-the-owner))
-- Which keyboard layout do you use? Test Chrome's Command+[ on your German layout before choosing how key codes are stored. ([decision 5](app-presets.md#9-open-decisions-for-the-owner))
+- Key codes depend on the keyboard layout. This Mac uses Austrian, which has the same bracket problem as German. For Chrome, the arrow-key option (Command+Left and Command+Right) avoids the problem. ([decision 5](app-presets.md#9-open-decisions-for-the-owner))
 
 Shortcut library
 - Which six apps come first: Chrome, Firefox, Safari, Teams, Slack and VS Code (recommended)? ([shortcut-library.md, section 9](shortcut-library.md#9-open-decisions-for-the-owner))
