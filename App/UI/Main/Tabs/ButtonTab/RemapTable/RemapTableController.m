@@ -587,7 +587,11 @@ static void updateBorderColor(RemapTableController *object, BOOL isInitialAppear
     NSIndexSet *existingIndexes = [self.groupedDataModel indexesOfObjectsPassingTest:^BOOL(NSDictionary * _Nonnull tableEntry, NSUInteger idx, BOOL * _Nonnull stop) {
         BOOL triggerMatches = [tableEntry[kMFRemapsKeyTrigger] isEqualTo:rowDictToAdd[kMFRemapsKeyTrigger]];
         BOOL modificationPreconditionMatches = [tableEntry[kMFRemapsKeyModificationPrecondition] isEqualTo:rowDictToAdd[kMFRemapsKeyModificationPrecondition]];
-        return triggerMatches && modificationPreconditionMatches;
+        /// Rows for different apps can have the same trigger and precondition. They're not duplicates.
+        NSString *app = tableEntry[kMFRemapsKeyApp];
+        NSString *appToAdd = rowDictToAdd[kMFRemapsKeyApp];
+        BOOL appMatches = (app == nil) ? (appToAdd == nil) : [app isEqualToString:appToAdd];
+        return triggerMatches && modificationPreconditionMatches && appMatches;
     }];
     NSAssert(existingIndexes.count <= 1, @"Duplicate remap triggers found in table");
     NSIndexSet *toHighlightIndexSet;
