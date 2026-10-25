@@ -211,6 +211,14 @@ static NSDictionary *_remaps;
         for (NSDictionary *tableEntry in remapsTable) {
             /// Get modification precondition section of keypath
             NSDictionary *modificationPrecondition = tableEntry[kMFRemapsKeyModificationPrecondition];
+            /// Add the app to the precondition, if the remap is limited to an app
+            ///     (Rows without an app are converted exactly like before.)
+            id app = tableEntry[kMFRemapsKeyApp];
+            if ([app isKindOfClass:NSString.class] && ((NSString *)app).length > 0) {
+                NSMutableDictionary *preconditionWithApp = [NSMutableDictionary dictionaryWithDictionary:modificationPrecondition ?: @{}];
+                preconditionWithApp[kMFModificationPreconditionKeyApp] = app;
+                modificationPrecondition = preconditionWithApp;
+            }
             /// Get trigger section of keypath
             NSArray *triggerKeyArray;
             id trigger = tableEntry[kMFRemapsKeyTrigger];
