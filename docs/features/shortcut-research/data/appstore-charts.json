@@ -1,0 +1,293 @@
+{
+ "generated": "2026-10-25",
+ "storefront": "at",
+ "source": "App Store window of the owner's Mac (accessibility tree, read-only), checked against iTunes search with entity=macSoftware. Only 15 free and 15 paid entries are visible; the full 100-entry charts did not open.",
+ "charts": {
+  "Top Free Apps": [
+   {
+    "rank": 1,
+    "name": "WhatsApp Messenger",
+    "macMatch": {
+     "trackName": "WhatsApp Messenger",
+     "trackId": 310633997,
+     "bundleId": "net.whatsapp.WhatsApp",
+     "genre": "Social Networking",
+     "price": "Gratis"
+    }
+   },
+   {
+    "rank": 4,
+    "name": "Amazon Prime Video",
+    "macMatch": {
+     "trackName": "Amazon Prime Video",
+     "trackId": 545519333,
+     "bundleId": "com.amazon.aiv.AIVApp",
+     "genre": "Entertainment",
+     "price": "Gratis"
+    }
+   },
+   {
+    "rank": 7,
+    "name": "Microsoft Outlook",
+    "macMatch": {
+     "trackName": "Microsoft Outlook",
+     "trackId": 985367838,
+     "bundleId": "com.microsoft.Outlook",
+     "genre": "Productivity",
+     "price": "Gratis"
+    }
+   },
+   {
+    "rank": 10,
+    "name": "AI ChatbotㆍAsk AI Anything",
+    "macMatch": null
+   },
+   {
+    "rank": 13,
+    "name": "OneDrive",
+    "macMatch": {
+     "trackName": "OneDrive",
+     "trackId": 823766827,
+     "bundleId": "com.microsoft.OneDrive-mac",
+     "genre": "Productivity",
+     "price": "Gratis"
+    }
+   },
+   {
+    "rank": 2,
+    "name": "Microsoft Word",
+    "macMatch": {
+     "trackName": "Microsoft Word",
+     "trackId": 462054704,
+     "bundleId": "com.microsoft.Word",
+     "genre": "Productivity",
+     "price": "Gratis"
+    }
+   },
+   {
+    "rank": 5,
+    "name": "Microsoft Excel",
+    "macMatch": {
+     "trackName": "Microsoft Excel",
+     "trackId": 462058435,
+     "bundleId": "com.microsoft.Excel",
+     "genre": "Productivity",
+     "price": "Gratis"
+    }
+   },
+   {
+    "rank": 8,
+    "name": "Canva: AI Video & Photo Editor",
+    "macMatch": null
+   },
+   {
+    "rank": 11,
+    "name": "Xcode",
+    "macMatch": null
+   },
+   {
+    "rank": 14,
+    "name": "Chatbot: Ask Chat AI Assistant",
+    "macMatch": {
+     "trackName": "Chatbot: Ask Chat AI Assistant",
+     "trackId": 6741155738,
+     "bundleId": "com.am.deepseek",
+     "genre": "Education",
+     "price": "Gratis"
+    }
+   },
+   {
+    "rank": 3,
+    "name": "Microsoft PowerPoint",
+    "macMatch": {
+     "trackName": "Microsoft PowerPoint",
+     "trackId": 462062816,
+     "bundleId": "com.microsoft.Powerpoint",
+     "genre": "Productivity",
+     "price": "Gratis"
+    }
+   },
+   {
+    "rank": 6,
+    "name": "AI Assistant Chatbot: ASTRA 6",
+    "macMatch": {
+     "trackName": "AI Assistant Chatbot: ASTRA 6",
+     "trackId": 6809415433,
+     "bundleId": "chatbot.notebook.app",
+     "genre": "Education",
+     "price": "Gratis"
+    }
+   },
+   {
+    "rank": 9,
+    "name": "Microsoft 365",
+    "macMatch": null
+   },
+   {
+    "rank": 12,
+    "name": "CapCut: Photo & Video Editor",
+    "macMatch": null
+   },
+   {
+    "rank": 15,
+    "name": "Goodnotes: AI Notes",
+    "macMatch": null
+   }
+  ],
+  "Top Paid Apps": [
+   {
+    "rank": 1,
+    "name": "LibreOffice",
+    "macMatch": {
+     "trackName": "LibreOffice",
+     "trackId": 1630474372,
+     "bundleId": "org.documentfoundation.libreoffice",
+     "genre": "Productivity",
+     "price": "9,99 €"
+    }
+   },
+   {
+    "rank": 4,
+    "name": "MacFamilyTree 11",
+    "macMatch": {
+     "trackName": "MacFamilyTree 11",
+     "trackId": 6480510488,
+     "bundleId": "com.syniumsoftware.macfamilytree11",
+     "genre": "Productivity",
+     "price": "34,99 €"
+    }
+   },
+   {
+    "rank": 7,
+    "name": "Netmo 2 – Weather for Netatmo",
+    "macMatch": null
+   },
+   {
+    "rank": 10,
+    "name": "New File Menu",
+    "macMatch": {
+     "trackName": "New File Menu",
+     "trackId": 1064959555,
+     "bundleId": "net.langui.NewFileMenu",
+     "genre": "Utilities",
+     "price": "2,99 €"
+    }
+   },
+   {
+    "rank": 13,
+    "name": "Whisper Notes - Speech to Text",
+    "macMatch": null
+   },
+   {
+    "rank": 2,
+    "name": "Wipr 2",
+    "macMatch": {
+     "trackName": "Wipr 2",
+     "trackId": 1662217862,
+     "bundleId": "site.kaylees.Wipr2",
+     "genre": "Utilities",
+     "price": "5,99 €"
+    }
+   },
+   {
+    "rank": 5,
+    "name": "Logic Pro",
+    "macMatch": {
+     "trackName": "Logic Pro",
+     "trackId": 634148309,
+     "bundleId": "com.apple.logic10",
+     "genre": "Music",
+     "price": "229,99 €"
+    }
+   },
+   {
+    "rank": 8,
+    "name": "DaisyDisk",
+    "macMatch": {
+     "trackName": "DaisyDisk",
+     "trackId": 411643860,
+     "bundleId": "com.daisydiskapp.DaisyDisk",
+     "genre": "Utilities",
+     "price": "9,99 €"
+    }
+   },
+   {
+    "rank": 11,
+    "name": "Sleeve for Spotify",
+    "macMatch": {
+     "trackName": "Sleeve for Spotify, Music",
+     "trackId": 1606145041,
+     "bundleId": "com.replay.sleeve",
+     "genre": "Music",
+     "price": "8,99 €"
+    }
+   },
+   {
+    "rank": 14,
+    "name": "Duplicate Photos Fixer Pro",
+    "macMatch": {
+     "trackName": "Duplicate Photos Fixer Pro",
+     "trackId": 963642514,
+     "bundleId": "com.systweak.Duplicate-Photos-Fixer-Pro",
+     "genre": "Photo & Video",
+     "price": "17,99 €"
+    }
+   },
+   {
+    "rank": 3,
+    "name": "forScore",
+    "macMatch": {
+     "trackName": "forScore",
+     "trackId": 363738376,
+     "bundleId": "com.mgsdevelopment.forscore",
+     "genre": "Music",
+     "price": "29,99 €"
+    }
+   },
+   {
+    "rank": 6,
+    "name": "RAR Extractor - Unarchiver Pro",
+    "macMatch": {
+     "trackName": "RAR Extractor - Unarchiver Pro",
+     "trackId": 647505820,
+     "bundleId": "com.ABabe.rarextractorstar",
+     "genre": "Utilities",
+     "price": "3,99 €"
+    }
+   },
+   {
+    "rank": 9,
+    "name": "TreeSize - Disk Usage",
+    "macMatch": {
+     "trackName": "TreeSize - Disk Usage",
+     "trackId": 774815014,
+     "bundleId": "com.woojooin.zFolderTree",
+     "genre": "Utilities",
+     "price": "3,99 €"
+    }
+   },
+   {
+    "rank": 12,
+    "name": "PhotoSweeper",
+    "macMatch": {
+     "trackName": "PhotoSweeper",
+     "trackId": 463362050,
+     "bundleId": "com.overmacs.photosweeper",
+     "genre": "Photo & Video",
+     "price": "17,99 €"
+    }
+   },
+   {
+    "rank": 15,
+    "name": "Cloud Baby Monitor",
+    "macMatch": {
+     "trackName": "Cloud Baby Monitor",
+     "trackId": 517602535,
+     "bundleId": "com.martinman.macvideobabymonitor",
+     "genre": "Lifestyle",
+     "price": "8,99 €"
+    }
+   }
+  ]
+ }
+}
