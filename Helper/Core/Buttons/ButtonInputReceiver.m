@@ -18,12 +18,38 @@
 #import "GestureScrollSimulator.h"
 #import "Mac_Mouse_Fix_Helper-Swift.h"
 
+#if MMF_TEST_INPUT
+/// Test-only (compiled only with MMF_TEST_INPUT=1, never in release builds).
+/// Lets a test feed a button press into the remap logic, bypassing the event tap's device lookup.
+/// CGEvents created by a test have no sending device, so the tap passes them through unchanged.
+/// Send with NSDistributedNotificationCenter: name "com.soyoxymor0n.mmf.testInput", userInfo {button: 1-5, down: BOOL}.
+static void handleTestInput(NSNotification *note) {
+    NSNumber *button = note.userInfo[@"button"];
+    NSNumber *down = note.userInfo[@"down"];
+    if (!button || !down) return;
+    NSUInteger buttonNumber = button.unsignedIntegerValue;
+    BOOL mouseDown = down.boolValue;
+    CFRunLoopPerformBlock(IOThread.runLoop, kCFRunLoopDefaultMode, ^{
+        CGEventRef event = CGEventCreateMouseEvent(NULL, mouseDown ? kCGEventOtherMouseDown : kCGEventOtherMouseUp, CGPointZero, (CGMouseButton)(buttonNumber - 1));
+        CGEventSetIntegerValueField(event, kCGMouseEventButtonNumber, buttonNumber - 1);
+        CGEventSetIntegerValueField(event, kCGMouseEventClickState, 1);
+        CGEventSetDoubleValueField(event, kCGMouseEventPressure, mouseDown ? 1.0 : 0.0);
+        [Buttons handleInputWithDevice:[Device strangeDevice] button:@(buttonNumber) downNotUp:mouseDown event:event];
+        CFRelease(event);
+    });
+    CFRunLoopWakeUp(IOThread.runLoop);
+}
+#endif
+
 @implementation ButtonInputReceiver
 
 static CFMachPortRef _eventTap;
 
 + (void)load_Manual {
     registerInputCallback();
+#if MMF_TEST_INPUT
+    [NSDistributedNotificationCenter.defaultCenter addObserverForName:@"com.soyoxymor0n.mmf.testInput" object:nil queue:nil usingBlock:^(NSNotification *n) { handleTestInput(n); }];
+#endif
     _buttonParseBlacklist = @[@(1),@(2)]; /// Ignore inputs from left and right mouse buttons
 }
 
