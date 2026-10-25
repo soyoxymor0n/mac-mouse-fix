@@ -36,7 +36,7 @@
         ///     - Specifying a subsystem and category allows us to configure logging using `Info.plist > OSLogPreferences`
         ///         > Also See: https://github.com/noah-nuebling/notes-public/blob/main/mmf/error-logging-improvement-ideas_oct-2024.md
         
-        #define kMFOSLogSubsystem   @"com.nuebling.mac-mouse-fix"
+        #define kMFOSLogSubsystem   @"com.soyoxymor0n.mac-mouse-fix"
         #define kMFOSLogCategory    @"main-category"
         DDOSLogger *logger = [[DDOSLogger alloc] initWithSubsystem: kMFOSLogSubsystem category: kMFOSLogCategory logLevelMapper: [[DDOSLogLevelMapperDefault alloc] init]];
         [DDLog addLogger: logger];

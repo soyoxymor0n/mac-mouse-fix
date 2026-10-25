@@ -254,7 +254,7 @@ static void heavyProcessing(CGEventRef event, int64_t scrollDeltaAxis1, int64_t 
             CFStringRef manufacturer = IOHIDDeviceGetProperty(sendingDev, CFSTR(kIOHIDManufacturerKey));
             /// ^ [May 2025] Just saw a crash here See `Crash Reports > Mac Mouse Fix Helper-2025-05-29-112149.ips`
             ///     Location: `Scroll.m:279 [[[CFStringRef manufacturer = IOHIDDeviceGetProperty(sendingDev, CFSTR(kIOHIDManufacturerKey))]]] > IOHIDDeviceGetProperty+120 > _os_unfair_lock_unlock_slow + 92 > ...`:
-            ///     Thread: Thread 3 (Dispatch queue: com.nuebling.mac-mouse-fix.helper.scroll)
+            ///     Thread: Thread 3 (Dispatch queue: com.soyoxymor0n.mac-mouse-fix.helper.scroll)
             ///     Message: BUG IN CLIENT OF LIBPLATFORM: Unlock of an `os_unfair_lock` not owned by current thread
             ///     Possibly related: Thread 1 (Dispatch queue: com.apple.main-thread) was currently at `ButtonInputReceiver.m:142 > DeviceManager.m:71 > Device.m:258 (-[Device wrapsIOHIDDevice:]+0`)
             ///     Interpretations:

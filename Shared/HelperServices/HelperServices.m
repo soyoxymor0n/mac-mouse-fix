@@ -36,7 +36,7 @@
          "LimitLoadToSessionType" = "Aqua";
          "StandardErrorPath" = "/dev/null";
          "MachServices" = {
-             "com.nuebling.mac-mouse-fix.helper" = mach-port-object;
+             "com.soyoxymor0n.mac-mouse-fix.helper" = mach-port-object;
          };
          "Label" = "mouse.fix.helper";
          "OnDemand" = false;
@@ -568,7 +568,7 @@ NSString *launchctl_print(NSString *identifier) {
         
         /// Notes on getting **executable path**:
         /// For SMAppService the only way to reliably get the executable path is the `sfltool dumpbtm` command. But it requires sudo permissions, so we can't do it in the background programmatically.
-        /// Under 14.2.1 I saw that `launchctl print gui/501/com.nuebling.mac-mouse-fix.helper` sometimes contains the executable path, but only under these circumstances:
+        /// Under 14.2.1 I saw that `launchctl print gui/501/com.soyoxymor0n.mac-mouse-fix.helper` sometimes contains the executable path, but only under these circumstances:
         ///     Sometimes launchd gets confused because you try to launch MMF after moving it, or you try to launch it while there's another copy of MMF present on the system.
         ///     If and only if you have the case where launchd is confused because you **moved** MMF and you THEN call `launchctl print`, then the output seems to contain the executable path. But in the successful case or in the case where launchd launches the wrong copy of MMF Helper, `print` doesn't contain the executable path.
         /// I would be somewhat useful to retrieve the executable path from `print` in this case to give the user instructions how to fix the issue. However, the instructions are just 'restart your computer', and that doesn't seem like it's worth implementing at the moment.
@@ -841,7 +841,7 @@ static void removePrefpaneLaunchdPlist(void) {
     /// Remove legacy launchd plist file if it exists
     /// The launchd plist file used to be at `~/Library/LaunchAgents/com.nuebling.mousefix.helper.plist` when the app was still a prefpane. In the very early days it was at `mouse.fix.helper.plist`.
     /// The prefpane itself could be installed in the user library or the root library, but the launchd plist would always be in the user library.
-    /// Now, with the app version, it's moved to `~/Library/LaunchAgents/com.nuebling.mac-mouse-fix.helper.plist`
+    /// Now, with the app version, it's moved to `~/Library/LaunchAgents/com.soyoxymor0n.mac-mouse-fix.helper.plist`
     /// Having the old version still can lead to the old helper being started at startup, and I think other conflicts, too.
     
     DDLogInfo("Removing prefpane launchd plist");
