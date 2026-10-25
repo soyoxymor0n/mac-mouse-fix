@@ -16,6 +16,8 @@
 #import "DeviceManager.h"
 #import "SharedUtility.h"
 #import "ModificationUtility.h"
+#import "Threads.h"
+#import <AppKit/AppKit.h>
 #import <os/signpost.h>
 #import "Mac_Mouse_Fix_Helper-Swift.h"
 
@@ -48,6 +50,8 @@
 
 static NSMutableDictionary *_modifiers;
 
+static void setFrontmostApp(NSString * _Nullable bundleID);
+
 #pragma mark - Load
 
 + (void)load_Manual {
@@ -59,6 +63,22 @@ static NSMutableDictionary *_modifiers;
         
         /// Init `_modifiers`
         _modifiers = [NSMutableDictionary dictionary];
+        
+        /// Track the frontmost app
+        ///     App-specific remaps are matched against it. It's stored in `_modifiers` so it's part of the active modifiers, just like the keyboard and button modifiers.
+        ///     Initial value is set here directly, because `SwitchMaster` isn't initialized yet. Later changes are handled by the observer.
+        NSString *frontmostBundleID = NSWorkspace.sharedWorkspace.frontmostApplication.bundleIdentifier;
+        if (frontmostBundleID != nil) {
+            _modifiers[kMFModificationPreconditionKeyApp] = frontmostBundleID;
+        }
+        [NSWorkspace.sharedWorkspace.notificationCenter addObserverForName:NSWorkspaceDidActivateApplicationNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+            /// This is called on the main thread. Hop to the IOThread, which owns `_modifiers`.
+            NSRunningApplication *app = note.userInfo[NSWorkspaceApplicationKey] ?: NSWorkspace.sharedWorkspace.frontmostApplication;
+            NSString *bundleID = app.bundleIdentifier;
+            mfrun(IOThread.runLoop, ^{
+                setFrontmostApp(bundleID);
+            });
+        }];
         
         /// Create keyboard modifier event tap
         CGEventMask mask = CGEventMaskBit(kCGEventFlagsChanged);
@@ -291,6 +311,26 @@ CGEventRef _Nullable kbModsChanged(CGEventTapProxy proxy, CGEventType type, CGEv
 //        [ReactiveModifiers.shared handleModifiersDidChangeTo:_modifiers];
         [SwitchMaster.shared modifiersChangedWithModifiers:_modifiers];
     }
+}
+
+/// Helper for frontmost app tracking
+///     Needs to be called on the IOThread (because it changes `_modifiers` and notifies SwitchMaster)
+
+static void setFrontmostApp(NSString * _Nullable bundleID) {
+
+    NSString *oldBundleID = _modifiers[kMFModificationPreconditionKeyApp];
+
+    if (bundleID == oldBundleID || [bundleID isEqualToString:oldBundleID]) return;
+
+    if (bundleID == nil) {
+        [_modifiers removeObjectForKey:kMFModificationPreconditionKeyApp];
+    } else {
+        _modifiers[kMFModificationPreconditionKeyApp] = bundleID;
+    }
+
+    /// Notify
+    ///     This lets SwitchMaster (re)toggle the taps for app-specific remaps. E.g. the button tap is only needed while an app with button remaps is frontmost.
+    [SwitchMaster.shared modifiersChangedWithModifiers:_modifiers];
 }
 
 /// Helper for modifier change handling
