@@ -1,293 +1,936 @@
 {
  "generated": "2026-10-25",
  "storefront": "at",
- "source": "App Store window of the owner's Mac (accessibility tree, read-only), checked against iTunes search with entity=macSoftware. Only 15 free and 15 paid entries are visible; the full 100-entry charts did not open.",
- "charts": {
-  "Top Free Apps": [
-   {
-    "rank": 1,
-    "name": "WhatsApp Messenger",
-    "macMatch": {
-     "trackName": "WhatsApp Messenger",
-     "trackId": 310633997,
-     "bundleId": "net.whatsapp.WhatsApp",
-     "genre": "Social Networking",
-     "price": "Gratis"
-    }
-   },
-   {
-    "rank": 4,
-    "name": "Amazon Prime Video",
-    "macMatch": {
-     "trackName": "Amazon Prime Video",
-     "trackId": 545519333,
-     "bundleId": "com.amazon.aiv.AIVApp",
-     "genre": "Entertainment",
-     "price": "Gratis"
-    }
-   },
-   {
-    "rank": 7,
-    "name": "Microsoft Outlook",
-    "macMatch": {
-     "trackName": "Microsoft Outlook",
-     "trackId": 985367838,
-     "bundleId": "com.microsoft.Outlook",
-     "genre": "Productivity",
-     "price": "Gratis"
-    }
-   },
-   {
-    "rank": 10,
-    "name": "AI ChatbotㆍAsk AI Anything",
-    "macMatch": null
-   },
-   {
-    "rank": 13,
-    "name": "OneDrive",
-    "macMatch": {
-     "trackName": "OneDrive",
-     "trackId": 823766827,
-     "bundleId": "com.microsoft.OneDrive-mac",
-     "genre": "Productivity",
-     "price": "Gratis"
-    }
-   },
-   {
-    "rank": 2,
-    "name": "Microsoft Word",
-    "macMatch": {
-     "trackName": "Microsoft Word",
-     "trackId": 462054704,
-     "bundleId": "com.microsoft.Word",
-     "genre": "Productivity",
-     "price": "Gratis"
-    }
-   },
-   {
-    "rank": 5,
-    "name": "Microsoft Excel",
-    "macMatch": {
-     "trackName": "Microsoft Excel",
-     "trackId": 462058435,
-     "bundleId": "com.microsoft.Excel",
-     "genre": "Productivity",
-     "price": "Gratis"
-    }
-   },
-   {
-    "rank": 8,
-    "name": "Canva: AI Video & Photo Editor",
-    "macMatch": null
-   },
-   {
-    "rank": 11,
-    "name": "Xcode",
-    "macMatch": null
-   },
-   {
-    "rank": 14,
-    "name": "Chatbot: Ask Chat AI Assistant",
-    "macMatch": {
-     "trackName": "Chatbot: Ask Chat AI Assistant",
-     "trackId": 6741155738,
-     "bundleId": "com.am.deepseek",
-     "genre": "Education",
-     "price": "Gratis"
-    }
-   },
-   {
-    "rank": 3,
-    "name": "Microsoft PowerPoint",
-    "macMatch": {
-     "trackName": "Microsoft PowerPoint",
-     "trackId": 462062816,
-     "bundleId": "com.microsoft.Powerpoint",
-     "genre": "Productivity",
-     "price": "Gratis"
-    }
-   },
-   {
-    "rank": 6,
-    "name": "AI Assistant Chatbot: ASTRA 6",
-    "macMatch": {
-     "trackName": "AI Assistant Chatbot: ASTRA 6",
-     "trackId": 6809415433,
-     "bundleId": "chatbot.notebook.app",
-     "genre": "Education",
-     "price": "Gratis"
-    }
-   },
-   {
-    "rank": 9,
-    "name": "Microsoft 365",
-    "macMatch": null
-   },
-   {
-    "rank": 12,
-    "name": "CapCut: Photo & Video Editor",
-    "macMatch": null
-   },
-   {
-    "rank": 15,
-    "name": "Goodnotes: AI Notes",
-    "macMatch": null
-   }
-  ],
-  "Top Paid Apps": [
-   {
-    "rank": 1,
-    "name": "LibreOffice",
-    "macMatch": {
-     "trackName": "LibreOffice",
-     "trackId": 1630474372,
-     "bundleId": "org.documentfoundation.libreoffice",
-     "genre": "Productivity",
-     "price": "9,99 €"
-    }
-   },
-   {
-    "rank": 4,
-    "name": "MacFamilyTree 11",
-    "macMatch": {
-     "trackName": "MacFamilyTree 11",
-     "trackId": 6480510488,
-     "bundleId": "com.syniumsoftware.macfamilytree11",
-     "genre": "Productivity",
-     "price": "34,99 €"
-    }
-   },
-   {
-    "rank": 7,
-    "name": "Netmo 2 – Weather for Netatmo",
-    "macMatch": null
-   },
-   {
-    "rank": 10,
-    "name": "New File Menu",
-    "macMatch": {
-     "trackName": "New File Menu",
-     "trackId": 1064959555,
-     "bundleId": "net.langui.NewFileMenu",
-     "genre": "Utilities",
-     "price": "2,99 €"
-    }
-   },
-   {
-    "rank": 13,
-    "name": "Whisper Notes - Speech to Text",
-    "macMatch": null
-   },
-   {
-    "rank": 2,
-    "name": "Wipr 2",
-    "macMatch": {
-     "trackName": "Wipr 2",
-     "trackId": 1662217862,
-     "bundleId": "site.kaylees.Wipr2",
-     "genre": "Utilities",
-     "price": "5,99 €"
-    }
-   },
-   {
-    "rank": 5,
-    "name": "Logic Pro",
-    "macMatch": {
-     "trackName": "Logic Pro",
-     "trackId": 634148309,
-     "bundleId": "com.apple.logic10",
-     "genre": "Music",
-     "price": "229,99 €"
-    }
-   },
-   {
-    "rank": 8,
-    "name": "DaisyDisk",
-    "macMatch": {
-     "trackName": "DaisyDisk",
-     "trackId": 411643860,
-     "bundleId": "com.daisydiskapp.DaisyDisk",
-     "genre": "Utilities",
-     "price": "9,99 €"
-    }
-   },
-   {
-    "rank": 11,
-    "name": "Sleeve for Spotify",
-    "macMatch": {
-     "trackName": "Sleeve for Spotify, Music",
-     "trackId": 1606145041,
-     "bundleId": "com.replay.sleeve",
-     "genre": "Music",
-     "price": "8,99 €"
-    }
-   },
-   {
-    "rank": 14,
-    "name": "Duplicate Photos Fixer Pro",
-    "macMatch": {
-     "trackName": "Duplicate Photos Fixer Pro",
-     "trackId": 963642514,
-     "bundleId": "com.systweak.Duplicate-Photos-Fixer-Pro",
-     "genre": "Photo & Video",
-     "price": "17,99 €"
-    }
-   },
-   {
-    "rank": 3,
-    "name": "forScore",
-    "macMatch": {
-     "trackName": "forScore",
-     "trackId": 363738376,
-     "bundleId": "com.mgsdevelopment.forscore",
-     "genre": "Music",
-     "price": "29,99 €"
-    }
-   },
-   {
-    "rank": 6,
-    "name": "RAR Extractor - Unarchiver Pro",
-    "macMatch": {
-     "trackName": "RAR Extractor - Unarchiver Pro",
-     "trackId": 647505820,
-     "bundleId": "com.ABabe.rarextractorstar",
-     "genre": "Utilities",
-     "price": "3,99 €"
-    }
-   },
-   {
-    "rank": 9,
-    "name": "TreeSize - Disk Usage",
-    "macMatch": {
-     "trackName": "TreeSize - Disk Usage",
-     "trackId": 774815014,
-     "bundleId": "com.woojooin.zFolderTree",
-     "genre": "Utilities",
-     "price": "3,99 €"
-    }
-   },
-   {
-    "rank": 12,
-    "name": "PhotoSweeper",
-    "macMatch": {
-     "trackName": "PhotoSweeper",
-     "trackId": 463362050,
-     "bundleId": "com.overmacs.photosweeper",
-     "genre": "Photo & Video",
-     "price": "17,99 €"
-    }
-   },
-   {
-    "rank": 15,
-    "name": "Cloud Baby Monitor",
-    "macMatch": {
-     "trackName": "Cloud Baby Monitor",
-     "trackId": 517602535,
-     "bundleId": "com.martinman.macvideobabymonitor",
-     "genre": "Lifestyle",
-     "price": "8,99 €"
-    }
-   }
-  ]
- }
+ "source": "App Store window (accessibility, read-only). Visible entries only: Top Free ranks 1-34, Top Paid ranks 1-33. The middle of the charts (ranks ~35-145) and the tail beyond the loaded sections could not be read.",
+ "matchGrades": {
+  "exact": "same name in Mac-only search",
+  "prefix": "one name starts with the other",
+  "variant": "same first word, different store name; NOT reliable (e.g. Microsoft 365 matched Microsoft Word)",
+  "none": "no Mac-only match"
+ },
+ "entries": [
+  {
+   "chart": "free",
+   "rank": 1,
+   "name": "WhatsApp Messenger",
+   "desc": "1, WhatsApp Messenger, Simple. Reliable. Private, Get, In-App Purchases",
+   "match": "exact",
+   "trackName": "WhatsApp Messenger",
+   "bundleId": "net.whatsapp.WhatsApp",
+   "trackId": 310633997,
+   "genre": "Social Networking",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 2,
+   "name": "Microsoft Word",
+   "desc": "2, Microsoft Word, Create, Edit & Share Documents, Get, In-App Purchases",
+   "match": "exact",
+   "trackName": "Microsoft Word",
+   "bundleId": "com.microsoft.Word",
+   "trackId": 462054704,
+   "genre": "Productivity",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 3,
+   "name": "Amazon Prime Video",
+   "desc": "3, Amazon Prime Video, Originals, movies, TV, sports, Get, In-App Purchases",
+   "match": "exact",
+   "trackName": "Amazon Prime Video",
+   "bundleId": "com.amazon.aiv.AIVApp",
+   "trackId": 545519333,
+   "genre": "Entertainment",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 4,
+   "name": "Microsoft PowerPoint",
+   "desc": "4, Microsoft PowerPoint, Create Impactful Presentations, Get, In-App Purchases",
+   "match": "exact",
+   "trackName": "Microsoft PowerPoint",
+   "bundleId": "com.microsoft.Powerpoint",
+   "trackId": 462062816,
+   "genre": "Productivity",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 5,
+   "name": "Microsoft Excel",
+   "desc": "5, Microsoft Excel, Spreadsheets and Data Analysis, Get, In-App Purchases",
+   "match": "exact",
+   "trackName": "Microsoft Excel",
+   "bundleId": "com.microsoft.Excel",
+   "trackId": 462058435,
+   "genre": "Productivity",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 6,
+   "name": "AI Assistant Chatbot: ASTRA 6",
+   "desc": "6, AI Assistant Chatbot: ASTRA 6, Build on Claude by Anthropic, Get, In-App Purchases",
+   "match": "exact",
+   "trackName": "AI Assistant Chatbot: ASTRA 6",
+   "bundleId": "chatbot.notebook.app",
+   "trackId": 6809415433,
+   "genre": "Education",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 7,
+   "name": "Canva: AI Video & Photo Editor",
+   "desc": "7, Canva: AI Video & Photo Editor, CV, Invitation, Collage Design, Get, In-App Purchases",
+   "match": "variant",
+   "trackName": "Canva: KI-Foto- & Video-Editor",
+   "bundleId": "com.canva.canvaeditor",
+   "trackId": 897446215,
+   "genre": "Photo & Video",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 8,
+   "name": "Microsoft Outlook",
+   "desc": "8, Microsoft Outlook, Email and calendar, Get, In-App Purchases",
+   "match": "exact",
+   "trackName": "Microsoft Outlook",
+   "bundleId": "com.microsoft.Outlook",
+   "trackId": 985367838,
+   "genre": "Productivity",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 9,
+   "name": "Microsoft 365",
+   "desc": "9, Microsoft 365, Productivity, View",
+   "match": "variant",
+   "trackName": "Microsoft Word",
+   "bundleId": "com.microsoft.Word",
+   "trackId": 462054704,
+   "genre": "Productivity",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 10,
+   "name": "CapCut: Photo & Video Editor",
+   "desc": "10, CapCut: Photo & Video Editor, Video maker with music, Get, In-App Purchases",
+   "match": "variant",
+   "trackName": "CapCut: Foto- und Video-Editor",
+   "bundleId": "com.lemon.lvoverseas",
+   "trackId": 1500855883,
+   "genre": "Photo & Video",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 11,
+   "name": "AI ChatbotㆍAsk AI Anything",
+   "desc": "11, AI ChatbotㆍAsk AI Anything, Built on GPT-4, GPT-5, GPT-5.6, Get, In-App Purchases",
+   "match": "variant",
+   "trackName": "AI Chatbot・KI Chat Deutsch 5.6",
+   "bundleId": "com.ai.chatbot.personalized",
+   "trackId": 6753711999,
+   "genre": "Education",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 12,
+   "name": "Xcode",
+   "desc": "12, Xcode, Developer Tools, Open",
+   "match": "none",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 13,
+   "name": "OneDrive",
+   "desc": "13, OneDrive, Protect and access your files, Get, In-App Purchases",
+   "match": "exact",
+   "trackName": "OneDrive",
+   "bundleId": "com.microsoft.OneDrive-mac",
+   "trackId": 823766827,
+   "genre": "Productivity",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 14,
+   "name": "Goodnotes: AI Notes",
+   "desc": "14, Goodnotes: AI Notes, Docs, PDF, Note taking, Planner & Journal, Get, In-App Purchases",
+   "match": "variant",
+   "trackName": "Goodnotes: KI Notizen, PDF app",
+   "bundleId": "com.goodnotesapp.x",
+   "trackId": 1444383602,
+   "genre": "Productivity",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 15,
+   "name": "Telegram",
+   "desc": "15, Telegram, Fast. Secure. Powerful, Get, In-App Purchases",
+   "match": "exact",
+   "trackName": "Telegram",
+   "bundleId": "ru.keepcoder.Telegram",
+   "trackId": 747648890,
+   "genre": "Social Networking",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 16,
+   "name": "HP: Print and Support",
+   "desc": "16, HP: Print and Support, The best of HP, in one place, Get",
+   "match": "variant",
+   "trackName": "HP: Druck und Support",
+   "bundleId": "com.hp.SmartMac",
+   "trackId": 1474276998,
+   "genre": "Productivity",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 17,
+   "name": "Chatbot: Ask Chat AI Assistant",
+   "desc": "17, Chatbot: Ask Chat AI Assistant, Built on Advanced AI Models, Get, In-App Purchases",
+   "match": "exact",
+   "trackName": "Chatbot: Ask Chat AI Assistant",
+   "bundleId": "com.am.deepseek",
+   "trackId": 6741155738,
+   "genre": "Education",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 18,
+   "name": "Streaming for Netflix",
+   "desc": "18, Streaming for Netflix, For Netflix, Peacock and more, Get, In-App Purchases",
+   "match": "exact",
+   "trackName": "Streaming for Netflix",
+   "bundleId": "com.appsalchemy.streamingone",
+   "trackId": 6751184690,
+   "genre": "Entertainment",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 19,
+   "name": "NordVPN: VPN Fast & Secure",
+   "desc": "19, NordVPN: VPN Fast & Secure, Fast & Safe VPN Servers, Get, In-App Purchases",
+   "match": "variant",
+   "trackName": "NordVPN: Wähle das Premium VPN",
+   "bundleId": "com.nordvpn.NordVPN",
+   "trackId": 905953485,
+   "genre": "Utilities",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 20,
+   "name": "Save to Pinterest",
+   "desc": "20, Save to Pinterest, Lifestyle, Get",
+   "match": "exact",
+   "trackName": "Save to Pinterest",
+   "bundleId": "pinterest.SaveToPinterest",
+   "trackId": 6473649042,
+   "genre": "Lifestyle",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 21,
+   "name": "Openly for Chrome & Firefox",
+   "desc": "21, Openly for Chrome & Firefox, Open Web Link to Chrome /other, Get, In-App Purchases",
+   "match": "exact",
+   "trackName": "Openly for Chrome & Firefox",
+   "bundleId": "com.fokusek.openinpro",
+   "trackId": 1570349123,
+   "genre": "Productivity",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 22,
+   "name": "App for YouTube",
+   "desc": "22, App for YouTube, Player App for Youtube, Get, In-App Purchases",
+   "match": "prefix",
+   "trackName": "App for YouTube ·",
+   "bundleId": "com.appsalchemy.youtubevideo",
+   "trackId": 6753933026,
+   "genre": "Entertainment",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 23,
+   "name": "Microsoft Copilot",
+   "desc": "23, Microsoft Copilot, Your AI Companion, Get, In-App Purchases",
+   "match": "exact",
+   "trackName": "Microsoft Copilot",
+   "bundleId": "com.microsoft.copilot-mac",
+   "trackId": 6738511300,
+   "genre": "Productivity",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 24,
+   "name": "Windows App",
+   "desc": "24, Windows App, Previously Remote Desktop, Get",
+   "match": "exact",
+   "trackName": "Windows App",
+   "bundleId": "com.microsoft.rdc.macos",
+   "trackId": 1295203466,
+   "genre": "Business",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 25,
+   "name": "MyWhoosh: Indoor Cycling App",
+   "desc": "25, MyWhoosh: Indoor Cycling App, Virtual Cycling Solution, Get, In-App Purchases",
+   "match": "exact",
+   "trackName": "MyWhoosh: Indoor Cycling App",
+   "bundleId": "com.whoosh.whooshgame",
+   "trackId": 1498889644,
+   "genre": "Health & Fitness",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 26,
+   "name": "WireGuard",
+   "desc": "26, WireGuard, Official WireGuard VPN client, Get",
+   "match": "exact",
+   "trackName": "WireGuard",
+   "bundleId": "com.wireguard.macos",
+   "trackId": 1451685025,
+   "genre": "Utilities",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 27,
+   "name": "uBlock Origin Lite",
+   "desc": "27, uBlock Origin Lite, An efficient content blocker, Get",
+   "match": "exact",
+   "trackName": "uBlock Origin Lite",
+   "bundleId": "net.raymondhill.uBlock-Origin-Lite",
+   "trackId": 6745342698,
+   "genre": "Utilities",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 28,
+   "name": "PDFgear: PDF Editor & Reader",
+   "desc": "28, PDFgear: PDF Editor & Reader, PDF Converter, Sign Documents, Get",
+   "match": "variant",
+   "trackName": "PDFgear: PDF Bearbeiten",
+   "bundleId": "com.pdfeditor.pdfeditormac",
+   "trackId": 6469021132,
+   "genre": "Business",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 29,
+   "name": "The Unarchiver",
+   "desc": "29, The Unarchiver, Open any archive in seconds, Get",
+   "match": "exact",
+   "trackName": "The Unarchiver",
+   "bundleId": "cx.c3.theunarchiver",
+   "trackId": 425424353,
+   "genre": "Utilities",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 30,
+   "name": "Apple Creator Studio",
+   "desc": "30, Apple Creator Studio, Photo & Video, View, In-App Purchases",
+   "match": "none",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 31,
+   "name": "Tailscale",
+   "desc": "31, Tailscale, Secure Connectivity & Mesh VPN, Get",
+   "match": "exact",
+   "trackName": "Tailscale",
+   "bundleId": "io.tailscale.ipn.macos",
+   "trackId": 1475387142,
+   "genre": "Utilities",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 32,
+   "name": "Sweet Home 3D Plan Your House",
+   "desc": "32, Sweet Home 3D Plan Your House, Room Planner & Interior Design, Get, In-App Purchases",
+   "match": "variant",
+   "trackName": "Sweet Home 3D Haus Einrichten",
+   "bundleId": "com.eteks.sweethome3d.SweetHome3D",
+   "trackId": 669289700,
+   "genre": "Graphics & Design",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 33,
+   "name": "Amazon Kindle: Reading App",
+   "desc": "33, Amazon Kindle: Reading App, Read books. Millions of ebooks, Get",
+   "match": "prefix",
+   "trackName": "Amazon Kindle",
+   "bundleId": "com.amazon.Lassen",
+   "trackId": 302584613,
+   "genre": "Book",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "free",
+   "rank": 34,
+   "name": "Apple Developer",
+   "desc": "34, Apple Developer, Developer Tools, Get, In-App Purchases",
+   "match": "exact",
+   "trackName": "Apple Developer",
+   "bundleId": "developer.apple.wwdc-Release",
+   "trackId": 640199958,
+   "genre": "Developer Tools",
+   "price": "Gratis",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 1,
+   "name": "Wipr 2",
+   "desc": "1, Wipr 2, Block ads, trackers, and more, 5,99 €, In-App Purchases",
+   "match": "exact",
+   "trackName": "Wipr 2",
+   "bundleId": "site.kaylees.Wipr2",
+   "trackId": 1662217862,
+   "genre": "Utilities",
+   "price": "5,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 2,
+   "name": "LibreOffice",
+   "desc": "2, LibreOffice, Open Source Office Suite, 9,99 €",
+   "match": "exact",
+   "trackName": "LibreOffice",
+   "bundleId": "org.documentfoundation.libreoffice",
+   "trackId": 1630474372,
+   "genre": "Productivity",
+   "price": "9,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 3,
+   "name": "forScore",
+   "desc": "3, forScore, Turbocharge your sheet music, 29,99 €, In-App Purchases",
+   "match": "exact",
+   "trackName": "forScore",
+   "bundleId": "com.mgsdevelopment.forscore",
+   "trackId": 363738376,
+   "genre": "Music",
+   "price": "29,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 4,
+   "name": "MacFamilyTree 11",
+   "desc": "4, MacFamilyTree 11, Modern family history, 34,99 €",
+   "match": "exact",
+   "trackName": "MacFamilyTree 11",
+   "bundleId": "com.syniumsoftware.macfamilytree11",
+   "trackId": 6480510488,
+   "genre": "Productivity",
+   "price": "34,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 5,
+   "name": "Parachute Backup",
+   "desc": "5, Parachute Backup, For iCloud Photos & Drive, 14,99 €",
+   "match": "exact",
+   "trackName": "Parachute Backup",
+   "bundleId": "net.ericmann.parachute",
+   "trackId": 6748614170,
+   "genre": "Utilities",
+   "price": "14,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 6,
+   "name": "Logoist 6 – Graphic Design",
+   "desc": "6, Logoist 6 – Graphic Design, Create impressive Artwork, 19,99 €",
+   "match": "variant",
+   "trackName": "Logoist 6 – Grafikdesign",
+   "bundleId": "com.syniumsoftware.logoist6",
+   "trackId": 6754276978,
+   "genre": "Graphics & Design",
+   "price": "19,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 7,
+   "name": "Logic Pro",
+   "desc": "7, Logic Pro, Professional music production, 229,99 €",
+   "match": "exact",
+   "trackName": "Logic Pro",
+   "bundleId": "com.apple.logic10",
+   "trackId": 634148309,
+   "genre": "Music",
+   "price": "229,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 8,
+   "name": "RAR Extractor - Unarchiver Pro",
+   "desc": "8, RAR Extractor - Unarchiver Pro, the unarchiver & archiver, 3,99 €",
+   "match": "exact",
+   "trackName": "RAR Extractor - Unarchiver Pro",
+   "bundleId": "com.ABabe.rarextractorstar",
+   "trackId": 647505820,
+   "genre": "Utilities",
+   "price": "3,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 9,
+   "name": "Weatherling: Rain & Snow FX",
+   "desc": "9, Weatherling: Rain & Snow FX, Rain, Snow, Fog & Leaves, 1,99 €",
+   "match": "variant",
+   "trackName": "Weatherling: Regen & Schnee FX",
+   "bundleId": "com.mattsenter.Weatherling",
+   "trackId": 6813641198,
+   "genre": "Utilities",
+   "price": "1,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 10,
+   "name": "Netmo 2 – Weather for Netatmo",
+   "desc": "10, Netmo 2 – Weather for Netatmo, Live Thermometer & Air Monitor, 3,99 €",
+   "match": "variant",
+   "trackName": "Netmo 2 – Wetter für Netatmo",
+   "bundleId": "at.agross.netmo2",
+   "trackId": 6810955806,
+   "genre": "Weather",
+   "price": "3,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 11,
+   "name": "DaisyDisk",
+   "desc": "11, DaisyDisk, Recover disk space, 9,99 €",
+   "match": "exact",
+   "trackName": "DaisyDisk",
+   "bundleId": "com.daisydiskapp.DaisyDisk",
+   "trackId": 411643860,
+   "genre": "Utilities",
+   "price": "9,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 12,
+   "name": "Swift Publisher 5",
+   "desc": "12, Swift Publisher 5, Page layout and publishing app, 22,99 €, In-App Purchases",
+   "match": "exact",
+   "trackName": "Swift Publisher 5",
+   "bundleId": "com.belightsoft.SwiftPublisher5",
+   "trackId": 1058362543,
+   "genre": "Graphics & Design",
+   "price": "22,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 13,
+   "name": "GrandPerspective",
+   "desc": "13, GrandPerspective, visualises disk usage, 2,99 €",
+   "match": "exact",
+   "trackName": "GrandPerspective",
+   "bundleId": "net.sourceforge.grandperspectiv",
+   "trackId": 1111570163,
+   "genre": "Utilities",
+   "price": "2,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 14,
+   "name": "TreeSize - Disk Usage",
+   "desc": "14, TreeSize - Disk Usage, Disk Usage Analysis Tool, 3,99 €",
+   "match": "exact",
+   "trackName": "TreeSize - Disk Usage",
+   "bundleId": "com.woojooin.zFolderTree",
+   "trackId": 774815014,
+   "genre": "Utilities",
+   "price": "3,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 15,
+   "name": "New File Menu",
+   "desc": "15, New File Menu, Create files via context menu, 2,99 €",
+   "match": "exact",
+   "trackName": "New File Menu",
+   "bundleId": "net.langui.NewFileMenu",
+   "trackId": 1064959555,
+   "genre": "Utilities",
+   "price": "2,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 16,
+   "name": "Sleeve for Spotify",
+   "desc": "16, Sleeve for Spotify, Music, Your music on your desktop, 8,99 €",
+   "match": "prefix",
+   "trackName": "Sleeve for Spotify, Music",
+   "bundleId": "com.replay.sleeve",
+   "trackId": 1606145041,
+   "genre": "Music",
+   "price": "8,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 17,
+   "name": "PhotoSweeper",
+   "desc": "17, PhotoSweeper, Smart duplicate photos cleaner, 17,99 €",
+   "match": "exact",
+   "trackName": "PhotoSweeper",
+   "bundleId": "com.overmacs.photosweeper",
+   "trackId": 463362050,
+   "genre": "Photo & Video",
+   "price": "17,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 18,
+   "name": "Whisper Notes - Speech to Text",
+   "desc": "18, Whisper Notes - Speech to Text, Offline Transcription & Memos, 8,99 €",
+   "match": "variant",
+   "trackName": "Whisper Notes: Sprache zu Text",
+   "bundleId": "com.mazzystar.WhisperMemo",
+   "trackId": 6447090616,
+   "genre": "Productivity",
+   "price": "8,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 19,
+   "name": "Noir – Dark Mode for Safari",
+   "desc": "19, Noir – Dark Mode for Safari, Browse better at night, 4,99 €",
+   "match": "exact",
+   "trackName": "Noir – Dark Mode for Safari",
+   "bundleId": "nl.jeffreykuiken.NoirApp.mac",
+   "trackId": 1592917505,
+   "genre": "Utilities",
+   "price": "4,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 20,
+   "name": "Duplicate Photos Fixer Pro",
+   "desc": "20, Duplicate Photos Fixer Pro, Recover precious disk space, 17,99 €",
+   "match": "exact",
+   "trackName": "Duplicate Photos Fixer Pro",
+   "bundleId": "com.systweak.Duplicate-Photos-Fixer-Pro",
+   "trackId": 963642514,
+   "genre": "Photo & Video",
+   "price": "17,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 21,
+   "name": "Cloud Baby Monitor",
+   "desc": "21, Cloud Baby Monitor, Lifestyle, 8,99 €",
+   "match": "exact",
+   "trackName": "Cloud Baby Monitor",
+   "bundleId": "com.martinman.macvideobabymonitor",
+   "trackId": 517602535,
+   "genre": "Lifestyle",
+   "price": "8,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 22,
+   "name": "Aquarium 4K",
+   "desc": "22, Aquarium 4K, Aquarium on your TV screen, 0,99 €, In-App Purchases",
+   "match": "exact",
+   "trackName": "Aquarium 4K",
+   "bundleId": "com.kissapp.acuario",
+   "trackId": 553450789,
+   "genre": "Entertainment",
+   "price": "0,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 23,
+   "name": "Fizzy Water Bundle",
+   "desc": "23, Fizzy Water Bundle, Utilities, View",
+   "match": "none",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 24,
+   "name": "iStat Menus 7",
+   "desc": "24, iStat Menus 7, The ultimate system monitor, 12,99 €, In-App Purchases",
+   "match": "exact",
+   "trackName": "iStat Menus 7",
+   "bundleId": "com.bjango.istatmenus-mas",
+   "trackId": 6499559693,
+   "genre": "Utilities",
+   "price": "12,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 25,
+   "name": "GraphicConverter 12",
+   "desc": "25, GraphicConverter 12, The pocket knife for pictures, 34,99 €",
+   "match": "exact",
+   "trackName": "GraphicConverter 12",
+   "bundleId": "com.lemkesoft.graphicconverter12",
+   "trackId": 1671632937,
+   "genre": "Graphics & Design",
+   "price": "34,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 26,
+   "name": "PLIST Editor",
+   "desc": "26, PLIST Editor, View & edit PLIST files, 8,99 €, In-App Purchases",
+   "match": "exact",
+   "trackName": "PLIST Editor",
+   "bundleId": "com.vladbadea.plisteditor",
+   "trackId": 1157491961,
+   "genre": "Developer Tools",
+   "price": "8,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 27,
+   "name": "DockTime",
+   "desc": "27, DockTime, The clock in the Dock, 0,99 €",
+   "match": "exact",
+   "trackName": "DockTime",
+   "bundleId": "de.pecora.iClock",
+   "trackId": 508034739,
+   "genre": "Lifestyle",
+   "price": "0,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 28,
+   "name": "Python Runner",
+   "desc": "28, Python Runner, Test/run Python script quickly, 1,99 €",
+   "match": "exact",
+   "trackName": "Python Runner",
+   "bundleId": "PythonRunner",
+   "trackId": 689176796,
+   "genre": "Developer Tools",
+   "price": "1,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 29,
+   "name": "PlugInfo",
+   "desc": "29, PlugInfo, Audio Plug-In Explorer, 2,99 €",
+   "match": "exact",
+   "trackName": "PlugInfo",
+   "bundleId": "com.thinkersnacks.PlugInfo",
+   "trackId": 1626412949,
+   "genre": "Utilities",
+   "price": "2,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 30,
+   "name": "Camera Tools for GoPro® Heros",
+   "desc": "30, Camera Tools for GoPro® Heros, Remote control GoPro® cameras, 19,99 €",
+   "match": "variant",
+   "trackName": "Camera Tools für GoPro® Heros",
+   "bundleId": "com.toolsforgopro.CameraToolsForHeros",
+   "trackId": 1539331570,
+   "genre": "Photo & Video",
+   "price": "19,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 31,
+   "name": "Folder Colorizer",
+   "desc": "31, Folder Colorizer, Make folders colorful, 1,99 €",
+   "match": "exact",
+   "trackName": "Folder Colorizer",
+   "bundleId": "net.langui.FolderColorizer",
+   "trackId": 994826809,
+   "genre": "Utilities",
+   "price": "1,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 32,
+   "name": "Keystroke Pro",
+   "desc": "32, Keystroke Pro, Visualize Your Keypresses, 17,99 €",
+   "match": "exact",
+   "trackName": "Keystroke Pro",
+   "bundleId": "de.ixeau.KeystrokePro2",
+   "trackId": 1572206224,
+   "genre": "Productivity",
+   "price": "17,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  },
+  {
+   "chart": "paid",
+   "rank": 33,
+   "name": "QR Code Reader :BarcodeTools",
+   "desc": "33, QR Code Reader :BarcodeTools, Create and Scan QR, Barcode, 1,99 €",
+   "match": "exact",
+   "trackName": "QR Code Reader :BarcodeTools",
+   "bundleId": "com.axe1lyze.BarcodeTools",
+   "trackId": 1482603779,
+   "genre": "Productivity",
+   "price": "1,99 €",
+   "iosTag": false,
+   "notAvailableTag": false
+  }
+ ]
 }
