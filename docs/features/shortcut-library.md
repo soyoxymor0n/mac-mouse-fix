@@ -38,7 +38,7 @@ Official shortcut documentation (checked):
 
 Key codes (Carbon `HIToolbox/Events.h`): M = 46, O = 31, [ = 33, ] = 30, Q = 12. [Events.h mirror](https://raw.githubusercontent.com/phracker/MacOSX-SDKs/master/MacOSX10.13.sdk/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h)
 
-Keyboard layout (background knowledge, not verified by a source in this research): key codes name physical key positions, and the character a key produces depends on the active layout. On a German macOS layout, the bracket keys are believed to sit on other keys (Option+8 and Option+9 for [ and ]). If so, a recorded key code 33 may not produce the character that Chrome's Command+[ uses. Test this on your Mac before shipping any character-based entry.
+Keyboard layout (measured on the owner's Mac, see `shortcut-research/layouts.md`): key codes name physical key positions, and the character a key produces depends on the active layout. On the German and Austrian layouts, `[` is Option+5 and `]` is Option+6, while Option+8 and Option+9 give `{` and `}`. Key code 33 on those layouts gives ü, so a recorded key code 33 does not produce Chrome's Command+[. Z and Y also swap positions (key code 6 is Y on those layouts). Store one variant per layout for each character-based entry.
 
 ## 4. Data model
 
@@ -172,7 +172,7 @@ Phase 3: layout and release.
 3. How are key codes stored, given layouts differ?
    (a) Physical key codes only, with a documented caveat. (b) Store the character and resolve it to a key code for the current layout at runtime. (c) Document only, and mark entries as tested or untested.
    (d) For Chrome, use Command+Left and Command+Right (key codes 123 and 124), which Chrome lists for back and forward on Mac. Arrow keys do not change with the layout.
-   Recommendation: (d) for Chrome. For other entries, your Mac uses the Austrian layout (`com.apple.keylayout.Austrian`), so test each character-based entry on it before you choose (a) or (b).
+   Decided 2026-10-25: per layout. Each character-based entry stores one variant for US, German and Austrian. Measured key tables: `shortcut-research/layouts.md`. The runtime stays unchanged.
 4. Who maintains the entries?
    (a) You alone. (b) Pull requests to the repository from `community-sharing.md`, with review. (c) Any user, through the community feature.
    Recommendation: (a) for v1. Move to (b) once the repository exists.
