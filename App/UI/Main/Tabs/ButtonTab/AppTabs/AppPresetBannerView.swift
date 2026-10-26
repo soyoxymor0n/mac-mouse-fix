@@ -10,59 +10,59 @@ import AppKit
 
 /// The banner in an empty app tab that offers a built-in preset.
 final class AppPresetBannerView: NSView {
-    
-    /// Called when the user clicks Add
-    var onAdd: (() -> Void)?
-    
+
+    /// Called when the user clicks Review
+    var onReview: (() -> Void)?
+
     private let label = NSTextField(labelWithString: "")
-    private let addButton = NSButton(title: MFLocalizedString("app-presets.add", comment: ""), target: nil, action: nil)
-    
+    private let reviewButton = NSButton(title: MFLocalizedString("app-presets.review", comment: ""), target: nil, action: nil)
+
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         setUp()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setUp()
     }
-    
+
     private func setUp() {
-        
+
         translatesAutoresizingMaskIntoConstraints = false
         wantsLayer = true
         layer?.cornerRadius = 8
         layer?.backgroundColor = NSColor.controlAccentColor.withAlphaComponent(0.12).cgColor
-        
+
         label.translatesAutoresizingMaskIntoConstraints = false
         label.lineBreakMode = .byTruncatingTail
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        
-        addButton.translatesAutoresizingMaskIntoConstraints = false
-        addButton.bezelStyle = .rounded
-        addButton.target = self
-        addButton.action = #selector(addTapped(_:))
-        
-        let stack = NSStackView(views: [label, addButton])
+
+        reviewButton.translatesAutoresizingMaskIntoConstraints = false
+        reviewButton.bezelStyle = .rounded
+        reviewButton.target = self
+        reviewButton.action = #selector(reviewTapped(_:))
+
+        let stack = NSStackView(views: [label, reviewButton])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.orientation = .horizontal
         stack.alignment = .centerY
         stack.spacing = 10
         addSubview(stack)
-        
+
         NSLayoutConstraint.activate([
             stack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             stack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             stack.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }
-    
+
     /// Sets the text of the offer
     func setText(_ text: String) {
         label.stringValue = text
     }
-    
-    @objc private func addTapped(_ sender: NSButton) {
-        onAdd?()
+
+    @objc private func reviewTapped(_ sender: NSButton) {
+        onReview?()
     }
 }

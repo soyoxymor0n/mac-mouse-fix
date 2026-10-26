@@ -410,7 +410,7 @@ import Foundation
             banner.topAnchor.constraint(equalTo: container.topAnchor, constant: 10),
             banner.heightAnchor.constraint(equalToConstant: 34),
         ])
-        banner.onAdd = { [weak self] in self?.addPreset() }
+        banner.onReview = { [weak self] in self?.reviewPreset() }
         banner.isHidden = true
         presetBanner = banner
     }
@@ -418,7 +418,7 @@ import Foundation
     /// Shows the preset offer for an empty app tab that has a preset, and hides it otherwise
     func updatePresetBanner() {
         guard let banner = presetBanner else { return }
-        guard let app = scopeApp, let preset = AppPreset.preset(for: app), tableController.dataModel.count == 0 else {
+        guard let app = scopeApp, let preset = AppPreset.preset(for: app), tableController.dataModel.count == 0, !AppPreset.isDismissed(app) else {
             banner.isHidden = true
             return
         }
@@ -426,12 +426,24 @@ import Foundation
         banner.isHidden = false
     }
     
-    /// Writes the preset rows into the current app tab. The tab was empty before, so Restore Defaults on the tab undoes this.
-    private func addPreset() {
-        guard let app = scopeApp, let preset = AppPreset.preset(for: app) else { return }
-        replaceRows(forScope: app, with: preset.rows(forApp: app))
-        tableController.reloadAll()
-        updatePresetBanner()
+    /// Opens the review sheet for the current app's preset. Nothing is written until the user confirms there.
+    /// Confirmed rows replace the tab's rows, which are empty when the banner is shown. Restore Defaults on the tab undoes this.
+    private func reviewPreset() {
+        guard let app = scopeApp, let preset = AppPreset.preset(for: app), let window = MainAppState.shared.window else { return }
+
+        let controller = AppPresetReviewController(app: app, preset: preset, globalRows: RemapScope.rows(forScope: nil, inRemaps: config("Remaps") as? [Any]) as? [[String: Any]] ?? [])
+        controller.onFinish = { [weak self] rows, dontSuggestAgain in
+            guard let self else { return }
+            if dontSuggestAgain { AppPreset.setDismissed(app) }
+            if !rows.isEmpty {
+                self.replaceRows(forScope: app, with: rows)
+                self.tableController.reloadAll()
+            }
+            self.updatePresetBanner()
+        }
+
+        let sheet = NSWindow(contentViewController: controller)
+        window.beginSheet(sheet)
     }
     
     @objc private func remapTableDidChange(_ notification: Notification) {
