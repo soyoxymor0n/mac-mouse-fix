@@ -1,936 +1,3296 @@
 {
- "generated": "2026-10-25",
+ "generated": "2026-10-26",
  "storefront": "at",
- "source": "App Store window (accessibility, read-only). Visible entries only: Top Free ranks 1-34, Top Paid ranks 1-33. The middle of the charts (ranks ~35-145) and the tail beyond the loaded sections could not be read.",
- "matchGrades": {
-  "exact": "same name in Mac-only search",
-  "prefix": "one name starts with the other",
-  "variant": "same first word, different store name; NOT reliable (e.g. Microsoft 365 matched Microsoft Word)",
-  "none": "no Mac-only match"
- },
- "entries": [
-  {
-   "chart": "free",
-   "rank": 1,
-   "name": "WhatsApp Messenger",
-   "desc": "1, WhatsApp Messenger, Simple. Reliable. Private, Get, In-App Purchases",
-   "match": "exact",
-   "trackName": "WhatsApp Messenger",
-   "bundleId": "net.whatsapp.WhatsApp",
-   "trackId": 310633997,
-   "genre": "Social Networking",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 2,
-   "name": "Microsoft Word",
-   "desc": "2, Microsoft Word, Create, Edit & Share Documents, Get, In-App Purchases",
-   "match": "exact",
-   "trackName": "Microsoft Word",
-   "bundleId": "com.microsoft.Word",
-   "trackId": 462054704,
-   "genre": "Productivity",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 3,
-   "name": "Amazon Prime Video",
-   "desc": "3, Amazon Prime Video, Originals, movies, TV, sports, Get, In-App Purchases",
-   "match": "exact",
-   "trackName": "Amazon Prime Video",
-   "bundleId": "com.amazon.aiv.AIVApp",
-   "trackId": 545519333,
-   "genre": "Entertainment",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 4,
-   "name": "Microsoft PowerPoint",
-   "desc": "4, Microsoft PowerPoint, Create Impactful Presentations, Get, In-App Purchases",
-   "match": "exact",
-   "trackName": "Microsoft PowerPoint",
-   "bundleId": "com.microsoft.Powerpoint",
-   "trackId": 462062816,
-   "genre": "Productivity",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 5,
-   "name": "Microsoft Excel",
-   "desc": "5, Microsoft Excel, Spreadsheets and Data Analysis, Get, In-App Purchases",
-   "match": "exact",
-   "trackName": "Microsoft Excel",
-   "bundleId": "com.microsoft.Excel",
-   "trackId": 462058435,
-   "genre": "Productivity",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 6,
-   "name": "AI Assistant Chatbot: ASTRA 6",
-   "desc": "6, AI Assistant Chatbot: ASTRA 6, Build on Claude by Anthropic, Get, In-App Purchases",
-   "match": "exact",
-   "trackName": "AI Assistant Chatbot: ASTRA 6",
-   "bundleId": "chatbot.notebook.app",
-   "trackId": 6809415433,
-   "genre": "Education",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 7,
-   "name": "Canva: AI Video & Photo Editor",
-   "desc": "7, Canva: AI Video & Photo Editor, CV, Invitation, Collage Design, Get, In-App Purchases",
-   "match": "variant",
-   "trackName": "Canva: KI-Foto- & Video-Editor",
-   "bundleId": "com.canva.canvaeditor",
-   "trackId": 897446215,
-   "genre": "Photo & Video",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 8,
-   "name": "Microsoft Outlook",
-   "desc": "8, Microsoft Outlook, Email and calendar, Get, In-App Purchases",
-   "match": "exact",
-   "trackName": "Microsoft Outlook",
-   "bundleId": "com.microsoft.Outlook",
-   "trackId": 985367838,
-   "genre": "Productivity",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 9,
-   "name": "Microsoft 365",
-   "desc": "9, Microsoft 365, Productivity, View",
-   "match": "variant",
-   "trackName": "Microsoft Word",
-   "bundleId": "com.microsoft.Word",
-   "trackId": 462054704,
-   "genre": "Productivity",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 10,
-   "name": "CapCut: Photo & Video Editor",
-   "desc": "10, CapCut: Photo & Video Editor, Video maker with music, Get, In-App Purchases",
-   "match": "variant",
-   "trackName": "CapCut: Foto- und Video-Editor",
-   "bundleId": "com.lemon.lvoverseas",
-   "trackId": 1500855883,
-   "genre": "Photo & Video",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 11,
-   "name": "AI ChatbotㆍAsk AI Anything",
-   "desc": "11, AI ChatbotㆍAsk AI Anything, Built on GPT-4, GPT-5, GPT-5.6, Get, In-App Purchases",
-   "match": "variant",
-   "trackName": "AI Chatbot・KI Chat Deutsch 5.6",
-   "bundleId": "com.ai.chatbot.personalized",
-   "trackId": 6753711999,
-   "genre": "Education",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 12,
-   "name": "Xcode",
-   "desc": "12, Xcode, Developer Tools, Open",
-   "match": "none",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 13,
-   "name": "OneDrive",
-   "desc": "13, OneDrive, Protect and access your files, Get, In-App Purchases",
-   "match": "exact",
-   "trackName": "OneDrive",
-   "bundleId": "com.microsoft.OneDrive-mac",
-   "trackId": 823766827,
-   "genre": "Productivity",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 14,
-   "name": "Goodnotes: AI Notes",
-   "desc": "14, Goodnotes: AI Notes, Docs, PDF, Note taking, Planner & Journal, Get, In-App Purchases",
-   "match": "variant",
-   "trackName": "Goodnotes: KI Notizen, PDF app",
-   "bundleId": "com.goodnotesapp.x",
-   "trackId": 1444383602,
-   "genre": "Productivity",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 15,
-   "name": "Telegram",
-   "desc": "15, Telegram, Fast. Secure. Powerful, Get, In-App Purchases",
-   "match": "exact",
-   "trackName": "Telegram",
-   "bundleId": "ru.keepcoder.Telegram",
-   "trackId": 747648890,
-   "genre": "Social Networking",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 16,
-   "name": "HP: Print and Support",
-   "desc": "16, HP: Print and Support, The best of HP, in one place, Get",
-   "match": "variant",
-   "trackName": "HP: Druck und Support",
-   "bundleId": "com.hp.SmartMac",
-   "trackId": 1474276998,
-   "genre": "Productivity",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 17,
-   "name": "Chatbot: Ask Chat AI Assistant",
-   "desc": "17, Chatbot: Ask Chat AI Assistant, Built on Advanced AI Models, Get, In-App Purchases",
-   "match": "exact",
-   "trackName": "Chatbot: Ask Chat AI Assistant",
-   "bundleId": "com.am.deepseek",
-   "trackId": 6741155738,
-   "genre": "Education",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 18,
-   "name": "Streaming for Netflix",
-   "desc": "18, Streaming for Netflix, For Netflix, Peacock and more, Get, In-App Purchases",
-   "match": "exact",
-   "trackName": "Streaming for Netflix",
-   "bundleId": "com.appsalchemy.streamingone",
-   "trackId": 6751184690,
-   "genre": "Entertainment",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 19,
-   "name": "NordVPN: VPN Fast & Secure",
-   "desc": "19, NordVPN: VPN Fast & Secure, Fast & Safe VPN Servers, Get, In-App Purchases",
-   "match": "variant",
-   "trackName": "NordVPN: Wähle das Premium VPN",
-   "bundleId": "com.nordvpn.NordVPN",
-   "trackId": 905953485,
-   "genre": "Utilities",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 20,
-   "name": "Save to Pinterest",
-   "desc": "20, Save to Pinterest, Lifestyle, Get",
-   "match": "exact",
-   "trackName": "Save to Pinterest",
-   "bundleId": "pinterest.SaveToPinterest",
-   "trackId": 6473649042,
-   "genre": "Lifestyle",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 21,
-   "name": "Openly for Chrome & Firefox",
-   "desc": "21, Openly for Chrome & Firefox, Open Web Link to Chrome /other, Get, In-App Purchases",
-   "match": "exact",
-   "trackName": "Openly for Chrome & Firefox",
-   "bundleId": "com.fokusek.openinpro",
-   "trackId": 1570349123,
-   "genre": "Productivity",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 22,
-   "name": "App for YouTube",
-   "desc": "22, App for YouTube, Player App for Youtube, Get, In-App Purchases",
-   "match": "prefix",
-   "trackName": "App for YouTube ·",
-   "bundleId": "com.appsalchemy.youtubevideo",
-   "trackId": 6753933026,
-   "genre": "Entertainment",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 23,
-   "name": "Microsoft Copilot",
-   "desc": "23, Microsoft Copilot, Your AI Companion, Get, In-App Purchases",
-   "match": "exact",
-   "trackName": "Microsoft Copilot",
-   "bundleId": "com.microsoft.copilot-mac",
-   "trackId": 6738511300,
-   "genre": "Productivity",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 24,
-   "name": "Windows App",
-   "desc": "24, Windows App, Previously Remote Desktop, Get",
-   "match": "exact",
-   "trackName": "Windows App",
-   "bundleId": "com.microsoft.rdc.macos",
-   "trackId": 1295203466,
-   "genre": "Business",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 25,
-   "name": "MyWhoosh: Indoor Cycling App",
-   "desc": "25, MyWhoosh: Indoor Cycling App, Virtual Cycling Solution, Get, In-App Purchases",
-   "match": "exact",
-   "trackName": "MyWhoosh: Indoor Cycling App",
-   "bundleId": "com.whoosh.whooshgame",
-   "trackId": 1498889644,
-   "genre": "Health & Fitness",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 26,
-   "name": "WireGuard",
-   "desc": "26, WireGuard, Official WireGuard VPN client, Get",
-   "match": "exact",
-   "trackName": "WireGuard",
-   "bundleId": "com.wireguard.macos",
-   "trackId": 1451685025,
-   "genre": "Utilities",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 27,
-   "name": "uBlock Origin Lite",
-   "desc": "27, uBlock Origin Lite, An efficient content blocker, Get",
-   "match": "exact",
-   "trackName": "uBlock Origin Lite",
-   "bundleId": "net.raymondhill.uBlock-Origin-Lite",
-   "trackId": 6745342698,
-   "genre": "Utilities",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 28,
-   "name": "PDFgear: PDF Editor & Reader",
-   "desc": "28, PDFgear: PDF Editor & Reader, PDF Converter, Sign Documents, Get",
-   "match": "variant",
-   "trackName": "PDFgear: PDF Bearbeiten",
-   "bundleId": "com.pdfeditor.pdfeditormac",
-   "trackId": 6469021132,
-   "genre": "Business",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 29,
-   "name": "The Unarchiver",
-   "desc": "29, The Unarchiver, Open any archive in seconds, Get",
-   "match": "exact",
-   "trackName": "The Unarchiver",
-   "bundleId": "cx.c3.theunarchiver",
-   "trackId": 425424353,
-   "genre": "Utilities",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 30,
-   "name": "Apple Creator Studio",
-   "desc": "30, Apple Creator Studio, Photo & Video, View, In-App Purchases",
-   "match": "none",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 31,
-   "name": "Tailscale",
-   "desc": "31, Tailscale, Secure Connectivity & Mesh VPN, Get",
-   "match": "exact",
-   "trackName": "Tailscale",
-   "bundleId": "io.tailscale.ipn.macos",
-   "trackId": 1475387142,
-   "genre": "Utilities",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 32,
-   "name": "Sweet Home 3D Plan Your House",
-   "desc": "32, Sweet Home 3D Plan Your House, Room Planner & Interior Design, Get, In-App Purchases",
-   "match": "variant",
-   "trackName": "Sweet Home 3D Haus Einrichten",
-   "bundleId": "com.eteks.sweethome3d.SweetHome3D",
-   "trackId": 669289700,
-   "genre": "Graphics & Design",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 33,
-   "name": "Amazon Kindle: Reading App",
-   "desc": "33, Amazon Kindle: Reading App, Read books. Millions of ebooks, Get",
-   "match": "prefix",
-   "trackName": "Amazon Kindle",
-   "bundleId": "com.amazon.Lassen",
-   "trackId": 302584613,
-   "genre": "Book",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "free",
-   "rank": 34,
-   "name": "Apple Developer",
-   "desc": "34, Apple Developer, Developer Tools, Get, In-App Purchases",
-   "match": "exact",
-   "trackName": "Apple Developer",
-   "bundleId": "developer.apple.wwdc-Release",
-   "trackId": 640199958,
-   "genre": "Developer Tools",
-   "price": "Gratis",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 1,
-   "name": "Wipr 2",
-   "desc": "1, Wipr 2, Block ads, trackers, and more, 5,99 €, In-App Purchases",
-   "match": "exact",
-   "trackName": "Wipr 2",
-   "bundleId": "site.kaylees.Wipr2",
-   "trackId": 1662217862,
-   "genre": "Utilities",
-   "price": "5,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 2,
-   "name": "LibreOffice",
-   "desc": "2, LibreOffice, Open Source Office Suite, 9,99 €",
-   "match": "exact",
-   "trackName": "LibreOffice",
-   "bundleId": "org.documentfoundation.libreoffice",
-   "trackId": 1630474372,
-   "genre": "Productivity",
-   "price": "9,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 3,
-   "name": "forScore",
-   "desc": "3, forScore, Turbocharge your sheet music, 29,99 €, In-App Purchases",
-   "match": "exact",
-   "trackName": "forScore",
-   "bundleId": "com.mgsdevelopment.forscore",
-   "trackId": 363738376,
-   "genre": "Music",
-   "price": "29,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 4,
-   "name": "MacFamilyTree 11",
-   "desc": "4, MacFamilyTree 11, Modern family history, 34,99 €",
-   "match": "exact",
-   "trackName": "MacFamilyTree 11",
-   "bundleId": "com.syniumsoftware.macfamilytree11",
-   "trackId": 6480510488,
-   "genre": "Productivity",
-   "price": "34,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 5,
-   "name": "Parachute Backup",
-   "desc": "5, Parachute Backup, For iCloud Photos & Drive, 14,99 €",
-   "match": "exact",
-   "trackName": "Parachute Backup",
-   "bundleId": "net.ericmann.parachute",
-   "trackId": 6748614170,
-   "genre": "Utilities",
-   "price": "14,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 6,
-   "name": "Logoist 6 – Graphic Design",
-   "desc": "6, Logoist 6 – Graphic Design, Create impressive Artwork, 19,99 €",
-   "match": "variant",
-   "trackName": "Logoist 6 – Grafikdesign",
-   "bundleId": "com.syniumsoftware.logoist6",
-   "trackId": 6754276978,
-   "genre": "Graphics & Design",
-   "price": "19,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 7,
-   "name": "Logic Pro",
-   "desc": "7, Logic Pro, Professional music production, 229,99 €",
-   "match": "exact",
-   "trackName": "Logic Pro",
-   "bundleId": "com.apple.logic10",
-   "trackId": 634148309,
-   "genre": "Music",
-   "price": "229,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 8,
-   "name": "RAR Extractor - Unarchiver Pro",
-   "desc": "8, RAR Extractor - Unarchiver Pro, the unarchiver & archiver, 3,99 €",
-   "match": "exact",
-   "trackName": "RAR Extractor - Unarchiver Pro",
-   "bundleId": "com.ABabe.rarextractorstar",
-   "trackId": 647505820,
-   "genre": "Utilities",
-   "price": "3,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 9,
-   "name": "Weatherling: Rain & Snow FX",
-   "desc": "9, Weatherling: Rain & Snow FX, Rain, Snow, Fog & Leaves, 1,99 €",
-   "match": "variant",
-   "trackName": "Weatherling: Regen & Schnee FX",
-   "bundleId": "com.mattsenter.Weatherling",
-   "trackId": 6813641198,
-   "genre": "Utilities",
-   "price": "1,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 10,
-   "name": "Netmo 2 – Weather for Netatmo",
-   "desc": "10, Netmo 2 – Weather for Netatmo, Live Thermometer & Air Monitor, 3,99 €",
-   "match": "variant",
-   "trackName": "Netmo 2 – Wetter für Netatmo",
-   "bundleId": "at.agross.netmo2",
-   "trackId": 6810955806,
-   "genre": "Weather",
-   "price": "3,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 11,
-   "name": "DaisyDisk",
-   "desc": "11, DaisyDisk, Recover disk space, 9,99 €",
-   "match": "exact",
-   "trackName": "DaisyDisk",
-   "bundleId": "com.daisydiskapp.DaisyDisk",
-   "trackId": 411643860,
-   "genre": "Utilities",
-   "price": "9,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 12,
-   "name": "Swift Publisher 5",
-   "desc": "12, Swift Publisher 5, Page layout and publishing app, 22,99 €, In-App Purchases",
-   "match": "exact",
-   "trackName": "Swift Publisher 5",
-   "bundleId": "com.belightsoft.SwiftPublisher5",
-   "trackId": 1058362543,
-   "genre": "Graphics & Design",
-   "price": "22,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 13,
-   "name": "GrandPerspective",
-   "desc": "13, GrandPerspective, visualises disk usage, 2,99 €",
-   "match": "exact",
-   "trackName": "GrandPerspective",
-   "bundleId": "net.sourceforge.grandperspectiv",
-   "trackId": 1111570163,
-   "genre": "Utilities",
-   "price": "2,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 14,
-   "name": "TreeSize - Disk Usage",
-   "desc": "14, TreeSize - Disk Usage, Disk Usage Analysis Tool, 3,99 €",
-   "match": "exact",
-   "trackName": "TreeSize - Disk Usage",
-   "bundleId": "com.woojooin.zFolderTree",
-   "trackId": 774815014,
-   "genre": "Utilities",
-   "price": "3,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 15,
-   "name": "New File Menu",
-   "desc": "15, New File Menu, Create files via context menu, 2,99 €",
-   "match": "exact",
-   "trackName": "New File Menu",
-   "bundleId": "net.langui.NewFileMenu",
-   "trackId": 1064959555,
-   "genre": "Utilities",
-   "price": "2,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 16,
-   "name": "Sleeve for Spotify",
-   "desc": "16, Sleeve for Spotify, Music, Your music on your desktop, 8,99 €",
-   "match": "prefix",
-   "trackName": "Sleeve for Spotify, Music",
-   "bundleId": "com.replay.sleeve",
-   "trackId": 1606145041,
-   "genre": "Music",
-   "price": "8,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 17,
-   "name": "PhotoSweeper",
-   "desc": "17, PhotoSweeper, Smart duplicate photos cleaner, 17,99 €",
-   "match": "exact",
-   "trackName": "PhotoSweeper",
-   "bundleId": "com.overmacs.photosweeper",
-   "trackId": 463362050,
-   "genre": "Photo & Video",
-   "price": "17,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 18,
-   "name": "Whisper Notes - Speech to Text",
-   "desc": "18, Whisper Notes - Speech to Text, Offline Transcription & Memos, 8,99 €",
-   "match": "variant",
-   "trackName": "Whisper Notes: Sprache zu Text",
-   "bundleId": "com.mazzystar.WhisperMemo",
-   "trackId": 6447090616,
-   "genre": "Productivity",
-   "price": "8,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 19,
-   "name": "Noir – Dark Mode for Safari",
-   "desc": "19, Noir – Dark Mode for Safari, Browse better at night, 4,99 €",
-   "match": "exact",
-   "trackName": "Noir – Dark Mode for Safari",
-   "bundleId": "nl.jeffreykuiken.NoirApp.mac",
-   "trackId": 1592917505,
-   "genre": "Utilities",
-   "price": "4,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 20,
-   "name": "Duplicate Photos Fixer Pro",
-   "desc": "20, Duplicate Photos Fixer Pro, Recover precious disk space, 17,99 €",
-   "match": "exact",
-   "trackName": "Duplicate Photos Fixer Pro",
-   "bundleId": "com.systweak.Duplicate-Photos-Fixer-Pro",
-   "trackId": 963642514,
-   "genre": "Photo & Video",
-   "price": "17,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 21,
-   "name": "Cloud Baby Monitor",
-   "desc": "21, Cloud Baby Monitor, Lifestyle, 8,99 €",
-   "match": "exact",
-   "trackName": "Cloud Baby Monitor",
-   "bundleId": "com.martinman.macvideobabymonitor",
-   "trackId": 517602535,
-   "genre": "Lifestyle",
-   "price": "8,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 22,
-   "name": "Aquarium 4K",
-   "desc": "22, Aquarium 4K, Aquarium on your TV screen, 0,99 €, In-App Purchases",
-   "match": "exact",
-   "trackName": "Aquarium 4K",
-   "bundleId": "com.kissapp.acuario",
-   "trackId": 553450789,
-   "genre": "Entertainment",
-   "price": "0,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 23,
-   "name": "Fizzy Water Bundle",
-   "desc": "23, Fizzy Water Bundle, Utilities, View",
-   "match": "none",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 24,
-   "name": "iStat Menus 7",
-   "desc": "24, iStat Menus 7, The ultimate system monitor, 12,99 €, In-App Purchases",
-   "match": "exact",
-   "trackName": "iStat Menus 7",
-   "bundleId": "com.bjango.istatmenus-mas",
-   "trackId": 6499559693,
-   "genre": "Utilities",
-   "price": "12,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 25,
-   "name": "GraphicConverter 12",
-   "desc": "25, GraphicConverter 12, The pocket knife for pictures, 34,99 €",
-   "match": "exact",
-   "trackName": "GraphicConverter 12",
-   "bundleId": "com.lemkesoft.graphicconverter12",
-   "trackId": 1671632937,
-   "genre": "Graphics & Design",
-   "price": "34,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 26,
-   "name": "PLIST Editor",
-   "desc": "26, PLIST Editor, View & edit PLIST files, 8,99 €, In-App Purchases",
-   "match": "exact",
-   "trackName": "PLIST Editor",
-   "bundleId": "com.vladbadea.plisteditor",
-   "trackId": 1157491961,
-   "genre": "Developer Tools",
-   "price": "8,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 27,
-   "name": "DockTime",
-   "desc": "27, DockTime, The clock in the Dock, 0,99 €",
-   "match": "exact",
-   "trackName": "DockTime",
-   "bundleId": "de.pecora.iClock",
-   "trackId": 508034739,
-   "genre": "Lifestyle",
-   "price": "0,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 28,
-   "name": "Python Runner",
-   "desc": "28, Python Runner, Test/run Python script quickly, 1,99 €",
-   "match": "exact",
-   "trackName": "Python Runner",
-   "bundleId": "PythonRunner",
-   "trackId": 689176796,
-   "genre": "Developer Tools",
-   "price": "1,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 29,
-   "name": "PlugInfo",
-   "desc": "29, PlugInfo, Audio Plug-In Explorer, 2,99 €",
-   "match": "exact",
-   "trackName": "PlugInfo",
-   "bundleId": "com.thinkersnacks.PlugInfo",
-   "trackId": 1626412949,
-   "genre": "Utilities",
-   "price": "2,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 30,
-   "name": "Camera Tools for GoPro® Heros",
-   "desc": "30, Camera Tools for GoPro® Heros, Remote control GoPro® cameras, 19,99 €",
-   "match": "variant",
-   "trackName": "Camera Tools für GoPro® Heros",
-   "bundleId": "com.toolsforgopro.CameraToolsForHeros",
-   "trackId": 1539331570,
-   "genre": "Photo & Video",
-   "price": "19,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 31,
-   "name": "Folder Colorizer",
-   "desc": "31, Folder Colorizer, Make folders colorful, 1,99 €",
-   "match": "exact",
-   "trackName": "Folder Colorizer",
-   "bundleId": "net.langui.FolderColorizer",
-   "trackId": 994826809,
-   "genre": "Utilities",
-   "price": "1,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 32,
-   "name": "Keystroke Pro",
-   "desc": "32, Keystroke Pro, Visualize Your Keypresses, 17,99 €",
-   "match": "exact",
-   "trackName": "Keystroke Pro",
-   "bundleId": "de.ixeau.KeystrokePro2",
-   "trackId": 1572206224,
-   "genre": "Productivity",
-   "price": "17,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
-  },
-  {
-   "chart": "paid",
-   "rank": 33,
-   "name": "QR Code Reader :BarcodeTools",
-   "desc": "33, QR Code Reader :BarcodeTools, Create and Scan QR, Barcode, 1,99 €",
-   "match": "exact",
-   "trackName": "QR Code Reader :BarcodeTools",
-   "bundleId": "com.axe1lyze.BarcodeTools",
-   "trackId": 1482603779,
-   "genre": "Productivity",
-   "price": "1,99 €",
-   "iosTag": false,
-   "notAvailableTag": false
+ "charts": {
+  "free": {
+   "counts": {
+    "exact": 99,
+    "variant": 50,
+    "none": 19,
+    "prefix": 10,
+    "excluded-ios-tag": 22
+   },
+   "entries": [
+    {
+     "rank": 1,
+     "name": "WhatsApp Messenger",
+     "status": "exact",
+     "bundleId": "net.whatsapp.WhatsApp",
+     "trackName": "WhatsApp Messenger",
+     "tagText": []
+    },
+    {
+     "rank": 2,
+     "name": "Microsoft Word",
+     "status": "exact",
+     "bundleId": "com.microsoft.Word",
+     "trackName": "Microsoft Word",
+     "tagText": []
+    },
+    {
+     "rank": 3,
+     "name": "Amazon Prime Video",
+     "status": "exact",
+     "bundleId": "com.amazon.aiv.AIVApp",
+     "trackName": "Amazon Prime Video",
+     "tagText": []
+    },
+    {
+     "rank": 4,
+     "name": "Microsoft PowerPoint",
+     "status": "exact",
+     "bundleId": "com.microsoft.Powerpoint",
+     "trackName": "Microsoft PowerPoint",
+     "tagText": []
+    },
+    {
+     "rank": 5,
+     "name": "Microsoft Excel",
+     "status": "exact",
+     "bundleId": "com.microsoft.Excel",
+     "trackName": "Microsoft Excel",
+     "tagText": []
+    },
+    {
+     "rank": 6,
+     "name": "AI Assistant Chatbot: ASTRA 6",
+     "status": "exact",
+     "bundleId": "chatbot.notebook.app",
+     "trackName": "AI Assistant Chatbot: ASTRA 6",
+     "tagText": []
+    },
+    {
+     "rank": 7,
+     "name": "Canva: AI Video & Photo Editor",
+     "status": "variant",
+     "bundleId": "com.canva.canvaeditor",
+     "trackName": "Canva: KI-Foto- & Video-Editor",
+     "tagText": []
+    },
+    {
+     "rank": 8,
+     "name": "Microsoft Outlook",
+     "status": "exact",
+     "bundleId": "com.microsoft.Outlook",
+     "trackName": "Microsoft Outlook",
+     "tagText": []
+    },
+    {
+     "rank": 9,
+     "name": "Microsoft 365",
+     "status": "variant",
+     "bundleId": "com.microsoft.Word",
+     "trackName": "Microsoft Word",
+     "tagText": []
+    },
+    {
+     "rank": 10,
+     "name": "CapCut: Photo & Video Editor",
+     "status": "variant",
+     "bundleId": "com.lemon.lvoverseas",
+     "trackName": "CapCut: Foto- und Video-Editor",
+     "tagText": []
+    },
+    {
+     "rank": 11,
+     "name": "AI ChatbotㆍAsk AI Anything",
+     "status": "variant",
+     "bundleId": "com.ai.chatbot.personalized",
+     "trackName": "AI Chatbot・KI Chat Deutsch 5.6",
+     "tagText": []
+    },
+    {
+     "rank": 12,
+     "name": "Xcode",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 13,
+     "name": "OneDrive",
+     "status": "exact",
+     "bundleId": "com.microsoft.OneDrive-mac",
+     "trackName": "OneDrive",
+     "tagText": []
+    },
+    {
+     "rank": 14,
+     "name": "Goodnotes: AI Notes",
+     "status": "variant",
+     "bundleId": "com.goodnotesapp.x",
+     "trackName": "Goodnotes: KI Notizen, PDF app",
+     "tagText": []
+    },
+    {
+     "rank": 15,
+     "name": "Telegram",
+     "status": "exact",
+     "bundleId": "ru.keepcoder.Telegram",
+     "trackName": "Telegram",
+     "tagText": []
+    },
+    {
+     "rank": 16,
+     "name": "HP: Print and Support",
+     "status": "variant",
+     "bundleId": "com.hp.SmartMac",
+     "trackName": "HP: Druck und Support",
+     "tagText": []
+    },
+    {
+     "rank": 17,
+     "name": "Chatbot: Ask Chat AI Assistant",
+     "status": "exact",
+     "bundleId": "com.am.deepseek",
+     "trackName": "Chatbot: Ask Chat AI Assistant",
+     "tagText": []
+    },
+    {
+     "rank": 18,
+     "name": "Streaming for Netflix",
+     "status": "exact",
+     "bundleId": "com.appsalchemy.streamingone",
+     "trackName": "Streaming for Netflix",
+     "tagText": []
+    },
+    {
+     "rank": 19,
+     "name": "NordVPN: VPN Fast & Secure",
+     "status": "variant",
+     "bundleId": "com.nordvpn.NordVPN",
+     "trackName": "NordVPN: Wähle das Premium VPN",
+     "tagText": []
+    },
+    {
+     "rank": 20,
+     "name": "Save to Pinterest",
+     "status": "exact",
+     "bundleId": "pinterest.SaveToPinterest",
+     "trackName": "Save to Pinterest",
+     "tagText": []
+    },
+    {
+     "rank": 21,
+     "name": "Openly for Chrome & Firefox",
+     "status": "exact",
+     "bundleId": "com.fokusek.openinpro",
+     "trackName": "Openly for Chrome & Firefox",
+     "tagText": []
+    },
+    {
+     "rank": 22,
+     "name": "App for YouTube",
+     "status": "prefix",
+     "bundleId": "com.appsalchemy.youtubevideo",
+     "trackName": "App for YouTube ·",
+     "tagText": []
+    },
+    {
+     "rank": 23,
+     "name": "Microsoft Copilot",
+     "status": "exact",
+     "bundleId": "com.microsoft.copilot-mac",
+     "trackName": "Microsoft Copilot",
+     "tagText": []
+    },
+    {
+     "rank": 24,
+     "name": "Windows App",
+     "status": "exact",
+     "bundleId": "com.microsoft.rdc.macos",
+     "trackName": "Windows App",
+     "tagText": []
+    },
+    {
+     "rank": 25,
+     "name": "MyWhoosh: Indoor Cycling App",
+     "status": "exact",
+     "bundleId": "com.whoosh.whooshgame",
+     "trackName": "MyWhoosh: Indoor Cycling App",
+     "tagText": []
+    },
+    {
+     "rank": 26,
+     "name": "WireGuard",
+     "status": "exact",
+     "bundleId": "com.wireguard.macos",
+     "trackName": "WireGuard",
+     "tagText": []
+    },
+    {
+     "rank": 27,
+     "name": "uBlock Origin Lite",
+     "status": "exact",
+     "bundleId": "net.raymondhill.uBlock-Origin-Lite",
+     "trackName": "uBlock Origin Lite",
+     "tagText": []
+    },
+    {
+     "rank": 28,
+     "name": "PDFgear: PDF Editor & Reader",
+     "status": "variant",
+     "bundleId": "com.pdfeditor.pdfeditormac",
+     "trackName": "PDFgear: PDF Bearbeiten",
+     "tagText": []
+    },
+    {
+     "rank": 29,
+     "name": "The Unarchiver",
+     "status": "exact",
+     "bundleId": "cx.c3.theunarchiver",
+     "trackName": "The Unarchiver",
+     "tagText": []
+    },
+    {
+     "rank": 30,
+     "name": "Apple Creator Studio",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 31,
+     "name": "Tailscale",
+     "status": "exact",
+     "bundleId": "io.tailscale.ipn.macos",
+     "trackName": "Tailscale",
+     "tagText": []
+    },
+    {
+     "rank": 32,
+     "name": "Sweet Home 3D Plan Your House",
+     "status": "variant",
+     "bundleId": "com.eteks.sweethome3d.SweetHome3D",
+     "trackName": "Sweet Home 3D Haus Einrichten",
+     "tagText": []
+    },
+    {
+     "rank": 33,
+     "name": "Amazon Kindle: Reading App",
+     "status": "prefix",
+     "bundleId": "com.amazon.Lassen",
+     "trackName": "Amazon Kindle",
+     "tagText": []
+    },
+    {
+     "rank": 34,
+     "name": "Apple Developer",
+     "status": "exact",
+     "bundleId": "developer.apple.wwdc-Release",
+     "trackName": "Apple Developer",
+     "tagText": []
+    },
+    {
+     "rank": 35,
+     "name": "Microsoft OneNote",
+     "status": "exact",
+     "bundleId": "com.microsoft.onenote.mac",
+     "trackName": "Microsoft OneNote",
+     "tagText": []
+    },
+    {
+     "rank": 36,
+     "name": "djay - DJ App & AI Mixer",
+     "status": "exact",
+     "bundleId": "com.algoriddim.djay-iphone-free",
+     "trackName": "djay - DJ App & AI Mixer",
+     "tagText": []
+    },
+    {
+     "rank": 37,
+     "name": "DaVinci Resolve",
+     "status": "exact",
+     "bundleId": "com.blackmagic-design.DaVinciResolveLite",
+     "trackName": "DaVinci Resolve",
+     "tagText": []
+    },
+    {
+     "rank": 38,
+     "name": "AdGuard: Ad Blocker for Safari",
+     "status": "exact",
+     "bundleId": "com.adguard.safari.AdGuard",
+     "trackName": "AdGuard: Ad Blocker for Safari",
+     "tagText": []
+    },
+    {
+     "rank": 39,
+     "name": "TestFlight",
+     "status": "exact",
+     "bundleId": "com.apple.TestFlight",
+     "trackName": "TestFlight",
+     "tagText": []
+    },
+    {
+     "rank": 40,
+     "name": "Final Cut Pro: Create Video",
+     "status": "variant",
+     "bundleId": "com.apple.FinalCutApp",
+     "trackName": "Final Cut Pro: Erstelle Videos",
+     "tagText": []
+    },
+    {
+     "rank": 41,
+     "name": "AdBlock for Safari & VPN",
+     "status": "variant",
+     "bundleId": "com.betafish.adblock-mac",
+     "trackName": "Adblock für Safari",
+     "tagText": []
+    },
+    {
+     "rank": 42,
+     "name": "Apple Configurator",
+     "status": "exact",
+     "bundleId": "com.apple.configurator.ui",
+     "trackName": "Apple Configurator",
+     "tagText": []
+    },
+    {
+     "rank": 43,
+     "name": "Bitwarden",
+     "status": "exact",
+     "bundleId": "com.bitwarden.desktop",
+     "trackName": "Bitwarden",
+     "tagText": []
+    },
+    {
+     "rank": 44,
+     "name": "Mail for Gmail",
+     "status": "exact",
+     "bundleId": "com.fokusek.imailprogmail.com",
+     "trackName": "Mail for Gmail",
+     "tagText": []
+    },
+    {
+     "rank": 45,
+     "name": "Complete Anatomy",
+     "status": "exact",
+     "bundleId": "com.3D4Medical.CAMac",
+     "trackName": "Complete Anatomy",
+     "tagText": []
+    },
+    {
+     "rank": 46,
+     "name": "Brother iPrint&Scan",
+     "status": "exact",
+     "bundleId": "com.brother.iprint-and-scan",
+     "trackName": "Brother iPrint&Scan",
+     "tagText": []
+    },
+    {
+     "rank": 47,
+     "name": "Mail+ for Gmail",
+     "status": "exact",
+     "bundleId": "com.rockysandstudio.DeskApp-for-Gmail",
+     "trackName": "Mail+ for Gmail",
+     "tagText": []
+    },
+    {
+     "rank": 48,
+     "name": "Quizlet - AI Quiz & Flashcards",
+     "status": "variant",
+     "bundleId": "com.ayesha.ai.quiz.maker",
+     "trackName": "Quizlet - Lernkarten & Quiz",
+     "tagText": []
+    },
+    {
+     "rank": 49,
+     "name": "Unzip - RAR ZIP 7Z Unarchiver",
+     "status": "exact",
+     "bundleId": "com.Ababe.UnzipAnyFile",
+     "trackName": "Unzip - RAR ZIP 7Z Unarchiver",
+     "tagText": []
+    },
+    {
+     "rank": 50,
+     "name": "Adobe Lightroom: Photo Editor",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Not verified for macOS."
+     ]
+    },
+    {
+     "rank": 51,
+     "name": "Notebook Quiz & Flashcards LM",
+     "status": "exact",
+     "bundleId": "notebook.lm",
+     "trackName": "Notebook Quiz & Flashcards LM",
+     "tagText": []
+    },
+    {
+     "rank": 52,
+     "name": "DuckDuckGo, optional Duck.ai",
+     "status": "prefix",
+     "bundleId": "com.duckduckgo.mobile.ios",
+     "trackName": "DuckDuckGo, optional Duck.ai",
+     "tagText": []
+    },
+    {
+     "rank": 53,
+     "name": "Amphetamine",
+     "status": "exact",
+     "bundleId": "com.if.Amphetamine",
+     "trackName": "Amphetamine",
+     "tagText": []
+    },
+    {
+     "rank": 54,
+     "name": "GeoGebra Classic 6",
+     "status": "exact",
+     "bundleId": "org.geogebra6.mac",
+     "trackName": "GeoGebra Classic 6",
+     "tagText": []
+    },
+    {
+     "rank": 55,
+     "name": "Adblock Plus for Safari ABP",
+     "status": "exact",
+     "bundleId": "org.adblockplus.adblockplussafarimac",
+     "trackName": "Adblock Plus for Safari ABP",
+     "tagText": []
+    },
+    {
+     "rank": 56,
+     "name": "Tangerine: File Converter",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 57,
+     "name": "Color Widgets",
+     "status": "prefix",
+     "bundleId": "com.MMApps.WidgetsApp",
+     "trackName": "Color Widgets: Icon und Themes",
+     "tagText": []
+    },
+    {
+     "rank": 58,
+     "name": "MKPlayer - MKV & Media Player",
+     "status": "exact",
+     "bundleId": "com.rockysandstudio.MKPlayer",
+     "trackName": "MKPlayer - MKV & Media Player",
+     "tagText": []
+    },
+    {
+     "rank": 59,
+     "name": "CEWE Fotoservice",
+     "status": "exact",
+     "bundleId": "de.cewe.hps-7892",
+     "trackName": "CEWE Fotoservice",
+     "tagText": []
+    },
+    {
+     "rank": 60,
+     "name": "Microsoft To Do",
+     "status": "exact",
+     "bundleId": "com.microsoft.to-do-mac",
+     "trackName": "Microsoft To Do",
+     "tagText": []
+    },
+    {
+     "rank": 61,
+     "name": "Home Assistant",
+     "status": "exact",
+     "bundleId": "io.robbie.HomeAssistant",
+     "trackName": "Home Assistant",
+     "tagText": []
+    },
+    {
+     "rank": 62,
+     "name": "Firex Browser",
+     "status": "exact",
+     "bundleId": "com.eedon.ebrowser",
+     "trackName": "FireX Browser",
+     "tagText": []
+    },
+    {
+     "rank": 63,
+     "name": "WidgetWall",
+     "status": "exact",
+     "bundleId": "com.amicoapps.widgetwall",
+     "trackName": "WidgetWall",
+     "tagText": []
+    },
+    {
+     "rank": 64,
+     "name": "Urban VPN",
+     "status": "exact",
+     "bundleId": "com.ios.urban-vpn-cyber-security",
+     "trackName": "Urban VPN",
+     "tagText": []
+    },
+    {
+     "rank": 65,
+     "name": "PlaylistPort: Playlist Transfer",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad."
+     ]
+    },
+    {
+     "rank": 66,
+     "name": "Sky Sport Austria: News & mehr",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Not verified for macOS."
+     ]
+    },
+    {
+     "rank": 67,
+     "name": "BikeControl: Virtual Shifting",
+     "status": "exact",
+     "bundleId": "de.jonasbark.swiftcontrol.darwin",
+     "trackName": "BikeControl: Virtual Shifting",
+     "tagText": []
+    },
+    {
+     "rank": 68,
+     "name": "CrystalFetch ISO Downloader",
+     "status": "exact",
+     "bundleId": "llc.turing.CrystalFetch",
+     "trackName": "CrystalFetch ISO Downloader",
+     "tagText": []
+    },
+    {
+     "rank": 69,
+     "name": "App Cleaner - App Uninstaller",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 70,
+     "name": "VPN: Super Unlimited, Fast VPN",
+     "status": "prefix",
+     "bundleId": "com.optimal.vpn.m",
+     "trackName": "VPN: Super Unlimited, Fast VPN",
+     "tagText": []
+    },
+    {
+     "rank": 71,
+     "name": "LocalSend",
+     "status": "exact",
+     "bundleId": "org.localsend.localsendApp",
+     "trackName": "LocalSend",
+     "tagText": []
+    },
+    {
+     "rank": 72,
+     "name": "DAZN: Stream Live Sports",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad"
+     ]
+    },
+    {
+     "rank": 73,
+     "name": "Free VPN by Free VPN .org™",
+     "status": "exact",
+     "bundleId": "org.freevpn.vpn",
+     "trackName": "Free VPN by Free VPN .org™",
+     "tagText": []
+    },
+    {
+     "rank": 74,
+     "name": "Speedtest by Ookla",
+     "status": "exact",
+     "bundleId": "com.ookla.speedtest-macos",
+     "trackName": "Speedtest by Ookla",
+     "tagText": []
+    },
+    {
+     "rank": 75,
+     "name": "Snipit - Snipping Tool",
+     "status": "exact",
+     "bundleId": "com.snipit.snippingtool",
+     "trackName": "Snipit - Snipping Tool",
+     "tagText": []
+    },
+    {
+     "rank": 76,
+     "name": "Surfshark VPN: stable & fast",
+     "status": "variant",
+     "bundleId": "com.surfshark.vpnclient.macos",
+     "trackName": "Surfshark VPN. Sicher, schnell",
+     "tagText": []
+    },
+    {
+     "rank": 77,
+     "name": "AdBlock Pro for Safari",
+     "status": "variant",
+     "bundleId": "com.samuellaska.AdBuster",
+     "trackName": "AdBlock Pro für Safari-Browser",
+     "tagText": []
+    },
+    {
+     "rank": 78,
+     "name": "eduVPN client",
+     "status": "exact",
+     "bundleId": "org.eduvpn.app",
+     "trackName": "eduVPN client",
+     "tagText": []
+    },
+    {
+     "rank": 79,
+     "name": "VN: Video Editor",
+     "status": "variant",
+     "bundleId": "maccatalyst.com.frontrow.vlog",
+     "trackName": "VN: Video-Editor",
+     "tagText": []
+    },
+    {
+     "rank": 80,
+     "name": "Apps for Google App",
+     "status": "exact",
+     "bundleId": "kj.gapps",
+     "trackName": "Apps for Google App",
+     "tagText": []
+    },
+    {
+     "rank": 81,
+     "name": "Draw Things: Offline AI Art",
+     "status": "exact",
+     "bundleId": "com.liuliu.draw-things",
+     "trackName": "Draw Things: Offline AI Art",
+     "tagText": []
+    },
+    {
+     "rank": 82,
+     "name": "Calendar for Google Calendar",
+     "status": "prefix",
+     "bundleId": "com.fokusek.gcalendar",
+     "trackName": "Calendar for Google Calendar‎",
+     "tagText": []
+    },
+    {
+     "rank": 83,
+     "name": "CleanMyMac",
+     "status": "exact",
+     "bundleId": "com.macpaw.CleanMyMac-mas",
+     "trackName": "CleanMyMac",
+     "tagText": []
+    },
+    {
+     "rank": 84,
+     "name": "Chat Unlimited & Ask Brutus Al",
+     "status": "variant",
+     "bundleId": "com.Ai-writer.gpt3",
+     "trackName": "Chat AI Unbegrenzter :BrutusAI",
+     "tagText": []
+    },
+    {
+     "rank": 85,
+     "name": "Logic Pro: Make Music",
+     "status": "prefix",
+     "bundleId": "com.apple.logic10",
+     "trackName": "Logic Pro",
+     "tagText": []
+    },
+    {
+     "rank": 86,
+     "name": "Pixelmator Pro: Edit Images",
+     "status": "variant",
+     "bundleId": "com.apple.pixelmator",
+     "trackName": "Pixelmator Pro: Entwirf Bilder",
+     "tagText": []
+    },
+    {
+     "rank": 87,
+     "name": "Urban VPN Desktop",
+     "status": "exact",
+     "bundleId": "com.urban-vpn.mac",
+     "trackName": "Urban VPN Desktop",
+     "tagText": []
+    },
+    {
+     "rank": 88,
+     "name": "Todo List & App for Notion",
+     "status": "exact",
+     "bundleId": "com.task.to.do.list.app",
+     "trackName": "Todo List & App for Notion",
+     "tagText": []
+    },
+    {
+     "rank": 89,
+     "name": "MacDroid - Manager for Android",
+     "status": "variant",
+     "bundleId": "us.electronic.mas.macdroid",
+     "trackName": "MacDroid - Manager für Android",
+     "tagText": []
+    },
+    {
+     "rank": 90,
+     "name": "Photomator",
+     "status": "exact",
+     "bundleId": "com.pixelmatorteam.pixelmator.touch.x.photo",
+     "trackName": "Photomator",
+     "tagText": []
+    },
+    {
+     "rank": 91,
+     "name": "GoPro Quik",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad."
+     ]
+    },
+    {
+     "rank": 92,
+     "name": "JOYN Österreichs SuperStreamer",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Not verified for macOS."
+     ]
+    },
+    {
+     "rank": 93,
+     "name": "Adobe Photoshop Elements 2025",
+     "status": "exact",
+     "bundleId": "com.adobe.pse25",
+     "trackName": "Adobe Photoshop Elements 2025",
+     "tagText": []
+    },
+    {
+     "rank": 94,
+     "name": "Authenticator App",
+     "status": "prefix",
+     "bundleId": "com.2stable.2fa",
+     "trackName": "Authenticator",
+     "tagText": []
+    },
+    {
+     "rank": 95,
+     "name": "HP Smart Printer App, HPSmart",
+     "status": "prefix",
+     "bundleId": "smart.printer.scanner.app.ltd",
+     "trackName": "HP Smart Printer App , HPSmart",
+     "tagText": []
+    },
+    {
+     "rank": 96,
+     "name": "GeoGebra Calculator Suite",
+     "status": "variant",
+     "bundleId": "org.geogebra.calculator.suite",
+     "trackName": "GeoGebra Rechner Suite",
+     "tagText": []
+    },
+    {
+     "rank": 97,
+     "name": "Trello",
+     "status": "exact",
+     "bundleId": "com.atlassian.trello",
+     "trackName": "Trello",
+     "tagText": []
+    },
+    {
+     "rank": 98,
+     "name": "JustJoin for Zoom meetings",
+     "status": "exact",
+     "bundleId": "com.grc.JustJoin",
+     "trackName": "JustJoin for Zoom meetings",
+     "tagText": []
+    },
+    {
+     "rank": 99,
+     "name": "Flighty - Live Flight Tracker",
+     "status": "variant",
+     "bundleId": "com.flightyapp.flighty",
+     "trackName": "Flighty – Live Flight Tracker",
+     "tagText": []
+    },
+    {
+     "rank": 100,
+     "name": "XLSX Editor Pro",
+     "status": "prefix",
+     "bundleId": "com.jobssoft.xlsxapp",
+     "trackName": "XLSX Editor",
+     "tagText": []
+    },
+    {
+     "rank": 101,
+     "name": "¡Droid - Explorer for Android",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 102,
+     "name": "ExpressVPN: Super Secure VPN",
+     "status": "variant",
+     "bundleId": "com.expressvpn.iosvpn",
+     "trackName": "ExpressVPN · Secure & Fast VPN",
+     "tagText": []
+    },
+    {
+     "rank": 103,
+     "name": "Blackmagic Disk Speed Test",
+     "status": "exact",
+     "bundleId": "com.blackmagic-design.DiskSpeedTest",
+     "trackName": "Blackmagic Disk Speed Test",
+     "tagText": []
+    },
+    {
+     "rank": 104,
+     "name": "Ghostery AdBlocker for Privacy",
+     "status": "variant",
+     "bundleId": "com.ghostery.extension",
+     "trackName": "Ghostery Werbeblocker",
+     "tagText": []
+    },
+    {
+     "rank": 105,
+     "name": "Infuse",
+     "status": "exact",
+     "bundleId": "com.firecore.infuse",
+     "trackName": "Infuse",
+     "tagText": []
+    },
+    {
+     "rank": 106,
+     "name": "Coupert: Automatic Coupons",
+     "status": "variant",
+     "bundleId": "com.soarinfotech.Coupert-for-Safari",
+     "trackName": "Coupert: Automatische Coupons",
+     "tagText": []
+    },
+    {
+     "rank": 107,
+     "name": "VinylPod - Music Player Widget",
+     "status": "variant",
+     "bundleId": "com.tinfine.MusicWidget",
+     "trackName": "VinylPod - Musik-Widget",
+     "tagText": []
+    },
+    {
+     "rank": 108,
+     "name": "Teleparty - Watch TV Together",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad."
+     ]
+    },
+    {
+     "rank": 109,
+     "name": "Epic Games",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Not verified for macOS."
+     ]
+    },
+    {
+     "rank": 110,
+     "name": "Epson Smart Panel Printer App",
+     "status": "exact",
+     "bundleId": "com.paperFolio.app",
+     "trackName": "Epson Smart Panel Printer App",
+     "tagText": []
+    },
+    {
+     "rank": 111,
+     "name": "Drive Buddy for Google Drive",
+     "status": "variant",
+     "bundleId": "com.christelleyne.drivebuddy",
+     "trackName": "Drive Buddy für Google Drive",
+     "tagText": []
+    },
+    {
+     "rank": 112,
+     "name": "Final Video Player - MKV & MP4",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 113,
+     "name": "MindNode: Mind Map & Outline",
+     "status": "exact",
+     "bundleId": "com.ideasoncanvas.mindnode",
+     "trackName": "MindNode: Mind Map & Outline",
+     "tagText": []
+    },
+    {
+     "rank": 114,
+     "name": "Translate Now - Al Translator",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 115,
+     "name": "Wisper Al: Flow Voice Notes",
+     "status": "variant",
+     "bundleId": "app.wisper.ios",
+     "trackName": "Wisper AI: Flow Voice Notes",
+     "tagText": []
+    },
+    {
+     "rank": 116,
+     "name": "Flip Clock:Digital Desk Widget",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad."
+     ]
+    },
+    {
+     "rank": 117,
+     "name": "Cisco Secure Client",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Not verified for macOS."
+     ]
+    },
+    {
+     "rank": 118,
+     "name": "VLX Player: All Media & Video",
+     "status": "exact",
+     "bundleId": "video.player.vlc",
+     "trackName": "VLX Player: All Media & Video",
+     "tagText": []
+    },
+    {
+     "rank": 119,
+     "name": "Spreadsheet-xlsx&csv editor",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 120,
+     "name": "Userscripts",
+     "status": "exact",
+     "bundleId": "com.userscripts.macos",
+     "trackName": "Userscripts",
+     "tagText": []
+    },
+    {
+     "rank": 121,
+     "name": "Planner 5D - Al Home Design",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 122,
+     "name": "IPTV Smarters Player Expert",
+     "status": "exact",
+     "bundleId": "com.iptv.player",
+     "trackName": "IPTV Smarters Player Expert",
+     "tagText": []
+    },
+    {
+     "rank": 123,
+     "name": "journal & habit tracker - stoic.",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 124,
+     "name": "WeChat",
+     "status": "exact",
+     "bundleId": "com.tencent.xinWeChat",
+     "trackName": "WeChat",
+     "tagText": []
+    },
+    {
+     "rank": 125,
+     "name": "Dropover - Easier Drag & Drop",
+     "status": "variant",
+     "bundleId": "me.damir.dropover-mac",
+     "trackName": "Dropover: Mühelose Drag & Drop",
+     "tagText": []
+    },
+    {
+     "rank": 126,
+     "name": "hide.me VPN",
+     "status": "exact",
+     "bundleId": "com.eventur.Hide.me",
+     "trackName": "hide.me VPN",
+     "tagText": []
+    },
+    {
+     "rank": 127,
+     "name": "Widgetter - Desktop Widgets",
+     "status": "variant",
+     "bundleId": "com.villow.wgt",
+     "trackName": "Widgetter Color Custom Desktop",
+     "tagText": []
+    },
+    {
+     "rank": 128,
+     "name": "Printer App for Canon PRINT",
+     "status": "exact",
+     "bundleId": "com.amna.printer.templates.and.scanner",
+     "trackName": "Printer App for Canon PRINT",
+     "tagText": []
+    },
+    {
+     "rank": 129,
+     "name": "Proton Pass for Safari",
+     "status": "exact",
+     "bundleId": "me.proton.pass.catalyst",
+     "trackName": "Proton Pass for Safari",
+     "tagText": []
+    },
+    {
+     "rank": 130,
+     "name": "App for Google Maps ®",
+     "status": "exact",
+     "bundleId": "com.helloappdev19.map",
+     "trackName": "App for Google Maps ®",
+     "tagText": []
+    },
+    {
+     "rank": 131,
+     "name": "Documents for Google Documents",
+     "status": "exact",
+     "bundleId": "org.macmanus.docsfgd",
+     "trackName": "Documents for Google Documents",
+     "tagText": []
+    },
+    {
+     "rank": 132,
+     "name": "Loxone for Desktop",
+     "status": "exact",
+     "bundleId": "com.loxone.groot",
+     "trackName": "Loxone for Desktop",
+     "tagText": []
+    },
+    {
+     "rank": 133,
+     "name": "GoPro Player",
+     "status": "exact",
+     "bundleId": "com.gopro.GoPro-Player",
+     "trackName": "GoPro Player",
+     "tagText": []
+    },
+    {
+     "rank": 134,
+     "name": "Easy Access for Google Drive",
+     "status": "exact",
+     "bundleId": "gavcris.app.Easy-Docs",
+     "trackName": "Easy Access for Google Drive",
+     "tagText": []
+    },
+    {
+     "rank": 135,
+     "name": "Shapr 3D CAD modeling",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 136,
+     "name": "Structured: Daily Planner Todo",
+     "status": "variant",
+     "bundleId": "com.leomehlig.today",
+     "trackName": "Structured - Tagesplaner& Todo",
+     "tagText": []
+    },
+    {
+     "rank": 137,
+     "name": "Screen Recorder: TapRecord",
+     "status": "variant",
+     "bundleId": "com.mac.utility.screen.recorder",
+     "trackName": "Screen Recorder by Omi",
+     "tagText": []
+    },
+    {
+     "rank": 138,
+     "name": "Transporter",
+     "status": "exact",
+     "bundleId": "com.apple.TransporterApp",
+     "trackName": "Transporter",
+     "tagText": []
+    },
+    {
+     "rank": 139,
+     "name": "Kahoot! Play & Create Quizzes",
+     "status": "variant",
+     "bundleId": "no.mobitroll.kahoot.controller",
+     "trackName": "Kahoot! Quiz & Lernspiele",
+     "tagText": []
+    },
+    {
+     "rank": 140,
+     "name": "ApolloOne - Photo Video Viewer",
+     "status": "variant",
+     "bundleId": "com.anogeissus.ApolloOne",
+     "trackName": "ApolloOne Fotobetrachter",
+     "tagText": []
+    },
+    {
+     "rank": 141,
+     "name": "Xmind: AI Mind Map",
+     "status": "exact",
+     "bundleId": "net.xmind.vana.app",
+     "trackName": "Xmind: AI Mind Map",
+     "tagText": []
+    },
+    {
+     "rank": 142,
+     "name": "Cam.On: Webcam Recorder App",
+     "status": "variant",
+     "bundleId": "com.villow.Webcam",
+     "trackName": "Cam.On: Webcam & Kamera App",
+     "tagText": []
+    },
+    {
+     "rank": 143,
+     "name": "Bee DICOM Viewer",
+     "status": "exact",
+     "bundleId": "com.xiaosaiviewer.xiaosai",
+     "trackName": "Bee DICOM Viewer",
+     "tagText": []
+    },
+    {
+     "rank": 144,
+     "name": "Calendars • Daily Planner, To do",
+     "status": "variant",
+     "bundleId": "com.readdle.CalendarsLite",
+     "trackName": "Calendars - Kalender & Planer",
+     "tagText": []
+    },
+    {
+     "rank": 145,
+     "name": "Slack for Desktop",
+     "status": "exact",
+     "bundleId": "com.tinyspeck.slackmacgap",
+     "trackName": "Slack for Desktop",
+     "tagText": []
+    },
+    {
+     "rank": 146,
+     "name": "PDF Reader: PDF Editor,Convert",
+     "status": "variant",
+     "bundleId": "pdfeditor.acepdf.com",
+     "trackName": "PDF Reader: PDF Bearbeiten",
+     "tagText": []
+    },
+    {
+     "rank": 147,
+     "name": "VPN Unlimited: Secure VPN",
+     "status": "exact",
+     "bundleId": "com.simplexsolutionsinc.vpnguardMac",
+     "trackName": "VPN Unlimited: Secure VPN",
+     "tagText": []
+    },
+    {
+     "rank": 148,
+     "name": "Thea: Study Smart",
+     "status": "variant",
+     "bundleId": "study.thea",
+     "trackName": "Thea: Schlau lernen",
+     "tagText": []
+    },
+    {
+     "rank": 149,
+     "name": "Tаcх Training™",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 150,
+     "name": "Live Home 3D: House Design",
+     "status": "variant",
+     "bundleId": "com.belightsoft.LiveHome3D.MAS",
+     "trackName": "Live Home 3D: Raumplaner",
+     "tagText": []
+    },
+    {
+     "rank": 151,
+     "name": "Whisper Transcription",
+     "status": "variant",
+     "bundleId": "com.goodsnooze.MacWhisper",
+     "trackName": "Whisper Transkription",
+     "tagText": []
+    },
+    {
+     "rank": 152,
+     "name": "Studo - University Student App",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad"
+     ]
+    },
+    {
+     "rank": 153,
+     "name": "AI Notebook - Quiz LM & Notes",
+     "status": "variant",
+     "bundleId": "com.hamnaapps.notebook",
+     "trackName": "AI Notebook: Quiz LM & Notizen",
+     "tagText": []
+    },
+    {
+     "rank": 154,
+     "name": "Elmedia Video Player",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad."
+     ]
+    },
+    {
+     "rank": 155,
+     "name": "Chatbot AI Assistant - Genie",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Not verified for macOS."
+     ]
+    },
+    {
+     "rank": 156,
+     "name": "Screen Mirroring: LetsView",
+     "status": "variant",
+     "bundleId": "com.99mobileapp.displayapp",
+     "trackName": "Screen Mirror to TV & Device",
+     "tagText": []
+    },
+    {
+     "rank": 157,
+     "name": "Kaspersky fast & secure VPN",
+     "status": "exact",
+     "bundleId": "com.kaspersky.ksec",
+     "trackName": "Kaspersky fast & secure VPN",
+     "tagText": []
+    },
+    {
+     "rank": 158,
+     "name": "QuickDrop - Share from Android",
+     "status": "variant",
+     "bundleId": "com.leonboettger.neardrop",
+     "trackName": "QuickDrop - Android Transfer",
+     "tagText": []
+    },
+    {
+     "rank": 159,
+     "name": "Moodle",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad"
+     ]
+    },
+    {
+     "rank": 160,
+     "name": "Translate Hola - Al Translator",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 161,
+     "name": "Toggl Track: Hours & Time Log",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPhone."
+     ]
+    },
+    {
+     "rank": 162,
+     "name": "Music Player for amazon music",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Not verified for macOS."
+     ]
+    },
+    {
+     "rank": 163,
+     "name": "VPN Russia: Best Russian VPN",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 164,
+     "name": "NordPass Password Manager",
+     "status": "exact",
+     "bundleId": "com.nordpass.safari.app.password.manager",
+     "trackName": "NordPass Password Manager",
+     "tagText": []
+    },
+    {
+     "rank": 165,
+     "name": "Audio One: Easy Music Editor",
+     "status": "variant",
+     "bundleId": "com.villow.ME",
+     "trackName": "Audio One: Musik & Ton Editor",
+     "tagText": []
+    },
+    {
+     "rank": 166,
+     "name": "Kortext",
+     "status": "exact",
+     "bundleId": "com.cloudspringtech.kortext",
+     "trackName": "Kortext",
+     "tagText": []
+    },
+    {
+     "rank": 167,
+     "name": "Linearity Curve Graphic Design",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 168,
+     "name": "HiSuite",
+     "status": "exact",
+     "bundleId": "com.huawei.hisuite",
+     "trackName": "HiSuite",
+     "tagText": []
+    },
+    {
+     "rank": 169,
+     "name": "VPN Proxy Maste® Unlimited VPN",
+     "status": "exact",
+     "bundleId": "co.jialeisun.vpnmaster",
+     "trackName": "VPN Proxy Maste® Unlimited VPN",
+     "tagText": []
+    },
+    {
+     "rank": 170,
+     "name": "Planet Free VPN ™ Super Proxy",
+     "status": "exact",
+     "bundleId": "com.atrix.rusvpn",
+     "trackName": "Planet Free VPN ™ Super Proxy",
+     "tagText": []
+    },
+    {
+     "rank": 171,
+     "name": "OpenMTP for ARM",
+     "status": "exact",
+     "bundleId": "org.ivypi.macopenmtp",
+     "trackName": "OpenMTP for ARM",
+     "tagText": []
+    },
+    {
+     "rank": 172,
+     "name": "LanScan",
+     "status": "exact",
+     "bundleId": "com.iwaxx.LanScan",
+     "trackName": "LanScan",
+     "tagText": []
+    },
+    {
+     "rank": 173,
+     "name": "CotEditor",
+     "status": "exact",
+     "bundleId": "com.coteditor.CotEditor",
+     "trackName": "CotEditor",
+     "tagText": []
+    },
+    {
+     "rank": 174,
+     "name": "CouponBirds: Deals & Vouchers",
+     "status": "variant",
+     "bundleId": "com.couponbirds.smartcoupon",
+     "trackName": "CouponBirds: Deals, Gutscheine",
+     "tagText": []
+    },
+    {
+     "rank": 175,
+     "name": "ApowerMirror- Screen Mirroring",
+     "status": "variant",
+     "bundleId": "com.apowersoft.ApowerMirror",
+     "trackName": "ApowerMirror - Mirror&Reflect",
+     "tagText": []
+    },
+    {
+     "rank": 176,
+     "name": "IPTV Smarters Pro • Smart Player",
+     "status": "variant",
+     "bundleId": "com.habbithub.iptv",
+     "trackName": "IPTV Smarters Pro・Smart Player",
+     "tagText": []
+    },
+    {
+     "rank": 177,
+     "name": "Darkroom: Photo & Video Editor",
+     "status": "variant",
+     "bundleId": "co.bergen.Darkroom",
+     "trackName": "Darkroom:Foto und Video Editor",
+     "tagText": []
+    },
+    {
+     "rank": 178,
+     "name": "Todoist: To-Do List & Calendar",
+     "status": "variant",
+     "bundleId": "com.todoist.mac.Todoist",
+     "trackName": "Todoist: To-do-list, Kalender",
+     "tagText": []
+    },
+    {
+     "rank": 179,
+     "name": "CleanMyKeyboard",
+     "status": "exact",
+     "bundleId": "app.chenyuhao.CleanMyKeyboard",
+     "trackName": "CleanMyKeyboard",
+     "tagText": []
+    },
+    {
+     "rank": 180,
+     "name": "Open Link for Chrome & Firefox",
+     "status": "exact",
+     "bundleId": "gav.cri.Open-With",
+     "trackName": "Open Link for Chrome & Firefox",
+     "tagText": []
+    },
+    {
+     "rank": 181,
+     "name": "ARTE.tv",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 182,
+     "name": "CamPhoto",
+     "status": "exact",
+     "bundleId": "com.alvaroneira.CamPhoto",
+     "trackName": "CamPhoto",
+     "tagText": []
+    },
+    {
+     "rank": 183,
+     "name": "iScreen Shoter: Screenshot App",
+     "status": "exact",
+     "bundleId": "com.screenshot.iscreenshoter",
+     "trackName": "iScreen Shoter: Screenshot App",
+     "tagText": []
+    },
+    {
+     "rank": 184,
+     "name": "Microsoft Bing for Safari",
+     "status": "exact",
+     "bundleId": "com.microsoft.MicrosoftBingSearch",
+     "trackName": "Microsoft Bing for Safari",
+     "tagText": []
+    },
+    {
+     "rank": 185,
+     "name": "Hush Nag Blocker",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad."
+     ]
+    },
+    {
+     "rank": 186,
+     "name": "Authenticator App - 2FA MFA",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Not verified for macOS."
+     ]
+    },
+    {
+     "rank": 187,
+     "name": "Smart Printer App: iPrint Scan",
+     "status": "variant",
+     "bundleId": "com.ahaddurrani.printer",
+     "trackName": "Smart Drucker App : Drucken",
+     "tagText": []
+    },
+    {
+     "rank": 188,
+     "name": "Phone Mirroring: Mirror to Mac",
+     "status": "exact",
+     "bundleId": "com.eplussoft.phonemirror",
+     "trackName": "Phone Mirroring: Mirror to Mac",
+     "tagText": []
+    },
+    {
+     "rank": 189,
+     "name": "Mimeo Photos: Printed Memories",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPhone."
+     ]
+    },
+    {
+     "rank": 190,
+     "name": "ROUVY Companion App",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Not verified for macOS."
+     ]
+    },
+    {
+     "rank": 191,
+     "name": "Perplex - Al Search & Chat",
+     "status": "variant",
+     "bundleId": "com.mar.6025a7k6m0",
+     "trackName": "Perplex - AI Search & Chat",
+     "tagText": []
+    },
+    {
+     "rank": 192,
+     "name": "Brother P-touch Editor",
+     "status": "exact",
+     "bundleId": "com.brother.PtouchEditor",
+     "trackName": "Brother P-touch Editor",
+     "tagText": []
+    },
+    {
+     "rank": 193,
+     "name": "Document Writer Word Processor",
+     "status": "exact",
+     "bundleId": "com.itsabouttime.wordIAP",
+     "trackName": "Document Writer Word Processor",
+     "tagText": []
+    },
+    {
+     "rank": 194,
+     "name": "Calculator Max",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 195,
+     "name": "HBO Max FYC",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad"
+     ]
+    },
+    {
+     "rank": 196,
+     "name": "VPN cat: Fast Secure Unlimited",
+     "status": "variant",
+     "bundleId": "com.vpn.cat",
+     "trackName": "VPN cat: Schnell Unbegrenzt",
+     "tagText": []
+    },
+    {
+     "rank": 197,
+     "name": "Pixea",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad."
+     ]
+    },
+    {
+     "rank": 198,
+     "name": "Planner 5D: Al Home Design",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 199,
+     "name": "3D Splat App",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 200,
+     "name": "PPTX Presentation Editor",
+     "status": "exact",
+     "bundleId": "com.jobssoft.slidesapp",
+     "trackName": "PPTX Presentation Editor",
+     "tagText": []
+    }
+   ]
+  },
+  "paid": {
+   "counts": {
+    "exact": 142,
+    "variant": 24,
+    "prefix": 4,
+    "none": 19,
+    "excluded-ios-tag": 11
+   },
+   "entries": [
+    {
+     "rank": 1,
+     "name": "Wipr 2",
+     "status": "exact",
+     "bundleId": "site.kaylees.Wipr2",
+     "trackName": "Wipr 2",
+     "tagText": []
+    },
+    {
+     "rank": 2,
+     "name": "LibreOffice",
+     "status": "exact",
+     "bundleId": "org.documentfoundation.libreoffice",
+     "trackName": "LibreOffice",
+     "tagText": []
+    },
+    {
+     "rank": 3,
+     "name": "forScore",
+     "status": "exact",
+     "bundleId": "com.mgsdevelopment.forscore",
+     "trackName": "forScore",
+     "tagText": []
+    },
+    {
+     "rank": 4,
+     "name": "MacFamilyTree 11",
+     "status": "exact",
+     "bundleId": "com.syniumsoftware.macfamilytree11",
+     "trackName": "MacFamilyTree 11",
+     "tagText": []
+    },
+    {
+     "rank": 5,
+     "name": "Parachute Backup",
+     "status": "exact",
+     "bundleId": "net.ericmann.parachute",
+     "trackName": "Parachute Backup",
+     "tagText": []
+    },
+    {
+     "rank": 6,
+     "name": "Logoist 6 – Graphic Design",
+     "status": "variant",
+     "bundleId": "com.syniumsoftware.logoist6",
+     "trackName": "Logoist 6 – Grafikdesign",
+     "tagText": []
+    },
+    {
+     "rank": 7,
+     "name": "Logic Pro",
+     "status": "exact",
+     "bundleId": "com.apple.logic10",
+     "trackName": "Logic Pro",
+     "tagText": []
+    },
+    {
+     "rank": 8,
+     "name": "RAR Extractor - Unarchiver Pro",
+     "status": "exact",
+     "bundleId": "com.ABabe.rarextractorstar",
+     "trackName": "RAR Extractor - Unarchiver Pro",
+     "tagText": []
+    },
+    {
+     "rank": 9,
+     "name": "Weatherling: Rain & Snow FX",
+     "status": "variant",
+     "bundleId": "com.mattsenter.Weatherling",
+     "trackName": "Weatherling: Regen & Schnee FX",
+     "tagText": []
+    },
+    {
+     "rank": 10,
+     "name": "Netmo 2 – Weather for Netatmo",
+     "status": "variant",
+     "bundleId": "at.agross.netmo2",
+     "trackName": "Netmo 2 – Wetter für Netatmo",
+     "tagText": []
+    },
+    {
+     "rank": 11,
+     "name": "DaisyDisk",
+     "status": "exact",
+     "bundleId": "com.daisydiskapp.DaisyDisk",
+     "trackName": "DaisyDisk",
+     "tagText": []
+    },
+    {
+     "rank": 12,
+     "name": "Swift Publisher 5",
+     "status": "exact",
+     "bundleId": "com.belightsoft.SwiftPublisher5",
+     "trackName": "Swift Publisher 5",
+     "tagText": []
+    },
+    {
+     "rank": 13,
+     "name": "GrandPerspective",
+     "status": "exact",
+     "bundleId": "net.sourceforge.grandperspectiv",
+     "trackName": "GrandPerspective",
+     "tagText": []
+    },
+    {
+     "rank": 14,
+     "name": "TreeSize - Disk Usage",
+     "status": "exact",
+     "bundleId": "com.woojooin.zFolderTree",
+     "trackName": "TreeSize - Disk Usage",
+     "tagText": []
+    },
+    {
+     "rank": 15,
+     "name": "New File Menu",
+     "status": "exact",
+     "bundleId": "net.langui.NewFileMenu",
+     "trackName": "New File Menu",
+     "tagText": []
+    },
+    {
+     "rank": 16,
+     "name": "Sleeve for Spotify",
+     "status": "prefix",
+     "bundleId": "com.replay.sleeve",
+     "trackName": "Sleeve for Spotify, Music",
+     "tagText": []
+    },
+    {
+     "rank": 17,
+     "name": "PhotoSweeper",
+     "status": "exact",
+     "bundleId": "com.overmacs.photosweeper",
+     "trackName": "PhotoSweeper",
+     "tagText": []
+    },
+    {
+     "rank": 18,
+     "name": "Whisper Notes - Speech to Text",
+     "status": "variant",
+     "bundleId": "com.mazzystar.WhisperMemo",
+     "trackName": "Whisper Notes: Sprache zu Text",
+     "tagText": []
+    },
+    {
+     "rank": 19,
+     "name": "Noir – Dark Mode for Safari",
+     "status": "exact",
+     "bundleId": "nl.jeffreykuiken.NoirApp.mac",
+     "trackName": "Noir – Dark Mode for Safari",
+     "tagText": []
+    },
+    {
+     "rank": 20,
+     "name": "Duplicate Photos Fixer Pro",
+     "status": "exact",
+     "bundleId": "com.systweak.Duplicate-Photos-Fixer-Pro",
+     "trackName": "Duplicate Photos Fixer Pro",
+     "tagText": []
+    },
+    {
+     "rank": 21,
+     "name": "Cloud Baby Monitor",
+     "status": "exact",
+     "bundleId": "com.martinman.macvideobabymonitor",
+     "trackName": "Cloud Baby Monitor",
+     "tagText": []
+    },
+    {
+     "rank": 22,
+     "name": "Aquarium 4K",
+     "status": "exact",
+     "bundleId": "com.kissapp.acuario",
+     "trackName": "Aquarium 4K",
+     "tagText": []
+    },
+    {
+     "rank": 23,
+     "name": "Fizzy Water Bundle",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 24,
+     "name": "iStat Menus 7",
+     "status": "exact",
+     "bundleId": "com.bjango.istatmenus-mas",
+     "trackName": "iStat Menus 7",
+     "tagText": []
+    },
+    {
+     "rank": 25,
+     "name": "GraphicConverter 12",
+     "status": "exact",
+     "bundleId": "com.lemkesoft.graphicconverter12",
+     "trackName": "GraphicConverter 12",
+     "tagText": []
+    },
+    {
+     "rank": 26,
+     "name": "PLIST Editor",
+     "status": "exact",
+     "bundleId": "com.vladbadea.plisteditor",
+     "trackName": "PLIST Editor",
+     "tagText": []
+    },
+    {
+     "rank": 27,
+     "name": "DockTime",
+     "status": "exact",
+     "bundleId": "de.pecora.iClock",
+     "trackName": "DockTime",
+     "tagText": []
+    },
+    {
+     "rank": 28,
+     "name": "Python Runner",
+     "status": "exact",
+     "bundleId": "PythonRunner",
+     "trackName": "Python Runner",
+     "tagText": []
+    },
+    {
+     "rank": 29,
+     "name": "PlugInfo",
+     "status": "exact",
+     "bundleId": "com.thinkersnacks.PlugInfo",
+     "trackName": "PlugInfo",
+     "tagText": []
+    },
+    {
+     "rank": 30,
+     "name": "Camera Tools for GoPro® Heros",
+     "status": "variant",
+     "bundleId": "com.toolsforgopro.CameraToolsForHeros",
+     "trackName": "Camera Tools für GoPro® Heros",
+     "tagText": []
+    },
+    {
+     "rank": 31,
+     "name": "Folder Colorizer",
+     "status": "exact",
+     "bundleId": "net.langui.FolderColorizer",
+     "trackName": "Folder Colorizer",
+     "tagText": []
+    },
+    {
+     "rank": 32,
+     "name": "Keystroke Pro",
+     "status": "exact",
+     "bundleId": "de.ixeau.KeystrokePro2",
+     "trackName": "Keystroke Pro",
+     "tagText": []
+    },
+    {
+     "rank": 33,
+     "name": "QR Code Reader :BarcodeTools",
+     "status": "exact",
+     "bundleId": "com.axe1lyze.BarcodeTools",
+     "trackName": "QR Code Reader :BarcodeTools",
+     "tagText": []
+    },
+    {
+     "rank": 34,
+     "name": "VolumeHub",
+     "status": "exact",
+     "bundleId": "app.sheltech.volumehub",
+     "trackName": "VolumeHub",
+     "tagText": []
+    },
+    {
+     "rank": 35,
+     "name": "PluginONE",
+     "status": "exact",
+     "bundleId": "audio.infinity.one.plugin",
+     "trackName": "PluginONE",
+     "tagText": []
+    },
+    {
+     "rank": 36,
+     "name": "Folder Organizer",
+     "status": "exact",
+     "bundleId": "com.gtrigonakis.folderOrginizer",
+     "trackName": "Folder Organizer",
+     "tagText": []
+    },
+    {
+     "rank": 37,
+     "name": "roamOS",
+     "status": "exact",
+     "bundleId": "com.codecrate.roamos",
+     "trackName": "roamOS",
+     "tagText": []
+    },
+    {
+     "rank": 38,
+     "name": "Adrenaline: Frame Generation",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad."
+     ]
+    },
+    {
+     "rank": 39,
+     "name": "GuitarTapp PRO - Tabs & Chords",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Not verified for macOS."
+     ]
+    },
+    {
+     "rank": 40,
+     "name": "SiteSucker",
+     "status": "exact",
+     "bundleId": "us.sitesucker.mac.sitesucker",
+     "trackName": "SiteSucker",
+     "tagText": []
+    },
+    {
+     "rank": 41,
+     "name": "DaVinci Resolve Studio",
+     "status": "exact",
+     "bundleId": "com.blackmagic-design.DaVinciResolveAppStore",
+     "trackName": "DaVinci Resolve Studio",
+     "tagText": []
+    },
+    {
+     "rank": 42,
+     "name": "Pure Paste",
+     "status": "exact",
+     "bundleId": "com.sindresorhus.Pure-Paste",
+     "trackName": "Pure Paste",
+     "tagText": []
+    },
+    {
+     "rank": 43,
+     "name": "¡Doceo - Planner and gradebook",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 44,
+     "name": "Shadowrocket",
+     "status": "exact",
+     "bundleId": "com.liguangming.Shadowrocket",
+     "trackName": "Shadowrocket",
+     "tagText": []
+    },
+    {
+     "rank": 45,
+     "name": "Medialnfo",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 46,
+     "name": "AutoMounter",
+     "status": "exact",
+     "bundleId": "nz.co.pixeleyes.AutoMounter",
+     "trackName": "AutoMounter",
+     "tagText": []
+    },
+    {
+     "rank": 47,
+     "name": "Pixelmator Pro",
+     "status": "variant",
+     "bundleId": "com.pixelmatorteam.pixelmator.x",
+     "trackName": "Pixelmator Pro",
+     "tagText": []
+    },
+    {
+     "rank": 48,
+     "name": "Texifier - LaTeX Editor",
+     "status": "exact",
+     "bundleId": "com.vallettaventures.Texpad",
+     "trackName": "Texifier - LaTeX Editor",
+     "tagText": []
+    },
+    {
+     "rank": 49,
+     "name": "Tivimax IPTV Player (Premium)",
+     "status": "exact",
+     "bundleId": "com.tivimax.premium",
+     "trackName": "Tivimax IPTV Player (Premium)",
+     "tagText": []
+    },
+    {
+     "rank": 50,
+     "name": "¡Real Pro",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 51,
+     "name": "Sync Folders Pro",
+     "status": "exact",
+     "bundleId": "com.greenworldsoft.syncfolderspro",
+     "trackName": "Sync Folders Pro",
+     "tagText": []
+    },
+    {
+     "rank": 52,
+     "name": "Commander One PRO: FTP & Cloud",
+     "status": "variant",
+     "bundleId": "com.eltima.cmd1.pro.mas",
+     "trackName": "Commander One PRO: FTP client",
+     "tagText": []
+    },
+    {
+     "rank": 53,
+     "name": "Motion",
+     "status": "exact",
+     "bundleId": "com.apple.motionapp",
+     "trackName": "Motion",
+     "tagText": []
+    },
+    {
+     "rank": 54,
+     "name": "Image Stacker Bundle",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 55,
+     "name": "Apple Remote Desktop",
+     "status": "exact",
+     "bundleId": "com.apple.RemoteDesktop",
+     "trackName": "Apple Remote Desktop",
+     "tagText": []
+    },
+    {
+     "rank": 56,
+     "name": "QuickLook Video",
+     "status": "exact",
+     "bundleId": "uk.org.marginal.qlvideo",
+     "trackName": "QuickLook Video",
+     "tagText": []
+    },
+    {
+     "rank": 57,
+     "name": "Scapple",
+     "status": "exact",
+     "bundleId": "com.literatureandlatte.scapple",
+     "trackName": "Scapple",
+     "tagText": []
+    },
+    {
+     "rank": 58,
+     "name": "PhotoSweeper Lite",
+     "status": "exact",
+     "bundleId": "com.overmacs.photosweeperlite",
+     "trackName": "PhotoSweeper Lite",
+     "tagText": []
+    },
+    {
+     "rank": 59,
+     "name": "Stop Motion Studio Pro 2",
+     "status": "exact",
+     "bundleId": "maccatalyst.com.cateater.funapps.stopmotionstudiopro",
+     "trackName": "Stop Motion Studio Pro 2",
+     "tagText": []
+    },
+    {
+     "rank": 60,
+     "name": "ScreenFloat-Pro Screen Capture",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 61,
+     "name": "Renamer",
+     "status": "exact",
+     "bundleId": "com.artdesktop.renamer",
+     "trackName": "Renamer",
+     "tagText": []
+    },
+    {
+     "rank": 62,
+     "name": "Desktop for Instagram",
+     "status": "exact",
+     "bundleId": "net.alpay.DesktopForInstagram",
+     "trackName": "Desktop for Instagram",
+     "tagText": []
+    },
+    {
+     "rank": 63,
+     "name": "ICircuit 3D",
+     "status": "exact",
+     "bundleId": "com.kruegersystems.icircuit3d",
+     "trackName": "iCircuit 3D",
+     "tagText": []
+    },
+    {
+     "rank": 64,
+     "name": "MD5 Master",
+     "status": "exact",
+     "bundleId": "AV.MD5-Master",
+     "trackName": "MD5 Master",
+     "tagText": []
+    },
+    {
+     "rank": 65,
+     "name": "Amadeus Pro upgrade",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 66,
+     "name": "NotchPrompter",
+     "status": "exact",
+     "bundleId": "io.simplelocalize.notch-prompter",
+     "trackName": "NotchPrompter",
+     "tagText": []
+    },
+    {
+     "rank": 67,
+     "name": "Photo Export - Local Backup",
+     "status": "exact",
+     "bundleId": "com.valtteriluoma.photo-export-appstore",
+     "trackName": "Photo Export - Local Backup",
+     "tagText": []
+    },
+    {
+     "rank": 68,
+     "name": "Arduino Programming Pro",
+     "status": "exact",
+     "bundleId": "com.algsoftlab.ArduinoProgrammingPro",
+     "trackName": "Arduino Programming Pro",
+     "tagText": []
+    },
+    {
+     "rank": 69,
+     "name": "PanicVault - Password Manager",
+     "status": "exact",
+     "bundleId": "com.pms.PanicVault",
+     "trackName": "PanicVault - Password Manager",
+     "tagText": []
+    },
+    {
+     "rank": 70,
+     "name": "DapSync",
+     "status": "exact",
+     "bundleId": "com.FlyingSquirrel.DapSync",
+     "trackName": "DapSync",
+     "tagText": []
+    },
+    {
+     "rank": 71,
+     "name": "IPTV Smarters Pro Live Player",
+     "status": "variant",
+     "bundleId": "com.iptv.smarters.pro.m3u",
+     "trackName": "IPTV Smarters Pro M3U Player",
+     "tagText": []
+    },
+    {
+     "rank": 72,
+     "name": "MusicWall: Album Wallpaper",
+     "status": "exact",
+     "bundleId": "com.musicwall.app",
+     "trackName": "MusicWall: Album Wallpaper",
+     "tagText": []
+    },
+    {
+     "rank": 73,
+     "name": "SetFileTime",
+     "status": "exact",
+     "bundleId": "de.dirkeinecke.setfiletime",
+     "trackName": "SetFileTime",
+     "tagText": []
+    },
+    {
+     "rank": 74,
+     "name": "Nessie: The Nametable Editor",
+     "status": "exact",
+     "bundleId": "dk.codeninja.NESgfx",
+     "trackName": "Nessie: The Nametable Editor",
+     "tagText": []
+    },
+    {
+     "rank": 75,
+     "name": "Nifty File Lists",
+     "status": "exact",
+     "bundleId": "net.publicspace.mas.niftyfilelists",
+     "trackName": "Nifty File Lists",
+     "tagText": []
+    },
+    {
+     "rank": 76,
+     "name": "Mp3tag",
+     "status": "exact",
+     "bundleId": "app.mp3tag.Mp3tag",
+     "trackName": "Mp3tag",
+     "tagText": []
+    },
+    {
+     "rank": 77,
+     "name": "Dark Reader for Safari",
+     "status": "exact",
+     "bundleId": "org.darkreader.DarkReaderSafari",
+     "trackName": "Dark Reader for Safari",
+     "tagText": []
+    },
+    {
+     "rank": 78,
+     "name": "Keka",
+     "status": "exact",
+     "bundleId": "com.aone.keka",
+     "trackName": "Keka",
+     "tagText": []
+    },
+    {
+     "rank": 79,
+     "name": "Cyberduck",
+     "status": "exact",
+     "bundleId": "ch.sudo.cyberduck",
+     "trackName": "Cyberduck",
+     "tagText": []
+    },
+    {
+     "rank": 80,
+     "name": "UTM Virtual Machines",
+     "status": "exact",
+     "bundleId": "com.utmapp.UTM",
+     "trackName": "UTM Virtual Machines",
+     "tagText": []
+    },
+    {
+     "rank": 81,
+     "name": "ShutterCount",
+     "status": "exact",
+     "bundleId": "com.direstudio.ShutterCount",
+     "trackName": "ShutterCount",
+     "tagText": []
+    },
+    {
+     "rank": 82,
+     "name": "That was when",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 83,
+     "name": "Greenshot",
+     "status": "exact",
+     "bundleId": "org.getgreenshot.Greenshot",
+     "trackName": "Greenshot",
+     "tagText": []
+    },
+    {
+     "rank": 84,
+     "name": "Baby Monitor 3G",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 85,
+     "name": "Antivirus Zap - Virus Scanner",
+     "status": "variant",
+     "bundleId": "com.vinnov.AntiVirus-Scanner",
+     "trackName": "Antivirus Zap - Virenschutz",
+     "tagText": []
+    },
+    {
+     "rank": 86,
+     "name": "MenuBar Stats",
+     "status": "exact",
+     "bundleId": "com.fabriceleyne.menubarstats",
+     "trackName": "MenuBar Stats",
+     "tagText": []
+    },
+    {
+     "rank": 87,
+     "name": "RechnungPro X",
+     "status": "exact",
+     "bundleId": "com.deltaworx.rechnungpro",
+     "trackName": "RechnungPro X",
+     "tagText": []
+    },
+    {
+     "rank": 88,
+     "name": "DemoPro - Screen Annotation",
+     "status": "variant",
+     "bundleId": "com.anatole.DemoPro",
+     "trackName": "DemoPro - Bildschirm Anmerkung",
+     "tagText": []
+    },
+    {
+     "rank": 89,
+     "name": "Pro Mouse - Cursor Highlighter",
+     "status": "prefix",
+     "bundleId": "com.alec-summers.pro-mouse",
+     "trackName": "Pro Mouse",
+     "tagText": []
+    },
+    {
+     "rank": 90,
+     "name": "forScore Music Box",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 91,
+     "name": "Tampermonkey Bundle",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 92,
+     "name": "Gyroflow Toolbox",
+     "status": "exact",
+     "bundleId": "com.latenitefilms.GyroflowToolbox",
+     "trackName": "Gyroflow Toolbox",
+     "tagText": []
+    },
+    {
+     "rank": 93,
+     "name": "Blitzlesen: Das Original",
+     "status": "exact",
+     "bundleId": "com.simon.Blitzlesen",
+     "trackName": "Blitzlesen: Das Original",
+     "tagText": []
+    },
+    {
+     "rank": 94,
+     "name": "MobileSheets®",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad"
+     ]
+    },
+    {
+     "rank": 95,
+     "name": "LinkMyMac",
+     "status": "exact",
+     "bundleId": "com.linkmymac.mac",
+     "trackName": "LinkMyMac",
+     "tagText": []
+    },
+    {
+     "rank": 96,
+     "name": "Itsytv: Apple TV Remote",
+     "status": "exact",
+     "bundleId": "com.itsytv.app",
+     "trackName": "Itsytv: Apple TV Remote",
+     "tagText": []
+    },
+    {
+     "rank": 97,
+     "name": "WL Analysis - bar path tracker",
+     "status": "exact",
+     "bundleId": "com.karolsmolak.WL-Analysis-Mac",
+     "trackName": "WL Analysis - bar path tracker",
+     "tagText": []
+    },
+    {
+     "rank": 98,
+     "name": "Movie Explorer Pro",
+     "status": "exact",
+     "bundleId": "betamagic.Movie-Explorer-Pro",
+     "trackName": "Movie Explorer Pro",
+     "tagText": []
+    },
+    {
+     "rank": 99,
+     "name": "Sheet Music Reader",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad."
+     ]
+    },
+    {
+     "rank": 100,
+     "name": "Winmail.dat Opener: Pro Reader",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad.",
+      "Not verified for macOS."
+     ]
+    },
+    {
+     "rank": 101,
+     "name": "AO Office Pro",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Not verified for macOS."
+     ]
+    },
+    {
+     "rank": 102,
+     "name": "AirCard",
+     "status": "exact",
+     "bundleId": "com.reikyz.aircard",
+     "trackName": "AirCard",
+     "tagText": []
+    },
+    {
+     "rank": 103,
+     "name": "SmartCleanDisk",
+     "status": "exact",
+     "bundleId": "com.flashore.smartcleandisk",
+     "trackName": "SmartCleanDisk",
+     "tagText": []
+    },
+    {
+     "rank": 104,
+     "name": "ProximityShortcuts",
+     "status": "exact",
+     "bundleId": "com.mailoxy.proximityshortcuts",
+     "trackName": "ProximityShortcuts",
+     "tagText": []
+    },
+    {
+     "rank": 105,
+     "name": "C++ Programming Pro",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad."
+     ]
+    },
+    {
+     "rank": 106,
+     "name": "Lesedose 1",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Not verified for macOS."
+     ]
+    },
+    {
+     "rank": 107,
+     "name": "3D Human Anatomy Atlas 2027",
+     "status": "variant",
+     "bundleId": "com.hssn.anatomy3dlite",
+     "trackName": "3D Anatomy Learning",
+     "tagText": []
+    },
+    {
+     "rank": 108,
+     "name": "Vinegar - Tube Cleaner",
+     "status": "exact",
+     "bundleId": "com.andadinosaur.Vinegar",
+     "trackName": "Vinegar - Tube Cleaner",
+     "tagText": []
+    },
+    {
+     "rank": 109,
+     "name": "Punktfunk",
+     "status": "exact",
+     "bundleId": "io.unom.punktfunk",
+     "trackName": "Punktfunk",
+     "tagText": []
+    },
+    {
+     "rank": 110,
+     "name": "VectorAl 2",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 111,
+     "name": "FullPage Screenshot for Safari",
+     "status": "exact",
+     "bundleId": "AG.Full-Page-Screenshot",
+     "trackName": "FullPage Screenshot for Safari",
+     "tagText": []
+    },
+    {
+     "rank": 112,
+     "name": "EXIF Viewer by Fluntro",
+     "status": "variant",
+     "bundleId": "com.fluntro.exif",
+     "trackName": "EXIF Viewer: Metadaten",
+     "tagText": []
+    },
+    {
+     "rank": 113,
+     "name": "PDF Expert - Edit, Sign PDFs",
+     "status": "variant",
+     "bundleId": "com.readdle.PDFExpert-Mac",
+     "trackName": "PDF Expert – Lesen, bearbeiten",
+     "tagText": []
+    },
+    {
+     "rank": 114,
+     "name": "Airmail for Business",
+     "status": "exact",
+     "bundleId": "com.airmailapp.btb2",
+     "trackName": "Airmail for Business",
+     "tagText": []
+    },
+    {
+     "rank": 115,
+     "name": "Meine Klassenmappe Desktop v6",
+     "status": "exact",
+     "bundleId": "de.klassenmappe.Desktop6",
+     "trackName": "Meine Klassenmappe Desktop v6",
+     "tagText": []
+    },
+    {
+     "rank": 116,
+     "name": "SimpleMind Pro",
+     "status": "exact",
+     "bundleId": "com.modelmakertools.simplemindmacpro",
+     "trackName": "SimpleMind Pro",
+     "tagText": []
+    },
+    {
+     "rank": 117,
+     "name": "IFinance 5",
+     "status": "exact",
+     "bundleId": "com.syniumsoftware.ifinance5",
+     "trackName": "iFinance 5",
+     "tagText": []
+    },
+    {
+     "rank": 118,
+     "name": "Upscayl",
+     "status": "exact",
+     "bundleId": "org.upscayl.Upscayl",
+     "trackName": "Upscayl",
+     "tagText": []
+    },
+    {
+     "rank": 119,
+     "name": "MIDIPlayer X",
+     "status": "exact",
+     "bundleId": "net.methodred.MIDIPlayer-X",
+     "trackName": "MIDIPlayer X",
+     "tagText": []
+    },
+    {
+     "rank": 120,
+     "name": "Helper for GoPro Files",
+     "status": "exact",
+     "bundleId": "de.jeysoft.Helper-for-GoPro-Files",
+     "trackName": "Helper for GoPro Files",
+     "tagText": []
+    },
+    {
+     "rank": 121,
+     "name": "Stat Menubar",
+     "status": "exact",
+     "bundleId": "com.sys.monbar",
+     "trackName": "Stat Menubar",
+     "tagText": []
+    },
+    {
+     "rank": 122,
+     "name": "Pocket Informant - Desktop",
+     "status": "variant",
+     "bundleId": "com.fanaticsoftware.informant",
+     "trackName": "Pocket Informant – Desktop",
+     "tagText": []
+    },
+    {
+     "rank": 123,
+     "name": "Guitar Chords Compass",
+     "status": "exact",
+     "bundleId": "com.neonway.GuitarChordsCompass",
+     "trackName": "Guitar Chords Compass",
+     "tagText": []
+    },
+    {
+     "rank": 124,
+     "name": "Organize GoPro Files",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 125,
+     "name": "SAT>IP>Mobile",
+     "status": "exact",
+     "bundleId": "de.andreasschultes.SATIPSimple",
+     "trackName": "SAT>IP>Mobile",
+     "tagText": []
+    },
+    {
+     "rank": 126,
+     "name": "Hab und Gut",
+     "status": "exact",
+     "bundleId": "de.langeundschliemann.HuG",
+     "trackName": "Hab und Gut",
+     "tagText": []
+    },
+    {
+     "rank": 127,
+     "name": "StaffWars Live",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad",
+      "Designed for iPad."
+     ]
+    },
+    {
+     "rank": 128,
+     "name": "Note Widget",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Not verified for macOS."
+     ]
+    },
+    {
+     "rank": 129,
+     "name": "G-code Viewer",
+     "status": "exact",
+     "bundleId": "com.3dfileviewers.gcode",
+     "trackName": "G-code Viewer",
+     "tagText": []
+    },
+    {
+     "rank": 130,
+     "name": "WBTRK",
+     "status": "exact",
+     "bundleId": "com.hejluxom.wbtrk",
+     "trackName": "WBTRK",
+     "tagText": []
+    },
+    {
+     "rank": 131,
+     "name": "Klyron",
+     "status": "exact",
+     "bundleId": "de.thomassillmann.klyron",
+     "trackName": "Klyron",
+     "tagText": []
+    },
+    {
+     "rank": 132,
+     "name": "Behavior Observation Made Easy",
+     "status": "excluded-ios-tag",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": [
+      "Designed for iPad"
+     ]
+    },
+    {
+     "rank": 133,
+     "name": "Magnet",
+     "status": "exact",
+     "bundleId": "com.crowdcafe.windowmagnet",
+     "trackName": "Magnet",
+     "tagText": []
+    },
+    {
+     "rank": 134,
+     "name": "Final Cut Pro",
+     "status": "exact",
+     "bundleId": "com.apple.FinalCut",
+     "trackName": "Final Cut Pro",
+     "tagText": []
+    },
+    {
+     "rank": 135,
+     "name": "BetterSnapTool",
+     "status": "exact",
+     "bundleId": "com.hegenberg.BetterSnapTool",
+     "trackName": "BetterSnapTool",
+     "tagText": []
+    },
+    {
+     "rank": 136,
+     "name": "Ringer - Ringtone Maker",
+     "status": "exact",
+     "bundleId": "com.pixelresearchlabs.osx.ringer",
+     "trackName": "Ringer - Ringtone Maker",
+     "tagText": []
+    },
+    {
+     "rank": 137,
+     "name": "Disk Doctor: System Cleaner",
+     "status": "exact",
+     "bundleId": "com.fiplab.diskdoctor",
+     "trackName": "Disk Doctor: System Cleaner",
+     "tagText": []
+    },
+    {
+     "rank": 138,
+     "name": "Compressor",
+     "status": "exact",
+     "bundleId": "com.apple.Compressor",
+     "trackName": "Compressor",
+     "tagText": []
+    },
+    {
+     "rank": 139,
+     "name": "Earth 3D",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 140,
+     "name": "Earth 3D - World Atlas",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 141,
+     "name": "Things 3",
+     "status": "exact",
+     "bundleId": "com.culturedcode.ThingsMac",
+     "trackName": "Things 3",
+     "tagText": []
+    },
+    {
+     "rank": 142,
+     "name": "Yoink - Better Drag and Drop",
+     "status": "variant",
+     "bundleId": "at.EternalStorms.Yoink",
+     "trackName": "Yoink - Besseres Drag & Drop",
+     "tagText": []
+    },
+    {
+     "rank": 143,
+     "name": "MainStage",
+     "status": "exact",
+     "bundleId": "com.apple.mainstage3",
+     "trackName": "MainStage",
+     "tagText": []
+    },
+    {
+     "rank": 144,
+     "name": "iA Writer",
+     "status": "exact",
+     "bundleId": "pro.writer.mac",
+     "trackName": "iA Writer",
+     "tagText": []
+    },
+    {
+     "rank": 145,
+     "name": "Disk Diet",
+     "status": "exact",
+     "bundleId": "com.tunabellysoftware.diskdiet",
+     "trackName": "Disk Diet",
+     "tagText": []
+    },
+    {
+     "rank": 146,
+     "name": "Mirror for Samsung TV",
+     "status": "variant",
+     "bundleId": "tv.airbeam.mirrorforsamsungtv",
+     "trackName": "Mirror für Samsung Smart TV",
+     "tagText": []
+    },
+    {
+     "rank": 147,
+     "name": "Quick Shortcuts - your keyboard shortcuts helper",
+     "status": "variant",
+     "bundleId": "biz.zeec.QuickShortcuts",
+     "trackName": "Quick Shortcuts - Die schnelle Hilfe für Tastenkombinationen",
+     "tagText": []
+    },
+    {
+     "rank": 148,
+     "name": "Home Design 3D GOLD",
+     "status": "exact",
+     "bundleId": "com.anuman.HomeDesign3dMac",
+     "trackName": "Home Design 3D GOLD",
+     "tagText": []
+    },
+    {
+     "rank": 149,
+     "name": "Living Earth - Weather & Clock",
+     "status": "exact",
+     "bundleId": "com.radiantlabs.LivingEarthHDDesktop",
+     "trackName": "Living Earth - Weather & Clock",
+     "tagText": []
+    },
+    {
+     "rank": 150,
+     "name": "Moom Classic",
+     "status": "exact",
+     "bundleId": "com.manytricks.Moom",
+     "trackName": "Moom Classic",
+     "tagText": []
+    },
+    {
+     "rank": 151,
+     "name": "¡Net Network Scanner",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 152,
+     "name": "WIFI Explorer: Scanner",
+     "status": "exact",
+     "bundleId": "wifiexplorer",
+     "trackName": "WiFi Explorer: Scanner",
+     "tagText": []
+    },
+    {
+     "rank": 153,
+     "name": "System Monitor",
+     "status": "exact",
+     "bundleId": "com.bresink.app.systemmonitor",
+     "trackName": "System Monitor",
+     "tagText": []
+    },
+    {
+     "rank": 154,
+     "name": "WiFi Scanner",
+     "status": "exact",
+     "bundleId": "com.accessagility.wifiscanner",
+     "trackName": "WiFi Scanner",
+     "tagText": []
+    },
+    {
+     "rank": 155,
+     "name": "AnyVideo Converter HD",
+     "status": "exact",
+     "bundleId": "eu.vivica.AnyVideoConverter",
+     "trackName": "AnyVideo Converter HD",
+     "tagText": []
+    },
+    {
+     "rank": 156,
+     "name": "Duplicate Detective: Cleaner",
+     "status": "exact",
+     "bundleId": "com.fiplab.duplicatedetective",
+     "trackName": "Duplicate Detective: Cleaner",
+     "tagText": []
+    },
+    {
+     "rank": 157,
+     "name": "Webcam Settings",
+     "status": "exact",
+     "bundleId": "com.mactaris.Webcam-Settings",
+     "trackName": "Webcam Settings",
+     "tagText": []
+    },
+    {
+     "rank": 158,
+     "name": "GSE SMART IPTV PRO",
+     "status": "exact",
+     "bundleId": "com.gsetech.gseosxiptvpro",
+     "trackName": "GSE SMART IPTV PRO",
+     "tagText": []
+    },
+    {
+     "rank": 159,
+     "name": "myTuner Radio Pro: Live Player",
+     "status": "variant",
+     "bundleId": "com.appgeneration.iTunerOSx",
+     "trackName": "myTuner Radio Pro Deutschland",
+     "tagText": []
+    },
+    {
+     "rank": 160,
+     "name": "Anytune: Practice Perfected",
+     "status": "variant",
+     "bundleId": "com.anystonetech.Anytune-Mac",
+     "trackName": "Anytune: Üben perfektioniert",
+     "tagText": []
+    },
+    {
+     "rank": 161,
+     "name": "PDFScanner - Scanning and OCR",
+     "status": "prefix",
+     "bundleId": "org.planbnet.pdfscanner",
+     "trackName": "PDFScanner",
+     "tagText": []
+    },
+    {
+     "rank": 162,
+     "name": "Total Video Converter Pro: DVD",
+     "status": "exact",
+     "bundleId": "com.eTinySoft.eTinySoft-TVC",
+     "trackName": "Total Video Converter Pro: DVD",
+     "tagText": []
+    },
+    {
+     "rank": 163,
+     "name": "Elmedia:universal video player",
+     "status": "exact",
+     "bundleId": "com.Eltima.ElmediaPlayer.MAS",
+     "trackName": "Elmedia:universal video player",
+     "tagText": []
+    },
+    {
+     "rank": 164,
+     "name": "Cinch",
+     "status": "exact",
+     "bundleId": "com.irradiatedsoftware.Cinch",
+     "trackName": "Cinch",
+     "tagText": []
+    },
+    {
+     "rank": 165,
+     "name": "Money Pro: Personal Finance",
+     "status": "variant",
+     "bundleId": "com.ibearsoft.moneypromac",
+     "trackName": "Money Pro: Haushaltsbuch",
+     "tagText": []
+    },
+    {
+     "rank": 166,
+     "name": "PicFrame - Collage Layout",
+     "status": "exact",
+     "bundleId": "nz.co.activedevelopment.mac.PicFrame",
+     "trackName": "PicFrame - Collage Layout",
+     "tagText": []
+    },
+    {
+     "rank": 167,
+     "name": "Fireplace App",
+     "status": "exact",
+     "bundleId": "com.labs.laan.FirePlace",
+     "trackName": "Fireplace App",
+     "tagText": []
+    },
+    {
+     "rank": 168,
+     "name": "German - English dictionary",
+     "status": "variant",
+     "bundleId": "tech.n42.german-pro",
+     "trackName": "German Pro: dictionary & exams",
+     "tagText": []
+    },
+    {
+     "rank": 169,
+     "name": "myTracks",
+     "status": "exact",
+     "bundleId": "info.stichling.myTracks",
+     "trackName": "myTracks",
+     "tagText": []
+    },
+    {
+     "rank": 170,
+     "name": "Be Focused Pro: Pomodoro Timer",
+     "status": "variant",
+     "bundleId": "com.xwavesoft.pomodoromac",
+     "trackName": "Be Focused Pro - Fokus Timer",
+     "tagText": []
+    },
+    {
+     "rank": 171,
+     "name": "Magic Window",
+     "status": "exact",
+     "bundleId": "com.jetson.magicwindowmac",
+     "trackName": "Magic Window",
+     "tagText": []
+    },
+    {
+     "rank": 172,
+     "name": "Virus Scanner Plus",
+     "status": "exact",
+     "bundleId": "com.bitdefender.virusscannerplus",
+     "trackName": "Virus Scanner Plus",
+     "tagText": []
+    },
+    {
+     "rank": 173,
+     "name": "Joystick Mapper",
+     "status": "exact",
+     "bundleId": "com.rodrigocardoso.Joystick-Mapper",
+     "trackName": "Joystick Mapper",
+     "tagText": []
+    },
+    {
+     "rank": 174,
+     "name": "¡AudioConverter",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 175,
+     "name": "Smart Zipper - RAR&7Zip Tool",
+     "status": "exact",
+     "bundleId": "com.zip-rar.smartzipper",
+     "trackName": "Smart Zipper - RAR&7Zip Tool",
+     "tagText": []
+    },
+    {
+     "rank": 176,
+     "name": "Collagelt 3 Pro",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 177,
+     "name": "Total Video Player - Cast&10X",
+     "status": "exact",
+     "bundleId": "com.etinysoft.totalvideoplayer",
+     "trackName": "Total Video Player - Cast&10X",
+     "tagText": []
+    },
+    {
+     "rank": 178,
+     "name": "Camera Control for GoPro",
+     "status": "variant",
+     "bundleId": "com.tequnique.GoProControlMac",
+     "trackName": "Camera Control für  GoPro",
+     "tagText": []
+    },
+    {
+     "rank": 179,
+     "name": "Mosaik",
+     "status": "exact",
+     "bundleId": "com.meanterm.mosaik",
+     "trackName": "Mosaik",
+     "tagText": []
+    },
+    {
+     "rank": 180,
+     "name": "Collagelt Pro",
+     "status": "none",
+     "bundleId": null,
+     "trackName": null,
+     "tagText": []
+    },
+    {
+     "rank": 181,
+     "name": "PDF Toolkit +",
+     "status": "exact",
+     "bundleId": "net.delsuc.pdftoolkit",
+     "trackName": "PDF Toolkit +",
+     "tagText": []
+    },
+    {
+     "rank": 182,
+     "name": "File Synchronization",
+     "status": "exact",
+     "bundleId": "com.nemesys.appstore.filesynchronization",
+     "trackName": "File Synchronization",
+     "tagText": []
+    },
+    {
+     "rank": 183,
+     "name": "IP Scanner Ultra",
+     "status": "exact",
+     "bundleId": "com.10baseT.IPScannerProMac",
+     "trackName": "IP Scanner Ultra",
+     "tagText": []
+    },
+    {
+     "rank": 184,
+     "name": "Netmo Classic",
+     "status": "exact",
+     "bundleId": "at.agross.netmo",
+     "trackName": "Netmo Classic",
+     "tagText": []
+    },
+    {
+     "rank": 185,
+     "name": "Byword",
+     "status": "exact",
+     "bundleId": "com.metaclassy.byword",
+     "trackName": "Byword",
+     "tagText": []
+    },
+    {
+     "rank": 186,
+     "name": "UniConverter-Video Converter",
+     "status": "exact",
+     "bundleId": "com.Wondershare.VideoConverterUltimate",
+     "trackName": "UniConverter-Video Converter",
+     "tagText": []
+    },
+    {
+     "rank": 187,
+     "name": "KyPass",
+     "status": "exact",
+     "bundleId": "be.kyuran.kypass-mac",
+     "trackName": "KyPass",
+     "tagText": []
+    },
+    {
+     "rank": 188,
+     "name": "Essential Anatomy 5",
+     "status": "exact",
+     "bundleId": "com.3d4medical.EssentialAnatomyMac",
+     "trackName": "Essential Anatomy 5",
+     "tagText": []
+    },
+    {
+     "rank": 189,
+     "name": "Jump Desktop (RDP, VNC, Fluid)",
+     "status": "prefix",
+     "bundleId": "com.p5sys.jump.mac.viewer",
+     "trackName": "Jump Desktop (RDP, VNC, Fluid)",
+     "tagText": []
+    },
+    {
+     "rank": 190,
+     "name": "Msg Viewer Pro",
+     "status": "exact",
+     "bundleId": "com.firmshell.msgviewerpro",
+     "trackName": "Msg Viewer Pro",
+     "tagText": []
+    },
+    {
+     "rank": 191,
+     "name": "Fahrtenbuch | Maps",
+     "status": "exact",
+     "bundleId": "de.meyer-solutions.fahrtenbuchmaps",
+     "trackName": "Fahrtenbuch | Maps",
+     "tagText": []
+    },
+    {
+     "rank": 192,
+     "name": "Scrivener 3",
+     "status": "exact",
+     "bundleId": "com.literatureandlatte.scrivener3",
+     "trackName": "Scrivener 3",
+     "tagText": []
+    },
+    {
+     "rank": 193,
+     "name": "PDF Reader Pro: Edit & Sign",
+     "status": "exact",
+     "bundleId": "com.brother.pdfreaderpro.mac",
+     "trackName": "PDF Reader Pro: Edit & Sign",
+     "tagText": []
+    },
+    {
+     "rank": 194,
+     "name": "PhotoBulk: watermark in batch",
+     "status": "exact",
+     "bundleId": "com.eltima.photobulk",
+     "trackName": "PhotoBulk: watermark in batch",
+     "tagText": []
+    },
+    {
+     "rank": 195,
+     "name": "TurboCollage - Collage Creator",
+     "status": "exact",
+     "bundleId": "com.silkenmermaid.collagecreatormac",
+     "trackName": "TurboCollage - Collage Creator",
+     "tagText": []
+    },
+    {
+     "rank": 196,
+     "name": "RailModeller Pro",
+     "status": "exact",
+     "bundleId": "com.railmodeller.RailModeller-Pro",
+     "trackName": "RailModeller Pro",
+     "tagText": []
+    },
+    {
+     "rank": 197,
+     "name": "MailRaider",
+     "status": "exact",
+     "bundleId": "com.45RPMSoftware.MailRaider",
+     "trackName": "MailRaider",
+     "tagText": []
+    },
+    {
+     "rank": 198,
+     "name": "SofaPlay",
+     "status": "exact",
+     "bundleId": "com.highlvl.SofaPlay",
+     "trackName": "SofaPlay",
+     "tagText": []
+    },
+    {
+     "rank": 199,
+     "name": "Divvy - Window Manager",
+     "status": "exact",
+     "bundleId": "com.mizage.Divvy",
+     "trackName": "Divvy - Window Manager",
+     "tagText": []
+    },
+    {
+     "rank": 200,
+     "name": "HazeOver • Distraction Dimmer™",
+     "status": "variant",
+     "bundleId": "com.pointum.hazeover",
+     "trackName": "HazeOver • Ablenkungsdimmer",
+     "tagText": []
+    }
+   ]
   }
- ]
+ }
 }

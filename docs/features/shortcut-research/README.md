@@ -58,12 +58,15 @@ Caveats for all rows: the research agents read most pages through a summarising 
 
 ## App Store charts
 
-- Read from the App Store window on the owner's Mac (accessibility, read-only). Only the top sections of each chart could be read: Top Free ranks 1-34 and Top Paid ranks 1-33. The middle of the charts (about ranks 35-145) and the tail beyond the loaded sections could not be read: the window does not expose them to accessibility, and scroll-wheel events did not move the lists.
-- Mac-only check against iTunes search (`entity=macSoftware`) for the 67 entries: 56 exact or prefix matches, 11 matched only by a German store name, 2 had no match, and 1 unknown. Full results: `data/appstore-charts.json`.
-- Not reliable: the 11 German-name matches. One is wrong: "Microsoft 365" matched Microsoft Word. Xcode (no match in the search) is Mac software, bundle `com.apple.dt.Xcode`, confirmed by lookup by App Store ID.
-- No iOS-tagged entries ("Designed for iPhone" or "Designed for iPad") were found among these 67.
+- Source: the App Store window on the owner's Mac. Each chart list was scrolled one window height at a time (the accessibility scroll value), with a pause of about a second before each screenshot. The screenshots were read with on-device OCR (Vision). Rank 3 and similar digits that OCR missed were filled from the accessibility dump or read from the screenshot directly.
+- Coverage: Top Free ranks 1 to 200 and Top Paid ranks 1 to 200, 196 of each read by OCR, with the rest filled as above.
+- Excluded without a search: rows the App Store itself tags "Designed for iPhone" or "Designed for iPad" (22 free, 11 paid), and the "Not verified for macOS" row.
+- Mac-only check (iTunes search with `entity=macSoftware`, country at), by name:
+  - Free: 99 exact, 10 prefix, 50 variant, 19 none.
+  - Paid: 142 exact, 4 prefix, 24 variant, 19 none.
+- Not reliable: the variant matches (the same first word, a different store name), and the none rows. Example of a wrong variant: "Microsoft 365" matched Microsoft Word. These need a manual check.
 - Web search: no current Mac App Store chart is public. The pages found are editorial picks, or charts from 2011.
-- Apple's public RSS chart feeds for Mac apps returned 404 (`rss.applemarketingtools.com` and `rss.marketingtools.apple.com`). The general chart feed returns data, but the research agent found it to be the iOS chart, so it was not used.
+- Apple's public RSS chart feeds for Mac apps returned 404. The general chart feed returns iOS data, so it was not used.
 
 ## Reference sources, checked
 
