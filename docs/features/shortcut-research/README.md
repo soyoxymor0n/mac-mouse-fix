@@ -80,3 +80,14 @@ Caveats for all rows: the research agents read most pages through a summarising 
 2. Firefox, Adobe Acrobat: retry the official pages.
 3. Spot-check the Office, Chrome, Teams, Slack and Zoom rows against the live pages.
 4. Whether to add the Elgato profile files: needs the owner to log in and download them.
+
+## Top 100 and the library (2026-10-26)
+
+- `top100.md`: the ranked top 100 Mac App Store free apps (iOS-tagged entries excluded), with research status, counts, mouse-suitable counts, sequences, and library membership.
+- `data/top100-shortcuts.json`: the research rows for those apps. Each row has a kind (shortcut or sequence), steps for sequences, the mouse-suitable flag and reason, and a source URL.
+- Result: 95 of the top 100 were researched. 12 apps have complete lists, 19 partial, and 64 have no official Mac shortcut page. 24 of them, plus the first 34 apps, have at least one entry in the library.
+- `tools/gen_library.py` builds `App/UI/Main/Tabs/ButtonTab/RemapTable/ShortcutLibrary.m` from the research. Mouse-suitable means the research flag, or a toggle or navigation action (mute, camera, raise hand, back, forward, tab, undo, and similar). Destructive wording is always excluded. German and Austrian variants come from `data/layouts-us-de-at.tsv`.
+- `tools/check_library.py` checks key codes, modifier bits, and destructive labels. `tools/report_top100.py` writes `top100.md`.
+- Sequences are supported end to end: the library can hold a sequence, the table shows its steps joined by "then", and the helper posts the steps in order.
+- Teams meeting reactions: not found in the research. Open.
+- Known data problems: some bundle IDs are unverified or look wrong (for example Microsoft 365 reused Word's, and some Catalyst or iOS-style IDs). Some pages were JavaScript-only or failed to load. Rows are paraphrased and need a spot-check before release.
