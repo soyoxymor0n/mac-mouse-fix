@@ -35,7 +35,7 @@ The official Mac Mouse Fix has its own bundle identifier, so both can be on the 
 ## What I checked
 
 - The app and the helper build (Debug, App scheme) with the new names.
-- The generated library: 48 apps and 1194 entries, all key codes in range, no destructive labels (`tools/check_library.py`).
+- The generated library: 48 apps and 1203 entries, all key codes in range, no destructive labels (`tools/check_library.py`).
 - The sequence code compiles. It has not run against a real mouse. That needs you.
 
 ## Not in this version

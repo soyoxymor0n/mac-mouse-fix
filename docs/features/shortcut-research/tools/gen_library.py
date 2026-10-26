@@ -32,7 +32,7 @@ BUNDLE_OVERRIDES = {
 
 # A row counts as mouse-suitable if the research flag says so, or if its action is a single toggle or navigation
 # step (mute, camera, raise hand, back, forward, tab, new tab, play, undo, and similar). Destructive wording always excludes.
-MOUSE_WORDS = re.compile(r"\b(back|forward|tab|reload|refresh|mute|unmute|camera|video|share|record|raise|hand|search|next|previous|play|pause|undo|redo|copy|paste|screenshot|zoom in|zoom out|new tab|new window|mission control|enclosing|parent folder|toggle)\b", re.I)
+MOUSE_WORDS = re.compile(r"\b(back|forward|tab|reload|refresh|mute|unmute|camera|video|share|record|raise|hand|search|next|previous|play|pause|undo|redo|copy|paste|screenshot|zoom in|zoom out|new tab|new window|mission control|enclosing|parent folder|toggle|reaction)\b", re.I)
 DESTRUCTIVE_WORDS = re.compile(r"\b(delete|remove|quit|log ?out|sign ?out|erase|empty|force|close all|purchase|unsubscribe|uninstall)\b", re.I)
 
 
