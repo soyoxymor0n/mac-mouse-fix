@@ -29,6 +29,11 @@ fileprivate func _DDLogError(_ m: @autoclosure () -> String) { DDLogError("GetLi
 
         assertRunLoop(licensingRunLoop())
 
+        #if FORCE_LICENSED
+        /// Same result as `licenseStateFromOverrides()` below. Starts the UI in the licensed state, so the trial section doesn't flash on startup.
+        return MFLicenseState(isLicensed: true, freshness: kMFValueFreshnessFresh, licenseTypeInfo: MFLicenseTypeInfoForce())
+        #endif
+
         let result = self.licenseStateFromCache(licenseKey: nil, enableOfflineValidation: false) ??
                      self.licenseStateFromFallback
         

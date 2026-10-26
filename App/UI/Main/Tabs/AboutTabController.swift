@@ -223,6 +223,9 @@ class AboutTabController: NSViewController {
             ///         - Maybe the clipping settings are not saved when trialSectionManager saves and restores the view from IB
             trialSectionManager?.currentSection.imageView?.layer?.masksToBounds = false
             
+            /// Show the trial section again (it's hidden in the Force case below)
+            trialSectionContainer.isHidden = false
+
             /// Randomly select 1 out of 25+1 messages
             ///     Note: If you want to test one of the rare ones, increase its `weight`
             
@@ -255,7 +258,9 @@ class AboutTabController: NSViewController {
             case is MFLicenseTypeInfoForce:
             
                 /// Case: Force
-                message = "The app will appear to be licensed due to the FORCE_LICENSED flag"
+                ///     Hide the whole trial section instead of showing a message
+                trialSectionContainer.isHidden = true
+                return
             
             default:
             
