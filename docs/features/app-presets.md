@@ -1,7 +1,7 @@
 # App presets
 
-Status: v1 implemented on `beta` (commit 573f80e200, 2026-10-25). Teams and Chrome only.
-Deviations from this plan: the data is Swift (`AppPresets.swift`), not a plist. Chrome uses the arrow keys (decision 5, option d). The banner sits inside the add field. The "Show" popover and a session Undo are not in v1: Restore Defaults on the tab undoes Add. Tested: banner text for both apps, Add writes the rows with the app key, Restore Defaults removes them and brings the banner back.
+Status: v1 on `beta`, with the review sheet (2026-10-26). Teams and Chrome only. The review sheet is implemented and compiles. It has not been clicked through in the app yet.
+Deviations from this plan: the data is Swift (`AppPresets.swift`), not a plist. Chrome uses the arrow keys (decision 5, option d). The banner sits inside the add field and opens a review sheet, which replaces the "Show" popover from the first plan. Rows are chosen in that sheet before anything is written. "Don't suggest this again" is stored in UserDefaults, not in the config, so `configVersion` stays at 24. Not in v1: recording a custom shortcut in the sheet, and a session Undo. Restore Defaults on the tab removes the rows.
 
 ## 1. Summary
 
@@ -108,15 +108,18 @@ Where the data lives: bundled only, with no server call. Later updates could reu
 
 Text flow in the Buttons tab:
 1. The user clicks the "+" button at the bottom of the app strip and picks Microsoft Teams from the running-apps list, or uses "Choose Other...". An empty Teams tab opens.
-2. Above the empty table, a one-line banner reads: "A preset is available for Microsoft Teams: button 4 mic, button 5 camera." It has two buttons, "Show" and "Add".
-3. "Show" opens a popover with one line per row: button number, action name, and the shortcut written with symbols (for example ⌘⇧M). Each line has a checkbox, checked by default. A "Source" link sits at the bottom.
-4. "Add" writes the checked rows into the Teams tab and hides the banner. A short confirmation appears with an "Undo" link for the current session.
-5. "Undo" restores the table to the exact rows it had before Add. If the tab had no rows, it has none again and the banner returns.
-6. If button 4 already has a row in this tab, that line says "Already set" and its checkbox is off. The user can check it to replace the row.
+2. Above the empty table, a one-line banner reads: "A preset is available for Microsoft Teams: button 4 mic, button 5 camera." Its button reads "Review…".
+3. "Review…" opens a sheet titled "Recommended setup for Microsoft Teams". It has one row per suggestion:
+   - a checkbox, checked by default;
+   - a button popup with buttons 3 to 5, set to the preset's button;
+   - an action popup. The preset's action comes first, with its shortcut symbols (for example ⌘⇧M). The other actions the shortcut library knows for this app follow.
+4. Changing a row's button or action is what the user does to adapt the preset. Two checked rows on the same button show a warning and disable "Add Selected". A button that also has a row for all apps shows a note: the rows here take precedence in this app.
+5. "Add Selected" writes the checked rows into the Teams tab and hides the banner. The rows are ordinary rows afterwards. They can be edited or deleted in the table like any other row.
+6. "Skip" closes the sheet and writes nothing. Ticking "Don't suggest this again for Microsoft Teams" before Skip or Add Selected stops the banner for that app.
 7. Chrome works the same way in the Chrome tab.
 8. The Global tab never shows presets.
 9. Tabs that already have rows show no banner.
-10. "Restore Defaults" keeps its current behavior (see decision 4).
+10. "Restore Defaults" removes the rows. The banner comes back, unless the user chose "Don't suggest this again".
 
 ## 6. Technical design
 
@@ -138,7 +141,7 @@ Risks:
 - Shortcuts change with app updates, so presets go stale. Mitigation: `verifiedOn` dates, and a manual check before each release.
 - Bundle ID variants. Classic Teams may use a different ID, not verified here.
 - A user who changed an app's own shortcut settings gets a preset that does not match.
-- The undo state lives in memory and is lost when the app quits. This is acceptable for v1.
+- There is no undo in v1. Restore Defaults on the tab removes the rows. This is acceptable for v1.
 - Checked: `ButtonTabController.swift` calls `RemapScope.rows(forScope:inRemaps:)`. That is how Swift imports the Objective-C method `rowsForScope:inRemaps:` in `RemapScope.h`. The App scheme builds with this code (2026-10-25).
 
 ## 7. Privacy and legal
@@ -160,7 +163,7 @@ Phase 1: data and logic, no UI.
 
 Phase 2: UI.
 - The banner appears only for an app tab with zero rows and a matching preset.
-- Add writes the rows. Undo restores the exact previous array (an empty diff).
+- Add writes the rows. Restore Defaults removes the rows and the banner returns.
 - Manual test on your Mac: in Teams, button 4 toggles the mic and button 5 toggles the camera. In Chrome, button 4 goes back. In Safari, the same button does not trigger the Chrome preset.
 - The helper picks up the change without a restart (within 2 seconds, checked by hand).
 - English strings exist for every new key.
@@ -170,7 +173,18 @@ Phase 3: verification and release.
 - Both US and German layouts are tested for each preset. The result is recorded in a note in the plist.
 - Presets beyond Teams and Chrome wait for the shortcut library plan (`shortcut-library.md`).
 
-## 9. Open decisions for the owner
+## 9. Decisions
+
+Decided 2026-10-26, in the implementation:
+- Decision 2: a banner in empty app tabs that opens the review sheet. Nothing is applied automatically.
+- Decision 3: the sheet lets the user change the button of each row, so a conflict is resolved there. Two checked rows on the same button block "Add Selected". Existing rows are never replaced, because the banner only shows in an empty tab.
+- Decision 4: "Restore Defaults" removes the rows and does not bring the preset back.
+- Decision 5: Chrome uses the arrow keys. Teams uses the letter keys M and O, which still need the layout test in phase 3.
+- Added: a "Don't suggest this again" checkbox, stored in UserDefaults.
+
+The original options are kept below for reference.
+
+## 9a. Original options for the owner
 
 1. Which presets ship in v1?
    (a) Teams and Chrome only. (b) Teams, Chrome, Slack, Zoom and VS Code. (c) Whatever you use every day.
