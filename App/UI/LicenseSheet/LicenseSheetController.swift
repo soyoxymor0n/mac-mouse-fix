@@ -209,6 +209,11 @@ import Cocoa
             
         } else /** server failed to validate license */ {
             
+            /// FORCE_LICENSED makes the app licensed regardless of the key. Nothing to report, so just close the sheet.
+            if licenseTypeInfoOverride is MFLicenseTypeInfoForce {
+                LicenseSheetController.remove()
+            }
+
             LicenseToasts.showErrorToast(error,licenseTypeInfoOverride, key)
             
         }
