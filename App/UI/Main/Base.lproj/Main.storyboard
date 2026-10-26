@@ -14,14 +14,14 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="Mac Mouse Fix" id="hSC-BE-EZJ">
+                            <menuItem title="Mac Mouse Fix NG" id="hSC-BE-EZJ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Mac Mouse Fix" systemMenu="apple" id="Yyg-LD-A1v">
+                                <menu key="submenu" title="Mac Mouse Fix NG" systemMenu="apple" id="Yyg-LD-A1v">
                                     <items>
-                                        <menuItem title="About Mac Mouse Fix" id="u9F-yq-WC3">
+                                        <menuItem title="About Mac Mouse Fix NG" id="u9F-yq-WC3">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <attributedString key="userComments">
-                                                <fragment content="Main Menu &gt; Mac Mouse Fix &gt; About Mac Mouse Fix"/>
+                                                <fragment content="Main Menu &gt; Mac Mouse Fix NG &gt; About Mac Mouse Fix NG"/>
                                             </attributedString>
                                             <accessibility identifier="axMenuItemAboutMacMouseFix"/>
                                             <connections>
@@ -53,7 +53,7 @@
                                         <menuItem title="Check for Updates..." id="3pt-ka-lxV">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <attributedString key="userComments">
-                                                <fragment content="Main Menu &gt; Mac Mouse Fix &gt; Check for Updates..."/>
+                                                <fragment content="Main Menu &gt; Mac Mouse Fix NG &gt; Check for Updates..."/>
                                             </attributedString>
                                             <accessibility identifier="axMenuItemCheckForUpdates"/>
                                             <connections>
@@ -65,14 +65,14 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Services" systemMenu="services" id="X8q-Nk-Fwr"/>
                                             <attributedString key="userComments">
-                                                <fragment content="Main Menu &gt; Mac Mouse Fix &gt; Services"/>
+                                                <fragment content="Main Menu &gt; Mac Mouse Fix NG &gt; Services"/>
                                             </attributedString>
                                             <accessibility identifier="axMenuItemServices"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="3A5-gM-eM7"/>
-                                        <menuItem title="Hide Mac Mouse Fix" keyEquivalent="h" id="Bnm-ze-Mca">
+                                        <menuItem title="Hide Mac Mouse Fix NG" keyEquivalent="h" id="Bnm-ze-Mca">
                                             <attributedString key="userComments">
-                                                <fragment content="Main Menu &gt; Mac Mouse Fix &gt; Hide Mac Mouse Fix"/>
+                                                <fragment content="Main Menu &gt; Mac Mouse Fix NG &gt; Hide Mac Mouse Fix NG"/>
                                             </attributedString>
                                             <accessibility identifier="axMenuItemHideMacMouseFix"/>
                                             <connections>
@@ -82,7 +82,7 @@
                                         <menuItem title="Hide Others" keyEquivalent="h" id="Rlr-89-4fc">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <attributedString key="userComments">
-                                                <fragment content="Main Menu &gt; Mac Mouse Fix &gt; Hide Others"/>
+                                                <fragment content="Main Menu &gt; Mac Mouse Fix NG &gt; Hide Others"/>
                                             </attributedString>
                                             <accessibility identifier="axMenuItemHideOthers"/>
                                             <connections>
@@ -92,7 +92,7 @@
                                         <menuItem title="Show All" id="fGs-UI-L0d">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <attributedString key="userComments">
-                                                <fragment content="Main Menu &gt; Mac Mouse Fix &gt; Show All"/>
+                                                <fragment content="Main Menu &gt; Mac Mouse Fix NG &gt; Show All"/>
                                             </attributedString>
                                             <accessibility identifier="axMenuItemShowAll"/>
                                             <connections>
@@ -100,9 +100,9 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="Zd5-PO-XF4"/>
-                                        <menuItem title="Quit Mac Mouse Fix" keyEquivalent="q" id="UeD-ND-tYj">
+                                        <menuItem title="Quit Mac Mouse Fix NG" keyEquivalent="q" id="UeD-ND-tYj">
                                             <attributedString key="userComments">
-                                                <fragment content="Main Menu &gt; Mac Mouse Fix &gt; Quit Mac Mouse Fix"/>
+                                                <fragment content="Main Menu &gt; Mac Mouse Fix NG &gt; Quit Mac Mouse Fix NG"/>
                                             </attributedString>
                                             <accessibility identifier="axMenuItemQuitMacMouseFix"/>
                                             <connections>
@@ -111,11 +111,11 @@
                                         </menuItem>
                                     </items>
                                     <attributedString key="userComments">
-                                        <fragment content="Main Menu &gt; Mac Mouse Fix"/>
+                                        <fragment content="Main Menu &gt; Mac Mouse Fix NG"/>
                                     </attributedString>
                                 </menu>
                                 <attributedString key="userComments">
-                                    <fragment content="Main Menu &gt; Mac Mouse Fix"/>
+                                    <fragment content="Main Menu &gt; Mac Mouse Fix NG"/>
                                 </attributedString>
                                 <accessibility identifier="axMenuBarItemMacMouseFix"/>
                             </menuItem>
@@ -308,7 +308,7 @@ We put this NOTE here, because:
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" customClass="ResizingTabWindowController" customModule="Mac_Mouse_Fix" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Mac Mouse Fix" separatorStyle="shadow" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" animationBehavior="default" tabbingMode="disallowed" toolbarStyle="preference" id="IQv-IB-iLA" customClass="ResizingTabWindow" customModule="Mac_Mouse_Fix" customModuleProvider="target">
+                    <window key="window" title="Mac Mouse Fix NG" separatorStyle="shadow" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" animationBehavior="default" tabbingMode="disallowed" toolbarStyle="preference" id="IQv-IB-iLA" customClass="ResizingTabWindow" customModule="Mac_Mouse_Fix" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -404,12 +404,12 @@ We put this NOTE here, because:
                                                 <subviews>
                                                     <textField focusRingType="none" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="jTe-ie-zgb">
                                                         <rect key="frame" x="-2" y="17" width="156" height="17"/>
-                                                        <textFieldCell key="cell" controlSize="large" title="Enable Mac Mouse Fix" id="RV9-5T-rvb">
+                                                        <textFieldCell key="cell" controlSize="large" title="Enable Mac Mouse Fix NG" id="RV9-5T-rvb">
                                                             <font key="font" metaFont="systemBold" size="14"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             <attributedString key="userComments">
-                                                                <fragment content="General &gt; Enable Mac Mouse Fix Label"/>
+                                                                <fragment content="General &gt; Enable Mac Mouse Fix NG Label"/>
                                                             </attributedString>
                                                         </textFieldCell>
                                                     </textField>
@@ -436,7 +436,7 @@ We put this NOTE here, because:
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <attributedString key="userComments">
-                                                    <fragment content="General &gt; Enable Mac Mouse Fix Toggle"/>
+                                                    <fragment content="General &gt; Enable Mac Mouse Fix NG Toggle"/>
                                                 </attributedString>
                                             </button>
                                         </endViews>
@@ -459,15 +459,15 @@ We put this NOTE here, because:
                                                 <subviews>
                                                     <textField focusRingType="none" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="0gD-iB-vff" customClass="MarkdownTextField" customModule="Mac_Mouse_Fix" customModuleProvider="target">
                                                         <rect key="frame" x="-2" y="0.0" width="274" height="14"/>
-                                                        <textFieldCell key="cell" controlSize="small" alignment="left" title="Mac Mouse Fix stays enabled after you quit the app" id="bew-ni-FnZ">
+                                                        <textFieldCell key="cell" controlSize="small" alignment="left" title="Mac Mouse Fix NG stays enabled after you quit the app" id="bew-ni-FnZ">
                                                             <font key="font" metaFont="smallSystem"/>
                                                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             <attributedString key="userComments">
                                                                 <fragment>
-                                                                    <string key="content">General &gt; Enable Mac Mouse Fix Toggle &gt; Hint 
+                                                                    <string key="content">General &gt; Enable Mac Mouse Fix NG Toggle &gt; Hint 
 
-NOTE: Primarily meant to teach the right mental model to users who have the common misconception that they need to make MMF a 'Login Item' to keep it working. The terminology is meant to match the 'Enable Mac Mouse Fix' toggle and the 'Quit Mac Mouse Fix' menubar item. 
+NOTE: Primarily meant to teach the right mental model to users who have the common misconception that they need to make MMF a 'Login Item' to keep it working. The terminology is meant to match the 'Enable Mac Mouse Fix NG' toggle and the 'Quit Mac Mouse Fix NG' menubar item. 
 
 (The idea is that, if the user understands that they can *completely quit* the app and still have it affecting their mouse, they won't try to keep the app open via the 'Open at Login' option.)</string>
                                                                 </fragment>
@@ -1936,24 +1936,24 @@ System Preferences &gt; Mouse &gt; Tracking speed </string>
                                             </textField>
                                             <textField focusRingType="none" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="awa-V4-n7n">
                                                 <rect key="frame" x="1077" y="41" width="104" height="16"/>
-                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Mac Mouse Fix" id="bGk-tB-fcH">
+                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Mac Mouse Fix NG" id="bGk-tB-fcH">
                                                     <font key="font" metaFont="systemBold"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <attributedString key="userComments">
                                                         <fragment>
-                                                            <string key="content">About &gt; Mac Mouse Fix Label 
+                                                            <string key="content">About &gt; Mac Mouse Fix NG Label 
 
 NOTE TO SELF: 
 
-We don't mark 'Mac Mouse Fix' and 'macOS' strings as 'Do Not Translate' since in some languages they might be adjusted. E.g. in Arabic, 'macOS' is usually referred to as 'نظام macOS' (= 'macOS system') inside the UI.
+We don't mark 'Mac Mouse Fix NG' and 'macOS' strings as 'Do Not Translate' since in some languages they might be adjusted. E.g. in Arabic, 'macOS' is usually referred to as 'نظام macOS' (= 'macOS system') inside the UI.
 
 Also see CFBundleName in InfoPlist.xcstrings.</string>
                                                         </fragment>
                                                     </attributedString>
                                                 </textFieldCell>
                                             </textField>
-                                            <imageView toolTip="Hold Command (⌘) and Shift (⇧), then click this icon to reveal Mac Mouse Fix's configuration file in Finder" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mWQ-i7-vza" customClass="ClickableImageView">
+                                            <imageView toolTip="Hold Command (⌘) and Shift (⇧), then click this icon to reveal Mac Mouse Fix NG's configuration file in Finder" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mWQ-i7-vza" customClass="ClickableImageView">
                                                 <rect key="frame" x="1104" y="65" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="D2j-Hr-mtG"/>
@@ -1961,7 +1961,7 @@ Also see CFBundleName in InfoPlist.xcstrings.</string>
                                                 </constraints>
                                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIconRoundFromHelper-deleteThis" id="3wF-XB-bvL"/>
                                                 <attributedString key="userComments">
-                                                    <fragment content="About &gt; Mac Mouse Fix Icon &gt; Tooltip"/>
+                                                    <fragment content="About &gt; Mac Mouse Fix NG Icon &gt; Tooltip"/>
                                                 </attributedString>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="modifiers" value="command, shift"/>

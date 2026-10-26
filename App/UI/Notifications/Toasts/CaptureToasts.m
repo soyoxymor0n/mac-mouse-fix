@@ -263,13 +263,13 @@ static NSString *getLocalizedString(MFCapturedInputType inputType, NSString *sim
                 "\n"
                 "Note: \"%2$@\" will be replaced with the names of the captured buttons.\n"
                 "Example where those buttons are \"Middle Button\" and \"Button 4\":\n"
-                "\"Middle Button and Button 4 are now captured by Mac Mouse Fix.\""
+                "\"Middle Button and Button 4 are now captured by Mac Mouse Fix NG.\""
                 "\n"
                 "If you're editing this in Xcode: Click the disclosure triangles (>) to edit the different versions of the string. Do not localize or modify \"@pluralizable\" - it's just a placeholder. \n"
             ),
             @"captured.hint": MFLocalizedString(
                 @"capture-toast.buttons.captured.hint",
-                @"Note: The core idea that we want to convey with these ui strings is that, from now on, the button is being 'intercepted' by Mac Mouse Fix. We used the word 'capture' instead of 'intercept' since I think it sounds nicer in English. In your language, you might want to use something closer to 'intercept'.\n"
+                @"Note: The core idea that we want to convey with these ui strings is that, from now on, the button is being 'intercepted' by Mac Mouse Fix NG. We used the word 'capture' instead of 'intercept' since I think it sounds nicer in English. In your language, you might want to use something closer to 'intercept'.\n"
                 "\n"
                 "Also see: The CapturedButtonsMMF3 document which explains the concept in more detail."
             ),

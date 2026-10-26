@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4F94F5ED25E5EC2500D9F24A"
-               BuildableName = "Mac Mouse Fix.app"
+               BuildableName = "Mac Mouse Fix NG.app"
                BlueprintName = "Mac Mouse Fix"
                ReferencedContainer = "container:Mouse Fix.xcodeproj">
             </BuildableReference>
@@ -50,7 +50,7 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "4F94F5ED25E5EC2500D9F24A"
-                     BuildableName = "Mac Mouse Fix.app"
+                     BuildableName = "Mac Mouse Fix NG.app"
                      BlueprintName = "Mac Mouse Fix"
                      ReferencedContainer = "container:Mouse Fix.xcodeproj">
                   </BuildableReference>
@@ -69,7 +69,7 @@
       </PostActions>
       <PathRunnable
          runnableDebuggingMode = "0"
-         FilePath = "/Users/Noah/Library/Developer/Xcode/DerivedData/Mouse_Fix-ajscnktwbasztsezwhxndhbcayys/Build/Products/Debug/Mac Mouse Fix.app/Contents/Library/LoginItems/Mac Mouse Fix Helper.app">
+         FilePath = "/Users/Noah/Library/Developer/Xcode/DerivedData/Mouse_Fix-ajscnktwbasztsezwhxndhbcayys/Build/Products/Debug/Mac Mouse Fix NG.app/Contents/Library/LoginItems/Mac Mouse Fix NG Helper.app">
       </PathRunnable>
    </LaunchAction>
    <ProfileAction
@@ -82,7 +82,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4F94F5ED25E5EC2500D9F24A"
-            BuildableName = "Mac Mouse Fix.app"
+            BuildableName = "Mac Mouse Fix NG.app"
             BlueprintName = "Mac Mouse Fix"
             ReferencedContainer = "container:Mouse Fix.xcodeproj">
          </BuildableReference>

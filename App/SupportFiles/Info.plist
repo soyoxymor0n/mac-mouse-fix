@@ -15,7 +15,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>Mac Mouse Fix NG</string>
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
@@ -51,5 +51,7 @@
 	<string>ZC69ciDfGYN4t3kwRiPc2SC7J4hchv9w+FfVv59r4+U=</string>
 	<key>UIDesignRequiresCompatibility</key>
 	<true/>
+	<key>CFBundleDisplayName</key>
+	<string>Mac Mouse Fix NG</string>
 </dict>
 </plist>

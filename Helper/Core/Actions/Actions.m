@@ -26,6 +26,8 @@
 
 #import "Threads.h"
 
+static void postKeySequence(NSArray *steps, double intervalMs);
+
 @implementation Actions
 
 + (void)executeActionArray:(NSArray *)actionArray phase:(MFActionPhase)phase {
@@ -160,6 +162,12 @@
             NSNumber *flags = actionDict[kMFActionDictKeyKeyboardShortcutVariantModifierFlags];
             postKeyboardShortcut(keycode.intValue, flags.intValue);
             
+        } else if ([actionType isEqualToString:kMFActionDictTypeKeySequence]) {
+            
+            NSArray *steps = actionDict[kMFActionDictKeySequenceVariantSteps];
+            NSNumber *intervalMs = actionDict[kMFActionDictKeySequenceVariantIntervalMs];
+            postKeySequence(steps, intervalMs.doubleValue);
+            
         } else if ([actionType isEqualToString:kMFActionDictTypeSystemDefinedEvent]) {
             
             NSNumber *type = actionDict[kMFActionDictKeySystemDefinedEventVariantType];
@@ -215,6 +223,33 @@ static void postSystemDefinedEvent(MFSystemDefinedEventType type, NSEventModifie
     e = [NSEvent otherEventWithType:14 location:loc modifierFlags:modifierFlags timestamp:ts windowNumber:-1 context:nil subtype:8 data1:upData data2:-1];
     
     CGEventPost(tapLoc, e.CGEvent);
+}
+
+static void postKeySequence(NSArray *steps, double intervalMs) {
+    
+    /// Posts each step in order on a serial queue, so the event tap is never blocked while we wait between steps.
+    /// Each step is a dictionary with the keycode and flags of one shortcut.
+    
+    static dispatch_queue_t queue;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        queue = dispatch_queue_create("com.soyoxymor0n.mac-mouse-fix.key-sequence", DISPATCH_QUEUE_SERIAL);
+    });
+    
+    NSArray *stepsCopy = [steps copy];
+    NSTimeInterval gap = MAX(0.0, intervalMs) / 1000.0;
+    
+    dispatch_async(queue, ^{
+        for (NSUInteger i = 0; i < stepsCopy.count; i++) {
+            NSDictionary *step = stepsCopy[i];
+            NSNumber *keycode = step[kMFActionDictKeyKeyboardShortcutVariantKeycode];
+            NSNumber *flags = step[kMFActionDictKeyKeyboardShortcutVariantModifierFlags];
+            postKeyboardShortcut(keycode.intValue, flags.intValue);
+            if (i + 1 < stepsCopy.count) {
+                [NSThread sleepForTimeInterval:gap];
+            }
+        }
+    });
 }
 
 #pragma mark - Keyboard shortcuts

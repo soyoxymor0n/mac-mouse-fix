@@ -42,7 +42,7 @@
                                             <size key="minSize" width="202" height="38"/>
                                             <size key="maxSize" width="240" height="10000000"/>
                                             <attributedString key="textStorage">
-                                                <fragment content="Welcome to Mac Mouse Fix!">
+                                                <fragment content="Welcome to Mac Mouse Fix NG!">
                                                     <attributes>
                                                         <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <font key="NSFont" metaFont="system"/>

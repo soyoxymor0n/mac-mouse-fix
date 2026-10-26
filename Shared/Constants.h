@@ -41,16 +41,16 @@ typedef enum {
 #define kMFBundleIDHelper   @"com.soyoxymor0n.mac-mouse-fix.helper"
 
 //#define kMFRelativeAccomplicePath           @"Contents/Library/LaunchServices/Mac Mouse Fix Accomplice"
-#define kMFRelativeHelperAppPath            @"Contents/Library/LoginItems/Mac Mouse Fix Helper.app"
-#define kMFRelativeHelperExecutablePath     @"Contents/Library/LoginItems/Mac Mouse Fix Helper.app/Contents/MacOS/Mac Mouse Fix Helper"
+#define kMFRelativeHelperAppPath            @"Contents/Library/LoginItems/Mac Mouse Fix NG Helper.app"
+#define kMFRelativeHelperExecutablePath     @"Contents/Library/LoginItems/Mac Mouse Fix NG Helper.app/Contents/MacOS/Mac Mouse Fix NG Helper"
 
 #define kMFRelativeMainAppPathFromHelperBundle          @"../../../../"
 //#define kMFRelativeMainAppPathFromAccomplice            @"../../../../"
 //#define kMFRelativeMainAppPathFromAccompliceFolder      @"../../../"
 
-#define kMFMainAppName      @"Mac Mouse Fix.app"
+#define kMFMainAppName      @"Mac Mouse Fix NG.app"
 #define kMFAccompliceName   @"Mac Mouse Fix Accomplice"
-#define kMFHelperName       @"Mac Mouse Fix Helper.app"
+#define kMFHelperName       @"Mac Mouse Fix NG Helper.app"
 
 #define kMFLaunchdHelperIdentifier  @"mouse.fix.helper" /// Should rename to `kMFLaunchdHelperLabel`
 /// ^ Keep this in sync with `Label` value in `default_launchd.plist`
@@ -189,6 +189,7 @@ typedef NSString*                                                       MFString
 #define kMFActionDictTypeNavigationSwipe                                @"navigationSwipe"
 #define kMFActionDictTypeSmartZoom                                      @"smartZoom"
 #define kMFActionDictTypeKeyboardShortcut                               @"keyboardShortcut"
+#define kMFActionDictTypeKeySequence                                  @"keySequence"
 #define kMFActionDictTypeSystemDefinedEvent                             @"systemDefinedEvent"
 #define kMFActionDictTypeMouseButtonClicks                              @"mouseButton"
 #define kMFActionDictTypeAddModeFeedback                                @"addModeAction"
@@ -200,6 +201,8 @@ typedef NSString*                                                       MFString
 // Keyboard shortcut variant keys
 #define kMFActionDictKeyKeyboardShortcutVariantKeycode                  @"keycode"
 #define kMFActionDictKeyKeyboardShortcutVariantModifierFlags            @"flags"
+#define kMFActionDictKeySequenceVariantSteps                                 @"steps"
+#define kMFActionDictKeySequenceVariantIntervalMs                             @"intervalMs"
 // Button click variant keys
 #define kMFActionDictKeyMouseButtonClicksVariantButtonNumber            @"button"
 #define kMFActionDictKeyMouseButtonClicksVariantNumberOfClicks          @"nOfClicks"

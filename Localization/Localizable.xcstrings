@@ -2379,49 +2379,49 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verwende eine Maus mit 5+ Tasten um das volle Potential von Mac Mouse Fix freizusetzen!"
+            "value" : "Verwende eine Maus mit 5+ Tasten um das volle Potential von Mac Mouse Fix NG freizusetzen!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Get a mouse with 5+ buttons to unlock the full potential of Mac Mouse Fix!"
+            "value" : "Get a mouse with 5+ buttons to unlock the full potential of Mac Mouse Fix NG!"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Procurez-vous une souris avec plus de 5 boutons pour débloquer le plein potentiel de Mac Mouse Fix !"
+            "value" : "Procurez-vous une souris avec plus de 5 boutons pour débloquer le plein potentiel de Mac Mouse Fix NG !"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "5개 이상의 버튼이 있는 마우스를 사용하면, Mac Mouse Fix의 기능을 최대로 활용할 수 있습니다!"
+            "value" : "5개 이상의 버튼이 있는 마우스를 사용하면, Mac Mouse Fix NG의 기능을 최대로 활용할 수 있습니다!"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Use um mouse com 5 ou mais botões para liberar todo o potencial do Mac Mouse Fix!"
+            "value" : "Use um mouse com 5 ou mais botões para liberar todo o potencial do Mac Mouse Fix NG!"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix'in tüm potansiyelini ortaya çıkarmak için 5+ düğmeli bir fare edinin!"
+            "value" : "Mac Mouse Fix NG'in tüm potansiyelini ortaya çıkarmak için 5+ düğmeli bir fare edinin!"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Використовуйте мишу з 5+ кнопками, щоб розкрити весь потенціал Mac Mouse Fix!"
+            "value" : "Використовуйте мишу з 5+ кнопками, щоб розкрити весь потенціал Mac Mouse Fix NG!"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sắm một con chuột với 5+ nút để khai thác hết tiềm năng của Mac Mouse Fix!"
+            "value" : "Sắm một con chuột với 5+ nút để khai thác hết tiềm năng của Mac Mouse Fix NG!"
           }
         },
         "zh-Hans" : {
@@ -3033,25 +3033,25 @@
                   "few" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ jsou nyní zachyceny pomocí Mac Mouse Fix"
+                      "value" : "%2$@ jsou nyní zachyceny pomocí Mac Mouse Fix NG"
                     }
                   },
                   "many" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ jsou nyní zachyceny pomocí Mac Mouse Fix"
+                      "value" : "%2$@ jsou nyní zachyceny pomocí Mac Mouse Fix NG"
                     }
                   },
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ je nyní zachyceno pomocí Mac Mouse Fix"
+                      "value" : "%2$@ je nyní zachyceno pomocí Mac Mouse Fix NG"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ jsou nyní zachyceny pomocí Mac Mouse Fix"
+                      "value" : "%2$@ jsou nyní zachyceny pomocí Mac Mouse Fix NG"
                     }
                   }
                 }
@@ -3072,13 +3072,13 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ wird jetzt von Mac Mouse Fix abgefangen"
+                      "value" : "%2$@ wird jetzt von Mac Mouse Fix NG abgefangen"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ werden jetzt von Mac Mouse Fix abgefangen"
+                      "value" : "%2$@ werden jetzt von Mac Mouse Fix NG abgefangen"
                     }
                   }
                 }
@@ -3099,13 +3099,13 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ is now captured by Mac Mouse Fix"
+                      "value" : "%2$@ is now captured by Mac Mouse Fix NG"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ are now captured by Mac Mouse Fix"
+                      "value" : "%2$@ are now captured by Mac Mouse Fix NG"
                     }
                   }
                 }
@@ -3126,13 +3126,13 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ ahora está capturado por Mac Mouse Fix"
+                      "value" : "%2$@ ahora está capturado por Mac Mouse Fix NG"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ ahora están capturados por Mac Mouse Fix"
+                      "value" : "%2$@ ahora están capturados por Mac Mouse Fix NG"
                     }
                   }
                 }
@@ -3153,13 +3153,13 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "needs_review",
-                      "value" : "%2$@ a été capturé par Mac Mouse Fix."
+                      "value" : "%2$@ a été capturé par Mac Mouse Fix NG."
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "needs_review",
-                      "value" : "%2$@ ont été capturés par Mac Mouse Fix."
+                      "value" : "%2$@ ont été capturés par Mac Mouse Fix NG."
                     }
                   }
                 }
@@ -3180,13 +3180,13 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ è ora catturato da Mac Mouse Fix"
+                      "value" : "%2$@ è ora catturato da Mac Mouse Fix NG"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ sono ora catturati da Mac Mouse Fix"
+                      "value" : "%2$@ sono ora catturati da Mac Mouse Fix NG"
                     }
                   }
                 }
@@ -3207,7 +3207,7 @@
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ はMac Mouse Fixで制御されるようになりました"
+                      "value" : "%2$@ はMac Mouse Fix NGで制御されるようになりました"
                     }
                   }
                 }
@@ -3228,7 +3228,7 @@
                   "other" : {
                     "stringUnit" : {
                       "state" : "needs_review",
-                      "value" : "%2$@ 은 이제 Mac Mouse Fix에서 캡처합니다."
+                      "value" : "%2$@ 은 이제 Mac Mouse Fix NG에서 캡처합니다."
                     }
                   }
                 }
@@ -3249,13 +3249,13 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ er nå fanget opp av Mac Mouse Fix"
+                      "value" : "%2$@ er nå fanget opp av Mac Mouse Fix NG"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ er nå fanget opp av Mac Mouse Fix"
+                      "value" : "%2$@ er nå fanget opp av Mac Mouse Fix NG"
                     }
                   }
                 }
@@ -3276,13 +3276,13 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ foi capturado pelo Mac Mouse Fix."
+                      "value" : "%2$@ foi capturado pelo Mac Mouse Fix NG."
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ foram capturados pelo Mac Mouse Fix."
+                      "value" : "%2$@ foram capturados pelo Mac Mouse Fix NG."
                     }
                   }
                 }
@@ -3303,25 +3303,25 @@
                   "few" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ теперь захватываются Mac Mouse Fix"
+                      "value" : "%2$@ теперь захватываются Mac Mouse Fix NG"
                     }
                   },
                   "many" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ теперь захвачены Mac Mouse Fix"
+                      "value" : "%2$@ теперь захвачены Mac Mouse Fix NG"
                     }
                   },
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ теперь захватывается Mac Mouse Fix"
+                      "value" : "%2$@ теперь захватывается Mac Mouse Fix NG"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ теперь захвачены Mac Mouse Fix"
+                      "value" : "%2$@ теперь захвачены Mac Mouse Fix NG"
                     }
                   }
                 }
@@ -3342,13 +3342,13 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ düğmesi şu anda Mac Mouse Fix tarafından yakalandı"
+                      "value" : "%2$@ düğmesi şu anda Mac Mouse Fix NG tarafından yakalandı"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ düğmeleri şu anda Mac Mouse Fix tarafından yakalandı"
+                      "value" : "%2$@ düğmeleri şu anda Mac Mouse Fix NG tarafından yakalandı"
                     }
                   }
                 }
@@ -3369,25 +3369,25 @@
                   "few" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ тепер захоплені Mac Mouse Fix"
+                      "value" : "%2$@ тепер захоплені Mac Mouse Fix NG"
                     }
                   },
                   "many" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ тепер захоплені Mac Mouse Fix"
+                      "value" : "%2$@ тепер захоплені Mac Mouse Fix NG"
                     }
                   },
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ тепер захоплено Mac Mouse Fix"
+                      "value" : "%2$@ тепер захоплено Mac Mouse Fix NG"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ тепер захоплені Mac Mouse Fix"
+                      "value" : "%2$@ тепер захоплені Mac Mouse Fix NG"
                     }
                   }
                 }
@@ -3408,7 +3408,7 @@
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ đã được ghi nhận bởi Mac Mouse Fix."
+                      "value" : "%2$@ đã được ghi nhận bởi Mac Mouse Fix NG."
                     }
                   }
                 }
@@ -4062,25 +4062,25 @@
                   "few" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ již nejsou zachyceny Mac Mouse Fix"
+                      "value" : "%2$@ již nejsou zachyceny Mac Mouse Fix NG"
                     }
                   },
                   "many" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ již nejsou zachyceny Mac Mouse Fix"
+                      "value" : "%2$@ již nejsou zachyceny Mac Mouse Fix NG"
                     }
                   },
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ již není zachyceno Mac Mouse Fix"
+                      "value" : "%2$@ již není zachyceno Mac Mouse Fix NG"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ již nejsou zachyceny Mac Mouse Fix"
+                      "value" : "%2$@ již nejsou zachyceny Mac Mouse Fix NG"
                     }
                   }
                 }
@@ -4101,13 +4101,13 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ wird nicht länger von Mac Mouse Fix abgefangen"
+                      "value" : "%2$@ wird nicht länger von Mac Mouse Fix NG abgefangen"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ werden nicht länger von Mac Mouse Fix abgefangen"
+                      "value" : "%2$@ werden nicht länger von Mac Mouse Fix NG abgefangen"
                     }
                   }
                 }
@@ -4128,13 +4128,13 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ is no longer captured by Mac Mouse Fix"
+                      "value" : "%2$@ is no longer captured by Mac Mouse Fix NG"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ are no longer captured by Mac Mouse Fix"
+                      "value" : "%2$@ are no longer captured by Mac Mouse Fix NG"
                     }
                   }
                 }
@@ -4155,13 +4155,13 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ ya no está capturado por Mac Mouse Fix"
+                      "value" : "%2$@ ya no está capturado por Mac Mouse Fix NG"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ ya no están capturados por Mac Mouse Fix"
+                      "value" : "%2$@ ya no están capturados por Mac Mouse Fix NG"
                     }
                   }
                 }
@@ -4182,13 +4182,13 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "needs_review",
-                      "value" : "%2$@ n'est plus capturé par Mac Mouse Fix."
+                      "value" : "%2$@ n'est plus capturé par Mac Mouse Fix NG."
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "needs_review",
-                      "value" : "%2$@ ne sont plus capturés par Mac Mouse Fix."
+                      "value" : "%2$@ ne sont plus capturés par Mac Mouse Fix NG."
                     }
                   }
                 }
@@ -4209,13 +4209,13 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ non è più catturato da Mac Mouse Fix"
+                      "value" : "%2$@ non è più catturato da Mac Mouse Fix NG"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ non sono più catturati da Mac Mouse Fix"
+                      "value" : "%2$@ non sono più catturati da Mac Mouse Fix NG"
                     }
                   }
                 }
@@ -4236,7 +4236,7 @@
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ はMac Mouse Fixで制御されなくなりました"
+                      "value" : "%2$@ はMac Mouse Fix NGで制御されなくなりました"
                     }
                   }
                 }
@@ -4257,7 +4257,7 @@
                   "other" : {
                     "stringUnit" : {
                       "state" : "needs_review",
-                      "value" : "%2$@ 은 더 이상 Mac Mouse Fix에서 캡처하지 않습니다."
+                      "value" : "%2$@ 은 더 이상 Mac Mouse Fix NG에서 캡처하지 않습니다."
                     }
                   }
                 }
@@ -4278,13 +4278,13 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "new",
-                      "value" : "%2$@ is no longer captured by Mac Mouse Fix"
+                      "value" : "%2$@ is no longer captured by Mac Mouse Fix NG"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "new",
-                      "value" : "%2$@ are no longer captured by Mac Mouse Fix"
+                      "value" : "%2$@ are no longer captured by Mac Mouse Fix NG"
                     }
                   }
                 }
@@ -4305,13 +4305,13 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ não é mais capturado pelo Mac Mouse Fix."
+                      "value" : "%2$@ não é mais capturado pelo Mac Mouse Fix NG."
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ não são mais capturados pelo Mac Mouse Fix."
+                      "value" : "%2$@ não são mais capturados pelo Mac Mouse Fix NG."
                     }
                   }
                 }
@@ -4332,25 +4332,25 @@
                   "few" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ больше не перехватываются Mac Mouse Fix"
+                      "value" : "%2$@ больше не перехватываются Mac Mouse Fix NG"
                     }
                   },
                   "many" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ больше не перехватываются Mac Mouse Fix"
+                      "value" : "%2$@ больше не перехватываются Mac Mouse Fix NG"
                     }
                   },
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ больше не перехватывается Mac Mouse Fix"
+                      "value" : "%2$@ больше не перехватывается Mac Mouse Fix NG"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ больше не перехватываются Mac Mouse Fix"
+                      "value" : "%2$@ больше не перехватываются Mac Mouse Fix NG"
                     }
                   }
                 }
@@ -4371,13 +4371,13 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ düğmesinin Mac Mouse Fix tarafından yakalanması sona erdi"
+                      "value" : "%2$@ düğmesinin Mac Mouse Fix NG tarafından yakalanması sona erdi"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ düğmelerinin Mac Mouse Fix tarafından yakalanması sona erdi"
+                      "value" : "%2$@ düğmelerinin Mac Mouse Fix NG tarafından yakalanması sona erdi"
                     }
                   }
                 }
@@ -4398,25 +4398,25 @@
                   "few" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ більше не захоплені Mac Mouse Fix"
+                      "value" : "%2$@ більше не захоплені Mac Mouse Fix NG"
                     }
                   },
                   "many" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ більше не захоплені Mac Mouse Fix"
+                      "value" : "%2$@ більше не захоплені Mac Mouse Fix NG"
                     }
                   },
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ більше не захоплено Mac Mouse Fix"
+                      "value" : "%2$@ більше не захоплено Mac Mouse Fix NG"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ більше не захоплені Mac Mouse Fix"
+                      "value" : "%2$@ більше не захоплені Mac Mouse Fix NG"
                     }
                   }
                 }
@@ -4437,7 +4437,7 @@
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%2$@ không còn được ghi nhận bởi Mac Mouse Fix"
+                      "value" : "%2$@ không còn được ghi nhận bởi Mac Mouse Fix NG"
                     }
                   }
                 }
@@ -4981,73 +4981,73 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Scrolování** je nyní ovládáno Mac Mouse Fix"
+            "value" : "**Scrolování** je nyní ovládáno Mac Mouse Fix NG"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Scrollen** wird jetzt von Mac Mouse Fix abgefangen"
+            "value" : "**Scrollen** wird jetzt von Mac Mouse Fix NG abgefangen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Scrolling** is now captured by Mac Mouse Fix"
+            "value" : "**Scrolling** is now captured by Mac Mouse Fix NG"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El **desplazamiento** ahora está capturado por Mac Mouse Fix"
+            "value" : "El **desplazamiento** ahora está capturado por Mac Mouse Fix NG"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lo **scorrimento** è ora catturato da Mac Mouse Fix"
+            "value" : "Lo **scorrimento** è ora catturato da Mac Mouse Fix NG"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**スクロール**はMac Mouse Fixで制御されるようになりました"
+            "value" : "**スクロール**はMac Mouse Fix NGで制御されるようになりました"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A **rolagem** agora está sendo controlada pelo Mac Mouse Fix"
+            "value" : "A **rolagem** agora está sendo controlada pelo Mac Mouse Fix NG"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Прокрутка** теперь перехватывается Mac Mouse Fix"
+            "value" : "**Прокрутка** теперь перехватывается Mac Mouse Fix NG"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Kaydırma** hareketi şu anda Mac Mouse Fix tarafından yakalandı"
+            "value" : "**Kaydırma** hareketi şu anda Mac Mouse Fix NG tarafından yakalandı"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Прокручання** захоплено Mac Mouse Fix"
+            "value" : "**Прокручання** захоплено Mac Mouse Fix NG"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Cuộn** đã được ghi nhận bởi Mac Mouse Fix"
+            "value" : "**Cuộn** đã được ghi nhận bởi Mac Mouse Fix NG"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**滚动**被 Mac Mouse Fix 所捕获"
+            "value" : "**滚动**被 Mac Mouse Fix NG 所捕获"
           }
         }
       }
@@ -5171,73 +5171,73 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix již nezachycuje **scrolování**"
+            "value" : "Mac Mouse Fix NG již nezachycuje **scrolování**"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Scrollen** wird nicht länger von Mac Mouse Fix abgefangen"
+            "value" : "**Scrollen** wird nicht länger von Mac Mouse Fix NG abgefangen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Scrolling** is no longer captured by Mac Mouse Fix"
+            "value" : "**Scrolling** is no longer captured by Mac Mouse Fix NG"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El **desplazamiento** ya no está capturado por Mac Mouse Fix"
+            "value" : "El **desplazamiento** ya no está capturado por Mac Mouse Fix NG"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lo **scorrimento** non è più catturato da Mac Mouse Fix"
+            "value" : "Lo **scorrimento** non è più catturato da Mac Mouse Fix NG"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**スクロール**はMac Mouse Fixで制御されなくなりました"
+            "value" : "**スクロール**はMac Mouse Fix NGで制御されなくなりました"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A **rolagem** não está sendo controlada pelo Mac Mouse Fix"
+            "value" : "A **rolagem** não está sendo controlada pelo Mac Mouse Fix NG"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Прокрутка** больше не перехватывается Mac Mouse Fix"
+            "value" : "**Прокрутка** больше не перехватывается Mac Mouse Fix NG"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Kaydırma** haraketinin Mac Mouse Fix tarafından yakalanması sona erdi"
+            "value" : "**Kaydırma** haraketinin Mac Mouse Fix NG tarafından yakalanması sona erdi"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Прокрутка** більше не захоплена Mac Mouse Fix"
+            "value" : "**Прокрутка** більше не захоплена Mac Mouse Fix NG"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Cuộn** không còn được ghi nhận bởi Mac Mouse Fix"
+            "value" : "**Cuộn** không còn được ghi nhận bởi Mac Mouse Fix NG"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**滚动**不再被 Mac Mouse Fix 所捕获"
+            "value" : "**滚动**不再被 Mac Mouse Fix NG 所捕获"
           }
         }
       }
@@ -9136,25 +9136,25 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix je vaší zemi momentálně zdarma (%@)"
+            "value" : "Mac Mouse Fix NG je vaší zemi momentálně zdarma (%@)"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix ist momentan in deinem Land (%@) kostenlos"
+            "value" : "Mac Mouse Fix NG ist momentan in deinem Land (%@) kostenlos"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix is currently free in your country (%@)"
+            "value" : "Mac Mouse Fix NG is currently free in your country (%@)"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix es actualmente gratuito en tu país (%@)"
+            "value" : "Mac Mouse Fix NG es actualmente gratuito en tu país (%@)"
           }
         },
         "fr" : {
@@ -9166,49 +9166,49 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix è attualmente gratuito nel tuo Paese (%@)"
+            "value" : "Mac Mouse Fix NG è attualmente gratuito nel tuo Paese (%@)"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fixは現在、お客様の地域(%@)で無料です。"
+            "value" : "Mac Mouse Fix NGは現在、お客様の地域(%@)で無料です。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "사용자 국가(%@)에서 Mac Mouse Fix는 현재 무료로 제공됩니다."
+            "value" : "사용자 국가(%@)에서 Mac Mouse Fix NG는 현재 무료로 제공됩니다."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atualmente, o Mac Mouse Fix está gratuito em seu país (%@)"
+            "value" : "Atualmente, o Mac Mouse Fix NG está gratuito em seu país (%@)"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "В вашей стране (%@) Mac Mouse Fix в настоящее время бесплатный"
+            "value" : "В вашей стране (%@) Mac Mouse Fix NG в настоящее время бесплатный"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix şu anda ülkenizde (%@) ücretsizdir"
+            "value" : "Mac Mouse Fix NG şu anda ülkenizde (%@) ücretsizdir"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix наразі безкоштовний у вашій країні (%@)"
+            "value" : "Mac Mouse Fix NG наразі безкоштовний у вашій країні (%@)"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix đang miễn phí tại quốc gia của bạn (%@)"
+            "value" : "Mac Mouse Fix NG đang miễn phí tại quốc gia của bạn (%@)"
           }
         },
         "zh-Hans" : {
@@ -9237,97 +9237,97 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aplikace Mac Mouse Fix byla **zakázána** v Nastavení systému\n\nChcete-li Mac Mouse Fix povolit:\n\n1. Přejděte do [Nastavení položek přihlášení](%@)\n2. Zapněte aplikaci 'Mac Mouse Fix.app'"
+            "value" : "Aplikace Mac Mouse Fix NG byla **zakázána** v Nastavení systému\n\nChcete-li Mac Mouse Fix NG povolit:\n\n1. Přejděte do [Nastavení položek přihlášení](%@)\n2. Zapněte aplikaci 'Mac Mouse Fix NG.app'"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix wurde in den Systemeinstellungen **deaktiviert**\n\nUm Mac Mouse Fix zu aktivieren:\n\n1. Öffne die [Anmeldeobjekte-Einstellungen](%@)\n2. Aktiviere 'Mac Mouse Fix.app'"
+            "value" : "Mac Mouse Fix NG wurde in den Systemeinstellungen **deaktiviert**\n\nUm Mac Mouse Fix NG zu aktivieren:\n\n1. Öffne die [Anmeldeobjekte-Einstellungen](%@)\n2. Aktiviere 'Mac Mouse Fix NG.app'"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix was **disabled** in System Settings\n\nTo enable Mac Mouse Fix:\n\n1. Go to [Login Items Settings](%@)\n2. Switch on 'Mac Mouse Fix.app'"
+            "value" : "Mac Mouse Fix NG was **disabled** in System Settings\n\nTo enable Mac Mouse Fix NG:\n\n1. Go to [Login Items Settings](%@)\n2. Switch on 'Mac Mouse Fix NG.app'"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix fue **desactivado** en Ajustes del Sistema\n\nPara activar Mac Mouse Fix:\n\n1.  Ve a [Ajustes de Elementos de Inicio](%@)\n2.  Activa 'Mac Mouse Fix.app'"
+            "value" : "Mac Mouse Fix NG fue **desactivado** en Ajustes del Sistema\n\nPara activar Mac Mouse Fix NG:\n\n1.  Ve a [Ajustes de Elementos de Inicio](%@)\n2.  Activa 'Mac Mouse Fix NG.app'"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Mac Mouse Fix a été **désactivé** dans les Réglages Système\n\nPour activer Mac Mouse Fix :\n\n1. Se rendre dans les [paramètres Ouverture](%@)\n2. Activer « Mac Mouse Fix.app »"
+            "value" : "Mac Mouse Fix NG a été **désactivé** dans les Réglages Système\n\nPour activer Mac Mouse Fix NG :\n\n1. Se rendre dans les [paramètres Ouverture](%@)\n2. Activer « Mac Mouse Fix NG.app »"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix è stato **disattivato** nelle Impostazioni di Sistema\n\nPer attivare Mac Mouse Fix:\n\n1. Vai in [Impostazioni Elementi login](%@)\n2. Attiva 'Mac Mouse Fix.app'"
+            "value" : "Mac Mouse Fix NG è stato **disattivato** nelle Impostazioni di Sistema\n\nPer attivare Mac Mouse Fix NG:\n\n1. Vai in [Impostazioni Elementi login](%@)\n2. Attiva 'Mac Mouse Fix NG.app'"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "システム設定で Mac Mouse Fixが**無効**になっています\n\nMac Mouse Fix を有効にするには：\n\n1.[ログイン項目の設定](%@)を開く\n2.'Mac Mouse Fix'をオンにする"
+            "value" : "システム設定で Mac Mouse Fix NGが**無効**になっています\n\nMac Mouse Fix NG を有効にするには：\n\n1.[ログイン項目の設定](%@)を開く\n2.'Mac Mouse Fix NG'をオンにする"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "시스템 설정에서 Mac Mouse Fix가 **비활성화**되어있습니다.\n\nMac Mouse Fix를 사용하려면 다음 절차를 따르십시오:\n\n1. [로그인 항목 설정](%@)을 엽니다.\n2. 'Mac Mouse Fix.app' 항목을 허용합니다."
+            "value" : "시스템 설정에서 Mac Mouse Fix NG가 **비활성화**되어있습니다.\n\nMac Mouse Fix NG를 사용하려면 다음 절차를 따르십시오:\n\n1. [로그인 항목 설정](%@)을 엽니다.\n2. 'Mac Mouse Fix NG.app' 항목을 허용합니다."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O Mac Mouse Fix foi **desativado** nos Ajustes do Sistema\n\nPara ativá-lo:\n\n1. Vá para [Itens de Início](%@)\n2. Ative 'Mac Mouse Fix.app'"
+            "value" : "O Mac Mouse Fix NG foi **desativado** nos Ajustes do Sistema\n\nPara ativá-lo:\n\n1. Vá para [Itens de Início](%@)\n2. Ative 'Mac Mouse Fix NG.app'"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix был **отключён** в Системных настройках\n\nЧтобы включить Mac Mouse Fix:\n\n1. Перейдите в [Настройки объектов входа](%@)\n2. Включите «Mac Mouse Fix.app»"
+            "value" : "Mac Mouse Fix NG был **отключён** в Системных настройках\n\nЧтобы включить Mac Mouse Fix NG:\n\n1. Перейдите в [Настройки объектов входа](%@)\n2. Включите «Mac Mouse Fix NG.app»"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix, Sistem Ayarları'nda  **devre dışı**.\n\nMac Mouse Fix'i devreye almak için:\n\n1. [Oturum Açma'da Açılan Uygulama Ayarları](%@) alanından\n2. Mac Mouse Fix.app'i devreye alın."
+            "value" : "Mac Mouse Fix NG, Sistem Ayarları'nda  **devre dışı**.\n\nMac Mouse Fix NG'i devreye almak için:\n\n1. [Oturum Açma'da Açılan Uygulama Ayarları](%@) alanından\n2. Mac Mouse Fix NG.app'i devreye alın."
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix було **вимкнено** у Системних параметрах\n\nЩоб увімкнути Mac Mouse Fix:\n\n1. Перейдіть до [Параметрів об’єктів входу](%@)\n2. Увімкніть 'Mac Mouse Fix.app'"
+            "value" : "Mac Mouse Fix NG було **вимкнено** у Системних параметрах\n\nЩоб увімкнути Mac Mouse Fix NG:\n\n1. Перейдіть до [Параметрів об’єктів входу](%@)\n2. Увімкніть 'Mac Mouse Fix NG.app'"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix đã **tắt** trong System Settings\n\nĐể mở lại Mac Mouse Fix:\n\n1. Đi đến [Login Items Settings](%@)\n2. Bật 'Mac Mouse Fix.app'"
+            "value" : "Mac Mouse Fix NG đã **tắt** trong System Settings\n\nĐể mở lại Mac Mouse Fix NG:\n\n1. Đi đến [Login Items Settings](%@)\n2. Bật 'Mac Mouse Fix NG.app'"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "系统偏好设置中已**禁用**Mac Mouse Fix\n\n若要启用Mac Mouse Fix：\n\n⒈前往[登录时打开](%@)\n⒉开启“Mac Mouse Fix.app”"
+            "value" : "系统偏好设置中已**禁用**Mac Mouse Fix\n\n若要启用Mac Mouse Fix：\n\n⒈前往[登录时打开](%@)\n⒉开启“Mac Mouse Fix NG.app”"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "系統偏好設定中已**禁用**Mac Mouse Fix\n\n若要啟用Mac Mouse Fix：\n\n⒈前往[登入項目](%@)\n⒉開啟「Mac Mouse Fix.app」"
+            "value" : "系統偏好設定中已**禁用**Mac Mouse Fix\n\n若要啟用Mac Mouse Fix：\n\n⒈前往[登入項目](%@)\n⒉開啟「Mac Mouse Fix NG.app」"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "系統偏好設定中已**禁用**Mac Mouse Fix\n\n若要啟用Mac Mouse Fix：\n\n⒈前往[登入項目](%@)\n⒉開啟「Mac Mouse Fix.app」"
+            "value" : "系統偏好設定中已**禁用**Mac Mouse Fix\n\n若要啟用Mac Mouse Fix：\n\n⒈前往[登入項目](%@)\n⒉開啟「Mac Mouse Fix NG.app」"
           }
         }
       }
@@ -9338,79 +9338,79 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nástroj Mac Mouse Fix nelze povolit, protože v počítači je **jiná verze** nástroje Mac Mouse Fix.\n\nPovolení nástroje Mac Mouse Fix:\n\n1. Odstraňte [jinou verzi](%@)\n2. Vysypte koš\n3. Restartujte Mac\n4. Zkuste to znovu!"
+            "value" : "Nástroj Mac Mouse Fix NG nelze povolit, protože v počítači je **jiná verze** nástroje Mac Mouse Fix NG.\n\nPovolení nástroje Mac Mouse Fix NG:\n\n1. Odstraňte [jinou verzi](%@)\n2. Vysypte koš\n3. Restartujte Mac\n4. Zkuste to znovu!"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix kann nicht eingeschaltet werden da noch eine **andere Version** von Mac Mouse Fix auf deinem Computer vorliegt\n\nUm Mac Mouse Fix einzuschalten:\n\n1. Lösche die [andere Version](%@)\n2. Leere den Papierkorb\n3. Starte deinen Mac neu\n4. Versuche es noch mal!"
+            "value" : "Mac Mouse Fix NG kann nicht eingeschaltet werden da noch eine **andere Version** von Mac Mouse Fix NG auf deinem Computer vorliegt\n\nUm Mac Mouse Fix NG einzuschalten:\n\n1. Lösche die [andere Version](%@)\n2. Leere den Papierkorb\n3. Starte deinen Mac neu\n4. Versuche es noch mal!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix can't be enabled because there's **another version** of Mac Mouse Fix present on your computer\n\nTo enable Mac Mouse Fix:\n\n1. Delete the [other version](%@)\n2. Empty the Bin\n3. Restart your Mac\n4. Try again!"
+            "value" : "Mac Mouse Fix NG can't be enabled because there's **another version** of Mac Mouse Fix NG present on your computer\n\nTo enable Mac Mouse Fix NG:\n\n1. Delete the [other version](%@)\n2. Empty the Bin\n3. Restart your Mac\n4. Try again!"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix no puede ser activado porque hay **otra versión** de Mac Mouse Fix presente en tu ordenador\n\nPara activar Mac Mouse Fix:\n\n1.  Elimina la [otra versión](%@)\n2.  Vacía la Papelera\n3.  Reinicia tu Mac\n4.  ¡Inténtalo de nuevo!"
+            "value" : "Mac Mouse Fix NG no puede ser activado porque hay **otra versión** de Mac Mouse Fix NG presente en tu ordenador\n\nPara activar Mac Mouse Fix NG:\n\n1.  Elimina la [otra versión](%@)\n2.  Vacía la Papelera\n3.  Reinicia tu Mac\n4.  ¡Inténtalo de nuevo!"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Mac Mouse Fix ne peut pas être activé car une **autre version** de Mac Mouse Fix est présente sur votre ordinateur\n\nPour activer Mac Mouse Fix :\n\n1. Supprimer l'[autre version](%@)\n2. Vider la corbeille\n3. Redémarrer votre Mac\n4. Réessayer !"
+            "value" : "Mac Mouse Fix NG ne peut pas être activé car une **autre version** de Mac Mouse Fix NG est présente sur votre ordinateur\n\nPour activer Mac Mouse Fix NG :\n\n1. Supprimer l'[autre version](%@)\n2. Vider la corbeille\n3. Redémarrer votre Mac\n4. Réessayer !"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix non può essere attivato perché sul tuo computer è presente **un'altra versione** di Mac Mouse Fix\n\nPer attivare Mac Mouse Fix:\n\n1. Elimina l'[altra versione](%@)\n2. Svuota il Cestino\n3. Riavvia il Mac\n4. Riprova!"
+            "value" : "Mac Mouse Fix NG non può essere attivato perché sul tuo computer è presente **un'altra versione** di Mac Mouse Fix NG\n\nPer attivare Mac Mouse Fix NG:\n\n1. Elimina l'[altra versione](%@)\n2. Svuota il Cestino\n3. Riavvia il Mac\n4. Riprova!"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "お使いのMacに**別のバージョン**のMac Mouse Fixがあるため、有効にできません。\n\nMac Mouse Fixを有効にする手順：\n\n1.[別のバージョン](%@)を削除する\n2.ゴミ箱を空にする\n3.Macを再起動する\n4.もう一度お試しください！"
+            "value" : "お使いのMacに**別のバージョン**のMac Mouse Fix NGがあるため、有効にできません。\n\nMac Mouse Fix NGを有効にする手順：\n\n1.[別のバージョン](%@)を削除する\n2.ゴミ箱を空にする\n3.Macを再起動する\n4.もう一度お試しください！"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "컴퓨터에 **다른 버전의 앱**이 발견되어 Mac Mouse Fix를 사용할 수 없습니다.\n\nMac Mouse Fix를 사용하려면 다음 절차를 따르십시오:\n\n1. [다른 버전](%@)을 제거합니다.\n2. 휴지통을 비웁니다.\n3. Mac을 재시동합니다.\n4. 다시 시도합니다."
+            "value" : "컴퓨터에 **다른 버전의 앱**이 발견되어 Mac Mouse Fix NG를 사용할 수 없습니다.\n\nMac Mouse Fix NG를 사용하려면 다음 절차를 따르십시오:\n\n1. [다른 버전](%@)을 제거합니다.\n2. 휴지통을 비웁니다.\n3. Mac을 재시동합니다.\n4. 다시 시도합니다."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O Mac Mouse Fix não pode ser Ativado porque há **outra versão** do Mac Mouse Fix presente em seu computador\n\nPara ativar o Mac Mouse Fix:\n\n1. Exclua a [outra versão](%@)\n2. Esvazie a Lixeira\n3. Reinicie o seu Mac\n4. Tente novamente!"
+            "value" : "O Mac Mouse Fix NG não pode ser Ativado porque há **outra versão** do Mac Mouse Fix NG presente em seu computador\n\nPara ativar o Mac Mouse Fix NG:\n\n1. Exclua a [outra versão](%@)\n2. Esvazie a Lixeira\n3. Reinicie o seu Mac\n4. Tente novamente!"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Невозможно включить Mac Mouse Fix, потому что на вашем компьютере присутствует **другая версия** Mac Mouse Fix\n\nЧтобы включить Mac Mouse Fix:\n\n1. Удалите [другую версию](%@)\n2. Очистите Корзину\n3. Перезагрузите Mac\n4. Попробуйте снова!"
+            "value" : "Невозможно включить Mac Mouse Fix NG, потому что на вашем компьютере присутствует **другая версия** Mac Mouse Fix NG\n\nЧтобы включить Mac Mouse Fix NG:\n\n1. Удалите [другую версию](%@)\n2. Очистите Корзину\n3. Перезагрузите Mac\n4. Попробуйте снова!"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix etkinleştirilemiyor çünkü bilgisayarınızda Mac Mouse Fix'in **başka bir sürümü** mevcut\n\nMac Mouse Fix'i aktifleştirmek için:\n\n1. [Diğer sürümü](%@)silin\n2. Çöp Kutusunu boşaltın\n3. Mac'inizi yeniden başlatın\n4. Tekrar deneyin!"
+            "value" : "Mac Mouse Fix NG etkinleştirilemiyor çünkü bilgisayarınızda Mac Mouse Fix NG'in **başka bir sürümü** mevcut\n\nMac Mouse Fix NG'i aktifleştirmek için:\n\n1. [Diğer sürümü](%@)silin\n2. Çöp Kutusunu boşaltın\n3. Mac'inizi yeniden başlatın\n4. Tekrar deneyin!"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix не можна ввімкнути, оскільки на вашому комп'ютері є **інша версія** Mac Mouse Fix.\n\nЩоб увімкнути Mac Mouse Fix: \n\n1. Видаліть [іншу версію](%@) \n2. Очистіть смітник \n3. Перезавантажте свій Mac \n4. Спробуйте ще раз!"
+            "value" : "Mac Mouse Fix NG не можна ввімкнути, оскільки на вашому комп'ютері є **інша версія** Mac Mouse Fix NG.\n\nЩоб увімкнути Mac Mouse Fix NG: \n\n1. Видаліть [іншу версію](%@) \n2. Очистіть смітник \n3. Перезавантажте свій Mac \n4. Спробуйте ще раз!"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix không thể bật được vì có **một phiên bản khác** của Mac Mouse Fix đang chạy\n\nĐể bật Mac Mouse Fix:\n\n1. Xóa [phiên bản khác](%@)\n2. Làm trống thùng rác\n3. Khởi động lại máy Mac\n4. Thử lại!"
+            "value" : "Mac Mouse Fix NG không thể bật được vì có **một phiên bản khác** của Mac Mouse Fix NG đang chạy\n\nĐể bật Mac Mouse Fix NG:\n\n1. Xóa [phiên bản khác](%@)\n2. Làm trống thùng rác\n3. Khởi động lại máy Mac\n4. Thử lại!"
           }
         },
         "zh-Hans" : {
@@ -10348,13 +10348,13 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tato licence **nemůže být aktivována**, ale Mac Mouse Fix je **ve vaší zemi momentálně zdarma**"
+            "value" : "Tato licence **nemůže být aktivována**, ale Mac Mouse Fix NG je **ve vaší zemi momentálně zdarma**"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diese Lizenz **konnte nicht aktiviert werden**, aber Mac Mouse Fix ist momentan **in deinem Land kostenlos**."
+            "value" : "Diese Lizenz **konnte nicht aktiviert werden**, aber Mac Mouse Fix NG ist momentan **in deinem Land kostenlos**."
           }
         },
         "en" : {
@@ -10366,7 +10366,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Esta licencia **no pudo ser activada** pero Mac Mouse Fix es actualmente **gratuito en tu país**."
+            "value" : "Esta licencia **no pudo ser activada** pero Mac Mouse Fix NG es actualmente **gratuito en tu país**."
           }
         },
         "fr" : {
@@ -10378,13 +10378,13 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Non è stato possibile **attivare** questa licenza, ma Mac Mouse Fix è attualmente **gratuito nel tuo Paese**."
+            "value" : "Non è stato possibile **attivare** questa licenza, ma Mac Mouse Fix NG è attualmente **gratuito nel tuo Paese**."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "このライセンスは有効化できませんでしたが、現在お住まいの国では Mac Mouse Fix を無料でご利用いただけます。"
+            "value" : "このライセンスは有効化できませんでしたが、現在お住まいの国では Mac Mouse Fix NG を無料でご利用いただけます。"
           }
         },
         "ko" : {
@@ -10396,31 +10396,31 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Esta licença **não pôde ser ativada**, mas o Mac Mouse Fix está **gratuito em seu país**!"
+            "value" : "Esta licença **não pôde ser ativada**, mas o Mac Mouse Fix NG está **gratuito em seu país**!"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Эту лицензию **не удалось активировать**, но Mac Mouse Fix в настоящее время **бесплатный в вашей стране**."
+            "value" : "Эту лицензию **не удалось активировать**, но Mac Mouse Fix NG в настоящее время **бесплатный в вашей стране**."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bu lisans **aktifleştirilemedi** ancak Mac Mouse Fix şu anda **ülkenizde ücretsiz**!"
+            "value" : "Bu lisans **aktifleştirilemedi** ancak Mac Mouse Fix NG şu anda **ülkenizde ücretsiz**!"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Цю ліцензію **не можна активувати**, але Mac Mouse Fix наразі **безкоштовно у вашій країні**."
+            "value" : "Цю ліцензію **не можна активувати**, але Mac Mouse Fix NG наразі **безкоштовно у вашій країні**."
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bản quyền này **không thể được kích hoạt** nhưng Mac Mouse Fix đang **miễn phí tại quốc gia của bạn**!"
+            "value" : "Bản quyền này **không thể được kích hoạt** nhưng Mac Mouse Fix NG đang **miễn phí tại quốc gia của bạn**!"
           }
         },
         "zh-Hans" : {
@@ -10566,25 +10566,25 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nastala **chyba internetového připojení**\n\nUjistěte se, že váš počítač je online a žádný firewall neblokuje připojení Mac Mouse Fix k serveru.\n\nPokud ani to nepomůže, kontaktujte mě [zde](%@)."
+            "value" : "Nastala **chyba internetového připojení**\n\nUjistěte se, že váš počítač je online a žádný firewall neblokuje připojení Mac Mouse Fix NG k serveru.\n\nPokud ani to nepomůže, kontaktujte mě [zde](%@)."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Es gibt ein **Problem mit der Internetverbindung**\n\nStelle sicher, dass dein Computer online ist und keine Firewalls Mac Mouse Fix daran hindern, sich mit dem Internet zu verbinden.\n\nWenn das das Problem nicht löst, kontaktiere mich [hier](%@)."
+            "value" : "Es gibt ein **Problem mit der Internetverbindung**\n\nStelle sicher, dass dein Computer online ist und keine Firewalls Mac Mouse Fix NG daran hindern, sich mit dem Internet zu verbinden.\n\nWenn das das Problem nicht löst, kontaktiere mich [hier](%@)."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "There is a **problem with the internet connection**\n\nMake sure your computer is online and no firewalls are blocking Mac Mouse Fix from connecting to the internet.\n\nIf this doesn't solve the problem, contact me [here](%@)."
+            "value" : "There is a **problem with the internet connection**\n\nMake sure your computer is online and no firewalls are blocking Mac Mouse Fix NG from connecting to the internet.\n\nIf this doesn't solve the problem, contact me [here](%@)."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hay un **problema con la conexión a internet**\n\nAsegúrate de que tu ordenador esté conectado y de que ningún cortafuegos esté bloqueando la conexión de Mac Mouse Fix a internet.\n\nSi esto no soluciona el problema, contáctame [aquí](%@)."
+            "value" : "Hay un **problema con la conexión a internet**\n\nAsegúrate de que tu ordenador esté conectado y de que ningún cortafuegos esté bloqueando la conexión de Mac Mouse Fix NG a internet.\n\nSi esto no soluciona el problema, contáctame [aquí](%@)."
           }
         },
         "fr" : {
@@ -10596,13 +10596,13 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "C'è un **problema con la connessione a Internet**\n\nAssicurati che il computer sia online e che nessun firewall impedisca a Mac Mouse Fix di connettersi a Internet.\n\nSe questo non risolve il problema, contattami [qui](%@)."
+            "value" : "C'è un **problema con la connessione a Internet**\n\nAssicurati che il computer sia online e che nessun firewall impedisca a Mac Mouse Fix NG di connettersi a Internet.\n\nSe questo non risolve il problema, contattami [qui](%@)."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**インターネット接続に問題**があります\n\nお使いのMacがインターネットに接続されていること、およびファイアウォールによってMac Mouse Fixの通信が遮断されていないことを確認してください。\n\n解決しない場合は、[こちら](%@)からお問い合わせください。"
+            "value" : "**インターネット接続に問題**があります\n\nお使いのMacがインターネットに接続されていること、およびファイアウォールによってMac Mouse Fix NGの通信が遮断されていないことを確認してください。\n\n解決しない場合は、[こちら](%@)からお問い合わせください。"
           }
         },
         "ko" : {
@@ -10614,37 +10614,37 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Há um problema com a conexão à internet**\n\nCertifique-se de que seu computador esteja conectado à internet e que nenhum firewall esteja bloqueando o Mac Mouse Fix de se conectar.\n\nSe isso não resolver o problema, entre em contato comigo [aqui](%@)."
+            "value" : "**Há um problema com a conexão à internet**\n\nCertifique-se de que seu computador esteja conectado à internet e que nenhum firewall esteja bloqueando o Mac Mouse Fix NG de se conectar.\n\nSe isso não resolver o problema, entre em contato comigo [aqui](%@)."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Возникла **проблема с интернет-соединением**\n\nУбедитесь, что ваш компьютер подключен к интернету и никакие брандмауэры не блокируют Mac Mouse Fix от подключения к интернету.\n\nЕсли это не решит проблему, свяжитесь со мной [здесь](%@)."
+            "value" : "Возникла **проблема с интернет-соединением**\n\nУбедитесь, что ваш компьютер подключен к интернету и никакие брандмауэры не блокируют Mac Mouse Fix NG от подключения к интернету.\n\nЕсли это не решит проблему, свяжитесь со мной [здесь](%@)."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**İnternet bağlantısı yok**\n\nBilgisayarınızın çevrimiçi olduğuna ve herhangi bir güvenlik duvarının Mac Mouse Fix'in internete bağlanmasına engel olmadığından emin olun.\n\nEğer bu sorununuzu çözmez ise, bana [buradan](%@) ulaşın."
+            "value" : "**İnternet bağlantısı yok**\n\nBilgisayarınızın çevrimiçi olduğuna ve herhangi bir güvenlik duvarının Mac Mouse Fix NG'in internete bağlanmasına engel olmadığından emin olun.\n\nEğer bu sorununuzu çözmez ise, bana [buradan](%@) ulaşın."
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Виникла **проблема з підключенням до інтернету**\n\nПереконайтеся, що ваш комп’ютер підключений до мережі та що брандмауери не блокують доступ Mac Mouse Fix до інтернету.\n\nЯкщо це не вирішить проблему, зв’яжіться зі мною [тут](%@)."
+            "value" : "Виникла **проблема з підключенням до інтернету**\n\nПереконайтеся, що ваш комп’ютер підключений до мережі та що брандмауери не блокують доступ Mac Mouse Fix NG до інтернету.\n\nЯкщо це не вирішить проблему, зв’яжіться зі мною [тут](%@)."
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Có **lỗi kết nối internet**\n\nHãy chắc chắn bạn đang kết nối internet và không có tường lửa nào chặn kết nối của Mac Mouse Fix.\n\nNếu bạn không thể xử lý lỗi này, liên hệ cho tôi [tại đây](%@)."
+            "value" : "Có **lỗi kết nối internet**\n\nHãy chắc chắn bạn đang kết nối internet và không có tường lửa nào chặn kết nối của Mac Mouse Fix NG.\n\nNếu bạn không thể xử lý lỗi này, liên hệ cho tôi [tại đây](%@)."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**无法连接网络**\n\n请确保您的电脑可以访问互联网，并且没有防火墙阻止 Mac Mouse Fix 访问网络。\n\n如果这个问题一直出现，[请联系我](%@)"
+            "value" : "**无法连接网络**\n\n请确保您的电脑可以访问互联网，并且没有防火墙阻止 Mac Mouse Fix NG 访问网络。\n\n如果这个问题一直出现，[请联系我](%@)"
           }
         },
         "zh-Hant" : {
@@ -10850,13 +10850,13 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "'**%@**' je neplatný licenční klíč.\n\nUjistěte se, že zadáváte klíč k Mac Mouse Fix přesně takový, jaký jste obdrželi."
+            "value" : "'**%@**' je neplatný licenční klíč.\n\nUjistěte se, že zadáváte klíč k Mac Mouse Fix NG přesně takový, jaký jste obdrželi."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "'**%@**' ist kein gültiger Lizenzschlüssel\n\nStelle sicher, dass du deinen Mac Mouse Fix Schlüssel genau so eingibst, wie du ihn erhalten hast."
+            "value" : "'**%@**' ist kein gültiger Lizenzschlüssel\n\nStelle sicher, dass du deinen Mac Mouse Fix NG Schlüssel genau so eingibst, wie du ihn erhalten hast."
           }
         },
         "en" : {
@@ -10868,7 +10868,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "'**%@**' no es una clave de licencia válida\n\nAsegúrate de ingresar tu clave de Mac Mouse Fix exactamente como la recibiste."
+            "value" : "'**%@**' no es una clave de licencia válida\n\nAsegúrate de ingresar tu clave de Mac Mouse Fix NG exactamente como la recibiste."
           }
         },
         "fr" : {
@@ -10880,13 +10880,13 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "'**%@**' non è una chiave di licenza valida\n\nAssicurati di inserire la tua chiave di Mac Mouse Fix esattamente come l'hai ricevuta."
+            "value" : "'**%@**' non è una chiave di licenza valida\n\nAssicurati di inserire la tua chiave di Mac Mouse Fix NG esattamente come l'hai ricevuta."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "'**%@**'は有効なライセンスキーではありません\n\nMac Mouse Fixのライセンスキーを、受け取った通りに正確に入力してください。"
+            "value" : "'**%@**'は有効なライセンスキーではありません\n\nMac Mouse Fix NGのライセンスキーを、受け取った通りに正確に入力してください。"
           }
         },
         "ko" : {
@@ -10904,25 +10904,25 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "«**%@**» не является действительным лицензионным ключом\n\nУбедитесь, что вы ввели ключ Mac Mouse Fix точно так, как его получили."
+            "value" : "«**%@**» не является действительным лицензионным ключом\n\nУбедитесь, что вы ввели ключ Mac Mouse Fix NG точно так, как его получили."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "*'%@'** geçerli bir lisans anahtarı değildir\n\nMac Mouse Fix anahtarınızı aldığınız gibi yazdığınızdan emin olun."
+            "value" : "*'%@'** geçerli bir lisans anahtarı değildir\n\nMac Mouse Fix NG anahtarınızı aldığınız gibi yazdığınızdan emin olun."
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "'**%@**' не є дійсним ключем\n\nПереконайтеся, що ви ввели ключ для Mac Mouse Fix саме так, як ви його отримали."
+            "value" : "'**%@**' не є дійсним ключем\n\nПереконайтеся, що ви ввели ключ для Mac Mouse Fix NG саме так, як ви його отримали."
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "'**%@**' không phải là khoá kích hoạt đúng.\n\nHãy chắc chắn bạn dùng đúng mã Mac Mouse Fix mà bạn đã nhận."
+            "value" : "'**%@**' không phải là khoá kích hoạt đúng.\n\nHãy chắc chắn bạn dùng đúng mã Mac Mouse Fix NG mà bạn đã nhận."
           }
         },
         "zh-Hans" : {
@@ -11254,25 +11254,25 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jen zřídka můžu odpovídat, ale čtu si všechny zprávy a zpětná vazba mi pomáhá vylepšit Mac Mouse Fix. Děkuji za vaši zpětnou vazbu!"
+            "value" : "Jen zřídka můžu odpovídat, ale čtu si všechny zprávy a zpětná vazba mi pomáhá vylepšit Mac Mouse Fix NG. Děkuji za vaši zpětnou vazbu!"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ich kann nur selten antworten, aber ich lese alle Nachrichten und das Feedback hilft mir dabei, Mac Mouse Fix zu verbessern. Danke für dein Feedback!"
+            "value" : "Ich kann nur selten antworten, aber ich lese alle Nachrichten und das Feedback hilft mir dabei, Mac Mouse Fix NG zu verbessern. Danke für dein Feedback!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I can only rarely respond, but I read all messages and the feedback helps me improve Mac Mouse Fix. Thank you for your feedback!"
+            "value" : "I can only rarely respond, but I read all messages and the feedback helps me improve Mac Mouse Fix NG. Thank you for your feedback!"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Solo puedo responder en raras ocasiones, pero leo todos los mensajes y los comentarios me ayudan a mejorar Mac Mouse Fix. ¡Gracias por tus comentarios!"
+            "value" : "Solo puedo responder en raras ocasiones, pero leo todos los mensajes y los comentarios me ayudan a mejorar Mac Mouse Fix NG. ¡Gracias por tus comentarios!"
           }
         },
         "fr" : {
@@ -11284,13 +11284,13 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Posso rispondere solo raramente, ma leggo tutti i messaggi e i feedback mi aiutano a migliorare Mac Mouse Fix. Grazie per il tuo feedback!"
+            "value" : "Posso rispondere solo raramente, ma leggo tutti i messaggi e i feedback mi aiutano a migliorare Mac Mouse Fix NG. Grazie per il tuo feedback!"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "個別にお返事することは稀ですが、お送りいただいたメッセージはすべて拝見しております。皆様からのフィードバックはMac Mouse Fixの改善に非常に役立っております。貴重なご意見をありがとうございます！"
+            "value" : "個別にお返事することは稀ですが、お送りいただいたメッセージはすべて拝見しております。皆様からのフィードバックはMac Mouse Fix NGの改善に非常に役立っております。貴重なご意見をありがとうございます！"
           }
         },
         "ko" : {
@@ -11308,7 +11308,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Я могу отвечать только изредка, но я читаю все сообщения, и ваши отзывы помогают мне улучшать Mac Mouse Fix. Спасибо за ваши отзывы!"
+            "value" : "Я могу отвечать только изредка, но я читаю все сообщения, и ваши отзывы помогают мне улучшать Mac Mouse Fix NG. Спасибо за ваши отзывы!"
           }
         },
         "tr" : {
@@ -11320,13 +11320,13 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Я відповідаю рідко, але читаю всі повідомлення, і ваші відгуки допомагають мені вдосконалювати Mac Mouse Fix. Дякую за ваш відгук!"
+            "value" : "Я відповідаю рідко, але читаю всі повідомлення, і ваші відгуки допомагають мені вдосконалювати Mac Mouse Fix NG. Дякую за ваш відгук!"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tôi có thể hiếm khi phản hồi, nhưng Tôi đọc tất cả tin nhắn và thông tin phản hồi giúp tôi cải thiện Mac Mouse Fix. \nCảm ơn thông tin phản hồi của bạn! "
+            "value" : "Tôi có thể hiếm khi phản hồi, nhưng Tôi đọc tất cả tin nhắn và thông tin phản hồi giúp tôi cải thiện Mac Mouse Fix NG. \nCảm ơn thông tin phản hồi của bạn! "
           }
         },
         "zh-Hans" : {
@@ -12883,85 +12883,85 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aplikace Mac Mouse Fix **Povolena** pro %1$@\nByla zakázána v Menu&nbsp;Bar&nbsp;%2$@"
+            "value" : "Aplikace Mac Mouse Fix NG **Povolena** pro %1$@\nByla zakázána v Menu&nbsp;Bar&nbsp;%2$@"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix **aktiviert** für %1$@\nEs war in der Menüleiste&nbsp;%2$@ deaktiviert worden"
+            "value" : "Mac Mouse Fix NG **aktiviert** für %1$@\nEs war in der Menüleiste&nbsp;%2$@ deaktiviert worden"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Enabled** Mac Mouse Fix for %1$@\nIt had been disabled from the Menu&nbsp;Bar&nbsp;%2$@"
+            "value" : "**Enabled** Mac Mouse Fix NG for %1$@\nIt had been disabled from the Menu&nbsp;Bar&nbsp;%2$@"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Activado** Mac Mouse Fix para %1$@\nHabía sido desactivado desde la Barra&nbsp;de&nbsp;menús&nbsp;%2$@"
+            "value" : "**Activado** Mac Mouse Fix NG para %1$@\nHabía sido desactivado desde la Barra&nbsp;de&nbsp;menús&nbsp;%2$@"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Mac Mouse Fix **activé** pour %1$@\nIl a été désactivé depuis la barre des menus %2$@"
+            "value" : "Mac Mouse Fix NG **activé** pour %1$@\nIl a été désactivé depuis la barre des menus %2$@"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac Mouse Fix è stato **attivato** per %1$@\nEra stato disattivato dalla barra&nbsp;dei&nbsp;menu&nbsp;%2$@"
+            "value" : "Mac Mouse Fix NG è stato **attivato** per %1$@\nEra stato disattivato dalla barra&nbsp;dei&nbsp;menu&nbsp;%2$@"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@でMac Mouse Fixを**有効**にしました\nメニューバー%2$@から無効に設定されていました"
+            "value" : "%1$@でMac Mouse Fix NGを**有効**にしました\nメニューバー%2$@から無効に設定されていました"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "%1$@에 대한 Mac Mouse Fix 동작이 **다시 활성화**되었습니다.\n이는 사용자에 의해 메뉴 막대 %2$@ 에서 수동으로 비활성화되어있었습니다."
+            "value" : "%1$@에 대한 Mac Mouse Fix NG 동작이 **다시 활성화**되었습니다.\n이는 사용자에 의해 메뉴 막대 %2$@ 에서 수동으로 비활성화되어있었습니다."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Aktivert** Mac Mouse Fix for %1$@\nDen hadde blitt deaktivert fra Menu&nbsp;Bar&nbsp;%2$@"
+            "value" : "**Aktivert** Mac Mouse Fix NG for %1$@\nDen hadde blitt deaktivert fra Menu&nbsp;Bar&nbsp;%2$@"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Habilitado** Mac Mouse Fix para %1$@\nEle foi desabilitado na barra de menu %2$@"
+            "value" : "**Habilitado** Mac Mouse Fix NG para %1$@\nEle foi desabilitado na barra de menu %2$@"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Включён** Mac Mouse Fix для %1$@\nОн был отключён из Строки&nbsp;меню&nbsp;%2$@"
+            "value" : "**Включён** Mac Mouse Fix NG для %1$@\nОн был отключён из Строки&nbsp;меню&nbsp;%2$@"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ için Mac Mouse Fix **etkinleştirildi**\nMenü Bar %2$@ alanından devre dışı bırakılmıştı"
+            "value" : "%1$@ için Mac Mouse Fix NG **etkinleştirildi**\nMenü Bar %2$@ alanından devre dışı bırakılmıştı"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Увімкнено** Mac Mouse Fix для %1$@\nЦе було відключено з меню&nbsp;Bar&nbsp;%2$@"
+            "value" : "**Увімкнено** Mac Mouse Fix NG для %1$@\nЦе було відключено з меню&nbsp;Bar&nbsp;%2$@"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**Đã kích hoạt** Mac Mouse Fix cho %1$@\nNó đã bị tắt từ thanh menu %2$@"
+            "value" : "**Đã kích hoạt** Mac Mouse Fix NG cho %1$@\nNó đã bị tắt từ thanh menu %2$@"
           }
         },
         "zh-Hans" : {
@@ -15122,13 +15122,13 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "⭐️ Děkujeme za zakoupení Mac Mouse Fix!"
+            "value" : "⭐️ Děkujeme za zakoupení Mac Mouse Fix NG!"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "⭐️ Danke, dass du Mac Mouse Fix gekauft hast!"
+            "value" : "⭐️ Danke, dass du Mac Mouse Fix NG gekauft hast!"
           }
         },
         "en" : {
@@ -15140,61 +15140,61 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "⭐️ ¡Gracias por comprar Mac Mouse Fix!"
+            "value" : "⭐️ ¡Gracias por comprar Mac Mouse Fix NG!"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "⭐️ Merci d'avoir acheté Mac Mouse Fix !"
+            "value" : "⭐️ Merci d'avoir acheté Mac Mouse Fix NG !"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "⭐️ Grazie per aver acquistato Mac Mouse Fix!"
+            "value" : "⭐️ Grazie per aver acquistato Mac Mouse Fix NG!"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "⭐️ Mac Mouse Fixをご購入いただき、ありがとうございます！"
+            "value" : "⭐️ Mac Mouse Fix NGをご購入いただき、ありがとうございます！"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "⭐️ Mac Mouse Fix를 구입해주셔서 감사합니다!"
+            "value" : "⭐️ Mac Mouse Fix NG를 구입해주셔서 감사합니다!"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "⭐️ Obrigado por adquirir o Mac Mouse Fix!"
+            "value" : "⭐️ Obrigado por adquirir o Mac Mouse Fix NG!"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "⭐️ Спасибо за покупку Mac Mouse Fix!"
+            "value" : "⭐️ Спасибо за покупку Mac Mouse Fix NG!"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "⭐️ Mac Mouse Fix'i satın aldığınız için teşekkürler!"
+            "value" : "⭐️ Mac Mouse Fix NG'i satın aldığınız için teşekkürler!"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "⭐️ Дякую Тобі за покупку Mac Mouse Fix!"
+            "value" : "⭐️ Дякую Тобі за покупку Mac Mouse Fix NG!"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "⭐️ Cảm ơn bạn đã mua Mac Mouse Fix!"
+            "value" : "⭐️ Cảm ơn bạn đã mua Mac Mouse Fix NG!"
           }
         },
         "zh-Hans" : {
@@ -15223,13 +15223,13 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🙌  Děkujeme za zakoupení Mac Mouse Fix!"
+            "value" : "🙌  Děkujeme za zakoupení Mac Mouse Fix NG!"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🙌 Danke, dass du Mac Mouse Fix gekauft hast!"
+            "value" : "🙌 Danke, dass du Mac Mouse Fix NG gekauft hast!"
           }
         },
         "en" : {
@@ -15241,61 +15241,61 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🙌 ¡Gracias por comprar Mac Mouse Fix!"
+            "value" : "🙌 ¡Gracias por comprar Mac Mouse Fix NG!"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "🌟 Merci d'avoir acheté Mac Mouse Fix !"
+            "value" : "🌟 Merci d'avoir acheté Mac Mouse Fix NG !"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🙌 Grazie per aver acquistato Mac Mouse Fix!"
+            "value" : "🙌 Grazie per aver acquistato Mac Mouse Fix NG!"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🙌 Mac Mouse Fixをご購入いただき、ありがとうございます！"
+            "value" : "🙌 Mac Mouse Fix NGをご購入いただき、ありがとうございます！"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "🌟 Mac Mouse Fix를 결제해주셔서 감사합니다!"
+            "value" : "🌟 Mac Mouse Fix NG를 결제해주셔서 감사합니다!"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🌟 Obrigado por adquirir o Mac Mouse Fix!"
+            "value" : "🌟 Obrigado por adquirir o Mac Mouse Fix NG!"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🙌 Спасибо за покупку Mac Mouse Fix!"
+            "value" : "🙌 Спасибо за покупку Mac Mouse Fix NG!"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🌟 Mac Mouse Fix'i satın aldığınız için teşekkürler!"
+            "value" : "🌟 Mac Mouse Fix NG'i satın aldığınız için teşekkürler!"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🙌 Дякую за покупку Mac Mouse Fix!"
+            "value" : "🙌 Дякую за покупку Mac Mouse Fix NG!"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🙌 Cảm ơn bạn đã mua Mac Mouse Fix!"
+            "value" : "🙌 Cảm ơn bạn đã mua Mac Mouse Fix NG!"
           }
         },
         "zh-Hans" : {
@@ -15324,79 +15324,79 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🚀  Děkujeme za podporu Mac Mouse Fix!"
+            "value" : "🚀  Děkujeme za podporu Mac Mouse Fix NG!"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🚀 Danke, dass du Mac Mouse Fix unterstützt!"
+            "value" : "🚀 Danke, dass du Mac Mouse Fix NG unterstützt!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🚀 Thanks for supporting Mac Mouse Fix!"
+            "value" : "🚀 Thanks for supporting Mac Mouse Fix NG!"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🚀 ¡Gracias por apoyar Mac Mouse Fix!"
+            "value" : "🚀 ¡Gracias por apoyar Mac Mouse Fix NG!"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🚀 Merci de soutenir Mac Mouse Fix !"
+            "value" : "🚀 Merci de soutenir Mac Mouse Fix NG !"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🚀 Grazie per il tuo supporto a Mac Mouse Fix!"
+            "value" : "🚀 Grazie per il tuo supporto a Mac Mouse Fix NG!"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🚀 Mac Mouse Fixを応援していただき、ありがとうございます！"
+            "value" : "🚀 Mac Mouse Fix NGを応援していただき、ありがとうございます！"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🚀 Mac Mouse Fix를 지원해주셔서 감사합니다!"
+            "value" : "🚀 Mac Mouse Fix NG를 지원해주셔서 감사합니다!"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🚀 Obrigado por apoiar o Mac Mouse Fix!"
+            "value" : "🚀 Obrigado por apoiar o Mac Mouse Fix NG!"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🚀 Спасибо за поддержку Mac Mouse Fix!"
+            "value" : "🚀 Спасибо за поддержку Mac Mouse Fix NG!"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🚀 Mac Mouse Fix'i desteklediğiniz için teşekkürler!"
+            "value" : "🚀 Mac Mouse Fix NG'i desteklediğiniz için teşekkürler!"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🚀 Дякую за підтримку Mac Mouse Fix!"
+            "value" : "🚀 Дякую за підтримку Mac Mouse Fix NG!"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🚀 Cảm ơn bạn đã ủng hộ Mac Mouse Fix!"
+            "value" : "🚀 Cảm ơn bạn đã ủng hộ Mac Mouse Fix NG!"
           }
         },
         "zh-Hans" : {
@@ -15425,79 +15425,79 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🌟 Děkujeme za zakoupení Mac Mouse Fix!"
+            "value" : "🌟 Děkujeme za zakoupení Mac Mouse Fix NG!"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🌟 Dankeschön, dass du Mac Mouse Fix gekauft hast!"
+            "value" : "🌟 Dankeschön, dass du Mac Mouse Fix NG gekauft hast!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🌟 Thanks for purchasing Mac Mouse Fix!"
+            "value" : "🌟 Thanks for purchasing Mac Mouse Fix NG!"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🌟 ¡Gracias por comprar Mac Mouse Fix!"
+            "value" : "🌟 ¡Gracias por comprar Mac Mouse Fix NG!"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "🙌 Merci d'avoir acheté Mac Mouse Fix !"
+            "value" : "🙌 Merci d'avoir acheté Mac Mouse Fix NG !"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🌟 Grazie per l'acquisto di Mac Mouse Fix!"
+            "value" : "🌟 Grazie per l'acquisto di Mac Mouse Fix NG!"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🌟 Mac Mouse Fixをご購入いただき、ありがとうございます！"
+            "value" : "🌟 Mac Mouse Fix NGをご購入いただき、ありがとうございます！"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "🙌 Mac Mouse Fix를 구입해주셔서 감사합니다!"
+            "value" : "🙌 Mac Mouse Fix NG를 구입해주셔서 감사합니다!"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🙌 Obrigado por adquirir o Mac Mouse Fix!"
+            "value" : "🙌 Obrigado por adquirir o Mac Mouse Fix NG!"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🌟 Спасибо за покупку Mac Mouse Fix!"
+            "value" : "🌟 Спасибо за покупку Mac Mouse Fix NG!"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🙌 Mac Mouse Fix'i satın aldığınız için teşekkürler!"
+            "value" : "🙌 Mac Mouse Fix NG'i satın aldığınız için teşekkürler!"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🌟 Дякую за придбання Mac Mouse Fix!"
+            "value" : "🌟 Дякую за придбання Mac Mouse Fix NG!"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "🌟 Cảm ơn bạn đã mua Mac Mouse Fix!"
+            "value" : "🌟 Cảm ơn bạn đã mua Mac Mouse Fix NG!"
           }
         },
         "zh-Hans" : {
@@ -16613,13 +16613,13 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ahoj! Mac Mouse Fix používáš už **%1$d dní**. Doufám, že se ti líbí!\n\nPokud chceš Mac Mouse Fix používat i nadále, můžeš si ho [koupit hned](%2$@)."
+            "value" : "Ahoj! Mac Mouse Fix NG používáš už **%1$d dní**. Doufám, že se ti líbí!\n\nPokud chceš Mac Mouse Fix NG používat i nadále, můžeš si ho [koupit hned](%2$@)."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hi! Du verwendest Mac Mouse Fix jetzt seit **%1$d Tagen**. Ich hoffe, es gefällt dir!\n\nWenn du Mac Mouse Fix auch weiter verwenden willst, kannst du es dir [jetzt kaufen](%2$@)."
+            "value" : "Hi! Du verwendest Mac Mouse Fix NG jetzt seit **%1$d Tagen**. Ich hoffe, es gefällt dir!\n\nWenn du Mac Mouse Fix NG auch weiter verwenden willst, kannst du es dir [jetzt kaufen](%2$@)."
           }
         },
         "en" : {
@@ -16631,61 +16631,61 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¡Hola\\! Llevas usando Mac Mouse Fix durante **%1$d días**. ¡Espero que lo estés disfrutando\\!\n\nSi quieres seguir usando Mac Mouse Fix, puedes [comprarlo ahora](%2$@)."
+            "value" : "¡Hola\\! Llevas usando Mac Mouse Fix NG durante **%1$d días**. ¡Espero que lo estés disfrutando\\!\n\nSi quieres seguir usando Mac Mouse Fix NG, puedes [comprarlo ahora](%2$@)."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Bonjour ! Vous avez utilisé Mac Mouse Fix pendant maintenant **%1$d jours**. J'espère que vous l'appréciez !\n\nSi vous voulez continuer d'utiliser Mac Mouse Fix, vous pouvez [l'acheter maintenant](%2$@)."
+            "value" : "Bonjour ! Vous avez utilisé Mac Mouse Fix NG pendant maintenant **%1$d jours**. J'espère que vous l'appréciez !\n\nSi vous voulez continuer d'utiliser Mac Mouse Fix NG, vous pouvez [l'acheter maintenant](%2$@)."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ciao! Ormai usi Mac Mouse Fix da **%1$d giorni**. Spero che ti stia piacendo!\n\nSe vuoi continuare a usare Mac Mouse Fix, puoi [acquistarlo ora](%2$@)."
+            "value" : "Ciao! Ormai usi Mac Mouse Fix NG da **%1$d giorni**. Spero che ti stia piacendo!\n\nSe vuoi continuare a usare Mac Mouse Fix NG, puoi [acquistarlo ora](%2$@)."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "こんにちは！Mac Mouse Fixを使い始めて、今日で**%1$d日**になりますね。快適にお使いいただけていますか？\n\n引き続きMac Mouse Fixをご利用いただくには、[こちらからご購入](%2$@)いただけます"
+            "value" : "こんにちは！Mac Mouse Fix NGを使い始めて、今日で**%1$d日**になりますね。快適にお使いいただけていますか？\n\n引き続きMac Mouse Fix NGをご利用いただくには、[こちらからご購入](%2$@)いただけます"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "안녕하세요! Mac Mouse Fix를 **%1$d일째** 사용 중입니다.\n\n사용해주셔서 감사드리며, Mac Mouse Fix를 계속 사용하시려면 [구입](%2$@)해주십시오."
+            "value" : "안녕하세요! Mac Mouse Fix NG를 **%1$d일째** 사용 중입니다.\n\n사용해주셔서 감사드리며, Mac Mouse Fix NG를 계속 사용하시려면 [구입](%2$@)해주십시오."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Olá! Você está usando o Mac Mouse Fix há **%1$d dias**. Espero que você esteja gostando!\n\nSe quiser continuar usando o Mac Mouse Fix, você pode [comprá-lo agora](%2$@)."
+            "value" : "Olá! Você está usando o Mac Mouse Fix NG há **%1$d dias**. Espero que você esteja gostando!\n\nSe quiser continuar usando o Mac Mouse Fix NG, você pode [comprá-lo agora](%2$@)."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Привет! Вы используете Mac Mouse Fix уже **%1$d дней**. Надеюсь, вам нравится!\n\nЕсли вы хотите продолжать использовать Mac Mouse Fix, вы можете [купить его сейчас](%2$@)."
+            "value" : "Привет! Вы используете Mac Mouse Fix NG уже **%1$d дней**. Надеюсь, вам нравится!\n\nЕсли вы хотите продолжать использовать Mac Mouse Fix NG, вы можете [купить его сейчас](%2$@)."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Merhaba! **%1$d gündür** Mac Mouse Fix kullanıyorsunuz. Umarım keyif alıyorsunuzdur!\n\nMac Mouse Fix'i kullanmaya devam etmek istiyorsanız, [şimdi satın alabilirsiniz](%2$@)."
+            "value" : "Merhaba! **%1$d gündür** Mac Mouse Fix NG kullanıyorsunuz. Umarım keyif alıyorsunuzdur!\n\nMac Mouse Fix NG'i kullanmaya devam etmek istiyorsanız, [şimdi satın alabilirsiniz](%2$@)."
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вітаємо! Ви користуєтеся Mac Mouse Fix уже **%1$d дн.** Сподіваємося, вам подобається!\n\nЯкщо ви хочете продовжувати користуватися Mac Mouse Fix, ви можете [купити його зараз](%2$@)."
+            "value" : "Вітаємо! Ви користуєтеся Mac Mouse Fix NG уже **%1$d дн.** Сподіваємося, вам подобається!\n\nЯкщо ви хочете продовжувати користуватися Mac Mouse Fix NG, ви можете [купити його зараз](%2$@)."
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Xin chào! Bạn đã sử dụng Mac Mouse Fix được **%1$d ngày**. Mong rằng bạn sẽ thích nó!\n\nNếu bạn muốn tiếp tục sử dụng Mac Mouse Fix, bạn có thể [mua ngay](%2$@)."
+            "value" : "Xin chào! Bạn đã sử dụng Mac Mouse Fix NG được **%1$d ngày**. Mong rằng bạn sẽ thích nó!\n\nNếu bạn muốn tiếp tục sử dụng Mac Mouse Fix NG, bạn có thể [mua ngay](%2$@)."
           }
         },
         "zh-Hans" : {

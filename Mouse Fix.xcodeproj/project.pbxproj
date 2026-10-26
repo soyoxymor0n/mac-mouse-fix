@@ -136,7 +136,7 @@
 		4F8CE7012617738A00D70A76 /* AppTranslocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8CE6FF2617738A00D70A76 /* AppTranslocationManager.m */; };
 		4F8CF95728686C0100BF5E55 /* PolynomialRegression.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8CF94328686C0100BF5E55 /* PolynomialRegression.m */; };
 		4F8CF95B28686EA200BF5E55 /* DoublesMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8CF94528686C0100BF5E55 /* DoublesMatrix.m */; };
-		4F8D2C5928A035EA0060F76F /* Mac Mouse Fix Helper.app in Copy MMF Helper */ = {isa = PBXBuildFile; fileRef = 4FCECD8021092354001F1078 /* Mac Mouse Fix Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4F8D2C5928A035EA0060F76F /* Mac Mouse Fix NG Helper.app in Copy MMF Helper */ = {isa = PBXBuildFile; fileRef = 4FCECD8021092354001F1078 /* Mac Mouse Fix NG Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4F909CF028A0C3B7009349A2 /* MainAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F909CEF28A0C3B6009349A2 /* MainAppState.swift */; };
 		4F909D2128A0C3D2009349A2 /* GeneralTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F909CF628A0C3D2009349A2 /* GeneralTabController.swift */; };
 		4F909D2228A0C3D2009349A2 /* ScrollTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F909CF728A0C3D2009349A2 /* ScrollTabController.swift */; };
@@ -607,7 +607,7 @@
 			dstPath = Contents/Library/LoginItems;
 			dstSubfolderSpec = 1;
 			files = (
-				4F8D2C5928A035EA0060F76F /* Mac Mouse Fix Helper.app in Copy MMF Helper */,
+				4F8D2C5928A035EA0060F76F /* Mac Mouse Fix NG Helper.app in Copy MMF Helper */,
 			);
 			name = "Copy MMF Helper";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -862,7 +862,7 @@
 		4F92A71D260F667F00529D1F /* KeyCaptureView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyCaptureView.m; sourceTree = "<group>"; };
 		4F92A72B260F6C7800529D1F /* NSView+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSView+Additions.h"; sourceTree = "<group>"; };
 		4F92A72C260F6C7800529D1F /* NSView+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSView+Additions.m"; sourceTree = "<group>"; };
-		4F94F5EE25E5EC2500D9F24A /* Mac Mouse Fix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mac Mouse Fix.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F94F5EE25E5EC2500D9F24A /* Mac Mouse Fix NG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mac Mouse Fix NG.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F96060E27B4F92F004D6F6D /* TouchAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchAnimator.swift; sourceTree = "<group>"; };
 		4F97DFFF298732E500012BAC /* LocalizationUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalizationUtility.h; sourceTree = "<group>"; };
 		4F97E000298732E500012BAC /* LocalizationUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalizationUtility.m; sourceTree = "<group>"; };
@@ -984,7 +984,7 @@
 		4FCB260C29312A020066EE56 /* ButtonInputReceiver_old.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonInputReceiver_old.m; sourceTree = "<group>"; };
 		4FCC03322757A50C002E5A57 /* ScreenDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenDrawer.swift; sourceTree = "<group>"; };
 		4FCC354E2C629F0F009E1908 /* CoolSFSymbols.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CoolSFSymbols.otf; sourceTree = "<group>"; };
-		4FCECD8021092354001F1078 /* Mac Mouse Fix Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mac Mouse Fix Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FCECD8021092354001F1078 /* Mac Mouse Fix NG Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mac Mouse Fix NG Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FCEDC87292D6A8F00E7DA2A /* HashablePair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashablePair.swift; sourceTree = "<group>"; };
 		4FCEDC91292D765600E7DA2A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4FD031572D5927DE000EA331 /* MFDeepCopyCoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFDeepCopyCoder.h; sourceTree = "<group>"; };
@@ -2181,8 +2181,8 @@
 		4FCECD8121092354001F1078 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4FCECD8021092354001F1078 /* Mac Mouse Fix Helper.app */,
-				4F94F5EE25E5EC2500D9F24A /* Mac Mouse Fix.app */,
+				4FCECD8021092354001F1078 /* Mac Mouse Fix NG Helper.app */,
+				4F94F5EE25E5EC2500D9F24A /* Mac Mouse Fix NG.app */,
 				4F8B01A92C348A3A00F3AF8D /* Localization Screenshot Taker.xctest */,
 				4F1667C92C6A6717009E4924 /* XCStringsDummyApp.app */,
 				4FDB941A2FE743AA001E05CB /* Tests.app */,
@@ -3022,7 +3022,7 @@
 			packageProductDependencies = (
 			);
 			productName = "Mac Mouse Fix";
-			productReference = 4F94F5EE25E5EC2500D9F24A /* Mac Mouse Fix.app */;
+			productReference = 4F94F5EE25E5EC2500D9F24A /* Mac Mouse Fix NG.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4FCECD7F21092354001F1078 /* Mac Mouse Fix Helper */ = {
@@ -3043,7 +3043,7 @@
 			packageProductDependencies = (
 			);
 			productName = "Mouse Remap Helper";
-			productReference = 4FCECD8021092354001F1078 /* Mac Mouse Fix Helper.app */;
+			productReference = 4FCECD8021092354001F1078 /* Mac Mouse Fix NG Helper.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4FDB94192FE743AA001E05CB /* Tests */ = {
@@ -4086,7 +4086,8 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.soyoxymor0n.mac-mouse-fix";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = Mac_Mouse_Fix;
+				PRODUCT_NAME = "Mac Mouse Fix NG";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) IS_MAIN_APP";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportFiles/Mac Mouse Fix-Bridging-Header.h";
@@ -4128,7 +4129,8 @@
 				MARKETING_VERSION = 3.1.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.soyoxymor0n.mac-mouse-fix";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = Mac_Mouse_Fix;
+				PRODUCT_NAME = "Mac Mouse Fix NG";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) IS_MAIN_APP";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/SupportFiles/Mac Mouse Fix-Bridging-Header.h";
@@ -4363,7 +4365,8 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.soyoxymor0n.mac-mouse-fix.helper";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = Mac_Mouse_Fix_Helper;
+				PRODUCT_NAME = "Mac Mouse Fix NG Helper";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) IS_HELPER";
@@ -4408,7 +4411,8 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.soyoxymor0n.mac-mouse-fix.helper";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = Mac_Mouse_Fix_Helper;
+				PRODUCT_NAME = "Mac Mouse Fix NG Helper";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) IS_HELPER";

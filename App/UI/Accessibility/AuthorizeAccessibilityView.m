@@ -68,7 +68,7 @@ AuthorizeAccessibilityView *_accViewController;
             @"accessibility.settings-link.pre-ventura",
             @"Will be used in a context like this: \n"
             "   1. Open 'Security & Privacy' Preferences\n"
-            "   2. Switch on 'Mac Mouse Fix Helper'\n"
+            "   2. Switch on 'Mac Mouse Fix NG Helper'\n"
             "\n"
             "Background info: 'System Preferences' were renamed to 'System Settings' in macOS Ventura. The translation for Ventura and later is defined by 46z-Nd-nh4.title and other entries in AuthorizeAccessibilityView. This here is the string for earlier versions."
         );

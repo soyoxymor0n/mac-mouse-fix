@@ -42,7 +42,7 @@
          "OnDemand" = false;
          "LastExitStatus" = 0;
          "PID" = 709;
-         "Program" = "/Applications/Mac Mouse Fix.app/Contents/Library/LoginItems/Mac Mouse Fix Helper.app/Contents/MacOS/Mac Mouse Fix Helper";
+         "Program" = "/Applications/Mac Mouse Fix NG.app/Contents/Library/LoginItems/Mac Mouse Fix NG Helper.app/Contents/MacOS/Mac Mouse Fix NG Helper";
          "PerJobMachServices" = {
              "com.apple.tsm.portname" = mach-port-object;
              "com.apple.axserver" = mach-port-object;

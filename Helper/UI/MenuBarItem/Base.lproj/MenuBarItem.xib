@@ -56,7 +56,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="fRU-JH-yco"/>
-                <menuItem title="Open Mac Mouse Fix..." id="lb0-HS-5Kv">
+                <menuItem title="Open Mac Mouse Fix NG..." id="lb0-HS-5Kv">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="openMMF:" target="-2" id="8UO-6A-hAp"/>

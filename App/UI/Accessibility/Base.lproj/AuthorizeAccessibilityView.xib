@@ -20,7 +20,7 @@
             <subviews>
                 <textField focusRingType="none" horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="3VE-AW-Zcd">
                     <rect key="frame" x="77" y="171" width="289" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Grant Accessibility Access to Mac Mouse Fix" id="OSk-Cl-izW">
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Grant Accessibility Access to Mac Mouse Fix NG" id="OSk-Cl-izW">
                         <font key="font" metaFont="systemSemibold" size="13"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -45,14 +45,14 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         <attributedString key="userComments">
                             <fragment>
-                                <string key="content">NOTE: This is the prefix for the *second* list item, in the list of steps that users can take to 'Grant Accessibility Access to Mac Mouse Fix'.</string>
+                                <string key="content">NOTE: This is the prefix for the *second* list item, in the list of steps that users can take to 'Grant Accessibility Access to Mac Mouse Fix NG'.</string>
                             </fragment>
                         </attributedString>
                     </textFieldCell>
                 </textField>
                 <textField focusRingType="none" horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="9kK-bF-abK">
                     <rect key="frame" x="115" y="74" width="213" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Switch on 'Mac Mouse Fix Helper'" id="46z-Nd-nh4">
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Switch on 'Mac Mouse Fix NG Helper'" id="46z-Nd-nh4">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -62,7 +62,7 @@
                     <rect key="frame" x="91" y="136" width="261" height="28"/>
                     <textFieldCell key="cell" alignment="center" id="0lz-be-kpl">
                         <font key="font" metaFont="message" size="11"/>
-                        <string key="title">Accessibility Access allows Mac Mouse Fix to
+                        <string key="title">Accessibility Access allows Mac Mouse Fix NG to
 intercept signals from your mouse and keyboard</string>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -79,7 +79,7 @@ intercept signals from your mouse and keyboard</string>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         <attributedString key="userComments">
                             <fragment>
-                                <string key="content">NOTE: This is the prefix for the *first* list item, in the list of steps that users can take to 'Grant Accessibility Access to Mac Mouse Fix'.</string>
+                                <string key="content">NOTE: This is the prefix for the *first* list item, in the list of steps that users can take to 'Grant Accessibility Access to Mac Mouse Fix NG'.</string>
                             </fragment>
                         </attributedString>
                     </textFieldCell>
@@ -97,7 +97,7 @@ intercept signals from your mouse and keyboard</string>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="KeyIcon" id="lx6-2v-x2x"/>
                         </imageView>
-                        <imageView toolTip="Hold Shift (⇧) and click this icon to reveal 'Mac Mouse Fix Helper.app' in Finder" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fK8-8z-KQn" customClass="ClickableImageView">
+                        <imageView toolTip="Hold Shift (⇧) and click this icon to reveal 'Mac Mouse Fix NG Helper.app' in Finder" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fK8-8z-KQn" customClass="ClickableImageView">
                             <rect key="frame" x="18" y="-24" width="79" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIconRoundFromHelper-deleteThis" id="5dq-HX-ncI"/>

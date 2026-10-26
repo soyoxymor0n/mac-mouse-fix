@@ -130,7 +130,7 @@
                 @"Note: These button names will be inserted into other \"capture-toast.buttons.[...]\" strings.\n"
                 "\n"
                 "Example: \n"
-                "Middle Button and Button 4 are now captured by Mac Mouse Fix."
+                "Middle Button and Button 4 are now captured by Mac Mouse Fix NG."
             ),
             @-1: MFLocalizedString(@"capture-toast.button-name.numbered",   @""
                 "Note: For visual consistency, capitalization of the these button-name strings should probably follow the capitalization of the trigger.substring.button-name.[...] strings.\n"
@@ -314,7 +314,7 @@ static NSAttributedString *getStringForSystemDefinedEventOrSymbolicHotkey(int ty
     for (NSNumber *typeNS in map) if (map[typeNS] != [NSNull null]) {
         NSString *fallbackUnicode = map[typeNS][0];
         BOOL fallbackCharIsSupported = [CoolSFSymbolsFont symbolCharacterIsDisplayable: fallbackUnicode];
-        mfassert(fallbackCharIsSupported, @"Error: Fallback character %@ for SFSymbol %@ is not supported by our CoolSFSymbols font. It will not display correctly unless the user has a font installed that can display SF Symbols. To fix this, generate a new font using the createsfsymbols.py script and replace the CoolSFSymbols.otf font included in the Mac Mouse Fix bundle", fallbackUnicode, map[typeNS][1]);
+        mfassert(fallbackCharIsSupported, @"Error: Fallback character %@ for SFSymbol %@ is not supported by our CoolSFSymbols font. It will not display correctly unless the user has a font installed that can display SF Symbols. To fix this, generate a new font using the createsfsymbols.py script and replace the CoolSFSymbols.otf font included in the Mac Mouse Fix NG bundle", fallbackUnicode, map[typeNS][1]);
     }
     
     /// Validate

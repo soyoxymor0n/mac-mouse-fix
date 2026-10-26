@@ -323,9 +323,10 @@ static NSArray *getOneShotEffectsTable(NSDictionary *rowDict) {
     /// Insert entry for keyboard shortcut effect or systemDefined effect
     
     BOOL isKeyShortcut = [selectedEffect[kMFActionDictKeyType] isEqual:kMFActionDictTypeKeyboardShortcut];
+    BOOL isKeySequence = [selectedEffect[kMFActionDictKeyType] isEqual:kMFActionDictTypeKeySequence];
     BOOL isSystemEvent = [selectedEffect[kMFActionDictKeyType] isEqual:kMFActionDictTypeSystemDefinedEvent];
     
-    if (isKeyShortcut || isSystemEvent) {
+    if (isKeyShortcut || isKeySequence || isSystemEvent) {
         
         /// Get index for new entry (right after keyCaptureEntry)
         NSUInteger shortcutIndex = keyCaptureIndex + 1;
@@ -411,6 +412,24 @@ static NSArray *getOneShotEffectsTable(NSDictionary *rowDict) {
 /// Helper for getEffectsTable
 
 static NSAttributedString *getShortcutString(NSDictionary *effectDict, BOOL isKeyShortcut) {
+    
+    if ([effectDict[kMFActionDictKeyType] isEqual:kMFActionDictTypeKeySequence]) {
+        
+        /// Steps are shown one after another, separated by " then ", in the same symbols as a single shortcut
+        NSMutableAttributedString *result = [[NSMutableAttributedString alloc] init];
+        NSArray *steps = effectDict[kMFActionDictKeySequenceVariantSteps];
+        NSDictionary *font = @{ NSFontAttributeName: [NSFont systemFontOfSize:NSFont.systemFontSize] };
+        for (NSUInteger i = 0; i < steps.count; i++) {
+            NSDictionary *step = steps[i];
+            CGKeyCode keyCode = ((NSNumber *)step[kMFActionDictKeyKeyboardShortcutVariantKeycode]).unsignedShortValue;
+            CGEventFlags flags = ((NSNumber *)step[kMFActionDictKeyKeyboardShortcutVariantModifierFlags]).unsignedLongValue;
+            if (i > 0) {
+                [result appendAttributedString:[[NSAttributedString alloc] initWithString:@" then " attributes:font]];
+            }
+            [result appendAttributedString:[UIStrings getStringForKeyCode:keyCode flags:flags font:[NSFont systemFontOfSize:NSFont.systemFontSize]]];
+        }
+        return result;
+    }
     
     if (isKeyShortcut) {
         
