@@ -402,9 +402,9 @@ import Foundation
         appTabStrip = strip
     }
 
-    /// Adds the preset banner between the add field and the table. It is shown only in an empty app tab that has a preset.
+    /// Adds the preset banner at the top of the add field. It is shown only in an empty app tab that has a preset.
+    ///     (The area between the add field and the table is too tight for it.)
     private func installPresetBanner() {
-        /// Inside the add field, at its top. The area under the caption and the table is too tight for it.
         guard let container = addField.contentView else { return }
         let banner = AppPresetBannerView()
         container.addSubview(banner)
