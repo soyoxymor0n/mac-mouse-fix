@@ -2961,9 +2961,9 @@
 		2A9756EC51734881AE7D8E04 /* AppTabs */ = {
 			isa = PBXGroup;
 			children = (
-			20E8C33CF6CA6F718851FA2B /* AppPresets.swift */,
-			5F5705431BE8730523BDB1BC /* AppPresetBannerView.swift */,
-			3C9E0A7F1D2B4E6A8F0C1B2D /* AppPresetReviewController.swift */,
+				20E8C33CF6CA6F718851FA2B /* AppPresets.swift */,
+				5F5705431BE8730523BDB1BC /* AppPresetBannerView.swift */,
+				3C9E0A7F1D2B4E6A8F0C1B2D /* AppPresetReviewController.swift */,
 				1A74030334B741C66981FA7B /* AppTabs.swift */,
 				1FF3D217C24A16836390C3E5 /* AppTabStripView.swift */,
 				995EBBA4FD8D2B6E675A5FA7 /* AppTabPicker.swift */,
