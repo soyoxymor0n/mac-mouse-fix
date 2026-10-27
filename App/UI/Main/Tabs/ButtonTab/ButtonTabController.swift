@@ -153,7 +153,7 @@ import Foundation
                     /// Update remaps
                     
                     /// Set config
-                    self.replaceRows(forScope: nil, with: (defaultMap as? [Any]) ?? [])
+                    ButtonTabController.replaceRows(forScope: nil, with: (defaultMap as? [Any]) ?? [])
                     
                     /// Reload table
                     mfrun(CFRunLoopGetMain()) {
@@ -436,7 +436,7 @@ import Foundation
             guard let self else { return }
             if dontSuggestAgain { AppPreset.setDismissed(app) }
             if !rows.isEmpty {
-                self.replaceRows(forScope: app, with: rows)
+                ButtonTabController.replaceRows(forScope: app, with: rows)
                 self.tableController.reloadAll()
             }
             self.updatePresetBanner()
@@ -517,7 +517,7 @@ import Foundation
 
     private func removeAppTab(_ app: String) {
         AppTabs.save(AppTabs.allBundleIDs().filter { $0 != app })
-        replaceRows(forScope: app, with: [])
+        ButtonTabController.replaceRows(forScope: app, with: [])
         refreshAppTabStrip()
         if scopeApp == app {
             selectScope(nil)
@@ -539,14 +539,14 @@ import Foundation
         guard let window = MainAppState.shared.window else { return }
         alert.beginSheetModal(for: window) { response in
             if response == .alertFirstButtonReturn {
-                self.replaceRows(forScope: app, with: [])
+                ButtonTabController.replaceRows(forScope: app, with: [])
                 self.tableController.reloadAll()
             }
         }
     }
 
     /// Replaces the rows of one scope in config and writes it. nil is the global scope. The other scopes keep their rows.
-    private func replaceRows(forScope app: String?, with rows: [Any]) {
+    private static func replaceRows(forScope app: String?, with rows: [Any]) {
         let remaps = RemapScope.remapsReplacingScope(app, withRows: rows, inRemaps: config("Remaps") as? [Any])
         setConfig("Remaps", remaps as NSArray)
         commitConfig()
@@ -571,15 +571,15 @@ import Foundation
             let (_, _, bestPresetMatch) = MessagePortUtility.shared.getActiveDeviceInfo() ?? (nil, nil, nil)
             
             /// This is copy-pasted from `restoreDefaults()`
+            ///     Only the global rows are compared and replaced. Rows of app tabs are kept.
             
-            let currentMap = config("Remaps")
+            let currentMap = RemapScope.rows(forScope: nil, inRemaps: config("Remaps") as? [Any]) as NSArray
             let defaultMap = config(bestPresetMatch == 3 ? "Constants.defaultRemaps.threeButtons" : "Constants.defaultRemaps.fiveButtons")
             
             if (currentMap != defaultMap) {
                 
                 /// Set config
-                setConfig("Remaps", defaultMap!)
-                commitConfig()
+                ButtonTabController.replaceRows(forScope: nil, with: (defaultMap as? [Any]) ?? [])
                 
                 /// Reload table
                 /// Note: It feels a bit hacky to call `updateColumnWidths()` here. Maybe this should be handled automatically inside the remapTable code.
