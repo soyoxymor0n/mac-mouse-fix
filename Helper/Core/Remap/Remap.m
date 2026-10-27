@@ -66,6 +66,12 @@ static NSDictionary *_remaps;
     return _remaps;
 }
 
+static NSSet<NSString *> *_appsWithRemaps = nil;
+
++ (BOOL)hasRemapsForApp:(NSString *)bundleID {
+    return [_appsWithRemaps containsObject:bundleID];
+}
+
 + (void)setRemaps:(NSDictionary *)remapsDict {
     
     /// This method is private. It's used by `reload` and `enableAddMode`.
@@ -85,8 +91,18 @@ static NSDictionary *_remaps;
         
         /// Reset cache
         [_swizzleCache removeAllObjects];
-        
+
+        /// Find the apps that have app-specific remaps
+        NSMutableSet *apps = [NSMutableSet set];
+        for (NSDictionary *precond in _remaps) {
+            NSString *app = precond[kMFModificationPreconditionKeyApp];
+            if (app != nil) [apps addObject:app];
+        }
+        _appsWithRemaps = apps;
+
         /// Notify
+        ///     Modifiers needs to update the active app before SwitchMaster reads the active modifiers.
+        [Modifiers handleRemapsChanged];
         //[ReactiveRemaps.shared handleRemapsDidChange];
         [SwitchMaster.shared remapsChangedWithRemaps:_remaps];
         [RemapsAnalyzer reload];

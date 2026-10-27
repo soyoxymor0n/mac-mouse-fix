@@ -114,24 +114,10 @@ static NSDictionary *_Nullable subsetSwizzler(NSDictionary *remaps, NSDictionary
     ///     Then, for each trigger-specific precond array, it takes all the modification dicts of each precond and overrides them into each other in the order of their precond size, from small to large
     /// I'm too lazy and stupid to describe why all this abstract stuff makes sense, but it leads the button and keyboard modifiers to always do the intuitive thing that you expect them to!
     
-    /// Ignore the active app, if no remap is specific to it
-    ///     The active modifiers always contain the frontmost app. Without this, the simple case below would never apply.
-
-    NSString *activeApp = activeModifiers[kMFModificationPreconditionKeyApp];
-    if (activeApp != nil) {
-        BOOL appHasRemaps = NO;
-        for (NSDictionary *precond in remaps.allKeys) {
-            if ([precond[kMFModificationPreconditionKeyApp] isEqual:activeApp]) {
-                appHasRemaps = YES;
-                break;
-            }
-        }
-        if (!appHasRemaps) {
-            NSMutableDictionary *activeModifiersWithoutApp = activeModifiers.mutableCopy;
-            [activeModifiersWithoutApp removeObjectForKey:kMFModificationPreconditionKeyApp];
-            activeModifiers = activeModifiersWithoutApp;
-        }
-    }
+    /// On app-specific remaps:
+    ///     The active modifiers only contain the frontmost app while some remap is specific to that app. (See `updateAppModifier()` in Modifiers.m)
+    ///     Preconds of different apps never match at the same time (See `isSubMod()`). So there are at most two layers: The global preconds, and the preconds of the frontmost app.
+    ///     Each layer is filtered like before (See `internalSubSetsFilteredOut()`), and the app's layer is applied on top of the global one (See `appSpecificity` below).
 
     /// Treat simple case separately for optimization
     
