@@ -1379,7 +1379,6 @@
                 @{ @"label": @"Mute/unmute audio", @"symbols": @"⌘⇧A", @"steps": @[@[@0, @1179648]] },
                 @{ @"label": @"Mute all except host", @"symbols": @"⌘⌃M", @"steps": @[@[@46, @1310720]] },
                 @{ @"label": @"Unmute all except host", @"symbols": @"⌘⌃U", @"steps": @[@[@32, @1310720]] },
-                @{ @"label": @"Temporarily unmute (hold)", @"symbols": @"Space", @"steps": @[@[@49, @0]] },
                 @{ @"label": @"Start/stop video", @"symbols": @"⌘⇧V", @"steps": @[@[@9, @1179648]] },
                 @{ @"label": @"Switch camera", @"symbols": @"⌘⇧N", @"steps": @[@[@45, @1179648]] },
                 @{ @"label": @"Start/stop screen share", @"symbols": @"⌘⇧S", @"steps": @[@[@1, @1179648]] },

@@ -34,12 +34,15 @@ BUNDLE_OVERRIDES = {
 # step (mute, camera, raise hand, back, forward, tab, new tab, play, undo, and similar). Destructive wording always excludes.
 MOUSE_WORDS = re.compile(r"\b(back|forward|tab|reload|refresh|mute|unmute|camera|video|share|record|raise|hand|search|next|previous|play|pause|undo|redo|copy|paste|screenshot|zoom in|zoom out|new tab|new window|mission control|enclosing|parent folder|toggle|reaction)\b", re.I)
 DESTRUCTIVE_WORDS = re.compile(r"\b(delete|remove|quit|log ?out|sign ?out|erase|empty|force|close all|purchase|unsubscribe|uninstall)\b", re.I)
+HOLD_WORDS = re.compile(r"\(hold\)|\bhold down\b|\bwhile holding\b", re.I)
 
 
 def mouse_suitable(row):
     action = row.get("action", "")
     if DESTRUCTIVE_WORDS.search(action) or row.get("destructive"):
         return False
+    if HOLD_WORDS.search(action):
+        return False  # a remap effect presses and releases the keys at once, so it can't hold a key down
     return bool(row.get("mouseSuitable")) or bool(MOUSE_WORDS.search(action))
 
 
