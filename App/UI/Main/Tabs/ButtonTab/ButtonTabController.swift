@@ -287,6 +287,10 @@ import Foundation
             /// Get info
             ///
             
+            /// Only in the global tab
+            ///     The popover is about the default global rows, and "Restore Defaults" in an app tab deletes that app's rows instead.
+            guard self.scopeApp == nil else { return }
+            
             /// Get device info
             guard let (deviceName, nOfButtons, _) = MessagePortUtility.shared.getActiveDeviceInfo() else { return }
             
