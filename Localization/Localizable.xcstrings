@@ -318,6 +318,7 @@
     },
     "app-presets.action.chrome-back" : {
       "comment" : "Action name in the review sheet of the Google Chrome preset. Goes back in the browsing history.",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -329,6 +330,7 @@
     },
     "app-presets.action.chrome-forward" : {
       "comment" : "Action name in the review sheet of the Google Chrome preset. Goes forward in the browsing history.",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -340,6 +342,7 @@
     },
     "app-presets.action.teams-camera" : {
       "comment" : "Action name in the review sheet of the Microsoft Teams preset. Turns the camera on or off.",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -351,6 +354,7 @@
     },
     "app-presets.action.teams-mic" : {
       "comment" : "Action name in the review sheet of the Microsoft Teams preset. Turns the microphone on or off.",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -483,6 +487,7 @@
     },
     "app-presets.summary.chrome" : {
       "comment" : "Short description of the Google Chrome preset, shown in the banner.",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -494,6 +499,7 @@
     },
     "app-presets.summary.teams" : {
       "comment" : "Short description of the Microsoft Teams preset, shown in the banner.",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -15097,116 +15103,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Import Settings…"
-          }
-        }
-      }
-    },
-    "shortcut-library.chrome.back" : {
-      "comment" : "Effect menu entry. A built-in shortcut of the app.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Back"
-          }
-        }
-      }
-    },
-    "shortcut-library.chrome.forward" : {
-      "comment" : "Effect menu entry. A built-in shortcut of the app.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Forward"
-          }
-        }
-      }
-    },
-    "shortcut-library.chrome.next-tab" : {
-      "comment" : "Effect menu entry. A built-in shortcut of the app.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Next tab"
-          }
-        }
-      }
-    },
-    "shortcut-library.chrome.previous-tab" : {
-      "comment" : "Effect menu entry. A built-in shortcut of the app.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Previous tab"
-          }
-        }
-      }
-    },
-    "shortcut-library.finder.enclosing-folder" : {
-      "comment" : "Effect menu entry. A built-in shortcut of the app.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Go to the enclosing folder"
-          }
-        }
-      }
-    },
-    "shortcut-library.finder.go-to-folder" : {
-      "comment" : "Effect menu entry. A built-in shortcut of the app.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Go to folder"
-          }
-        }
-      }
-    },
-    "shortcut-library.finder.mission-control" : {
-      "comment" : "Effect menu entry. A built-in shortcut of the app.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mission Control"
-          }
-        }
-      }
-    },
-    "shortcut-library.finder.new-folder" : {
-      "comment" : "Effect menu entry. A built-in shortcut of the app.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New folder"
-          }
-        }
-      }
-    },
-    "shortcut-library.teams.camera" : {
-      "comment" : "Effect menu entry. A built-in shortcut of the app.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Turn the camera on or off"
-          }
-        }
-      }
-    },
-    "shortcut-library.teams.mute" : {
-      "comment" : "Effect menu entry. A built-in shortcut of the app.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mute or unmute the mic"
           }
         }
       }
