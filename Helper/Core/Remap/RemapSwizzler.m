@@ -290,7 +290,7 @@ BOOL isSameAppScope(NSDictionary *precond, NSDictionary *otherPrecond) {
 
     if (app == nil || otherApp == nil) return app == otherApp;
 
-    return [app isEqualToString:otherApp];
+    return [app isEqual:otherApp];
 }
 
 BOOL isSubMod(NSDictionary *modifiers, NSDictionary *potentialSubModifiers) {

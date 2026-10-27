@@ -228,11 +228,14 @@ static NSSet<NSString *> *_appsWithRemaps = nil;
             /// Get modification precondition section of keypath
             NSDictionary *modificationPrecondition = tableEntry[kMFRemapsKeyModificationPrecondition];
             /// Add the app to the precondition, if the remap is limited to an app
-            ///     (Rows without an app are converted exactly like before.)
+            ///     Only a non-empty string counts as an app. Rows without one are global and are converted exactly like before. (The mainApp reads rows the same way. See `RemapScope`.)
+            ///     The precondition stored in the row never decides the app. (So a stray app key in there can't make a global row app-specific.)
             id app = tableEntry[kMFRemapsKeyApp];
-            if ([app isKindOfClass:NSString.class] && ((NSString *)app).length > 0) {
-                NSMutableDictionary *preconditionWithApp = [NSMutableDictionary dictionaryWithDictionary:modificationPrecondition ?: @{}];
-                preconditionWithApp[kMFModificationPreconditionKeyApp] = app;
+            BOOL hasApp = [app isKindOfClass:NSString.class] && ((NSString *)app).length > 0;
+            BOOL preconditionHasApp = [modificationPrecondition isKindOfClass:NSDictionary.class] && modificationPrecondition[kMFModificationPreconditionKeyApp] != nil;
+            if (hasApp || preconditionHasApp) {
+                NSMutableDictionary *preconditionWithApp = [NSMutableDictionary dictionaryWithDictionary:([modificationPrecondition isKindOfClass:NSDictionary.class] ? modificationPrecondition : @{})];
+                preconditionWithApp[kMFModificationPreconditionKeyApp] = hasApp ? app : nil;
                 modificationPrecondition = preconditionWithApp;
             }
             /// Get trigger section of keypath
