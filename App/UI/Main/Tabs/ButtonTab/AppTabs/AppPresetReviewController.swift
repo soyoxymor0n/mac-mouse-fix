@@ -10,31 +10,42 @@ import AppKit
 
 /// Sheet that lists the suggested assignments of an app's preset before anything is written.
 /// The user can untick a row, change its button, or pick another action for it. Nothing is written until "Add Selected" is clicked.
+/// In comparison mode (opened with the tab's rows, from "Recommended setup…"), each row is compared with the tab's rows:
+///     new rows are ticked, rows the tab already has can't be ticked, and rows that would replace another action are unticked and show that action.
 final class AppPresetReviewController: NSViewController {
 
     /// Called after the sheet has closed. `rows` are the remap rows to write for the app, empty if the user skipped.
     /// `dontSuggestAgain` is true if the user ticked the checkbox.
     var onFinish: (([[String: Any]], Bool) -> Void)?
+    /// Comparison mode only. Called after the sheet has closed instead of `onFinish`. `added` are rows for triggers the tab doesn't use yet,
+    ///     `replacing` are rows that take the place of the tab's row with the same trigger and modifiers. Both are empty if the user skipped.
+    var onFinishComparison: ((_ added: [[String: Any]], _ replacing: [[String: Any]], _ dontSuggestAgain: Bool) -> Void)?
 
     private let app: String
     private let preset: AppPreset
     /// Used to warn about buttons that already have a row for all apps
     private let globalRows: [[String: Any]]
+    /// The rows of the app's tab in comparison mode. nil when the sheet was opened from the banner.
+    private let tabRows: [[String: Any]]?
 
     /// One entry per suggestion, in the same order
     private var checkboxes: [NSButton] = []
     private var buttonPopups: [NSPopUpButton] = []
     private var actionPopups: [NSPopUpButton] = []
+    /// Comparison mode only: how each row compares to the tab's rows, and the note that says so
+    private var matches: [AppPresetMatch] = []
+    private var matchLabels: [NSTextField] = []
 
     private let warningLabel = NSTextField(wrappingLabelWithString: "")
     private let noteLabel = NSTextField(wrappingLabelWithString: "")
     private let dontSuggestCheckbox = NSButton(checkboxWithTitle: "", target: nil, action: nil)
     private let addButton = NSButton(title: "", target: nil, action: nil)
 
-    init(app: String, preset: AppPreset, globalRows: [[String: Any]]) {
+    init(app: String, preset: AppPreset, globalRows: [[String: Any]], tabRows: [[String: Any]]? = nil) {
         self.app = app
         self.preset = preset
         self.globalRows = globalRows
+        self.tabRows = tabRows
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -53,10 +64,14 @@ final class AppPresetReviewController: NSViewController {
         introLabel.textColor = .secondaryLabelColor
 
         /// Grid with a header row and one row per suggestion
-        let grid = NSGridView(numberOfColumns: 3, rows: 0)
+        ///     In comparison mode, a fourth column says what the tab already has for the row
+        let comparing = tabRows != nil
+        let grid = NSGridView(numberOfColumns: comparing ? 4 : 3, rows: 0)
         grid.rowSpacing = 8
         grid.columnSpacing = 12
-        grid.addRow(with: [NSGridCell.emptyContentView, headerLabel(MFLocalizedString("app-presets.review.column.button", comment: "")), headerLabel(MFLocalizedString("app-presets.review.column.action", comment: ""))])
+        var header = [NSGridCell.emptyContentView, headerLabel(MFLocalizedString("app-presets.review.column.button", comment: "")), headerLabel(MFLocalizedString("app-presets.review.column.action", comment: ""))]
+        if comparing { header.append(NSGridCell.emptyContentView) }
+        grid.addRow(with: header)
 
         for suggestion in preset.suggestions {
             let checkbox = NSButton(checkboxWithTitle: "", target: self, action: #selector(stateChanged(_:)))
@@ -66,7 +81,17 @@ final class AppPresetReviewController: NSViewController {
             checkboxes.append(checkbox)
             buttonPopups.append(buttonPopup)
             actionPopups.append(actionPopup)
-            grid.addRow(with: [checkbox, buttonPopup, actionPopup])
+            var cells: [NSView] = [checkbox, buttonPopup, actionPopup]
+            if comparing {
+                let matchLabel = NSTextField(labelWithString: "")
+                matchLabel.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
+                matchLabel.textColor = .secondaryLabelColor
+                matchLabel.lineBreakMode = .byTruncatingTail
+                matchLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+                matchLabels.append(matchLabel)
+                cells.append(matchLabel)
+            }
+            grid.addRow(with: cells)
         }
 
         /// Notes
@@ -75,6 +100,8 @@ final class AppPresetReviewController: NSViewController {
 
         /// Bottom row
         dontSuggestCheckbox.title = String(format: MFLocalizedString("app-presets.review.dont-suggest", comment: ""), appName)
+        /// The checkbox only hides the banner. If the user already chose it, there's nothing left to choose.
+        dontSuggestCheckbox.isHidden = comparing && AppPreset.isDismissed(app)
 
         let skipButton = NSButton(title: MFLocalizedString("app-presets.review.skip", comment: ""), target: self, action: #selector(skipTapped(_:)))
         skipButton.bezelStyle = .rounded
@@ -98,7 +125,7 @@ final class AppPresetReviewController: NSViewController {
         root.spacing = 12
         root.edgeInsets = NSEdgeInsets(top: 20, left: 20, bottom: 16, right: 20)
         root.translatesAutoresizingMaskIntoConstraints = false
-        root.widthAnchor.constraint(equalToConstant: 580).isActive = true
+        root.widthAnchor.constraint(equalToConstant: comparing ? 780 : 580).isActive = true
         buttonRow.widthAnchor.constraint(equalTo: root.widthAnchor, constant: -40).isActive = true
         /// The action popups would otherwise be as wide as their longest library entry and push the grid past the sheet's edges
         grid.widthAnchor.constraint(equalTo: root.widthAnchor, constant: -40).isActive = true
@@ -108,6 +135,7 @@ final class AppPresetReviewController: NSViewController {
         view = root
         preferredContentSize = root.fittingSize
 
+        updateMatches(initial: true)
         updateWarnings()
     }
 
@@ -173,15 +201,73 @@ final class AppPresetReviewController: NSViewController {
     // MARK: State
     //
 
-    /// The checked rows, with the button and effect the user picked for each
-    private func checkedSelections() -> [(button: Int, effect: [String: Any])] {
-        var result: [(button: Int, effect: [String: Any])] = []
-        for index in checkboxes.indices where checkboxes[index].state == .on {
-            guard let button = buttonPopups[index].selectedItem?.tag,
-                  let effect = actionPopups[index].selectedItem?.representedObject as? [String: Any] else { continue }
-            result.append((button: button, effect: effect))
+    /// The checked rows, with the button and effect the user picked for each, and how they compare to the tab's rows (always `.new` outside comparison mode)
+    private func checkedSelections() -> [(button: Int, effect: [String: Any], match: AppPresetMatch)] {
+        var result: [(button: Int, effect: [String: Any], match: AppPresetMatch)] = []
+        for index in checkboxes.indices where checkboxes[index].state == .on && checkboxes[index].isEnabled {
+            guard let selection = selection(at: index) else { continue }
+            result.append((button: selection.button, effect: selection.effect, match: index < matches.count ? matches[index] : .new))
         }
         return result
+    }
+
+    /// The button and effect currently picked in a row, checked or not
+    private func selection(at index: Int) -> (button: Int, effect: [String: Any])? {
+        guard let button = buttonPopups[index].selectedItem?.tag,
+              let effect = actionPopups[index].selectedItem?.representedObject as? [String: Any] else { return nil }
+        return (button: button, effect: effect)
+    }
+
+    /// Comparison mode: compares each row, as currently picked, with the tab's rows.
+    ///     When a row's kind changes (and when the sheet opens), its checkbox is reset: new rows are ticked, rows that replace an action are not, and rows the tab already has can't be ticked.
+    private func updateMatches(initial: Bool) {
+        guard let tabRows else { return }
+        for index in checkboxes.indices {
+            guard let selection = selection(at: index) else { continue }
+            let match = AppPreset.classify(AppPreset.remapRow(button: selection.button, effect: selection.effect, app: app), against: tabRows, app: app)
+            let oldMatch: AppPresetMatch? = index < matches.count ? matches[index] : nil
+            if index < matches.count { matches[index] = match } else { matches.append(match) }
+
+            let label = matchLabels[index]
+            switch match {
+            case .new:
+                label.stringValue = ""
+            case .same:
+                label.stringValue = MFLocalizedString("app-presets.review.already-set", comment: "")
+            case .conflict(let rowIndex):
+                label.stringValue = String(format: MFLocalizedString("app-presets.review.currently", comment: ""), AppPresetReviewController.actionName(of: tabRows[rowIndex]))
+            }
+            label.toolTip = label.stringValue.isEmpty ? nil : label.stringValue
+
+            let kindChanged = initial || !AppPresetReviewController.sameKind(oldMatch, match)
+            if kindChanged {
+                checkboxes[index].isEnabled = match != .same
+                checkboxes[index].state = match == .new ? .on : .off
+            }
+        }
+    }
+
+    private static func sameKind(_ a: AppPresetMatch?, _ b: AppPresetMatch) -> Bool {
+        switch (a, b) {
+        case (.new?, .new), (.same?, .same), (.conflict?, .conflict): return true
+        default: return false
+        }
+    }
+
+    /// The name of a row's action, as the button table shows it
+    static func actionName(of row: [String: Any]) -> String {
+        guard let effect = row["effect"] as? NSDictionary else { return "" }
+        func find(_ entries: [Any]) -> String? {
+            for case let entry as [String: Any] in entries {
+                if let dict = entry["dict"] as? NSDictionary, dict.isEqual(effect) {
+                    if let ui = entry["ui"] as? String { return ui }
+                    if let ui = entry["uiAttributed"] as? NSAttributedString { return ui.stringWithAttachmentDescriptions() }
+                }
+                if let submenu = entry["submenu"] as? [Any], let name = find(submenu) { return name }
+            }
+            return nil
+        }
+        return find(RemapTableTranslator.getEffectsTable(forRemapsTableEntry: row)) ?? (effect["type"] as? String ?? "")
     }
 
     /// True if a button already has a row for all apps. Such a row has no modifiers.
@@ -194,6 +280,8 @@ final class AppPresetReviewController: NSViewController {
     }
 
     @objc private func stateChanged(_ sender: Any?) {
+        /// Ticking a checkbox doesn't change what a row compares to. Changing a popup can.
+        if sender is NSPopUpButton { updateMatches(initial: false) }
         updateWarnings()
     }
 
@@ -221,18 +309,64 @@ final class AppPresetReviewController: NSViewController {
     //
 
     @objc private func addTapped(_ sender: NSButton) {
-        let rows = checkedSelections().map { AppPreset.remapRow(button: $0.button, effect: $0.effect, app: app) }
-        finish(rows: rows)
+        let selections = checkedSelections()
+        let added = selections.filter { $0.match == .new }.map { AppPreset.remapRow(button: $0.button, effect: $0.effect, app: app) }
+        let conflicting = selections.filter { if case .conflict = $0.match { return true } else { return false } }
+
+        /// Nothing to replace: just add, as from the banner
+        guard tabRows != nil, !conflicting.isEmpty else {
+            finish(added: added, replacing: [])
+            return
+        }
+
+        /// Some ticked rows would replace an action the tab already has. Ask first.
+        let replacing = conflicting.map { AppPreset.remapRow(button: $0.button, effect: $0.effect, app: app) }
+        confirmOverride(conflicting.map { $0.match }) { [weak self] response in
+            switch response {
+            case .alertFirstButtonReturn: self?.finish(added: added, replacing: replacing)
+            case .alertSecondButtonReturn: self?.finish(added: added, replacing: [])
+            default: break /// Cancel: back to the sheet, nothing changes
+            }
+        }
+    }
+
+    /// Asks whether to replace the tab's rows that the ticked rows conflict with. The alert says which rows those are.
+    private func confirmOverride(_ conflicts: [AppPresetMatch], completion: @escaping (NSApplication.ModalResponse) -> Void) {
+        guard let tabRows, let window = view.window else { return }
+
+        let names: [String] = conflicts.compactMap { match in
+            guard case .conflict(let rowIndex) = match else { return nil }
+            let row = tabRows[rowIndex]
+            let button = (row["trigger"] as? [String: Any])?["button"] as? Int ?? 0
+            let buttonName = UIStrings.getButtonString(MFMouseButtonNumber(UInt32(button)), context: kMFButtonStringUsageContextActionTableGroupRow)
+            return "\(buttonName) (\(AppPresetReviewController.actionName(of: row)))"
+        }
+
+        let alert = NSAlert()
+        alert.alertStyle = .warning
+        alert.messageText = String(format: MFLocalizedString("app-presets.review.title", comment: ""), AppTabs.name(for: app))
+        alert.informativeText = String(format: MFLocalizedString("app-presets.override.message", comment: ""), UIStrings.naturalLanguageList(fromStringArray: names))
+        _ = alert.addButton(withTitle: MFLocalizedString("app-presets.override.button", comment: ""))
+        _ = alert.addButton(withTitle: MFLocalizedString("app-presets.only-add.button", comment: ""))
+        let cancelButton = alert.addButton(withTitle: MFLocalizedString("app-presets.cancel.button", comment: ""))
+        cancelButton.keyEquivalent = IBUtility.keyChar(forLiteral: "escape")!
+
+        alert.beginSheetModal(for: window, completionHandler: completion)
     }
 
     @objc private func skipTapped(_ sender: NSButton) {
-        finish(rows: [])
+        finish(added: [], replacing: [])
     }
 
-    private func finish(rows: [[String: Any]]) {
+    private func finish(added: [[String: Any]], replacing: [[String: Any]]) {
         if let window = view.window, let sheetParent = window.sheetParent {
             sheetParent.endSheet(window)
         }
-        onFinish?(rows, dontSuggestCheckbox.state == .on)
+        let dontSuggestAgain = dontSuggestCheckbox.state == .on
+        if tabRows != nil {
+            onFinishComparison?(added, replacing, dontSuggestAgain)
+        } else {
+            onFinish?(added, dontSuggestAgain)
+        }
     }
 }

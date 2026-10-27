@@ -40,6 +40,8 @@ import Foundation
     private(set) var scopeApp: String?
     /// Offers a built-in preset in an empty app tab
     private var presetBanner: AppPresetBannerView?
+    /// "Recommended setup…" next to "Restore Defaults…". Shown in every app tab whose app has a preset.
+    private var recommendedSetupButton: NSButton?
     
     //
     // - MARK: IBActions
@@ -255,8 +257,9 @@ import Foundation
         /// Init app tabs
         refreshAppTabStrip()
 
-        /// Init the preset banner
+        /// Init the preset banner and the "Recommended setup…" button
         installPresetBanner()
+        installRecommendedSetupButton()
         NotificationCenter.default.addObserver(self, selector: #selector(remapTableDidChange(_:)), name: NSNotification.Name(kMFRemapTableDidChangeNotification as String), object: nil)
     }
     
@@ -415,11 +418,48 @@ import Foundation
             banner.topAnchor.constraint(equalTo: container.topAnchor, constant: 10),
             banner.heightAnchor.constraint(equalToConstant: 42),
         ])
-        banner.onReview = { [weak self] in self?.reviewPreset() }
+        banner.onReview = { [weak self] in self?.reviewPreset(comparingWithTab: false) }
         banner.isHidden = true
         presetBanner = banner
     }
     
+    /// Adds "Recommended setup…" right before "Restore Defaults…".
+    ///     The storyboard's button stack spaces its buttons out evenly (Options on the left, Restore Defaults on the right),
+    ///     so the two buttons go into a small stack of their own that takes Restore Defaults' place.
+    private func installRecommendedSetupButton() {
+        guard let buttonsStack = restoreDefaultButton.superview as? NSStackView,
+              let index = buttonsStack.arrangedSubviews.firstIndex(of: restoreDefaultButton) else { return }
+
+        let button = NSButton(title: MFLocalizedString("app-presets.recommended.button", comment: ""), target: self, action: #selector(openRecommendedSetup(_:)))
+        button.bezelStyle = restoreDefaultButton.bezelStyle
+        button.font = restoreDefaultButton.font
+        button.setContentHuggingPriority(.required, for: .horizontal)
+        button.setContentCompressionResistancePriority(.required, for: .vertical)
+        button.setAccessibilityIdentifier("axButtonsRecommendedSetupButton")
+
+        buttonsStack.removeArrangedSubview(restoreDefaultButton)
+        restoreDefaultButton.removeFromSuperview()
+        let pair = NSStackView(views: [button, restoreDefaultButton])
+        pair.orientation = .horizontal
+        pair.alignment = .centerY
+        pair.spacing = 8
+        pair.detachesHiddenViews = true
+        buttonsStack.insertArrangedSubview(pair, at: index)
+
+        recommendedSetupButton = button
+        updateRecommendedSetupButton()
+    }
+
+    /// Shows "Recommended setup…" in an app tab whose app has a preset, with or without rows, and even if the user chose "Don't suggest this again"
+    func updateRecommendedSetupButton() {
+        guard let button = recommendedSetupButton else { return }
+        button.isHidden = scopeApp.flatMap { AppPreset.preset(for: $0) } == nil
+    }
+
+    @objc private func openRecommendedSetup(_ sender: Any) {
+        reviewPreset(comparingWithTab: true)
+    }
+
     /// Shows the preset offer for an empty app tab that has a preset, and hides it otherwise
     func updatePresetBanner() {
         guard let banner = presetBanner else { return }
@@ -432,31 +472,51 @@ import Foundation
     }
     
     /// Opens the review sheet for the current app's preset. Nothing is written until the user confirms there.
-    /// Confirmed rows are added to the tab's rows, which are empty when the banner is shown. Restore Defaults on the tab undoes this.
-    private func reviewPreset() {
+    /// From the banner, confirmed rows are added to the tab's rows, which are empty when the banner is shown. Restore Defaults on the tab undoes this.
+    /// With `comparingWithTab` ("Recommended setup…"), the sheet compares the preset with the tab's rows, and the user can also replace the tab's rows that conflict with it.
+    ///     Only the rows of this app's tab are ever changed.
+    private func reviewPreset(comparingWithTab: Bool) {
         guard let app = scopeApp, let preset = AppPreset.preset(for: app), let window = MainAppState.shared.window else { return }
 
-        let controller = AppPresetReviewController(app: app, preset: preset, globalRows: RemapScope.rows(forScope: nil, inRemaps: config("Remaps") as? [Any]) as? [[String: Any]] ?? [])
+        let tabRows = comparingWithTab ? (RemapScope.rows(forScope: app, inRemaps: config("Remaps") as? [Any]) as? [[String: Any]] ?? []) : nil
+        let controller = AppPresetReviewController(app: app, preset: preset, globalRows: RemapScope.rows(forScope: nil, inRemaps: config("Remaps") as? [Any]) as? [[String: Any]] ?? [], tabRows: tabRows)
         controller.onFinish = { [weak self] rows, dontSuggestAgain in
-            guard let self else { return }
-            if dontSuggestAgain { AppPreset.setDismissed(app) }
-            if !rows.isEmpty {
-                /// Never replace a row the tab already has. A preset row whose trigger and modifiers are already used in this tab is left out.
-                ///     (The banner only shows in an empty tab, so normally there's nothing to leave out.)
-                let existingRows = RemapScope.rows(forScope: app, inRemaps: config("Remaps") as? [Any]) as? [[String: Any]] ?? []
-                let newRows = rows.filter { row in !existingRows.contains { ButtonTabController.rowsHaveSameTrigger($0, row) } }
-                ButtonTabController.replaceRows(forScope: app, with: existingRows + newRows)
-                self.tableController.reloadAll()
-            }
-            self.updatePresetBanner()
+            self?.applyPresetRows(app: app, added: rows, replacing: [], dontSuggestAgain: dontSuggestAgain)
+        }
+        controller.onFinishComparison = { [weak self] added, replacing, dontSuggestAgain in
+            self?.applyPresetRows(app: app, added: added, replacing: replacing, dontSuggestAgain: dontSuggestAgain)
         }
 
         let sheet = NSWindow(contentViewController: controller)
         window.beginSheet(sheet)
     }
     
+    /// Writes the rows the user confirmed in the review sheet to the app's tab.
+    ///     `replacing` rows take the place of the tab's row with the same trigger and modifiers; the tab's other rows stay.
+    ///     `added` rows are appended, but never replace a row the tab already has: a row whose trigger and modifiers are already used in this tab is left out.
+    private func applyPresetRows(app: String, added: [[String: Any]], replacing: [[String: Any]], dontSuggestAgain: Bool) {
+        if dontSuggestAgain { AppPreset.setDismissed(app) }
+        if !added.isEmpty || !replacing.isEmpty {
+            var rows = RemapScope.rows(forScope: app, inRemaps: config("Remaps") as? [Any]) as? [[String: Any]] ?? []
+            for row in replacing {
+                if let index = rows.firstIndex(where: { AppPreset.rowsHaveSameTrigger($0, row) }) {
+                    rows[index] = row
+                } else {
+                    rows.append(row)
+                }
+            }
+            for row in added where !rows.contains(where: { AppPreset.rowsHaveSameTrigger($0, row) }) {
+                rows.append(row)
+            }
+            ButtonTabController.replaceRows(forScope: app, with: rows)
+            tableController.reloadAll()
+        }
+        updatePresetBanner()
+    }
+
     @objc private func remapTableDidChange(_ notification: Notification) {
         updatePresetBanner()
+        updateRecommendedSetupButton()
     }
     
     /// Rebuilds the tab strip from the stored tab list
@@ -470,6 +530,7 @@ import Foundation
         tableController.scopeApp = app
         tableController.reloadAll()
         appTabStrip?.setSelectedScope(app)
+        updateRecommendedSetupButton()
     }
 
     /// Adds a tab for the app, unless it already has one, and shows that tab
@@ -552,15 +613,6 @@ import Foundation
                 self.tableController.reloadAll()
             }
         }
-    }
-
-    /// Whether two rows have the same trigger and modifiers, so only one of them can be in a tab
-    private static func rowsHaveSameTrigger(_ row: [String: Any], _ otherRow: [String: Any]) -> Bool {
-        let trigger = row[kMFRemapsKeyTrigger as String] as AnyObject?
-        let otherTrigger = otherRow[kMFRemapsKeyTrigger as String] as AnyObject?
-        let modifiers = row[kMFRemapsKeyModificationPrecondition as String] as? NSDictionary ?? NSDictionary()
-        let otherModifiers = otherRow[kMFRemapsKeyModificationPrecondition as String] as? NSDictionary ?? NSDictionary()
-        return (trigger?.isEqual(otherTrigger) ?? false) && modifiers.isEqual(otherModifiers)
     }
 
     /// Replaces the rows of one scope in config and writes it. nil is the global scope. The other scopes keep their rows.

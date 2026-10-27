@@ -20,7 +20,18 @@ struct AppPresetSuggestion {
     let effect: [String: Any]
 }
 
-/// Built-in button assignments for common apps. A preset is offered only in an app tab that has no rows yet.
+/// How a suggestion compares to the rows an app tab already has
+enum AppPresetMatch: Equatable {
+    /// No row of the tab uses the same trigger and modifiers
+    case new
+    /// A row of the tab has the same trigger, modifiers and effect
+    case same
+    /// A row of the tab has the same trigger and modifiers but another effect. `rowIndex` is its index in the rows that were compared.
+    case conflict(rowIndex: Int)
+}
+
+/// Built-in button assignments for common apps. The banner offers a preset only in an app tab that has no rows yet,
+/// and "Recommended setup…" opens it in any tab of an app that has one, comparing it with the tab's rows.
 /// The user reviews it in a sheet first, and nothing is written until the user clicks Add Selected.
 /// Nothing is applied automatically, and nothing is sent anywhere.
 struct AppPreset {
@@ -68,6 +79,36 @@ struct AppPreset {
             "effect": effect,
             "app": app,
         ]
+    }
+
+    //
+    // Comparing with the rows of a tab. Pure, so it can be tested on its own (see Tests/run_tests.sh).
+    //
+
+    /// Whether two rows have the same trigger and modifiers, so only one of them can be in a tab
+    static func rowsHaveSameTrigger(_ row: [String: Any], _ otherRow: [String: Any]) -> Bool {
+        let trigger = row["trigger"] as AnyObject?
+        let otherTrigger = otherRow["trigger"] as AnyObject?
+        let modifiers = row["modifiers"] as? NSDictionary ?? NSDictionary()
+        let otherModifiers = otherRow["modifiers"] as? NSDictionary ?? NSDictionary()
+        return (trigger?.isEqual(otherTrigger) ?? false) && modifiers.isEqual(otherModifiers)
+    }
+
+    /// Compares one row that would be written for `app` with `rows`. Only the rows of `app` count; global rows and rows of other apps are ignored.
+    static func classify(_ row: [String: Any], against rows: [[String: Any]], app: String) -> AppPresetMatch {
+        for (index, existing) in rows.enumerated() {
+            guard (existing["app"] as? String) == app, rowsHaveSameTrigger(existing, row) else { continue }
+            let effect = row["effect"] as? NSDictionary
+            let existingEffect = existing["effect"] as? NSDictionary
+            if let effect, let existingEffect, effect.isEqual(existingEffect) { return .same }
+            return .conflict(rowIndex: index)
+        }
+        return .new
+    }
+
+    /// Compares each suggestion of `preset`, as it would be written for `app`, with `rows`. One result per suggestion, in the same order.
+    static func classify(_ preset: AppPreset, against rows: [[String: Any]], app: String) -> [AppPresetMatch] {
+        return preset.suggestions.map { classify(remapRow(button: $0.button, effect: $0.effect, app: app), against: rows, app: app) }
     }
 
     private static func keyboardShortcut(keycode: Int, flags: Int) -> [String: Any] {
