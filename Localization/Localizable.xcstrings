@@ -14947,6 +14947,149 @@
         }
       }
     },
+    "settings-transfer.button.export" : {
+      "comment" : "Button at the bottom of the General tab. Saves all settings to a file.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export Settings…"
+          }
+        }
+      }
+    },
+    "settings-transfer.button.import" : {
+      "comment" : "Button at the bottom of the General tab. Loads settings from a file saved with Export Settings.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import Settings…"
+          }
+        }
+      }
+    },
+    "settings-transfer.error.newer-format" : {
+      "comment" : "Error shown when the settings file uses a newer file format.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This file was made by a newer version of Mac Mouse Fix. Update the app to import it."
+          }
+        }
+      }
+    },
+    "settings-transfer.error.not-a-settings-file" : {
+      "comment" : "Error shown when the chosen file can't be imported.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This file isn't a Mac Mouse Fix settings file."
+          }
+        }
+      }
+    },
+    "settings-transfer.error.title" : {
+      "comment" : "Title of the alert shown when export or import fails.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The settings couldn't be transferred"
+          }
+        }
+      }
+    },
+    "settings-transfer.import.alert.cancel" : {
+      "comment" : "Cancel button of the import alert.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "settings-transfer.import.alert.confirm" : {
+      "comment" : "Confirm button of the import alert.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import"
+          }
+        }
+      }
+    },
+    "settings-transfer.import.alert.message" : {
+      "comment" : "Body of the alert shown before importing settings.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your buttons, scrolling and pointer settings, and app tabs will be replaced with the ones in the file. Settings that aren't in the file are set to their defaults."
+          }
+        }
+      }
+    },
+    "settings-transfer.import.alert.newer-version" : {
+      "comment" : "Extra paragraph in the import alert. %@ is the app version that wrote the file, e.g. '3.2.0'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This file was exported from a newer version of Mac Mouse Fix (%@). Settings this version doesn't know are kept but may have no effect."
+          }
+        }
+      }
+    },
+    "settings-transfer.import.alert.title" : {
+      "comment" : "Title of the alert shown before importing settings from a file.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Replace your settings?"
+          }
+        }
+      }
+    },
+    "settings-transfer.menu.export" : {
+      "comment" : "File menu item. Saves all settings to a file.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export Settings…"
+          }
+        }
+      }
+    },
+    "settings-transfer.menu.file" : {
+      "comment" : "Title of the File menu in the menu bar.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File"
+          }
+        }
+      }
+    },
+    "settings-transfer.menu.import" : {
+      "comment" : "File menu item. Loads settings from a file saved with Export Settings.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import Settings…"
+          }
+        }
+      }
+    },
     "shortcut-library.chrome.back" : {
       "comment" : "Effect menu entry. A built-in shortcut of the app.",
       "localizations" : {

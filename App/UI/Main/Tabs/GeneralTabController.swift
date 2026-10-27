@@ -234,8 +234,9 @@ class GeneralTabController: NSViewController {
         updatesToggle.reactive.boolValue <~ checkForUpdates
         betaToggle.reactive.boolValue <~ getBetaVersions
         
+        addSettingsTransferButtons()
+
         mainHidableSection.reactive.isCollapsed <~ EnabledState.shared.producer.negate()
-        updatesExtraSection.reactive.isCollapsed <~ checkForUpdates.producer.negate()
         
         /// Alert on betaToggle
         /// Notes:
@@ -268,22 +269,44 @@ class GeneralTabController: NSViewController {
 //            }
 //        }
         
-        /// Side effects: Sparkle
-        ///     See `applicationDidFinishLaunching` for context
-        
-        checkForUpdates.producer.skip(first: 1).startWithValues { doCheckUpdates in
-            SparkleUpdaterController.resetSkippedVersions()
-            if doCheckUpdates {
-                SUUpdater.shared().checkForUpdatesInBackground()
-            }
+        /// [Fork] No update section. The fork has no update feed, and these toggles used to point Sparkle at the upstream feed and start a check.
+        hideUpdatesSection()
+    }
+
+    /// Hides the divider above "Check for Updates", the checkbox, and the beta section below it
+    private func hideUpdatesSection() {
+        let arranged = mainHidableSection.subviews.filter { !$0.isHidden }
+        func arrangedAncestor(_ view: NSView) -> NSView? {
+            var v: NSView? = view
+            while let current = v, current.superview !== mainHidableSection { v = current.superview }
+            return v
         }
-        getBetaVersions.producer.skip(first: 1).startWithValues { doCheckBetas in
-            SparkleUpdaterController.resetSkippedVersions()
-            SparkleUpdaterController.enablePrereleaseChannel(doCheckBetas)
-            if doCheckBetas {
-                SUUpdater.shared().checkForUpdatesInBackground()
-            }
+        guard let toggleRow = arrangedAncestor(updatesToggle), let index = arranged.firstIndex(of: toggleRow) else { return }
+        var toHide = [toggleRow]
+        if let extra = arrangedAncestor(updatesExtraSection) { toHide.append(extra) }
+        if index > 0 { toHide.append(arranged[index - 1]) } /// Divider
+        for view in toHide { view.isHidden = true }
+    }
+
+    /// Export and Import buttons at the bottom of the tab. Same actions as in the File menu.
+    private func addSettingsTransferButtons() {
+        let exportButton = NSButton(title: MFLocalizedString("settings-transfer.button.export", comment: ""), target: ConfigTransfer.self, action: #selector(ConfigTransfer.exportSettings(_:)))
+        let importButton = NSButton(title: MFLocalizedString("settings-transfer.button.import", comment: ""), target: ConfigTransfer.self, action: #selector(ConfigTransfer.importSettings(_:)))
+        for button in [exportButton, importButton] {
+            button.bezelStyle = .rounded
+            button.controlSize = .small
+            button.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
         }
+        let row = NSStackView(views: [exportButton, importButton])
+        row.orientation = .horizontal
+        row.spacing = 8
+        /// Without this the stack's default low hugging lets the window size itself to a huge height
+        row.translatesAutoresizingMaskIntoConstraints = false
+        row.setHuggingPriority(.required, for: .vertical)
+        row.setContentHuggingPriority(.required, for: .vertical)
+        row.setContentCompressionResistancePriority(.required, for: .vertical)
+        if let last = masterStack.arrangedSubviews.last { masterStack.setCustomSpacing(16, after: last) }
+        masterStack.addArrangedSubview(row)
     }
 }
 

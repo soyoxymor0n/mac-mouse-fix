@@ -238,7 +238,13 @@ static NSDictionary *sideButtonActions;
     /// Log
     
     DDLogInfo("Mac Mouse Fix finished launching");
-    
+
+    /// File menu with settings export and import
+    [ConfigTransfer installMenuItems];
+
+    /// Hide update and license items that don't apply to the fork
+    [ForkMenu tidyAppMenu];
+
 #pragma mark Experiments
 
     /// Test titlebarAccessory

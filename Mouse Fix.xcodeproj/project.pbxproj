@@ -365,6 +365,8 @@
 		4FF665FE25F2C92700689B77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF665E325F2C92700689B77 /* main.m */; };
 		4FF6660025F2C92700689B77 /* Hyperlink.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF665E725F2C92700689B77 /* Hyperlink.m */; };
 		4FF6660125F2C92700689B77 /* Utility_App.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF665E825F2C92700689B77 /* Utility_App.m */; };
+		C0F1A7E5B2D84E9A0C3B6D11 /* ConfigTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F1A7E5B2D84E9A0C3B6D12 /* ConfigTransfer.swift */; };
+		C0F1A7E5B2D84E9A0C3B6D13 /* ForkMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F1A7E5B2D84E9A0C3B6D14 /* ForkMenu.swift */; };
 		4FF6660225F2C92700689B77 /* ClickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF665EB25F2C92700689B77 /* ClickableImageView.m */; };
 		4FF6668125F2C93A00689B77 /* FileMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6660925F2C93A00689B77 /* FileMonitor.m */; };
 		4FF6668225F2C93A00689B77 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6660E25F2C93A00689B77 /* Config.m */; };
@@ -1107,6 +1109,8 @@
 		4FF665E625F2C92700689B77 /* ClickableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickableImageView.h; sourceTree = "<group>"; };
 		4FF665E725F2C92700689B77 /* Hyperlink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hyperlink.m; sourceTree = "<group>"; };
 		4FF665E825F2C92700689B77 /* Utility_App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility_App.m; sourceTree = "<group>"; };
+		C0F1A7E5B2D84E9A0C3B6D12 /* ConfigTransfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTransfer.swift; sourceTree = "<group>"; };
+		C0F1A7E5B2D84E9A0C3B6D14 /* ForkMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForkMenu.swift; sourceTree = "<group>"; };
 		4FF665E925F2C92700689B77 /* Utility_App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility_App.h; sourceTree = "<group>"; };
 		4FF665EA25F2C92700689B77 /* Hyperlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hyperlink.h; sourceTree = "<group>"; };
 		4FF665EB25F2C92700689B77 /* ClickableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickableImageView.m; sourceTree = "<group>"; };
@@ -2578,6 +2582,8 @@
 			children = (
 				4FF665E925F2C92700689B77 /* Utility_App.h */,
 				4FF665E825F2C92700689B77 /* Utility_App.m */,
+				C0F1A7E5B2D84E9A0C3B6D12 /* ConfigTransfer.swift */,
+				C0F1A7E5B2D84E9A0C3B6D14 /* ForkMenu.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -3631,6 +3637,8 @@
 				4FA40CF828A0CCCA00499E53 /* TestAccelerationCurve.swift in Sources */,
 				4F909D3728A0C3D2009349A2 /* ConstraintUtility.swift in Sources */,
 				4FF6660125F2C92700689B77 /* Utility_App.m in Sources */,
+				C0F1A7E5B2D84E9A0C3B6D11 /* ConfigTransfer.swift in Sources */,
+				C0F1A7E5B2D84E9A0C3B6D13 /* ForkMenu.swift in Sources */,
 				4F79A83626051E4A00076A7E /* Toast.m in Sources */,
 				4FDE75A928B269AE00662314 /* Randomizer.swift in Sources */,
 				4F909D2D28A0C3D2009349A2 /* CoolNSTextField.swift in Sources */,
