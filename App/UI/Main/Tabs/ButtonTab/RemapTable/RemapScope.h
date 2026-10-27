@@ -21,6 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RemapScope : NSObject
 
+/// The app of a row, or nil if the row is global.
+///     Only a non-empty string counts as an app. The helper reads rows the same way (See `Remap.reload`), so a row with an invalid `app` value is shown and applied as a global row.
++ (nullable NSString *)appForRow:(NSDictionary *)row;
+
 /// The rows of one scope, in their original order.
 + (NSArray *)rowsForScope:(nullable NSString *)app inRemaps:(nullable NSArray *)remaps;
 

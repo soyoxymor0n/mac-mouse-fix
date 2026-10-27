@@ -11,8 +11,14 @@
 
 @implementation RemapScope
 
++ (nullable NSString *)appForRow:(NSDictionary *)row {
+    id app = row[kMFRemapsKeyApp];
+    if (![app isKindOfClass:NSString.class] || ((NSString *)app).length == 0) return nil;
+    return app;
+}
+
 + (BOOL)row:(NSDictionary *)row isInScope:(nullable NSString *)app {
-    NSString *rowApp = row[kMFRemapsKeyApp];
+    NSString *rowApp = [self appForRow:row];
     if (app == nil) return rowApp == nil;
     return [app isEqualToString:rowApp];
 }

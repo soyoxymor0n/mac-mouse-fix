@@ -9,6 +9,7 @@
 
 #import "RemapTableTranslator.h"
 #import "ShortcutLibrary.h"
+#import "RemapScope.h"
 #import "Constants.h"
 #import "UIStrings.h"
 #import "SharedUtility.h"
@@ -396,8 +397,8 @@ static NSArray *getOneShotEffectsTable(NSDictionary *rowDict) {
     } atIndex:keyCaptureIndex+1];
     
     /// App-specific rows get the built-in shortcuts of that app at the top of the menu
-    NSString *app = rowDict[kMFRemapsKeyApp];
-    if (app.length > 0) {
+    NSString *app = [RemapScope appForRow:rowDict];
+    if (app != nil) {
         NSArray *libraryEntries = [ShortcutLibrary effectsMenuEntriesForBundleID:app];
         if (libraryEntries.count > 0) {
             NSMutableArray *withLibrary = [libraryEntries mutableCopy];
