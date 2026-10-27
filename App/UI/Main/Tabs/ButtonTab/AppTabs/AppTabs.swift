@@ -9,6 +9,7 @@
 import Foundation
 import AppKit
 import UniformTypeIdentifiers
+import Carbon
 
 /// The per-app tabs of the Buttons tab.
 ///     The tab list is stored in `kMFConfigKeyAppTabs`. The rows of an app are stored in `kMFConfigKeyRemaps`, with an `app` key.
@@ -52,6 +53,59 @@ enum AppTabs {
 
     static func appURL(for bundleID: String) -> URL? {
         return NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundleID)
+    }
+
+    /// The repository that problem reports go to, as "owner/name"
+    static let issueRepository = "soyoxymor0n/mac-mouse-fix-ng"
+
+    /// A "new issue" link on GitHub for a problem with the shortcuts of an app. Pre-fills the fields of `problemReportURL(appName:bundleID:appVersion:macOSVersion:keyboardLayout:)`.
+    static func problemReportURL(for bundleID: String) -> URL? {
+        let info = Bundle.main.infoDictionary ?? [:]
+        let shortVersion = info["CFBundleShortVersionString"] as? String ?? "?"
+        let buildVersion = info["CFBundleVersion"] as? String ?? "?"
+        return problemReportURL(appName: name(for: bundleID),
+                                bundleID: bundleID,
+                                appVersion: "\(shortVersion) (\(buildVersion))",
+                                macOSVersion: ProcessInfo.processInfo.operatingSystemVersionString,
+                                keyboardLayout: currentKeyboardLayoutID() ?? "unknown")
+    }
+
+    /// Builds the link from plain values.
+    ///     Privacy: the report contains only these fields. Don't add rows, the config, paths, the user name, the device, the license or other settings.
+    static func problemReportURL(appName: String, bundleID: String, appVersion: String, macOSVersion: String, keyboardLayout: String) -> URL? {
+        let body = """
+            App: \(appName)
+            Bundle ID: \(bundleID)
+            Mac Mouse Fix NG version: \(appVersion)
+            macOS: \(macOSVersion)
+            Keyboard layout: \(keyboardLayout)
+
+            Which shortcut doesn't work:
+
+
+            What happens:
+
+
+            What you expected:
+
+
+            FAQ: https://github.com/\(issueRepository)/blob/beta/docs/faq.md
+            """
+        guard var components = URLComponents(string: "https://github.com/\(issueRepository)/issues/new") else { return nil }
+        components.queryItems = [
+            URLQueryItem(name: "title", value: "Shortcut problem: \(appName)"),
+            URLQueryItem(name: "body", value: body),
+        ]
+        /// `queryItems` leaves "+" as is, and GitHub would read it as a space
+        components.percentEncodedQuery = components.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%2B")
+        return components.url
+    }
+
+    /// The ID of the current keyboard layout, for example "com.apple.keylayout.German"
+    private static func currentKeyboardLayoutID() -> String? {
+        guard let source = TISCopyCurrentKeyboardLayoutInputSource()?.takeRetainedValue(),
+              let property = TISGetInputSourceProperty(source, kTISPropertyInputSourceID) else { return nil }
+        return Unmanaged<CFString>.fromOpaque(property).takeUnretainedValue() as String
     }
 
     /// Lets the user pick any app from the Applications folder. Calls `completion` with the bundle ID.

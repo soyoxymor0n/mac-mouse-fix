@@ -116,7 +116,7 @@ final class AppTabStripView: NSView {
             let button = AppTabButton(bundleID: bundleID, image: AppTabs.icon(for: bundleID), toolTip: name)
             button.target = self
             button.action = #selector(tabTapped(_:))
-            button.contextMenuForTab = removeMenu(for: bundleID)
+            button.contextMenuForTab = contextMenu(for: bundleID)
             tabButtons.append(button)
         }
 
@@ -134,12 +134,16 @@ final class AppTabStripView: NSView {
         }
     }
 
-    private func removeMenu(for bundleID: String) -> NSMenu {
+    private func contextMenu(for bundleID: String) -> NSMenu {
         let menu = NSMenu()
-        let item = NSMenuItem(title: MFLocalizedString("app-tabs.menu.remove", comment: ""), action: #selector(removeTapped(_:)), keyEquivalent: "")
-        item.target = self
-        item.representedObject = bundleID
-        menu.addItem(item)
+        let reportItem = NSMenuItem(title: MFLocalizedString("app-tabs.menu.report", comment: ""), action: #selector(reportTapped(_:)), keyEquivalent: "")
+        reportItem.target = self
+        reportItem.representedObject = bundleID
+        menu.addItem(reportItem)
+        let removeItem = NSMenuItem(title: MFLocalizedString("app-tabs.menu.remove", comment: ""), action: #selector(removeTapped(_:)), keyEquivalent: "")
+        removeItem.target = self
+        removeItem.representedObject = bundleID
+        menu.addItem(removeItem)
         return menu
     }
 
@@ -154,6 +158,12 @@ final class AppTabStripView: NSView {
     @objc private func removeTapped(_ sender: NSMenuItem) {
         guard let bundleID = sender.representedObject as? String else { return }
         onRemoveAppTab?(bundleID)
+    }
+
+    @objc private func reportTapped(_ sender: NSMenuItem) {
+        guard let bundleID = sender.representedObject as? String,
+              let url = AppTabs.problemReportURL(for: bundleID) else { return }
+        NSWorkspace.shared.open(url)
     }
 }
 

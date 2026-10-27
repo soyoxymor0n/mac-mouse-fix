@@ -553,6 +553,17 @@
         }
       }
     },
+    "app-tabs.menu.report" : {
+      "comment" : "Context menu item on an app tab. Opens a new GitHub issue about the app's shortcuts in the browser.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Report a Problem with Shortcuts…"
+          }
+        }
+      }
+    },
     "app-tabs.picker.choose-other" : {
       "comment" : "Button in the app picker. Opens a file chooser for apps that aren't open.",
       "localizations" : {
