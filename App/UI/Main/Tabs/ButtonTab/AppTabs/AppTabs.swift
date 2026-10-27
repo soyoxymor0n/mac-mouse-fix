@@ -25,7 +25,7 @@ enum AppTabs {
         var bundleIDs = storedBundleIDs()
         let remaps = (config(kMFConfigKeyRemaps) as? [[String: Any]]) ?? []
         for remap in remaps {
-            guard let app = remap[kMFRemapsKeyApp as String] as? String else { continue }
+            guard let app = RemapScope.app(forRow: remap) else { continue }
             if !bundleIDs.contains(app) { bundleIDs.append(app) }
         }
         return bundleIDs

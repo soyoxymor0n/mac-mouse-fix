@@ -599,8 +599,8 @@ static void updateBorderColor(RemapTableController *object, BOOL isInitialAppear
         BOOL triggerMatches = [tableEntry[kMFRemapsKeyTrigger] isEqualTo:rowDictToAdd[kMFRemapsKeyTrigger]];
         BOOL modificationPreconditionMatches = [tableEntry[kMFRemapsKeyModificationPrecondition] isEqualTo:rowDictToAdd[kMFRemapsKeyModificationPrecondition]];
         /// Rows for different apps can have the same trigger and precondition. They're not duplicates.
-        NSString *app = tableEntry[kMFRemapsKeyApp];
-        NSString *appToAdd = rowDictToAdd[kMFRemapsKeyApp];
+        NSString *app = [RemapScope appForRow:tableEntry];
+        NSString *appToAdd = [RemapScope appForRow:rowDictToAdd];
         BOOL appMatches = (app == nil) ? (appToAdd == nil) : [app isEqualToString:appToAdd];
         return triggerMatches && modificationPreconditionMatches && appMatches;
     }];

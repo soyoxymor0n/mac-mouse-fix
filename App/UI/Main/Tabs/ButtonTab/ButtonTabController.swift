@@ -153,7 +153,7 @@ import Foundation
                     /// Update remaps
                     
                     /// Set config
-                    self.replaceRows(forScope: nil, with: (defaultMap as? [Any]) ?? [])
+                    ButtonTabController.replaceRows(forScope: nil, with: (defaultMap as? [Any]) ?? [])
                     
                     /// Reload table
                     mfrun(CFRunLoopGetMain()) {
@@ -287,6 +287,10 @@ import Foundation
             /// Get info
             ///
             
+            /// Only in the global tab
+            ///     The popover is about the default global rows, and "Restore Defaults" in an app tab deletes that app's rows instead.
+            guard self.scopeApp == nil else { return }
+            
             /// Get device info
             guard let (deviceName, nOfButtons, _) = MessagePortUtility.shared.getActiveDeviceInfo() else { return }
             
@@ -398,9 +402,9 @@ import Foundation
         appTabStrip = strip
     }
 
-    /// Adds the preset banner between the add field and the table. It is shown only in an empty app tab that has a preset.
+    /// Adds the preset banner at the top of the add field. It is shown only in an empty app tab that has a preset.
+    ///     (The area between the add field and the table is too tight for it.)
     private func installPresetBanner() {
-        /// Inside the add field, at its top. The area under the caption and the table is too tight for it.
         guard let container = addField.contentView else { return }
         let banner = AppPresetBannerView()
         container.addSubview(banner)
@@ -427,7 +431,7 @@ import Foundation
     }
     
     /// Opens the review sheet for the current app's preset. Nothing is written until the user confirms there.
-    /// Confirmed rows replace the tab's rows, which are empty when the banner is shown. Restore Defaults on the tab undoes this.
+    /// Confirmed rows are added to the tab's rows, which are empty when the banner is shown. Restore Defaults on the tab undoes this.
     private func reviewPreset() {
         guard let app = scopeApp, let preset = AppPreset.preset(for: app), let window = MainAppState.shared.window else { return }
 
@@ -436,7 +440,11 @@ import Foundation
             guard let self else { return }
             if dontSuggestAgain { AppPreset.setDismissed(app) }
             if !rows.isEmpty {
-                self.replaceRows(forScope: app, with: rows)
+                /// Never replace a row the tab already has. A preset row whose trigger and modifiers are already used in this tab is left out.
+                ///     (The banner only shows in an empty tab, so normally there's nothing to leave out.)
+                let existingRows = RemapScope.rows(forScope: app, inRemaps: config("Remaps") as? [Any]) as? [[String: Any]] ?? []
+                let newRows = rows.filter { row in !existingRows.contains { ButtonTabController.rowsHaveSameTrigger($0, row) } }
+                ButtonTabController.replaceRows(forScope: app, with: existingRows + newRows)
                 self.tableController.reloadAll()
             }
             self.updatePresetBanner()
@@ -517,7 +525,7 @@ import Foundation
 
     private func removeAppTab(_ app: String) {
         AppTabs.save(AppTabs.allBundleIDs().filter { $0 != app })
-        replaceRows(forScope: app, with: [])
+        ButtonTabController.replaceRows(forScope: app, with: [])
         refreshAppTabStrip()
         if scopeApp == app {
             selectScope(nil)
@@ -539,14 +547,23 @@ import Foundation
         guard let window = MainAppState.shared.window else { return }
         alert.beginSheetModal(for: window) { response in
             if response == .alertFirstButtonReturn {
-                self.replaceRows(forScope: app, with: [])
+                ButtonTabController.replaceRows(forScope: app, with: [])
                 self.tableController.reloadAll()
             }
         }
     }
 
+    /// Whether two rows have the same trigger and modifiers, so only one of them can be in a tab
+    private static func rowsHaveSameTrigger(_ row: [String: Any], _ otherRow: [String: Any]) -> Bool {
+        let trigger = row[kMFRemapsKeyTrigger as String] as AnyObject?
+        let otherTrigger = otherRow[kMFRemapsKeyTrigger as String] as AnyObject?
+        let modifiers = row[kMFRemapsKeyModificationPrecondition as String] as? NSDictionary ?? NSDictionary()
+        let otherModifiers = otherRow[kMFRemapsKeyModificationPrecondition as String] as? NSDictionary ?? NSDictionary()
+        return (trigger?.isEqual(otherTrigger) ?? false) && modifiers.isEqual(otherModifiers)
+    }
+
     /// Replaces the rows of one scope in config and writes it. nil is the global scope. The other scopes keep their rows.
-    private func replaceRows(forScope app: String?, with rows: [Any]) {
+    private static func replaceRows(forScope app: String?, with rows: [Any]) {
         let remaps = RemapScope.remapsReplacingScope(app, withRows: rows, inRemaps: config("Remaps") as? [Any])
         setConfig("Remaps", remaps as NSArray)
         commitConfig()
@@ -571,15 +588,15 @@ import Foundation
             let (_, _, bestPresetMatch) = MessagePortUtility.shared.getActiveDeviceInfo() ?? (nil, nil, nil)
             
             /// This is copy-pasted from `restoreDefaults()`
+            ///     Only the global rows are compared and replaced. Rows of app tabs are kept.
             
-            let currentMap = config("Remaps")
+            let currentMap = RemapScope.rows(forScope: nil, inRemaps: config("Remaps") as? [Any]) as NSArray
             let defaultMap = config(bestPresetMatch == 3 ? "Constants.defaultRemaps.threeButtons" : "Constants.defaultRemaps.fiveButtons")
             
             if (currentMap != defaultMap) {
                 
                 /// Set config
-                setConfig("Remaps", defaultMap!)
-                commitConfig()
+                ButtonTabController.replaceRows(forScope: nil, with: (defaultMap as? [Any]) ?? [])
                 
                 /// Reload table
                 /// Note: It feels a bit hacky to call `updateColumnWidths()` here. Maybe this should be handled automatically inside the remapTable code.

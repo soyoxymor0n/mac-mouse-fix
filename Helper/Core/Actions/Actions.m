@@ -26,7 +26,7 @@
 
 #import "Threads.h"
 
-static void postKeySequence(NSArray *steps, double intervalMs);
+static void postKeySequence(id steps, id intervalMs);
 
 @implementation Actions
 
@@ -164,9 +164,7 @@ static void postKeySequence(NSArray *steps, double intervalMs);
             
         } else if ([actionType isEqualToString:kMFActionDictTypeKeySequence]) {
             
-            NSArray *steps = actionDict[kMFActionDictKeySequenceVariantSteps];
-            NSNumber *intervalMs = actionDict[kMFActionDictKeySequenceVariantIntervalMs];
-            postKeySequence(steps, intervalMs.doubleValue);
+            postKeySequence(actionDict[kMFActionDictKeySequenceVariantSteps], actionDict[kMFActionDictKeySequenceVariantIntervalMs]);
             
         } else if ([actionType isEqualToString:kMFActionDictTypeSystemDefinedEvent]) {
             
@@ -225,31 +223,57 @@ static void postSystemDefinedEvent(MFSystemDefinedEventType type, NSEventModifie
     CGEventPost(tapLoc, e.CGEvent);
 }
 
-static void postKeySequence(NSArray *steps, double intervalMs) {
+#pragma mark - Key sequences
+
+static void postKeySequenceStep(NSArray<NSArray<NSNumber *> *> *steps, NSUInteger i, CFTimeInterval gap);
+
+static void postKeySequence(id steps, id intervalMs) {
     
-    /// Posts each step in order on a serial queue, so the event tap is never blocked while we wait between steps.
-    /// Each step is a dictionary with the keycode and flags of one shortcut.
+    /// Posts several keyboard shortcuts one after another, with a short gap between them. (Used by shortcut library entries that need more than one key.)
+    /// Notes:
+    /// - The values come from the config file, so they are checked here: At most `maxSteps` steps, key codes 0-127, and no flags other than Command, Shift, Option and Control. Invalid steps are skipped. The gap is clamped to 0-1000 ms.
+    /// - We don't block the IOThread while waiting. The later steps are posted by timers on the IOThread's runLoop.
     
-    static dispatch_queue_t queue;
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        queue = dispatch_queue_create("com.soyoxymor0n.mac-mouse-fix.key-sequence", DISPATCH_QUEUE_SERIAL);
+    static const NSUInteger maxSteps = 16;
+    static const double maxIntervalMs = 1000.0;
+    const uint64_t allowedFlags = kCGEventFlagMaskCommand | kCGEventFlagMaskShift | kCGEventFlagMaskAlternate | kCGEventFlagMaskControl;
+    
+    if (![steps isKindOfClass:NSArray.class]) return;
+    
+    NSMutableArray<NSArray<NSNumber *> *> *validSteps = [NSMutableArray array];
+    for (id step in (NSArray *)steps) {
+        if (validSteps.count >= maxSteps) break;
+        if (![step isKindOfClass:NSDictionary.class]) continue;
+        id keycode = step[kMFActionDictKeyKeyboardShortcutVariantKeycode];
+        id flags = step[kMFActionDictKeyKeyboardShortcutVariantModifierFlags];
+        if (![keycode isKindOfClass:NSNumber.class] || ![flags isKindOfClass:NSNumber.class]) continue;
+        long long k = [keycode longLongValue];
+        long long f = [flags longLongValue];
+        if (k < 0 || k > 127) continue;
+        if (f < 0 || ((uint64_t)f & ~allowedFlags) != 0) continue;
+        [validSteps addObject:@[@(k), @(f)]];
+    }
+    
+    double ms = [intervalMs isKindOfClass:NSNumber.class] ? [intervalMs doubleValue] : 0.0;
+    if (!(ms >= 0.0)) ms = 0.0; /// Also catches NaN
+    ms = MIN(ms, maxIntervalMs);
+    
+    postKeySequenceStep(validSteps, 0, ms / 1000.0);
+}
+
+static void postKeySequenceStep(NSArray<NSArray<NSNumber *> *> *steps, NSUInteger i, CFTimeInterval gap) {
+    
+    if (i >= steps.count) return;
+    
+    postKeyboardShortcut(steps[i][0].unsignedShortValue, (CGSModifierFlags)steps[i][1].unsignedIntValue);
+    
+    if (i + 1 >= steps.count) return;
+    
+    CFRunLoopTimerRef timer = CFRunLoopTimerCreateWithHandler(kCFAllocatorDefault, CFAbsoluteTimeGetCurrent() + gap, 0, 0, 0, ^(CFRunLoopTimerRef t) {
+        postKeySequenceStep(steps, i + 1, gap);
     });
-    
-    NSArray *stepsCopy = [steps copy];
-    NSTimeInterval gap = MAX(0.0, intervalMs) / 1000.0;
-    
-    dispatch_async(queue, ^{
-        for (NSUInteger i = 0; i < stepsCopy.count; i++) {
-            NSDictionary *step = stepsCopy[i];
-            NSNumber *keycode = step[kMFActionDictKeyKeyboardShortcutVariantKeycode];
-            NSNumber *flags = step[kMFActionDictKeyKeyboardShortcutVariantModifierFlags];
-            postKeyboardShortcut(keycode.intValue, flags.intValue);
-            if (i + 1 < stepsCopy.count) {
-                [NSThread sleepForTimeInterval:gap];
-            }
-        }
-    });
+    CFRunLoopAddTimer(IOThread.runLoop, timer, kCFRunLoopCommonModes);
+    CFRelease(timer);
 }
 
 #pragma mark - Keyboard shortcuts
