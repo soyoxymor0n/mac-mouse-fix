@@ -102,6 +102,8 @@ final class AppPresetReviewController: NSViewController {
         buttonRow.widthAnchor.constraint(equalTo: root.widthAnchor, constant: -40).isActive = true
         /// The action popups would otherwise be as wide as their longest library entry and push the grid past the sheet's edges
         grid.widthAnchor.constraint(equalTo: root.widthAnchor, constant: -40).isActive = true
+        /// If the sheet is taller than its content, the grid would take the extra height, and it would appear as a gap below the header row
+        grid.setContentHuggingPriority(.required, for: .vertical)
 
         view = root
         preferredContentSize = root.fittingSize
