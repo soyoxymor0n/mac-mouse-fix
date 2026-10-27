@@ -342,7 +342,7 @@ static BOOL updateAppModifier(void) {
     ///     - Switching between apps that have no app-specific remaps doesn't notify SwitchMaster.
     ///     - The swizzle cache in `Remap` (keyed by the active modifiers) doesn't grow with every app the user activates.
 
-    NSString *newApp = (_frontmostApp != nil && [Remap hasRemapsForApp:_frontmostApp]) ? _frontmostApp : nil;
+    NSString *newApp = [Remap hasRemapsForApp:_frontmostApp] ? _frontmostApp : nil;
     NSString *oldApp = _modifiers[kMFModificationPreconditionKeyApp];
 
     if (newApp == oldApp || [newApp isEqualToString:oldApp]) return NO;

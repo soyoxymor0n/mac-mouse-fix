@@ -68,8 +68,9 @@ static NSDictionary *_remaps;
 
 static NSSet<NSString *> *_appsWithRemaps = nil;
 
-+ (BOOL)hasRemapsForApp:(NSString *)bundleID {
-    return [_appsWithRemaps containsObject:bundleID];
++ (BOOL)hasRemapsForApp:(NSString *_Nullable)bundleID {
+    if (bundleID == nil) return NO;
+    return [_appsWithRemaps containsObject:(NSString *_Nonnull)bundleID];
 }
 
 + (void)setRemaps:(NSDictionary *)remapsDict {

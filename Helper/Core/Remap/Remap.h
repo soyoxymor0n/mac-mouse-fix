@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (MF_SWIFT_UNBRIDGED(NSDictionary *))remaps NS_REFINED_FOR_SWIFT;
 
 /// Whether some remap only applies while the app with this bundle ID is frontmost
-+ (BOOL)hasRemapsForApp:(NSString *)bundleID;
++ (BOOL)hasRemapsForApp:(NSString *_Nullable)bundleID;
 
 + (BOOL)enableAddMode;
 + (BOOL)disableAddMode;
