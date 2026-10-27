@@ -375,6 +375,61 @@
         }
       }
     },
+    "app-presets.cancel.button" : {
+      "comment" : "Button in the alert that asks whether to replace rows with the recommended setup. Goes back to the review sheet without changing anything.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "app-presets.only-add.button" : {
+      "comment" : "Button in the alert that asks whether to replace rows with the recommended setup. Adds only the rows for buttons that have no action yet and keeps the current actions.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only Add"
+          }
+        }
+      }
+    },
+    "app-presets.override.button" : {
+      "comment" : "Button in the alert that asks whether to replace rows with the recommended setup. Replaces the current actions with the recommended ones.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Override"
+          }
+        }
+      }
+    },
+    "app-presets.override.message" : {
+      "comment" : "Message of the alert shown when ticked rows of the recommended setup would replace actions the app tab already has. %@ is the list of rows that would be replaced, for example 'Button 5 (Toggle video)'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This replaces the current action of %@ in this tab. Choose Only Add to keep the current actions and add just the new rows."
+          }
+        }
+      }
+    },
+    "app-presets.recommended.button" : {
+      "comment" : "Button at the bottom of the Buttons tab, next to 'Restore Defaults...', in an app tab whose app has a built-in preset. Opens the review sheet that compares the preset with the tab's rows.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recommended setup…"
+          }
+        }
+      }
+    },
     "app-presets.review" : {
       "comment" : "Button in the preset banner. Opens the review sheet, where the preset's buttons can be changed before they are added.",
       "localizations" : {
@@ -397,6 +452,17 @@
         }
       }
     },
+    "app-presets.review.already-set" : {
+      "comment" : "Note on a row of the review sheet when the app tab already has exactly this button and action.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Already set"
+          }
+        }
+      }
+    },
     "app-presets.review.column.action" : {
       "comment" : "Column header in the review sheet. The action a button triggers.",
       "localizations" : {
@@ -415,6 +481,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Button"
+          }
+        }
+      }
+    },
+    "app-presets.review.currently" : {
+      "comment" : "Note on a row of the review sheet when the app tab already has another action for this button. %@ is the name of that action.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Currently: %@"
           }
         }
       }
