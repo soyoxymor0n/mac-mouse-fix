@@ -1970,7 +1970,7 @@ Also see CFBundleName in InfoPlist.xcstrings.</string>
                                             </imageView>
                                             <textField focusRingType="none" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="5x2-rm-Zzf">
                                                 <rect key="frame" x="1056" y="0.0" width="147" height="14"/>
-                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Created by Noah Nuebling" id="pMz-a0-1UQ">
+                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="NG is an app by Patrick Reichmann, based on Mac Mouse Fix by Noah Nuebling.&#10;Everything below belongs to the original Mac Mouse Fix." id="pMz-a0-1UQ">
                                                     <font key="font" metaFont="menu" size="11"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
