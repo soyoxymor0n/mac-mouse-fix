@@ -277,7 +277,10 @@ import Foundation
     }
     override func viewDidAppear() {
         super.viewDidAppear()
-        
+
+        /// The rows are loaded by now, so the gesture hint can tell whether the current tab is empty
+        updatePresetBanner()
+
         /// This is called every time the tab is switched to
         /// This is called twice, awakeFromNib as well. Use init() or viewDidLoad() to do things once (or use a flag to track the duplicate invocation)
         
@@ -462,6 +465,9 @@ import Foundation
 
     /// Shows the preset offer for an empty app tab that has a preset, and hides it otherwise
     func updatePresetBanner() {
+        /// The gesture hint teaches how to add a button, so it is shown until the tab has its first row. The '?' button can bring it back.
+        addField.setGestureHintVisible(tableController.dataModel.count == 0)
+
         guard let banner = presetBanner else { return }
         guard let app = scopeApp, let preset = AppPreset.preset(for: app), tableController.dataModel.count == 0, !AppPreset.isDismissed(app) else {
             banner.isHidden = true
@@ -531,6 +537,8 @@ import Foundation
         tableController.reloadAll()
         appTabStrip?.setSelectedScope(app)
         updateRecommendedSetupButton()
+        /// The rows are loaded now, so the banner and the gesture hint can tell whether the tab is empty
+        updatePresetBanner()
     }
 
     /// Adds a tab for the app, unless it already has one, and shows that tab

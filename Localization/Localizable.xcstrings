@@ -19686,6 +19686,18 @@
           }
         }
       }
+    },
+    "add-field.hint.help.tooltip" : {
+      "comment" : "Tooltip of the question mark in the add field. It shows the gesture hint again.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show the gesture hint again"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

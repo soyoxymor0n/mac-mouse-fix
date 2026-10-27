@@ -119,13 +119,14 @@ final class AppPresetReviewController: NSViewController {
         addButton.target = self
         addButton.action = #selector(addTapped(_:))
 
-        let buttonRow = NSStackView(views: [dontSuggestCheckbox, NSView(), skipButton, addButton])
+        /// As in other macOS sheets: the option sits on its own line at the leading edge, and the buttons are at the trailing edge, with the default button last
+        let buttonRow = NSStackView(views: [NSView(), skipButton, addButton])
         buttonRow.orientation = .horizontal
         buttonRow.alignment = .centerY
         buttonRow.spacing = 10
 
         /// Stack everything
-        let root = NSStackView(views: [titleLabel, introLabel, grid, noteLabel, warningLabel, buttonRow])
+        let root = NSStackView(views: [titleLabel, introLabel, grid, noteLabel, warningLabel, dontSuggestCheckbox, buttonRow])
         root.orientation = .vertical
         root.alignment = .leading
         root.spacing = 12
@@ -139,10 +140,11 @@ final class AppPresetReviewController: NSViewController {
         grid.setContentHuggingPriority(.required, for: .vertical)
 
         view = root
-        preferredContentSize = root.fittingSize
 
+        /// Size the sheet after the notes have their final state. Otherwise the empty notes count toward the height and leave a gap at the bottom.
         updateMatches(initial: true)
         updateWarnings()
+        preferredContentSize = root.fittingSize
     }
 
     //

@@ -409,15 +409,53 @@ import Cocoa
 
 extension AddField {
 
-    /// Puts the animated mouse hint left of the '+'. See `MouseGestureHintView`.
+    /// Puts the animated mouse hint left of the '+', and a '?' button in the corner that shows the hint again. See `MouseGestureHintView`.
     func installGestureHint() {
+        guard let container = plusIconView.superview else { return }
+
         let hint = MouseGestureHintView()
         hint.translatesAutoresizingMaskIntoConstraints = false
-        plusIconView.superview?.addSubview(hint)
+        container.addSubview(hint)
+
+        let help = NSButton()
+        help.translatesAutoresizingMaskIntoConstraints = false
+        help.isBordered = false
+        help.imagePosition = .imageOnly
+        help.image = SFSymbolStrings.image(withSymbolName: "questionmark.circle", accessibilityDescription: MFLocalizedString("add-field.hint.help.tooltip", comment: ""))
+        help.toolTip = MFLocalizedString("add-field.hint.help.tooltip", comment: "")
+        help.target = self
+        help.action = #selector(toggleGestureHint(_:))
+        container.addSubview(help)
+
         NSLayoutConstraint.activate([
             hint.centerYAnchor.constraint(equalTo: plusIconView.centerYAnchor),
             hint.centerXAnchor.constraint(equalTo: plusIconView.centerXAnchor, constant: -150),
+            help.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
+            help.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -10),
+            help.widthAnchor.constraint(equalToConstant: 18),
+            help.heightAnchor.constraint(equalToConstant: 18),
         ])
+    }
+
+    /// The hint in this field, once it is installed
+    func gestureHint() -> MouseGestureHintView? {
+        return plusIconView.superview?.subviews.compactMap { $0 as? MouseGestureHintView }.first
+    }
+
+    /// Shows the hint, playing it from the start, or hides it
+    func setGestureHintVisible(_ visible: Bool) {
+        guard let hint = gestureHint() else { return }
+        if visible && hint.isHidden {
+            hint.isHidden = false
+            hint.restartAnimation()
+        } else if !visible {
+            hint.isHidden = true
+        }
+    }
+
+    /// The '?' button: shows the hint again, or hides it if it is showing
+    @objc func toggleGestureHint(_ sender: NSButton) {
+        setGestureHintVisible(gestureHint()?.isHidden ?? false)
     }
 }
 
@@ -569,6 +607,22 @@ final class MouseGestureHintView: NSView {
         } else {
             startAnimation()
         }
+    }
+
+    /// Plays the animation again from the start. Used by the '?' button.
+    func restartAnimation() {
+        removeAnimations(in: layer)
+        if NSWorkspace.shared.accessibilityDisplayShouldReduceMotion {
+            showStillFrame()
+        } else {
+            startAnimation()
+        }
+    }
+
+    private func removeAnimations(in layer: CALayer?) {
+        guard let layer = layer else { return }
+        layer.removeAllAnimations()
+        layer.sublayers?.forEach { removeAnimations(in: $0) }
     }
 
     /// Reduce Motion: the mouse with the first gesture name, and no animation
