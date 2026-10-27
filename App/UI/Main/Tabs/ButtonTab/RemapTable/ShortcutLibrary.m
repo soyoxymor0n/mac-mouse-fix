@@ -1475,7 +1475,8 @@
             kMFActionDictKeySequenceVariantIntervalMs: @(intervalMs > 0 ? intervalMs : 120),
         };
     }
-    return @{ @"ui": label, @"tool": symbols, @"dict": dict };
+    /// `toolWithTitle` is the tooltip in the table. Library names are often longer than the popup, so the tooltip repeats the name.
+    return @{ @"ui": label, @"tool": symbols, @"toolWithTitle": [NSString stringWithFormat:@"%@  %@", label, symbols], @"dict": dict };
 }
 
 @end

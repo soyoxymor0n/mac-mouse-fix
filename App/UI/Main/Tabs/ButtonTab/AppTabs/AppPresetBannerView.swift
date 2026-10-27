@@ -35,7 +35,12 @@ final class AppPresetBannerView: NSView {
         layer?.backgroundColor = NSColor.controlAccentColor.withAlphaComponent(0.12).cgColor
 
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.lineBreakMode = .byTruncatingTail
+        /// Two lines, so the summary of the preset isn't cut off in a narrow window
+        label.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
+        label.maximumNumberOfLines = 2
+        label.cell?.wraps = true
+        label.lineBreakMode = .byWordWrapping
+        label.cell?.truncatesLastVisibleLine = true
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
 
         reviewButton.translatesAutoresizingMaskIntoConstraints = false

@@ -610,7 +610,7 @@ static NSString *effectNameForRowDict(NSDictionary * _Nonnull rowDict) {
         }
         i.action = @selector(updateTableAndWriteToConfig:);
         i.target = self.tableView.delegate;
-        i.toolTip = itemModel[@"tool"];
+        i.toolTip = itemModel[@"toolWithTitle"] ?: itemModel[@"tool"]; /// Shortcut library entries show their full name, which often doesn't fit the popup
         assert(i.accessibilityHelp == nil); /// Most UI elements publish their tooltips as accessibilityHelp automatically, but NSMenuItems don't do that by default, so we do it manually. We do this mainly so that the tooltip string is associated with its NSMenuItem in a way that is visible to accessibility API, which lets us link the menuItem to the tooltip string when creating localizationScreenshots.
         i.accessibilityHelp = i.toolTip;
         i.host = tableCell;

@@ -53,6 +53,7 @@ final class AppTabStripView: NSView {
         scrollView.hasVerticalScroller = true
         scrollView.autohidesScrollers = true
         scrollView.scrollerStyle = .overlay
+        scrollView.contentView = FlippedClipView() /// A plain clip view keeps a short document at the bottom
         scrollView.documentView = tabStack
 
         /// Add button (always visible, below the tabs)
@@ -192,4 +193,9 @@ final class AppTabButton: NSButton {
         let color = isSelectedTab ? NSColor.controlAccentColor.withAlphaComponent(0.25) : NSColor.clear
         layer?.backgroundColor = color.cgColor
     }
+}
+
+/// Clip view that lays out its document from the top
+private final class FlippedClipView: NSClipView {
+    override var isFlipped: Bool { true }
 }

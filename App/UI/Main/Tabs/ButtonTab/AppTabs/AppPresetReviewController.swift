@@ -56,7 +56,7 @@ final class AppPresetReviewController: NSViewController {
         let grid = NSGridView(numberOfColumns: 3, rows: 0)
         grid.rowSpacing = 8
         grid.columnSpacing = 12
-        grid.addRow(with: [NSView(), headerLabel(MFLocalizedString("app-presets.review.column.button", comment: "")), headerLabel(MFLocalizedString("app-presets.review.column.action", comment: ""))])
+        grid.addRow(with: [NSGridCell.emptyContentView, headerLabel(MFLocalizedString("app-presets.review.column.button", comment: "")), headerLabel(MFLocalizedString("app-presets.review.column.action", comment: ""))])
 
         for suggestion in preset.suggestions {
             let checkbox = NSButton(checkboxWithTitle: "", target: self, action: #selector(stateChanged(_:)))
@@ -100,6 +100,8 @@ final class AppPresetReviewController: NSViewController {
         root.translatesAutoresizingMaskIntoConstraints = false
         root.widthAnchor.constraint(equalToConstant: 580).isActive = true
         buttonRow.widthAnchor.constraint(equalTo: root.widthAnchor, constant: -40).isActive = true
+        /// The action popups would otherwise be as wide as their longest library entry and push the grid past the sheet's edges
+        grid.widthAnchor.constraint(equalTo: root.widthAnchor, constant: -40).isActive = true
 
         view = root
         preferredContentSize = root.fittingSize
@@ -132,25 +134,36 @@ final class AppPresetReviewController: NSViewController {
     }
 
     /// The preset's own action comes first. Then come the other actions the shortcut library knows for this app.
+    ///     If the library has the preset's action, its name is used, because the button table shows that name once the row is added.
     private func makeActionPopup(for suggestion: AppPresetSuggestion) -> NSPopUpButton {
         let popup = NSPopUpButton(frame: .zero, pullsDown: false)
 
-        popup.addItem(withTitle: "\(MFLocalizedString(suggestion.titleKey, comment: ""))  \(suggestion.symbols)")
-        popup.lastItem?.representedObject = suggestion.effect
-
+        var presetTitle = "\(MFLocalizedString(suggestion.titleKey, comment: ""))  \(suggestion.symbols)"
+        var otherEntries: [(title: String, effect: [String: Any])] = []
         for entry in ShortcutLibrary.effectsMenuEntries(forBundleID: app) {
             guard let entry = entry as? [String: Any],
                   let ui = entry["ui"] as? String,
                   let effect = entry["dict"] as? [String: Any] else { continue }
-            if (effect as NSDictionary).isEqual(suggestion.effect as NSDictionary) { continue }
-            let tool = entry["tool"] as? String ?? ""
-            popup.addItem(withTitle: "\(ui)  \(tool)")
-            popup.lastItem?.representedObject = effect
+            let title = "\(ui)  \(entry["tool"] as? String ?? "")"
+            if (effect as NSDictionary).isEqual(suggestion.effect as NSDictionary) {
+                presetTitle = title
+                continue
+            }
+            otherEntries.append((title: title, effect: effect))
+        }
+
+        popup.addItem(withTitle: presetTitle)
+        popup.lastItem?.representedObject = suggestion.effect
+        for entry in otherEntries {
+            popup.addItem(withTitle: entry.title)
+            popup.lastItem?.representedObject = entry.effect
         }
 
         popup.target = self
         popup.action = #selector(stateChanged(_:))
         popup.widthAnchor.constraint(greaterThanOrEqualToConstant: 300).isActive = true
+        popup.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        (popup.cell as? NSPopUpButtonCell)?.lineBreakMode = .byTruncatingTail
         return popup
     }
 

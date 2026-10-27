@@ -408,7 +408,7 @@ import Foundation
             banner.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
             banner.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
             banner.topAnchor.constraint(equalTo: container.topAnchor, constant: 10),
-            banner.heightAnchor.constraint(equalToConstant: 34),
+            banner.heightAnchor.constraint(equalToConstant: 42),
         ])
         banner.onReview = { [weak self] in self?.reviewPreset() }
         banner.isHidden = true
