@@ -416,18 +416,22 @@ static NSAttributedString *getShortcutString(NSDictionary *effectDict, BOOL isKe
     
     if ([effectDict[kMFActionDictKeyType] isEqual:kMFActionDictTypeKeySequence]) {
         
-        /// Steps are shown one after another, separated by " then ", in the same symbols as a single shortcut
+        /// Steps are shown one after another, with a separator, in the same symbols as a single shortcut
+        ///     Steps that aren't dictionaries of numbers are skipped. (The helper skips them, too.)
         NSMutableAttributedString *result = [[NSMutableAttributedString alloc] init];
-        NSArray *steps = effectDict[kMFActionDictKeySequenceVariantSteps];
-        NSDictionary *font = @{ NSFontAttributeName: [NSFont systemFontOfSize:NSFont.systemFontSize] };
-        for (NSUInteger i = 0; i < steps.count; i++) {
-            NSDictionary *step = steps[i];
-            CGKeyCode keyCode = ((NSNumber *)step[kMFActionDictKeyKeyboardShortcutVariantKeycode]).unsignedShortValue;
-            CGEventFlags flags = ((NSNumber *)step[kMFActionDictKeyKeyboardShortcutVariantModifierFlags]).unsignedLongValue;
-            if (i > 0) {
-                [result appendAttributedString:[[NSAttributedString alloc] initWithString:@" then " attributes:font]];
+        id steps = effectDict[kMFActionDictKeySequenceVariantSteps];
+        if (![steps isKindOfClass:NSArray.class]) return result;
+        NSFont *font = [NSFont systemFontOfSize:NSFont.systemFontSize];
+        NSString *separator = MFLocalizedString(@"effect.key-sequence.separator", @"Shown between the keyboard shortcuts of an action that presses several shortcuts one after another. Example: '⌘K then ⌘S'. Keep the spaces around the word.");
+        for (id step in (NSArray *)steps) {
+            if (![step isKindOfClass:NSDictionary.class]) continue;
+            id keyCode = step[kMFActionDictKeyKeyboardShortcutVariantKeycode];
+            id flags = step[kMFActionDictKeyKeyboardShortcutVariantModifierFlags];
+            if (![keyCode isKindOfClass:NSNumber.class] || ![flags isKindOfClass:NSNumber.class]) continue;
+            if (result.length > 0) {
+                [result appendAttributedString:[[NSAttributedString alloc] initWithString:separator attributes:@{ NSFontAttributeName: font }]];
             }
-            [result appendAttributedString:[UIStrings getStringForKeyCode:keyCode flags:flags font:[NSFont systemFontOfSize:NSFont.systemFontSize]]];
+            [result appendAttributedString:[UIStrings getStringForKeyCode:[keyCode unsignedShortValue] flags:[flags unsignedLongValue] font:font]];
         }
         return result;
     }
