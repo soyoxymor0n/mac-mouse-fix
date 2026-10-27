@@ -19650,6 +19650,42 @@
           }
         }
       }
+    },
+    "add-field.hint.click" : {
+      "comment" : "Name of a gesture, shown under the mouse hint in the add field",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click"
+          }
+        }
+      }
+    },
+    "add-field.hint.double-click" : {
+      "comment" : "Name of a gesture, shown under the mouse hint in the add field",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double Click"
+          }
+        }
+      }
+    },
+    "add-field.hint.click-and-drag" : {
+      "comment" : "Name of a gesture, shown under the mouse hint in the add field",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click and Drag"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

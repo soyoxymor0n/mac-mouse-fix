@@ -78,6 +78,9 @@ final class AppPresetReviewController: NSViewController {
             checkbox.state = .on
             let buttonPopup = makeButtonPopup(selected: suggestion.button)
             let actionPopup = makeActionPopup(for: suggestion)
+            /// Only the action column may grow with the sheet. A column with a low-hugging cell grows, which left a gap after the checkboxes.
+            checkbox.setContentHuggingPriority(.required, for: .horizontal)
+            buttonPopup.setContentHuggingPriority(.required, for: .horizontal)
             checkboxes.append(checkbox)
             buttonPopups.append(buttonPopup)
             actionPopups.append(actionPopup)
@@ -93,6 +96,9 @@ final class AppPresetReviewController: NSViewController {
             }
             grid.addRow(with: cells)
         }
+
+        /// The checkbox column is as wide as a checkbox. The grid is as wide as the sheet, and it would otherwise give that column the extra width, leaving a gap after the checkboxes.
+        grid.column(at: 0).width = 20
 
         /// Notes
         warningLabel.textColor = .systemRed
