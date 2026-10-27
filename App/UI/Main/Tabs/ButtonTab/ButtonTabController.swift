@@ -427,7 +427,7 @@ import Foundation
     }
     
     /// Opens the review sheet for the current app's preset. Nothing is written until the user confirms there.
-    /// Confirmed rows replace the tab's rows, which are empty when the banner is shown. Restore Defaults on the tab undoes this.
+    /// Confirmed rows are added to the tab's rows, which are empty when the banner is shown. Restore Defaults on the tab undoes this.
     private func reviewPreset() {
         guard let app = scopeApp, let preset = AppPreset.preset(for: app), let window = MainAppState.shared.window else { return }
 
@@ -436,7 +436,11 @@ import Foundation
             guard let self else { return }
             if dontSuggestAgain { AppPreset.setDismissed(app) }
             if !rows.isEmpty {
-                ButtonTabController.replaceRows(forScope: app, with: rows)
+                /// Never replace a row the tab already has. A preset row whose trigger and modifiers are already used in this tab is left out.
+                ///     (The banner only shows in an empty tab, so normally there's nothing to leave out.)
+                let existingRows = RemapScope.rows(forScope: app, inRemaps: config("Remaps") as? [Any]) as? [[String: Any]] ?? []
+                let newRows = rows.filter { row in !existingRows.contains { ButtonTabController.rowsHaveSameTrigger($0, row) } }
+                ButtonTabController.replaceRows(forScope: app, with: existingRows + newRows)
                 self.tableController.reloadAll()
             }
             self.updatePresetBanner()
@@ -543,6 +547,15 @@ import Foundation
                 self.tableController.reloadAll()
             }
         }
+    }
+
+    /// Whether two rows have the same trigger and modifiers, so only one of them can be in a tab
+    private static func rowsHaveSameTrigger(_ row: [String: Any], _ otherRow: [String: Any]) -> Bool {
+        let trigger = row[kMFRemapsKeyTrigger as String] as AnyObject?
+        let otherTrigger = otherRow[kMFRemapsKeyTrigger as String] as AnyObject?
+        let modifiers = row[kMFRemapsKeyModificationPrecondition as String] as? NSDictionary ?? NSDictionary()
+        let otherModifiers = otherRow[kMFRemapsKeyModificationPrecondition as String] as? NSDictionary ?? NSDictionary()
+        return (trigger?.isEqual(otherTrigger) ?? false) && modifiers.isEqual(otherModifiers)
     }
 
     /// Replaces the rows of one scope in config and writes it. nil is the global scope. The other scopes keep their rows.
