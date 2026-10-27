@@ -52,6 +52,9 @@ import Cocoa
         
         /// Make colors non-transparent
         updateColors()
+
+        /// Show how to add a button: an animated mouse left of the '+'
+        installGestureHint()
         
         /// Observe darkmode changes to update colors (we do the same thing in RemapTable)
         if #available(macOS 10.14, *) {
@@ -402,4 +405,185 @@ import Cocoa
         return false
     }
     
+}
+
+extension AddField {
+
+    /// Puts the animated mouse hint left of the '+'. See `MouseGestureHintView`.
+    func installGestureHint() {
+        let hint = MouseGestureHintView()
+        hint.translatesAutoresizingMaskIntoConstraints = false
+        plusIconView.superview?.addSubview(hint)
+        NSLayoutConstraint.activate([
+            hint.centerYAnchor.constraint(equalTo: plusIconView.centerYAnchor),
+            hint.centerXAnchor.constraint(equalTo: plusIconView.centerXAnchor, constant: -150),
+        ])
+    }
+}
+
+/// Animated hint for the add field: a small mouse is clicked, double clicked, then pressed and dragged.
+///     It shows the gestures the field expects. With Reduce Motion on, it stays on one frame, with the pointer over the left button.
+final class MouseGestureHintView: NSView {
+
+    /// The mouse. Moves sideways while the left button is held down: that is the drag.
+    private let mouse = CALayer()
+    private let body = CAShapeLayer()
+    private let split = CAShapeLayer()
+    private let leftButton = CALayer()
+    private let clickRing = CAShapeLayer()
+    /// The system's arrow cursor, so the hint shows the pointer the user sees
+    private let pointer = CALayer()
+
+    /// Length of one loop in seconds. The keyframe times below are seconds within one loop.
+    private static let loopDuration: Double = 5.0
+    private static let viewSize = NSSize(width: 150, height: 90)
+    /// The mouse in this view's coordinates
+    private static let mouseFrame = CGRect(x: 50, y: 14, width: 40, height: 58)
+    /// Where the pointer rests: over the left button
+    private static let restingPoint = CGPoint(x: 60, y: 57)
+    /// Where the pointer starts, outside the mouse
+    private static let startPoint = CGPoint(x: 135, y: 80)
+    /// How far the mouse is dragged to the right
+    private static let dragDistance: CGFloat = 44
+
+    override init(frame frameRect: NSRect) {
+        super.init(frame: NSRect(origin: .zero, size: MouseGestureHintView.viewSize))
+        setUp()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setUp()
+    }
+
+    override var intrinsicContentSize: NSSize { MouseGestureHintView.viewSize }
+
+    private func setUp() {
+
+        wantsLayer = true
+        setAccessibilityElement(false) /// Purely decorative
+
+        mouse.frame = MouseGestureHintView.mouseFrame
+        mouse.opacity = 0
+        layer?.addSublayer(mouse)
+        let mouseBounds = mouse.bounds
+
+        body.frame = mouseBounds
+        body.path = CGPath(roundedRect: mouseBounds, cornerWidth: 18, cornerHeight: 18, transform: nil)
+        body.lineWidth = 1.5
+        mouse.addSublayer(body)
+
+        /// The line between the buttons, across the top and down the middle
+        let splitPath = CGMutablePath()
+        splitPath.move(to: CGPoint(x: 0, y: 29))
+        splitPath.addLine(to: CGPoint(x: 40, y: 29))
+        splitPath.move(to: CGPoint(x: 20, y: 29))
+        splitPath.addLine(to: CGPoint(x: 20, y: 58))
+        split.frame = mouseBounds
+        split.path = splitPath
+        split.fillColor = nil
+        split.lineWidth = 1.5
+        mouse.addSublayer(split)
+
+        leftButton.frame = CGRect(x: 3, y: 32, width: 14, height: 23)
+        leftButton.cornerRadius = 7
+        leftButton.opacity = 0
+        mouse.addSublayer(leftButton)
+
+        clickRing.frame = mouseBounds
+        clickRing.path = CGPath(ellipseIn: CGRect(x: -4, y: 29.5, width: 28, height: 28), transform: nil)
+        clickRing.fillColor = nil
+        clickRing.lineWidth = 2
+        clickRing.opacity = 0
+        mouse.addSublayer(clickRing)
+
+        let arrow = NSCursor.arrow.image
+        var arrowRect = CGRect(origin: .zero, size: arrow.size)
+        pointer.contents = arrow.cgImage(forProposedRect: &arrowRect, context: nil, hints: nil)
+        pointer.bounds = CGRect(origin: .zero, size: arrow.size)
+        pointer.anchorPoint = CGPoint(x: 0, y: 1) /// The tip of the arrow is its top-left corner
+        pointer.position = MouseGestureHintView.startPoint
+        pointer.opacity = 0
+        layer?.addSublayer(pointer)
+
+        updateColors()
+    }
+
+    override func viewDidChangeEffectiveAppearance() {
+        super.viewDidChangeEffectiveAppearance()
+        updateColors()
+    }
+
+    private func updateColors() {
+        let apply = {
+            self.body.fillColor = NSColor.textBackgroundColor.cgColor
+            self.body.strokeColor = NSColor.tertiaryLabelColor.cgColor
+            self.split.strokeColor = NSColor.tertiaryLabelColor.cgColor
+            self.leftButton.backgroundColor = NSColor.controlAccentColor.withAlphaComponent(0.4).cgColor
+            self.clickRing.strokeColor = NSColor.controlAccentColor.cgColor
+        }
+        if #available(macOS 11.0, *) {
+            effectiveAppearance.performAsCurrentDrawingAppearance(apply)
+        } else {
+            apply()
+        }
+    }
+
+    override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        guard window != nil else { return }
+        if NSWorkspace.shared.accessibilityDisplayShouldReduceMotion {
+            showStillFrame()
+        } else {
+            startAnimation()
+        }
+    }
+
+    /// Reduce Motion: the mouse, with the pointer over its left button
+    private func showStillFrame() {
+        mouse.opacity = 1
+        pointer.position = MouseGestureHintView.restingPoint
+        pointer.opacity = 1
+    }
+
+    /// One loop: the mouse fades in, the pointer moves onto the left button, clicks once, double clicks,
+    /// then the left button is held down and the mouse is dragged to the right. Then everything fades out.
+    private func startAnimation() {
+        let drag = MouseGestureHintView.dragDistance
+        let rest = MouseGestureHintView.restingPoint
+        let start = MouseGestureHintView.startPoint
+        let dragged = CGPoint(x: rest.x + drag, y: rest.y)
+        let mouseX = mouse.position.x
+
+        animate(mouse, "opacity", [(0, 0), (0.3, 1), (4.4, 1), (4.7, 0), (5, 0)])
+        animate(mouse, "position.x", [(0, mouseX), (2.3, mouseX), (3.9, mouseX + drag), (4.2, mouseX + drag), (4.21, mouseX), (5, mouseX)])
+
+        /// The left button lights up on each click, and stays lit while it is held for the drag
+        animate(leftButton, "opacity", [(0, 0), (1.0, 0), (1.05, 1), (1.25, 0), (1.4, 1), (1.5, 0), (1.6, 1), (1.7, 0), (2.1, 1), (4.2, 1), (4.3, 0), (5, 0)])
+        animate(clickRing, "opacity", [(0, 0), (1.0, 0), (1.03, 0.9), (1.3, 0), (1.4, 0), (1.42, 0.9), (1.6, 0), (1.62, 0.9), (1.9, 0), (5, 0)])
+
+        animatePosition(pointer, [(0, start), (0.3, start), (1.0, rest), (2.1, rest), (2.3, rest), (3.9, dragged), (4.2, dragged), (5, dragged)])
+        animate(pointer, "opacity", [(0, 0), (0.25, 1), (4.4, 1), (4.7, 0), (5, 0)])
+    }
+
+    private func animate(_ layer: CALayer, _ keyPath: String, _ keyframes: [(Double, CGFloat)]) {
+        let animation = keyframeAnimation(keyPath, times: keyframes.map { $0.0 })
+        animation.values = keyframes.map { NSNumber(value: Double($0.1)) }
+        layer.add(animation, forKey: keyPath)
+    }
+
+    private func animatePosition(_ layer: CALayer, _ keyframes: [(Double, CGPoint)]) {
+        let animation = keyframeAnimation("position", times: keyframes.map { $0.0 })
+        animation.values = keyframes.map { NSValue(point: $0.1) }
+        layer.add(animation, forKey: "position")
+    }
+
+    private func keyframeAnimation(_ keyPath: String, times: [Double]) -> CAKeyframeAnimation {
+        let animation = CAKeyframeAnimation(keyPath: keyPath)
+        animation.keyTimes = times.map { NSNumber(value: $0 / MouseGestureHintView.loopDuration) }
+        animation.duration = MouseGestureHintView.loopDuration
+        animation.repeatCount = .infinity
+        animation.calculationMode = .linear
+        return animation
+    }
 }

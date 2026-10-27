@@ -202,11 +202,11 @@ final class AppPresetReviewController: NSViewController {
     //
 
     /// The checked rows, with the button and effect the user picked for each, and how they compare to the tab's rows (always `.new` outside comparison mode)
-    private func checkedSelections() -> [(button: Int, effect: [String: Any], match: AppPresetMatch)] {
-        var result: [(button: Int, effect: [String: Any], match: AppPresetMatch)] = []
+    private func checkedSelections() -> [(button: Int, effect: [String: Any], title: String, match: AppPresetMatch)] {
+        var result: [(button: Int, effect: [String: Any], title: String, match: AppPresetMatch)] = []
         for index in checkboxes.indices where checkboxes[index].state == .on && checkboxes[index].isEnabled {
             guard let selection = selection(at: index) else { continue }
-            result.append((button: selection.button, effect: selection.effect, match: index < matches.count ? matches[index] : .new))
+            result.append((button: selection.button, effect: selection.effect, title: actionPopups[index].titleOfSelectedItem ?? "", match: index < matches.count ? matches[index] : .new))
         }
         return result
     }
@@ -321,7 +321,7 @@ final class AppPresetReviewController: NSViewController {
 
         /// Some ticked rows would replace an action the tab already has. Ask first.
         let replacing = conflicting.map { AppPreset.remapRow(button: $0.button, effect: $0.effect, app: app) }
-        confirmOverride(conflicting.map { $0.match }) { [weak self] response in
+        confirmOverride(conflicting.map { (button: $0.button, title: $0.title, match: $0.match) }) { [weak self] response in
             switch response {
             case .alertFirstButtonReturn: self?.finish(added: added, replacing: replacing)
             case .alertSecondButtonReturn: self?.finish(added: added, replacing: [])
@@ -331,21 +331,22 @@ final class AppPresetReviewController: NSViewController {
     }
 
     /// Asks whether to replace the tab's rows that the ticked rows conflict with. The alert says which rows those are.
-    private func confirmOverride(_ conflicts: [AppPresetMatch], completion: @escaping (NSApplication.ModalResponse) -> Void) {
+    private func confirmOverride(_ conflicts: [(button: Int, title: String, match: AppPresetMatch)], completion: @escaping (NSApplication.ModalResponse) -> Void) {
         guard let tabRows, let window = view.window else { return }
 
-        let names: [String] = conflicts.compactMap { match in
-            guard case .conflict(let rowIndex) = match else { return nil }
+        /// One line per setting that would be replaced: "• Button 4: ⌘S → Toggle mute ⌘⇧M"
+        let lines: [String] = conflicts.compactMap { conflict in
+            guard case .conflict(let rowIndex) = conflict.match else { return nil }
             let row = tabRows[rowIndex]
             let button = (row["trigger"] as? [String: Any])?["button"] as? Int ?? 0
             let buttonName = UIStrings.getButtonString(MFMouseButtonNumber(UInt32(button)), context: kMFButtonStringUsageContextActionTableGroupRow)
-            return "\(buttonName) (\(AppPresetReviewController.actionName(of: row)))"
+            return "•  \(buttonName): \(AppPresetReviewController.actionName(of: row)) → \(conflict.title)"
         }
 
         let alert = NSAlert()
         alert.alertStyle = .warning
         alert.messageText = String(format: MFLocalizedString("app-presets.review.title", comment: ""), AppTabs.name(for: app))
-        alert.informativeText = String(format: MFLocalizedString("app-presets.override.message", comment: ""), UIStrings.naturalLanguageList(fromStringArray: names))
+        alert.informativeText = String(format: MFLocalizedString("app-presets.override.message", comment: ""), lines.joined(separator: "\n"))
         _ = alert.addButton(withTitle: MFLocalizedString("app-presets.override.button", comment: ""))
         _ = alert.addButton(withTitle: MFLocalizedString("app-presets.only-add.button", comment: ""))
         let cancelButton = alert.addButton(withTitle: MFLocalizedString("app-presets.cancel.button", comment: ""))

@@ -414,7 +414,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This replaces the current action of %@ in this tab. Choose Only Add to keep the current actions and add just the new rows."
+            "value" : "These settings in this tab will be replaced:\n%@\n\nOnly Add keeps them and adds only the new rows."
           }
         }
       }
