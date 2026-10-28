@@ -333,7 +333,7 @@ We put this NOTE here, because:
         <!--Tab View Controller-->
         <scene sceneID="9xX-fZ-tXt">
             <objects>
-                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="RJA-oq-Oo4" customClass="TabViewController" customModule="Mac_Mouse_Fix" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="unspecified" id="RJA-oq-Oo4" customClass="TabViewController" customModule="Mac_Mouse_Fix" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="&lt;Initial&gt;" identifier="initial" id="g9N-Za-8Ss"/>
                         <tabViewItem label="General" identifier="general" image="gearshape" catalog="system" id="rIq-3r-6ck">
@@ -341,7 +341,7 @@ We put this NOTE here, because:
                                 <fragment content="Toolbar &gt; General Tab Button"/>
                             </attributedString>
                         </tabViewItem>
-                        <tabViewItem label="Buttons" identifier="buttons" image="rectangle" catalog="system" id="Mjk-wy-Z7C">
+                        <tabViewItem label="Buttons" identifier="buttons" image="computermouse" catalog="system" id="Mjk-wy-Z7C">
                             <attributedString key="userComments">
                                 <fragment content="Toolbar &gt; Buttons Tab Button"/>
                             </attributedString>
@@ -532,6 +532,53 @@ NOTE: Primarily meant to teach the right mental model to users who have the comm
                                                     <constraint firstItem="7G6-R6-mA8" firstAttribute="top" secondItem="hr6-ym-FE1" secondAttribute="top" id="xIr-23-mP7"/>
                                                 </constraints>
                                             </customView>
+<customView verticalHuggingPriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="FgF-8j-kMB-lk" userLabel="Divider">
+                                                <rect key="frame" x="0.0" y="153" width="320" height="31"/>
+                                                <subviews>
+                                                    <box horizontalHuggingPriority="1000" verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="3RY-sV-oKD-lk">
+                                                        <rect key="frame" x="0.0" y="6" width="320" height="19"/>
+                                                    </box>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="3RY-sV-oKD-lk" secondAttribute="trailing" id="Gxi-4H-iHU-lk"/>
+                                                    <constraint firstAttribute="bottom" secondItem="3RY-sV-oKD-lk" secondAttribute="bottom" constant="8" id="bdL-Jz-Ry6-lk"/>
+                                                    <constraint firstItem="3RY-sV-oKD-lk" firstAttribute="top" secondItem="FgF-8j-kMB-lk" secondAttribute="top" constant="8" id="uoz-XJ-DEz-lk"/>
+                                                    <constraint firstItem="3RY-sV-oKD-lk" firstAttribute="leading" secondItem="FgF-8j-kMB-lk" secondAttribute="leading" id="w7d-CP-uCC-lk"/>
+                                                </constraints>
+                                            </customView>
+<button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ncd-ap-KlE-lk">
+                                                <rect key="frame" x="0.0" y="129" width="320" height="16"/>
+                                                <buttonCell key="cell" type="check" title="Lock Mouse Pointer" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ILO-GQ-vNk-lk">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                    <attributedString key="userComments">
+                                                        <fragment content="General &gt; Lock Mouse Pointer Toggle"/>
+                                                    </attributedString>
+                                                </buttonCell>
+                                                <accessibility identifier="axLockMousePointerToggle"/>
+                                            </button>
+<customView horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="hr6-ym-FE1-lk" userLabel="LockPointerIndent">
+                                                <rect key="frame" x="0.0" y="93" width="320" height="28"/>
+                                                <subviews>
+                                                    <textField focusRingType="none" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="7G6-R6-mA8-lk" customClass="MarkdownTextField" customModule="Mac_Mouse_Fix" customModuleProvider="target">
+                                                        <rect key="frame" x="18" y="0.0" width="304" height="28"/>
+                                                        <textFieldCell key="cell" controlSize="small" alignment="left" title="Keeps the mouse pointer in place while a &apos;Click and Drag&apos; gesture is held down." id="AqN-zN-yDS-lk">
+                                                            <font key="font" metaFont="smallSystem"/>
+                                                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            <attributedString key="userComments">
+                                                                <fragment content="General &gt; Show in Menu Bar Toggle &gt; Hint"/>
+                                                            </attributedString>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="7G6-R6-mA8-lk" secondAttribute="trailing" id="72H-y9-MsX-lk"/>
+                                                    <constraint firstAttribute="bottom" secondItem="7G6-R6-mA8-lk" secondAttribute="bottom" id="8cx-Gq-l99-lk"/>
+                                                    <constraint firstItem="7G6-R6-mA8-lk" firstAttribute="leading" secondItem="hr6-ym-FE1-lk" secondAttribute="leading" constant="20" symbolic="YES" id="UEX-tb-PgM-lk"/>
+                                                    <constraint firstItem="7G6-R6-mA8-lk" firstAttribute="top" secondItem="hr6-ym-FE1-lk" secondAttribute="top" id="xIr-23-mP7-lk"/>
+                                                </constraints>
+                                            </customView>
                                             <customView verticalHuggingPriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="Xec-u6-Sj4" userLabel="Divider">
                                                 <rect key="frame" x="0.0" y="68" width="320" height="17"/>
                                                 <subviews>
@@ -652,6 +699,8 @@ NOTE: Primarily meant to teach the right mental model to users who have the comm
                         <outlet property="mainView" destination="As8-gY-gcx" id="kXJ-31-AWr"/>
                         <outlet property="masterStack" destination="6xF-Pl-4RE" id="XjS-cn-sHP"/>
                         <outlet property="menuBarHint" destination="7G6-R6-mA8" id="7Wk-AX-Im3"/>
+                        <outlet property="lockPointerCheckbox" destination="ncd-ap-KlE-lk" id="lkO-chk-1"/>
+                        <outlet property="lockPointerHint" destination="7G6-R6-mA8-lk" id="lkO-hnt-1"/>
                         <outlet property="menuBarToggle" destination="ncd-ap-KlE" id="rzr-sb-jGR"/>
                         <outlet property="updatesExtraSection" destination="ojq-7M-UaO" id="gmK-EU-JI5"/>
                         <outlet property="updatesHint" destination="tvD-Xi-viR" id="yr8-2s-B5c"/>
@@ -733,7 +782,7 @@ If we ever write an article listing all the possible triggers, we could link it 
                                             <constraint firstAttribute="bottom" secondItem="7En-Ho-Dyb" secondAttribute="bottom" constant="12" id="z3y-EJ-BnU"/>
                                         </constraints>
                                     </customView>
-                                    <scrollView horizontalHuggingPriority="999" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" borderType="none" autohidesScrollers="YES" horizontalLineScroll="39" horizontalPageScroll="10" verticalLineScroll="39" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="OGV-uF-BjJ" userLabel="TableScrollView" customClass="MFScrollView">
+                                    <scrollView horizontalHuggingPriority="999" verticalHuggingPriority="250" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" borderType="none" autohidesScrollers="YES" horizontalLineScroll="39" horizontalPageScroll="10" verticalLineScroll="39" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="OGV-uF-BjJ" userLabel="TableScrollView" customClass="MFScrollView">
                                         <rect key="frame" x="0.0" y="49" width="541" height="187"/>
                                         <clipView key="contentView" autoresizesSubviews="NO" drawsBackground="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fkp-gm-SVn" customClass="MFClipView" customModule="Mac_Mouse_Fix" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="541" height="187"/>
@@ -946,7 +995,7 @@ If we ever write an article listing all the possible triggers, we could link it 
                                             <constraint firstItem="Fkp-gm-SVn" firstAttribute="trailing" secondItem="OGV-uF-BjJ" secondAttribute="trailing" id="1Gy-Na-J1I"/>
                                             <constraint firstItem="Fkp-gm-SVn" firstAttribute="top" secondItem="OGV-uF-BjJ" secondAttribute="top" id="3HQ-aH-MNB"/>
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="500" id="lgg-Lp-QGT"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="500" id="oIt-mA-DPV"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="oIt-mA-DPV"/>
                                             <constraint firstItem="Fkp-gm-SVn" firstAttribute="leading" secondItem="OGV-uF-BjJ" secondAttribute="trailing" id="uTS-6R-GFk"/>
                                         </constraints>
                                         <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="mCT-ys-LqY">
@@ -958,24 +1007,10 @@ If we ever write an article listing all the possible triggers, we could link it 
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
-                                    <stackView distribution="equalSpacing" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="250" verticalStackHuggingPriority="1000" verticalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z1h-11-Um4" userLabel="ButtonsStack">
+                                    <stackView distribution="equalSpacing" orientation="horizontal" alignment="bottom" horizontalStackHuggingPriority="250" verticalStackHuggingPriority="1000" verticalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z1h-11-Um4" userLabel="ButtonsStack">
                                         <rect key="frame" x="0.0" y="0.0" width="541" height="41"/>
                                         <subviews>
-                                            <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="am9-X6-JrT">
-                                                <rect key="frame" x="0.0" y="14" width="83" height="24"/>
-                                                <buttonCell key="cell" type="push" title="Options..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Hur-83-2a2">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                    <attributedString key="userComments">
-                                                        <fragment content="Buttons &gt; Options... Button"/>
-                                                    </attributedString>
-                                                    <connections>
-                                                        <action selector="openOptions:" target="d9S-X9-qM1" id="PCM-vg-X7d"/>
-                                                    </connections>
-                                                </buttonCell>
-                                                <accessibility identifier="axButtonsOptionsButton"/>
-                                            </button>
-                                            <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="JHB-lg-H8e">
+                                                                                        <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="JHB-lg-H8e">
                                                 <rect key="frame" x="405" y="14" width="136" height="24"/>
                                                 <buttonCell key="cell" type="push" title="Restore Defaults..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lrw-Lp-nQ4">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -992,13 +1027,17 @@ If we ever write an article listing all the possible triggers, we could link it 
                                         </subviews>
                                         <edgeInsets key="edgeInsets" left="0.0" right="0.0" top="3" bottom="14"/>
                                         <visibilityPriorities>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                        </visibilityPriorities>
+                                            
+                                            
+                                        
+<integer value="1000"/>
+</visibilityPriorities>
                                         <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                        </customSpacing>
+                                            
+                                            
+                                        
+<real value="3.4028234663852886e+38"/>
+</customSpacing>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -1032,9 +1071,8 @@ If we ever write an article listing all the possible triggers, we could link it 
                     <connections>
                         <outlet property="addField" destination="Pxm-4w-iO7" id="ncr-e0-lmY"/>
                         <outlet property="clipView" destination="Fkp-gm-SVn" id="Me9-e3-Cuy"/>
-                        <outlet property="optionsButton" destination="am9-X6-JrT" id="yk5-GW-6RT"/>
-                        <outlet property="restoreDefaultButton" destination="JHB-lg-H8e" id="urx-gI-o4v"/>
-                        <outlet property="restoreDefaultPopover" destination="Cts-Zb-d93" id="LMv-Q3-UYM"/>
+                                                <outlet property="restoreDefaultButton" destination="JHB-lg-H8e" id="urx-gI-o4v"/>
+                                                                        <outlet property="restoreDefaultPopover" destination="Cts-Zb-d93" id="LMv-Q3-UYM"/>
                         <outlet property="restoreDefaultPopoverDontRemindAgainCheckbox" destination="PRU-rA-I4Y" id="ekr-di-Qnk"/>
                         <outlet property="restoreDefaultPopoverLabel" destination="cxd-49-HcJ" id="2fw-50-dJ9"/>
                         <outlet property="scrollView" destination="OGV-uF-BjJ" id="IuP-Tf-IOQ"/>
@@ -2678,7 +2716,7 @@ Also see CFBundleName in InfoPlist.xcstrings.</string>
         <image name="minus" catalog="system" width="14" height="4"/>
         <image name="plus" catalog="system" width="14" height="13"/>
         <image name="questionmark" catalog="system" width="10" height="15"/>
-        <image name="rectangle" catalog="system" width="18" height="14"/>
+        <image name="computermouse" catalog="system" width="14" height="18"/>
         <image name="rectangle.3.group.bubble.left" catalog="system" width="17" height="16"/>
         <image name="safari" catalog="system" width="15" height="15"/>
         <image name="xmark.circle.fill" catalog="system" width="15" height="15"/>

@@ -305,7 +305,7 @@ final class MouseGlyphLayer: CALayer {
 ///     The timing is in `GestureHintTimeline`. With Reduce Motion on, it shows the mouse and the first name, without animation.
 final class GestureHintView: NSView, GestureHintClockObserver {
 
-    private static let viewSize = NSSize(width: 200, height: 130)
+    static let viewSize = NSSize(width: 200, height: 130)
     /// Where the mouse is at rest, in this view's coordinates
     private static let mouseOrigin = CGPoint(x: 77, y: 44)
 
@@ -628,25 +628,20 @@ private final class GestureLegendItemView: NSView {
 
 // MARK: Explainer
 
-/// The popover that opens from the '?' in the add field. It explains each gesture in one line, and can play the animation in the add field again.
+/// The popover that opens from the '?' in the add field. It plays the gesture hint at the top, and explains each gesture in one line.
 enum GestureExplainer {
 
     /// The popover that is showing. NSPopover does not keep itself alive.
     private static var popover: NSPopover?
 
-    /// Shows the popover under the button. `onShowAnimation` is called when the user clicks "Show animation", after the popover closes.
-    static func show(relativeTo button: NSView, onShowAnimation: @escaping () -> Void) {
+    /// Shows the popover under the button.
+    static func show(relativeTo button: NSView) {
 
         popover?.close()
 
-        let controller = GestureExplainerViewController()
         let popover = NSPopover()
         popover.behavior = .transient
-        popover.contentViewController = controller
-        controller.onShowAnimation = { [weak popover] in
-            popover?.performClose(nil)
-            onShowAnimation()
-        }
+        popover.contentViewController = GestureExplainerViewController()
 
         /// The button is flipped, so its maxY edge is its bottom edge, and the popover opens under the add field's corner.
         popover.show(relativeTo: button.bounds, of: button, preferredEdge: .maxY)
@@ -654,66 +649,172 @@ enum GestureExplainer {
     }
 }
 
-private final class GestureExplainerViewController: NSViewController {
-
-    var onShowAnimation: (() -> Void)?
+private final class GestureExplainerViewController: NSViewController, GestureHintClockObserver {
 
     private static let width: CGFloat = 340
     private static let nameColumnWidth: CGFloat = 100
+    private static let rowSpacing: CGFloat = 8
+    private static let barWidth: CGFloat = 3
+
+    /// The shared loop is shown while the popover is open. Its state before the popover opened is restored when it closes.
+    private var loopWasShownBeforePopover = false
+
+    /// One row per gesture, in the order of `GestureKind.allCases`
+    private var rows: [NSView] = []
+    private var rowsStack: NSStackView?
+
+    /// The colored bar in front of the description of the gesture that is playing. It moves to the next row in sync with the animation.
+    private let bar = NSView()
+    private var barBottom: NSLayoutConstraint?
+    private var barHeight: NSLayoutConstraint?
+    /// The gesture the bar points at. nil while no gesture is named.
+    private var barKind: GestureKind?
+
+    // MARK: GestureHintClockObserver
+
+    /// The popover's content is only in a window while the popover is open
+    var isShowingGestureHint: Bool { view.window != nil }
+
+    func show(_ state: GestureHintState) {
+        guard state.nameKind != barKind else { return }
+        barKind = state.nameKind
+
+        guard let kind = state.nameKind, let index = GestureKind.allCases.firstIndex(of: kind), index < rows.count else {
+            bar.alphaValue = 0
+            return
+        }
+
+        /// Frames of the rows are in the coordinates of the popover's content
+        view.layoutSubtreeIfNeeded()
+        let row = rows[index]
+        let rowFrame = row.convert(row.bounds, to: view)
+
+        if bar.alphaValue < 0.5 {
+            /// First appearance: place the bar at the row
+            barBottom?.constant = -rowFrame.minY /// Bottom anchors count inward, so the constant is negated
+            barHeight?.constant = rowFrame.height
+            bar.alphaValue = 1
+        } else {
+            /// Moves to the next row, in step with the animation
+            NSAnimationContext.runAnimationGroup { context in
+                context.duration = 0.25
+                context.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+                barBottom?.animator().constant = -rowFrame.minY
+                barHeight?.animator().constant = rowFrame.height
+            }
+        }
+    }
+
+    // MARK: Lifecycle
+
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        let clock = GestureHintClock.shared
+        loopWasShownBeforePopover = clock.isLoopShown
+        clock.add(self)
+        clock.isLoopShown = true
+        clock.restartLoop()
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        GestureHintClock.shared.isLoopShown = loopWasShownBeforePopover
+    }
 
     override func loadView() {
+
+        /// The hint, centered at the top
+        let hint = GestureHintView()
+        hint.translatesAutoresizingMaskIntoConstraints = false
+        let hintHolder = NSView()
+        hintHolder.translatesAutoresizingMaskIntoConstraints = false
+        hintHolder.addSubview(hint)
+        NSLayoutConstraint.activate([
+            hint.centerXAnchor.constraint(equalTo: hintHolder.centerXAnchor),
+            hint.topAnchor.constraint(equalTo: hintHolder.topAnchor),
+            hint.bottomAnchor.constraint(equalTo: hintHolder.bottomAnchor),
+            hintHolder.heightAnchor.constraint(equalToConstant: GestureHintView.viewSize.height),
+        ])
 
         let title = NSTextField(labelWithString: MFLocalizedString("add-field.explainer.title", comment: ""))
         title.font = NSFont.boldSystemFont(ofSize: NSFont.systemFontSize)
 
+        let contentWidth = GestureExplainerViewController.width - 32
+        let lineWidth = contentWidth - GestureExplainerViewController.nameColumnWidth - 10
+
         /// One row per gesture: its name, and what to do
-        let rows: [[NSView]] = GestureKind.allCases.map { kind in
+        let rows: [NSView] = GestureKind.allCases.map { kind in
             let name = NSTextField(labelWithString: MFLocalizedString(kind.nameKey, comment: "Name of a gesture, shown under the mouse hint in the add field"))
             name.font = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize, weight: .semibold)
+            name.translatesAutoresizingMaskIntoConstraints = false
+            name.widthAnchor.constraint(equalToConstant: GestureExplainerViewController.nameColumnWidth).isActive = true
+            name.setContentHuggingPriority(.required, for: .horizontal)
+
             let line = NSTextField(wrappingLabelWithString: MFLocalizedString(kind.explainerKey, comment: ""))
             line.font = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
             line.textColor = .secondaryLabelColor
-            return [name, line]
+            line.preferredMaxLayoutWidth = lineWidth
+            line.setContentHuggingPriority(.defaultLow, for: .horizontal)
+
+            let row = NSStackView(views: [name, line])
+            row.orientation = .horizontal
+            row.alignment = .firstBaseline
+            row.spacing = 10
+            row.translatesAutoresizingMaskIntoConstraints = false
+            return row
         }
-        let grid = NSGridView(views: rows)
-        grid.rowSpacing = 6
-        grid.columnSpacing = 10
-        grid.column(at: 0).xPlacement = .leading
-        grid.column(at: 0).width = GestureExplainerViewController.nameColumnWidth
-        grid.rowAlignment = .firstBaseline
+        let rowsStack = NSStackView(views: rows)
+        rowsStack.orientation = .vertical
+        rowsStack.alignment = .leading
+        rowsStack.spacing = GestureExplainerViewController.rowSpacing
+        rowsStack.translatesAutoresizingMaskIntoConstraints = false
+        self.rows = rows
+        self.rowsStack = rowsStack
 
         let closing = NSTextField(wrappingLabelWithString: MFLocalizedString("add-field.explainer.closing", comment: ""))
         closing.font = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
         closing.textColor = .secondaryLabelColor
 
-        let button = NSButton(title: MFLocalizedString("add-field.explainer.show-animation", comment: ""), target: self, action: #selector(showAnimation(_:)))
-        button.bezelStyle = .rounded
-        button.controlSize = .small
-        button.font = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
-
-        let stack = NSStackView(views: [title, grid, closing, button])
+        let stack = NSStackView(views: [hintHolder, title, rowsStack, closing])
         stack.orientation = .vertical
         stack.alignment = .leading
         stack.spacing = 10
-        stack.setCustomSpacing(14, after: closing)
+        stack.setCustomSpacing(14, after: rowsStack)
         stack.edgeInsets = NSEdgeInsets(top: 14, left: 16, bottom: 14, right: 16)
         stack.translatesAutoresizingMaskIntoConstraints = false
 
-        let contentWidth = GestureExplainerViewController.width - stack.edgeInsets.left - stack.edgeInsets.right
         closing.preferredMaxLayoutWidth = contentWidth
-        for row in rows {
-            (row[1] as? NSTextField)?.preferredMaxLayoutWidth = contentWidth - GestureExplainerViewController.nameColumnWidth - grid.columnSpacing
-        }
         NSLayoutConstraint.activate([
-            stack.widthAnchor.constraint(equalToConstant: GestureExplainerViewController.width),
-            grid.widthAnchor.constraint(equalToConstant: contentWidth),
+            hintHolder.widthAnchor.constraint(equalToConstant: contentWidth),
+            rowsStack.widthAnchor.constraint(equalToConstant: contentWidth),
             closing.widthAnchor.constraint(equalToConstant: contentWidth),
         ])
 
-        view = stack
-    }
+        /// The bar sits on top of the stack, left of the rows. Its position and height are constraints, so they can animate.
+        let container = NSView()
+        container.addSubview(stack)
+        container.addSubview(bar)
+        bar.translatesAutoresizingMaskIntoConstraints = false
+        bar.wantsLayer = true
+        bar.layer?.cornerRadius = GestureExplainerViewController.barWidth / 2
+        bar.layer?.backgroundColor = NSColor.controlAccentColor.cgColor
+        bar.alphaValue = 0
+        let barBottom = bar.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: 0)
+        let barHeight = bar.heightAnchor.constraint(equalToConstant: 0)
+        self.barBottom = barBottom
+        self.barHeight = barHeight
+        NSLayoutConstraint.activate([
+            stack.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            stack.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            stack.topAnchor.constraint(equalTo: container.topAnchor),
+            stack.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+            stack.widthAnchor.constraint(equalToConstant: GestureExplainerViewController.width),
+            bar.widthAnchor.constraint(equalToConstant: GestureExplainerViewController.barWidth),
+            bar.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 8),
+            barBottom,
+            barHeight,
+        ])
 
-    @objc private func showAnimation(_ sender: NSButton) {
-        onShowAnimation?()
+        view = container
     }
 }

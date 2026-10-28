@@ -29,7 +29,6 @@ import Foundation
     
     /// Buttons
     
-    @IBOutlet weak var optionsButton: NSButton!
     @IBOutlet weak var restoreDefaultButton: NSButton!
 
     /// App tabs
@@ -53,10 +52,6 @@ import Foundation
     //
     // - MARK: IBActions
     //
-    
-    @IBAction func openOptions(_ sender: Any) {
-        ButtonOptionsViewController.add()
-    }
     
     @IBAction func restoreDefaults(_ sender: Any) {
 
@@ -268,6 +263,7 @@ import Foundation
         /// Init the preset banner and the "Recommended setup…" button
         installPresetBanner()
         installRecommendedSetupButton()
+        updateRestoreDefaultsButtonTitle()
         NotificationCenter.default.addObserver(self, selector: #selector(remapTableDidChange(_:)), name: NSNotification.Name(kMFRemapTableDidChangeNotification as String), object: nil)
     }
     
@@ -469,8 +465,7 @@ import Foundation
     ///     The storyboard's button stack spaces its buttons out evenly (Options on the left, Restore Defaults on the right),
     ///     so the two buttons go into a small stack of their own that takes Restore Defaults' place.
     private func installRecommendedSetupButton() {
-        guard let buttonsStack = restoreDefaultButton.superview as? NSStackView,
-              let index = buttonsStack.arrangedSubviews.firstIndex(of: restoreDefaultButton) else { return }
+        guard let buttonsStack = restoreDefaultButton.superview as? NSStackView else { return }
 
         let button = NSButton(title: MFLocalizedString("app-presets.recommended.button", comment: ""), target: self, action: #selector(openRecommendedSetup(_:)))
         button.bezelStyle = restoreDefaultButton.bezelStyle
@@ -479,6 +474,19 @@ import Foundation
         button.setContentCompressionResistancePriority(.required, for: .vertical)
         button.setAccessibilityIdentifier("axButtonsRecommendedSetupButton")
 
+        /// Gravity areas don't stretch the row. (Storyboards can't set this distribution.) Everything goes to the leading edge.
+        buttonsStack.distribution = .gravityAreas
+        /// WORKAROUND, no proper fix found: with only one visible child, this row made the window's height come out negative
+        ///     when the tab was measured for the window size (`TabViewController.resizeWindowToFit()`). Then the window is broken and
+        ///     switching tabs fails in `NSView.takeScreenshot()`. It happened since "Options…" was removed from the row, and the row now holds
+        ///     only the Recommended setup / Restore pair. Things that did NOT help: hiding the removed button instead, a spacer in the parent stack
+        ///     (that one is worse, it stretches during the measurement), and changing the row's distribution in the storyboard.
+        ///     This zero-size view is the cheapest way to keep a second child in the row. Remove it when the measurement problem is understood.
+        let filler = NSView()
+        filler.translatesAutoresizingMaskIntoConstraints = false
+        filler.widthAnchor.constraint(equalToConstant: 0).isActive = true
+        filler.heightAnchor.constraint(equalToConstant: 0).isActive = true
+        buttonsStack.addView(filler, in: .trailing)
         buttonsStack.removeArrangedSubview(restoreDefaultButton)
         restoreDefaultButton.removeFromSuperview()
         let pair = NSStackView(views: [button, restoreDefaultButton])
@@ -486,10 +494,16 @@ import Foundation
         pair.alignment = .centerY
         pair.spacing = 8
         pair.detachesHiddenViews = true
-        buttonsStack.insertArrangedSubview(pair, at: index)
+        buttonsStack.addView(pair, in: .leading) /// The row is laid out in gravity areas, so the pair sits at the leading edge
 
         recommendedSetupButton = button
         updateRecommendedSetupButton()
+    }
+
+    /// "Restore Button Defaults…" for all buttons. In an app tab the same button removes that app's buttons.
+    func updateRestoreDefaultsButtonTitle() {
+        let key = scopeApp == nil ? "buttons.restore-defaults.global.title" : "buttons.restore-defaults.app.title"
+        restoreDefaultButton.title = MFLocalizedString(key, comment: "")
     }
 
     /// Shows "Recommended setup…" in an app tab whose app has a preset, with or without rows, and even if the user chose "Don't suggest this again"
@@ -578,6 +592,7 @@ import Foundation
         tableController.reloadAll()
         appTabStrip?.setSelectedScope(app)
         updateRecommendedSetupButton()
+        updateRestoreDefaultsButtonTitle()
         /// The rows are loaded now, so the banner and the gesture hint can tell whether the tab is empty
         updatePresetBanner()
     }

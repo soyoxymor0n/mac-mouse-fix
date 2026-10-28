@@ -18,6 +18,7 @@ class GeneralTabController: NSViewController {
     
     /// Config
     var showInMenuBar = ConfigValue<Bool>(configPath: "General.showMenuBarItem")
+    var lockPointer = ConfigValue<Bool>(configPath: "General.lockPointerDuringDrag")
     var checkForUpdates = ConfigValue<Bool>(configPath: "General.checkForUpdates")
     var getBetaVersions = ConfigValue<Bool>(configPath: "General.checkForPrereleases")
     
@@ -42,13 +43,17 @@ class GeneralTabController: NSViewController {
     @IBOutlet weak var updatesHint: NSTextField!
     @IBOutlet weak var menuBarHint: NSTextField!
     
+    /// Lock pointer during 'Click and Drag' gestures. Was in the Options sheet of the Buttons tab.
+    @IBOutlet weak var lockPointerCheckbox: NSButton!
+    @IBOutlet weak var lockPointerHint: NSTextField!
+    
     /// Init
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         /// Determine width for this tab
-        applyHardcodedTabWidth("general", self, widthControllingTextFields: [enabledHint, updatesHint, menuBarHint]);
+        applyHardcodedTabWidth("general", self, widthControllingTextFields: [enabledHint, updatesHint, menuBarHint, lockPointerHint]);
         
         /// Replace enable checkBox with NSSwitch on newer macOS versions
         var usingSwitch = false
@@ -231,6 +236,8 @@ class GeneralTabController: NSViewController {
             enableToggle.reactive.boolValue <~ EnabledState.shared
         }
         menuBarToggle.reactive.boolValue <~ showInMenuBar
+        lockPointerCheckbox.reactive.boolValue <~ lockPointer
+        lockPointer <~ lockPointerCheckbox.reactive.boolValues
         updatesToggle.reactive.boolValue <~ checkForUpdates
         betaToggle.reactive.boolValue <~ getBetaVersions
         
@@ -271,6 +278,7 @@ class GeneralTabController: NSViewController {
         
         /// [Fork] No update section. The fork has no update feed, and these toggles used to point Sparkle at the upstream feed and start a check.
         hideUpdatesSection()
+        
     }
 
     /// Hides the divider above "Check for Updates", the checkbox, and the beta section below it
@@ -286,6 +294,49 @@ class GeneralTabController: NSViewController {
         if let extra = arrangedAncestor(updatesExtraSection) { toHide.append(extra) }
         if index > 0 { toHide.append(arranged[index - 1]) } /// Divider
         for view in toHide { view.isHidden = true }
+    }
+
+    /// Scroll settings
+    ///     The Scrolling tab was merged into this tab. Its sections go below "Show in Menu Bar" and collapse together with the rest of the settings when the app is disabled.
+    private var scrollTab: NSViewController?
+    /// Export and Import buttons. Kept at the end of the section, below the scroll settings.
+    private var settingsRow: NSStackView?
+
+    @available(macOS 11.0, *)
+    func absorbScrollTab(_ scrollTab: ScrollTabController) {
+
+        /// Load both views so their outlets are connected
+        _ = self.view
+        _ = scrollTab.view
+
+        self.scrollTab = scrollTab
+
+        /// Move the whole scroll stack in as one section
+        ///     Moving its arranged subviews one by one doesn't work, because CollapsingStackView wraps them.
+        let scrollStack: NSView = scrollTab.masterStack
+        scrollStack.removeFromSuperview()
+        
+        /// Divider between the General settings and the scroll settings, like the dividers between the scroll groups
+        let divider = NSBox()
+        divider.boxType = .separator
+        divider.translatesAutoresizingMaskIntoConstraints = false
+        mainHidableSection.addArrangedSubview(divider)
+        divider.leadingAnchor.constraint(equalTo: mainHidableSection.leadingAnchor).isActive = true
+        divider.trailingAnchor.constraint(equalTo: mainHidableSection.trailingAnchor).isActive = true
+        
+        mainHidableSection.addArrangedSubview(scrollStack)
+        if let row = settingsRow {
+            mainHidableSection.addArrangedSubview(row) /// Moves the row below the scroll settings
+        }
+        scrollStack.leadingAnchor.constraint(equalTo: mainHidableSection.leadingAnchor).isActive = true
+        scrollStack.trailingAnchor.constraint(equalTo: mainHidableSection.trailingAnchor).isActive = true
+    }
+
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        if #available(macOS 11.0, *) {
+            (scrollTab as? ScrollTabController)?.tabDidAppear()
+        }
     }
 
     /// Export and Import buttons at the bottom of the tab. Same actions as in the File menu.
@@ -305,8 +356,10 @@ class GeneralTabController: NSViewController {
         row.setHuggingPriority(.required, for: .vertical)
         row.setContentHuggingPriority(.required, for: .vertical)
         row.setContentCompressionResistancePriority(.required, for: .vertical)
-        if let last = masterStack.arrangedSubviews.last { masterStack.setCustomSpacing(16, after: last) }
-        masterStack.addArrangedSubview(row)
+        /// Inside the collapsing section, so it hides together with the other settings while the app is disabled
+        row.edgeInsets = NSEdgeInsets(top: 12, left: 0, bottom: 0, right: 0)
+        settingsRow = row
+        mainHidableSection.addArrangedSubview(row)
     }
 }
 

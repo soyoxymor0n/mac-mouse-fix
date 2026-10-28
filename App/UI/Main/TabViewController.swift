@@ -40,12 +40,13 @@ class TabViewController: NSTabViewController {
     private var deactivatedConstraints: [NSLayoutConstraint] = []
     private var injectedConstraints: [NSLayoutConstraint] = []
     private var unselectedTabImageView: NSImageView = NSImageView()
+    private var sidebar: TabSidebarView?
     
     private var initialTabSwitchWasPerformed: Bool = false
     
     // MARK: Constants
     ///     TODO: Think about using validTabs in different places / if using it at all makes sense in the grand architecture
-    private let validTabs = ["general", "buttons", "scrolling", "about"]
+    private var validTabs = ["general", "buttons", "scrolling", "about"]
     
     private var window: ResizingTabWindow? {
         if let w = self.tabView.window as? ResizingTabWindow {
@@ -56,195 +57,17 @@ class TabViewController: NSTabViewController {
     }
 
     
-    // MARK: Hacky tabView manipulation
-    
-    func _getToolbar(_ w: NSWindow?) -> NSToolbar? {
-        
-        let window = w ?? MainAppState.shared.window
-        
-        if let window = window {
-            return window.toolbar
-        } else {
-            return nil
-        }
-    }
-    func _getIndexOfToolBarItem(_ identifier: NSToolbarItem.Identifier, _ toolbar: NSToolbar) -> Int? {
-        
-        var result: Int? = nil
-        for (i, item) in toolbar.items.enumerated() {
-            if item.itemIdentifier == identifier {
-                result = i
-                break;
-            }
-        }
-        return result
-    }
-    func _getToolbarItem(_ identifier: NSToolbarItem.Identifier, _ toolbar: NSToolbar) -> NSToolbarItem? {
-        var result: NSToolbarItem? = nil
-        for item in toolbar.items {
-            if item.itemIdentifier == identifier {
-                result = item
-                break;
-            }
-        }
-        return result
-    }
-    func _getToolbarItemViewer(_ item: NSToolbarItem) -> NSView? {
-        let result = SharedUtility.getPrivateValue(of: item, forName: "_itemViewer") as? NSView
-        return result
-    }
+    // MARK: Tab selection
     
     @objc public func coolSelectTab(identifier: String, window w: NSWindow? = nil) {
-        
-        ///
-        /// Summer 2024: macOS 15.0 Beta: Attempt at simpler implementation
-        /// (I hope this new method is backwards compatible, but I think so since we're using no more private ivars or methods.)
-        
-        /// Sometimes you need to pass in window, when you call this right after the window is created.
         
         /// Log
         DDLogDebug("TBS switching to tab \(identifier), windowIsNil: \(w == nil)")
         
-        /// Find toolbar item
-        guard let toolbar = self._getToolbar(w),
-              let item = _getToolbarItem(NSToolbarItem.Identifier(identifier), toolbar) else {
-            
-            assert(false)
-            return
-        }
+        guard tabViewItem(identifier: identifier) != nil else { assert(false); return }
         
-        /// Update state on tabView and toolbar
-        toolbar.selectedItemIdentifier = NSToolbarItem.Identifier(identifier)
+        /// The sidebar follows the selection in `tabView(_:didSelect:)`
         self.tabView.selectTabViewItem(withIdentifier: identifier)
-        
-        /// Return
-        return;
-        
-        ///
-        /// Old implementation
-        ///
-        
-        /// There's a library method `self.tabView.selectTabViewItem(withIdentifier:)`
-        ///     but it doesn't change the selected toolbar button properly, so we have to use horrible hacks.
-        /// Sometimes you need to pass in window, when you call this right after the window is created.
-        
-        let window = w ?? MainAppState.shared.window
-        
-        guard let window = window, let tb = window.toolbar else { assert(false); return }
-        let tbv = SharedUtility.getPrivateValue(of: tb, forName: "_toolbarView")
-        
-        let lvs: [NSView]?
-        
-        if #available(macOS 11.0, *) {
-            lvs = SharedUtility.getPrivateValue(of: tbv, forName: "_allItemViewers") as? [NSView]
-            /// ^ Might be better to use`_layoutViews` vs `_allItemViewers` here
-        } else {
-            lvs = SharedUtility.getPrivateValue(of: tbv, forName: "_toolbarOrderedItemViewers") as? [NSView]
-            /// ^ Might be better to use `_layoutOrderedItemViewers`vs `_toolbarOrderedItemViewers  here
-        }
-        guard let lvs = lvs else { assert(false); return }
-        assert(lvs.count > 0)
-        
-        var success = false
-        outerLoop: for v in lvs {
-            guard let item = SharedUtility.getPrivateValue(of: v, forName: "_item") as? NSToolbarItem else { assert(false); return }
-            if item.itemIdentifier.rawValue == identifier {
-                for sub in v.subviews {
-                    if let sub = sub as? NSButton {
-                        
-                        sub.performClick(nil)
-                        
-                        success = true
-                        break outerLoop
-                    }
-                }
-            }
-        }
-        assert(success)
-    }
-    
-    @objc public func coolHideTab(identifier: String, window w: NSWindow? = nil) {
-        
-        ///
-        /// Summer 2024: macOS 15.0 Beta: Attempt at simpler implementation
-        ///
-        
-        /// This hides the button for selecting the tab in the UI
-        
-        /// Log
-        DDLogDebug("TBS hiding tab \(identifier), windowIsNil: \(w == nil)")
-        
-        /// Get toolbar & item
-        guard let toolbar = _getToolbar(w),
-              let itemIndex = _getIndexOfToolBarItem(NSToolbarItem.Identifier(identifier), toolbar) else {
-            
-            assert(false)
-            return
-        }
-        
-        /// Remove item
-        toolbar.removeItem(at: itemIndex)
-        
-        /// Return
-        return
-        
-        ///
-        /// Old implementation
-        ///
-        
-        /// This is copy pasted from `coolSelectTab()`
-        /// Hides the tab button from the user, but the tab will still be displayed and we can switch from/to it programmatically
-        
-        DDLogDebug("TBS hiding tab \(identifier), windowIsNil: \(w == nil)")
-        
-        let window = w ?? MainAppState.shared.window
-        
-        guard let window = window,
-              let tb = window.toolbar else { assert(false); return }
-        let tbv = SharedUtility.getPrivateValue(of: tb, forName: "_toolbarView")
-        
-        let lvs: NSMutableArray?
-        
-        if #available(macOS 11.0, *) {
-            lvs = SharedUtility.getPrivateValue(of: tbv, forName: "_layoutViews") as? NSMutableArray
-        } else {
-            /// Note: Removing from `_layoutOrderedItemViewers` doesn't seem to do anything. But I feel like we might still want to remove from both `_toolbarOrderedItemViewers` and `_toolbarOrderedItemViewers` (Edit: what?) so the overall state is for sure valid, cause I don't get what the role of each of the two is.
-            lvs = SharedUtility.getPrivateValue(of: tbv, forName: "_toolbarOrderedItemViewers") as? NSMutableArray
-        }
-        
-        guard let lvs = lvs else { assert(false); return }
-        assert(lvs.count > 0)
-        
-        var foundIndex = -1
-        var foundLayoutView: NSView? = nil
-        for (i, v) in lvs.enumerated() {
-            
-            guard let item = SharedUtility.getPrivateValue(of: v, forName: "_item") as? NSToolbarItem else { continue /* assert(false); return <<< With the new Sonoma code this crashed. Should be safe to remove. */ }
-            guard let v = v as? NSView else { assert(false); return }
-            
-            if item.itemIdentifier.rawValue == identifier {
-                foundIndex = i
-                foundLayoutView = v
-            }
-        }
-        assert(foundIndex != -1)
-        
-        if #available(macOS 14.0, *) {
-            /// This would probably also work pre-Sonoma, but no reason to change what works
-            tb.removeItem(at: foundIndex)
-        } else {
-            if let v = foundLayoutView {
-                v.isHidden = true
-                lvs.remove(v) /// Extremely hacky. Broke in macOS 14.0 Sonoma
-            }
-        }
-        
-        /// Layout toolbarView
-        /// - Otherwise the removal of the view from the layoutViews will not be reflected and there will be a blank space where the tab was.
-        ///     - This occured only sometimes in MMF 3 beta 4 and below, but after making EnabledState slower in Beta 5 and with it making TabViewController.toolbarWillAddItem() slower too, this started to always happen (Ventura Beta)
-        guard let tbvv = (tbv as? NSView) else { assert(false); return }
-        tbvv.needsLayout = true
-        
     }
     
     // MARK: Initialization
@@ -259,40 +82,19 @@ class TabViewController: NSTabViewController {
         tabsAreConfigured = true
         
         ///
-        /// Give tabButtons axIdentifiers
+        /// Merge Scrolling tab into General tab
+        ///     Its settings are shown below the General settings now (see `GeneralTabController.absorbScrollTab()`). The Scrolling tab has no sidebar item.
         ///
         
-        /// Note: Writing this so we can click the button inside the screenshot-taking XCUITest
-        
-        if let toolbar = _getToolbar(self.window) {
-            
-            for item in toolbar.items {
-
-                if let itemViewer = _getToolbarItemViewer(item) {
-                    itemViewer.setAccessibilityIdentifier(item.itemIdentifier.rawValue)
-                } else {
-                    assert(false) /// We only need this for screenshot-taking, so we actually don't care if this fails in some edge cases. (Could even turn this whole thing off unless the app is started with the `-MF_ANNOTATE_LOCALIZED_STRINGS` arg)
-                }
+        if #available(macOS 11.0, *) {
+            if let general = tabViewItem(identifier: "general")?.viewController as? GeneralTabController,
+               let scrolling = tabViewItem(identifier: "scrolling")?.viewController as? ScrollTabController {
+                general.absorbScrollTab(scrolling)
+                validTabs.removeAll { $0 == "scrolling" } /// Selecting it falls back to General
+            } else {
+                assert(false)
             }
-        } else {
-            assert(false)
         }
-        
-        ///
-        /// Hide Pointer tab (because it's unfinished and unused)
-        ///
-        
-        /// Notes:
-        /// - (Under Ventura Beta) For some reason, `removeTabViewItem(pointerTab)` (and `tabView.removeTabViewItem()`) crashes here saying the item is not in the tabView. This doesn't make sense since it is found in the array `self.tabViewItems`. So instead we use the hacky coolHideTab() instead.
-        /// - Maybe it's better to do this in viewWillAppear?
-        
-        coolHideTab(identifier: "pointer", window: self.window)
-        
-        ///
-        /// Hide initial tab
-        ///
-
-        coolHideTab(identifier: "initial", window: self.window)
         
         ///
         /// Switch tab
@@ -348,6 +150,9 @@ class TabViewController: NSTabViewController {
         super.viewDidLoad()
         /// Debug
         DDLogDebug("TBS tabview didLoad")
+        
+        /// Sections are listed in a sidebar on the left
+        setUpSidebar()
     }
     
     override func viewWillAppear() {
@@ -478,6 +283,9 @@ class TabViewController: NSTabViewController {
         /// Call super
         super.tabView(tabView, didSelect: tabViewItem)
         
+        /// Keep the sidebar in sync with the selected tab
+        sidebar?.selectedIdentifier = tabViewItem?.identifier as? String
+        
         /// Debug
         DDLogDebug("TBS tabview didSelect \(String(describing: tabViewItem?.identifier))")
         
@@ -590,7 +398,7 @@ class TabViewController: NSTabViewController {
         let currentWindowFrame = window.frame
         
         /// Get new window frame
-        let targetContentRect = NSRect(x: 0, y: 0, width: size.width, height: size.height)
+        let targetContentRect = NSRect(x: 0, y: 0, width: size.width + TabViewController.sidebarWidth, height: size.height)
         let newFrameRect = window.frameRect(forContentRect: targetContentRect)
         
         /// Shift newFrame
@@ -797,5 +605,177 @@ class TabViewController: NSTabViewController {
     
     @objc public func identifierOfSelectedTab() -> String? {
         return self.tabView.selectedTabViewItem?.identifier as? String
+    }
+}
+
+// MARK: - Sidebar
+
+extension TabViewController {
+    
+    /// Width of the sidebar. The window is this much wider than the content of the selected tab.
+    static let sidebarWidth: CGFloat = 56
+    
+    fileprivate func setUpSidebar() {
+        
+        guard sidebar == nil else { return }
+        
+        func item(_ identifier: String) -> TabSidebarView.Item? {
+            guard let tabItem = tabViewItem(identifier: identifier) else { return nil }
+            return TabSidebarView.Item(identifier: identifier, label: tabItem.label, image: tabItem.image)
+        }
+        let top = ["general", "buttons"].compactMap(item)
+        let bottom = ["about"].compactMap(item)
+        
+        let sidebarView = TabSidebarView(top: top, bottom: bottom)
+        sidebarView.onSelect = { [weak self] identifier in
+            self?.coolSelectTab(identifier: identifier)
+        }
+        self.sidebar = sidebarView
+        
+        /// The Buttons section is disabled while the app is disabled
+        if let buttonsButton = sidebarView.button(for: "buttons") {
+            EnabledState.shared.producer.startWithValues { [weak buttonsButton] appIsEnabled in
+                buttonsButton?.isEnabled = appIsEnabled
+            }
+        }
+        
+        /// Place the sidebar on the left
+        view.addSubview(sidebarView)
+        sidebarView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            sidebarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            sidebarView.topAnchor.constraint(equalTo: view.topAnchor),
+            sidebarView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            sidebarView.widthAnchor.constraint(equalToConstant: TabViewController.sidebarWidth),
+        ])
+        
+        /// The tab view fills the rest of the window, to the right of the sidebar
+        ///     Replace its existing constraints, because they would pin it to the left edge.
+        for constraint in view.constraints where (constraint.firstItem as AnyObject?) === tabView || (constraint.secondItem as AnyObject?) === tabView {
+            constraint.isActive = false
+        }
+        tabView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tabView.leadingAnchor.constraint(equalTo: sidebarView.trailingAnchor),
+            tabView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tabView.topAnchor.constraint(equalTo: view.topAnchor),
+            tabView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        tabView.tabViewType = .noTabsNoBorder
+    }
+}
+
+/// Sidebar on the left of the window. One icon per section. The label of the section is the tooltip.
+class TabSidebarView: NSView {
+    
+    struct Item {
+        let identifier: String
+        let label: String
+        let image: NSImage?
+    }
+    
+    var onSelect: ((String) -> Void)?
+    private var buttons: [String: TabSidebarButton] = [:]
+    
+    var selectedIdentifier: String? {
+        didSet {
+            for (identifier, button) in buttons {
+                button.isSelectedItem = identifier == selectedIdentifier
+            }
+        }
+    }
+    
+    init(top: [Item], bottom: [Item]) {
+        super.init(frame: .zero)
+        
+        let topButtons: [NSView] = top.map { makeButton(for: $0) }
+        let bottomButtons: [NSView] = bottom.map { makeButton(for: $0) }
+        
+        /// The spacer pushes the bottom section down
+        let spacer = NSView()
+        spacer.setContentHuggingPriority(NSLayoutConstraint.Priority(1), for: .vertical)
+        
+        let stack = NSStackView(views: topButtons + [spacer] + bottomButtons)
+        stack.orientation = .vertical
+        stack.alignment = .centerX
+        stack.spacing = 6
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(stack)
+        NSLayoutConstraint.activate([
+            stack.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            stack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
+            stack.centerXAnchor.constraint(equalTo: centerXAnchor),
+        ])
+        
+        /// Separator on the trailing edge
+        let separator = NSBox()
+        separator.boxType = .custom
+        separator.borderWidth = 0
+        separator.fillColor = .separatorColor
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(separator)
+        NSLayoutConstraint.activate([
+            separator.trailingAnchor.constraint(equalTo: trailingAnchor),
+            separator.topAnchor.constraint(equalTo: topAnchor),
+            separator.bottomAnchor.constraint(equalTo: bottomAnchor),
+            separator.widthAnchor.constraint(equalToConstant: 1),
+        ])
+    }
+    
+    required init?(coder: NSCoder) { fatalError("TabSidebarView is only created in code") }
+    
+    func button(for identifier: String) -> NSButton? {
+        return buttons[identifier]
+    }
+    
+    private func makeButton(for item: Item) -> TabSidebarButton {
+        let button = TabSidebarButton(item: item) { [weak self] in
+            self?.onSelect?(item.identifier)
+        }
+        buttons[item.identifier] = button
+        return button
+    }
+}
+
+/// One icon in the sidebar. Gets a rounded highlight while its section is selected.
+class TabSidebarButton: NSButton {
+    
+    private let onClick: () -> Void
+    
+    var isSelectedItem: Bool = false {
+        didSet { needsDisplay = true }
+    }
+    
+    init(item: TabSidebarView.Item, onClick: @escaping () -> Void) {
+        self.onClick = onClick
+        super.init(frame: .zero)
+        
+        wantsLayer = true
+        isBordered = false
+        imagePosition = .imageOnly
+        image = item.image
+        toolTip = item.label
+        setAccessibilityLabel(item.label)
+        setAccessibilityIdentifier("axSidebar-\(item.identifier)")
+        target = self
+        action = #selector(clicked)
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        widthAnchor.constraint(equalToConstant: 40).isActive = true
+        heightAnchor.constraint(equalToConstant: 40).isActive = true
+    }
+    
+    required init?(coder: NSCoder) { fatalError("TabSidebarButton is only created in code") }
+    
+    override var wantsUpdateLayer: Bool { true }
+    
+    override func updateLayer() {
+        layer?.cornerRadius = 8
+        layer?.backgroundColor = isSelectedItem ? NSColor.controlAccentColor.withAlphaComponent(0.2).cgColor : NSColor.clear.cgColor
+        contentTintColor = isSelectedItem ? .controlAccentColor : .secondaryLabelColor
+    }
+    
+    @objc private func clicked() {
+        onClick()
     }
 }

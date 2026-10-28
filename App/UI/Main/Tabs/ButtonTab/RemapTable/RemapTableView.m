@@ -291,7 +291,9 @@ NSMutableArray *columnConstraints = nil;
     /// This doesn't work, the effectCell popupButtons' text can still be cut off.
     ///     Edit: Fixed it I think with [effectColumn setMinWidth:]
     
-    double minTableWidth = effectColumnWidth * 2 + 4*columnPadding;
+    /// Trigger column gets its own content width, not the same width as the effect column.
+    ///     Before, this was `effectColumnWidth * 2`, which made the trigger column as wide as the effect column, leaving half of it empty.
+    double minTableWidth = triggerColumWidth + effectColumnWidth + 4*columnPadding;
     
     NSLayoutConstraint *c = [self.enclosingScrollView.widthAnchor constraintGreaterThanOrEqualToConstant:minTableWidth];
     [c setActive:YES];

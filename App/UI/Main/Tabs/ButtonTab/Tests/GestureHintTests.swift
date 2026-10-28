@@ -82,8 +82,8 @@ struct GestureHintTests {
 
         /// The end of the loop
         let end = GestureHintTimeline.state(at: 29.9)
-        expect(end.mouseOpacity == 0 && end.nameKind == nil, "nothing is shown at 29.9")
-        expect(end.mouseXOffset == 0 && GestureHintTimeline.state(at: 0).mouseOpacity == 0, "the mouse is back in place and hidden when the loop starts again")
+        expect(end.mouseOpacity == 1 && end.nameKind == nil, "the mouse rests visible and no gesture is named at 29.9")
+        expect(end.mouseXOffset == 0 && GestureHintTimeline.state(at: 0).mouseOpacity == 1, "the mouse is back in place when the loop starts again")
 
         print("\(checks) checks, \(failures) failures")
         exit(failures == 0 ? 0 : 1)

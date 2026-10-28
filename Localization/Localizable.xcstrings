@@ -19830,6 +19830,30 @@
           }
         }
       }
+    },
+    "buttons.restore-defaults.global.title" : {
+      "comment" : "Title of the button that restores the default buttons (no app tab selected), and of the button that removes the buttons of the selected app tab",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore Button Defaults…"
+          }
+        }
+      }
+    },
+    "buttons.restore-defaults.app.title" : {
+      "comment" : "Title of the button that restores the default buttons (no app tab selected), and of the button that removes the buttons of the selected app tab",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove Buttons…"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

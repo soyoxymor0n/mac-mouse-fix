@@ -114,7 +114,8 @@ enum GestureHintTimeline {
 
         var state = GestureHintState()
 
-        state.mouseOpacity = interpolate(t, [(0, 0), (0.4, 1), (25.0, 1), (25.4, 0)])
+        /// The mouse stays visible for the whole loop. After the last gesture it rests in place, so the hint doesn't leave an empty gap until the loop starts again.
+        state.mouseOpacity = 1
         state.mouseXOffset = t < 25.4 ? interpolate(t, [(9.0, 0), (10.8, dragDistance)]) : 0
 
         state.leftButtonLit = pulses(t, [(1.0, 1.15), (4.8, 4.95), (5.1, 5.25), (9.0, 11.0), (14.8, 17.0), (21.0, 23.5)])
