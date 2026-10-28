@@ -64,8 +64,8 @@ To test a build without touching the owner's running helper or settings, copy th
 
 - Build: a signed build of version 4.1.0 succeeded once Xcode had an account, using a team from step 2.
 - Install: the app is in `/Applications`, and its signature verifies.
-- Helper: not running yet. The owner must approve the background item (step 5).
-- Known gap: the helper target has no `MARKETING_VERSION`, so its `Info.plist` has no `CFBundleShortVersionString`. The app's version is correct.
+- Helper: set to 4.1.0 as well, in the same two configurations as the app.
+- After a new install, the helper may not start from `/Applications` until the owner approves the background item again: System Settings, General, Login Items and Extensions, Background App Activity. Check with `lsof` which helper runs. If it runs from an older build folder, stop its job with `launchctl bootout gui/$(id -u)/com.soyoxymor0n.mac-mouse-fix.helper.ng`, then reopen the app and check again.
 
 ## Never store
 
