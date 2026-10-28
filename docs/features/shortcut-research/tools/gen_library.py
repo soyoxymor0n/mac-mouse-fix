@@ -21,6 +21,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "..", "data")
 REPO = os.path.abspath(os.path.join(HERE, "..", "..", "..", ".."))
 OUT = os.path.join(REPO, "App", "UI", "Main", "Tabs", "ButtonTab", "RemapTable", "ShortcutLibrary.m")
+FLAGS_PATH = os.path.join(DATA, "library-flags.json")
 
 # Bundle IDs read from the Info.plist of the installed apps on the owner's Mac (2026-10-26), for apps whose research row says "unverified".
 BUNDLE_OVERRIDES = {
@@ -44,6 +45,50 @@ def mouse_suitable(row):
     if HOLD_WORDS.search(action):
         return False  # a remap effect presses and releases the keys at once, so it can't hold a key down
     return bool(row.get("mouseSuitable")) or bool(MOUSE_WORDS.search(action))
+
+
+# Shortcut groups. The default groups are shown for every app, in this order. Each entry gets one group.
+# A group is a default group, or a specific group that only some apps have (see SPECIFIC_GROUPS).
+DEFAULT_GROUPS = ["Windows and tabs", "Playback and media", "Search", "Editing", "Navigation", "View and zoom", "File", "Other"]
+
+# Specific groups, checked before the default groups. Each rule: (group, app-name pattern, label pattern).
+SPECIFIC_GROUPS = [
+    ("Calls and meetings", re.compile(r"Teams|Zoom|Slack|Discord|FaceTime", re.I),
+     re.compile(r"\b(call|meeting|mute|unmute|camera|video|hand|reaction|caption|screen share|share|leave|record|participant)", re.I)),
+    ("Messages", re.compile(r"Teams|Slack|Discord|Messages|Mail|WhatsApp|Telegram", re.I),
+     re.compile(r"\b(message|reply|forward|compose|conversation|thread|mention|chat|send|draft|DMs?|direct messages?)", re.I)),
+    ("Bookmarks and history", re.compile(r"Chrome|Safari|Firefox|Brave|Edge|Arc|Opera|Vivaldi", re.I),
+     re.compile(r"\b(bookmark|history|downloads?|favorites?|reading list)", re.I)),
+]
+
+# Default groups: the first pattern that matches the label wins. Order matters.
+DEFAULT_RULES = [
+    ("Windows and tabs", re.compile(r"\b(windows?|tabs?|spaces?|mission control|desktop|minimi[sz]e|maximi[sz]e|full ?screen|split view|pin|app exposé|exposé|switch to .*app|switch apps?|applications?)\b", re.I)),
+    ("Playback and media", re.compile(r"\b(play|pause|stop|next track|previous track|skip|volume|shuffle|repeat|seek|rewind|fast forward|recording|record|mute|unmute|subtitles|captions|crossfade|reverse|deck|locate track|loop|cue)\b", re.I)),
+    ("Search", re.compile(r"\b(find|search|spotlight|filter|look ?up|quick open|go to file|go to line|go to dialog|go to|jump to)\b", re.I)),
+    ("Editing", re.compile(r"\b(copy|paste|cut|undo|redo|select all|duplicate|format|bold|italic|underline|strikethrough|indent|outdent|insert|paragraph|comment|uncomment|replace|clear|delete|split|trim|append|clip|formula|highlight|bullet|heading|style|font|align|spelling|dictation|password|username)\b", re.I)),
+    ("Navigation", re.compile(r"\b(back|forward|next|previous|prev|up|down|left|right|arrow|focus|scroll|page up|page down|home|end|top|bottom|beginning|start of|end of|section|move|jump|row|column|cell|item|field|control|tab key|select|reload|refresh|playhead)\b", re.I)),
+    ("View and zoom", re.compile(r"\b(zoom|view|sidebar|toolbar|inspector|preview|outline|show|hide|expand|collapse|display|appearance|dark mode|light mode|reader|grid|gallery|actual size|fit|magnif|full screen|toggle)\b", re.I)),
+    ("File", re.compile(r"\b(new|open|save|print|export|import|share|rename|file|document|folder|close|quit|page setup|archive|upload|download|attach|page)\b", re.I)),
+]
+
+
+def group_for(app_name, label):
+    """Returns the group of an entry: a specific group if one applies, otherwise the first default group that matches, otherwise Other."""
+    for group, app_pattern, label_pattern in SPECIFIC_GROUPS:
+        if app_pattern.search(app_name) and label_pattern.search(label):
+            return group
+    for group, pattern in DEFAULT_RULES:
+        if pattern.search(label):
+            return group
+    return "Other"
+
+
+def load_flags():
+    if not os.path.exists(FLAGS_PATH):
+        return {}
+    doc = json.load(open(FLAGS_PATH, encoding="utf-8"))
+    return {(f["app"], f["action"]): {k: v for k, v in f.items() if k not in ("app", "action")} for f in doc.get("flags", [])}
 
 
 FLAG = {"cmd": 1048576, "shift": 131072, "opt": 524288, "ctrl": 262144}
@@ -180,120 +225,20 @@ def objc_entry(e):
         parts.append("@\"intervalMs\": @%d" % e["intervalMs"])
     if e.get("variants"):
         parts.append("@\"variants\": @{" + ", ".join("@\"%s\": %s" % (k, objc_steps(v)) for k, v in sorted(e["variants"].items())) + "}")
+    if e.get("layouts"):
+        parts.append("@\"layouts\": @[" + ", ".join(objc_string(l) for l in e["layouts"]) + "]")
+    if e.get("verified"):
+        parts.append("@\"verified\": @YES")
+    parts.append("@\"group\": " + objc_string(e["group"]))
     return "@{ " + ", ".join(parts) + " }"
 
 
-TEMPLATE = """//
-// --------------------------------------------------------------------------
-// ShortcutLibrary.m
-// Created for Mac Mouse Fix (https://github.com/noah-nuebling/mac-mouse-fix)
-// Licensed under the MMF License (https://github.com/noah-nuebling/mac-mouse-fix/blob/master/License)
-// --------------------------------------------------------------------------
-//
-// GENERATED by gen_library.py from the shortcut research (mouse-suitable rows only, checked against vendor documentation). Do not edit by hand.
-// Generator and research data: docs/features/shortcut-research in https://github.com/soyoxymor0n/mac-mouse-fix-ng
-
-#import "ShortcutLibrary.h"
-#import "Constants.h"
-#import <Carbon/Carbon.h>
-
-@implementation ShortcutLibrary
-
-/// Library data. Each app has its bundle IDs and entries.
-/// Each entry has a label, the symbols shown as a hint, the steps as [keycode, flags] for the US layout,
-/// optional `variants` for the German and Austrian layouts, and `intervalMs` for sequences (steps with more than one key).
-+ (NSArray *)apps {
-    static NSArray *apps;
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        apps = @[
-__APPS__
-        ];
-    });
-    return apps;
-}
-
-/// The layout the user types with. German and Austrian have their own variants, everything else uses US.
-+ (NSString *)activeLayoutID {
-    TISInputSourceRef source = TISCopyCurrentKeyboardLayoutInputSource();
-    NSString *ident = nil;
-    if (source != NULL) {
-        ident = (__bridge NSString *)TISGetInputSourceProperty(source, kTISPropertyInputSourceID);
-        CFRelease(source);
-    }
-    if ([ident isEqualToString:@"com.apple.keylayout.German"]) return @"de";
-    if ([ident isEqualToString:@"com.apple.keylayout.Austrian"]) return @"at";
-    return @"us";
-}
-
-+ (NSArray *)effectsMenuEntriesForBundleID:(NSString *)bundleID {
-    NSString *layout = [self activeLayoutID];
-    NSMutableArray *result = [NSMutableArray array];
-    for (NSDictionary *app in [self apps]) {
-        if (![app[@"bundleIDs"] containsObject:bundleID]) continue;
-        for (NSDictionary *entry in app[@"entries"]) {
-            NSArray *steps = entry[@"variants"][layout] ?: entry[@"steps"];
-            if (![self stepsAreValid:steps]) {
-                assert(false);
-                continue;
-            }
-            [result addObject:[self menuEntryForLabel:entry[@"label"]
-                                              symbols:entry[@"symbols"]
-                                                steps:steps
-                                           intervalMs:[entry[@"intervalMs"] doubleValue]]];
-        }
-    }
-    return result;
-}
-
-/// Whether the steps of an entry can be posted: 1 to 16 steps, key codes 0-127, and no flags other than Command, Shift, Option and Control.
-///     The helper checks key sequences the same way before posting them (See `postKeySequence()` in Actions.m).
-+ (BOOL)stepsAreValid:(NSArray *)steps {
-    if (![steps isKindOfClass:NSArray.class] || steps.count == 0 || steps.count > 16) return NO;
-    const long long allowedFlags = kCGEventFlagMaskCommand | kCGEventFlagMaskShift | kCGEventFlagMaskAlternate | kCGEventFlagMaskControl;
-    for (NSArray *step in steps) {
-        if (![step isKindOfClass:NSArray.class] || step.count != 2) return NO;
-        if (![step[0] isKindOfClass:NSNumber.class] || ![step[1] isKindOfClass:NSNumber.class]) return NO;
-        long long keycode = [step[0] longLongValue];
-        long long flags = [step[1] longLongValue];
-        if (keycode < 0 || keycode > 127) return NO;
-        if (flags < 0 || (flags & ~allowedFlags) != 0) return NO;
-    }
-    return YES;
-}
-
-/// One effect-menu entry. A single key is a keyboardShortcut effect. Several keys are a keySequence effect.
-+ (NSDictionary *)menuEntryForLabel:(NSString *)label symbols:(NSString *)symbols steps:(NSArray *)steps intervalMs:(double)intervalMs {
-    NSDictionary *dict;
-    if (steps.count == 1) {
-        dict = @{
-            kMFActionDictKeyType: kMFActionDictTypeKeyboardShortcut,
-            kMFActionDictKeyKeyboardShortcutVariantKeycode: steps[0][0],
-            kMFActionDictKeyKeyboardShortcutVariantModifierFlags: steps[0][1],
-        };
-    } else {
-        NSMutableArray *stepDicts = [NSMutableArray array];
-        for (NSArray *step in steps) {
-            [stepDicts addObject:@{
-                kMFActionDictKeyKeyboardShortcutVariantKeycode: step[0],
-                kMFActionDictKeyKeyboardShortcutVariantModifierFlags: step[1],
-            }];
-        }
-        dict = @{
-            kMFActionDictKeyType: kMFActionDictTypeKeySequence,
-            kMFActionDictKeySequenceVariantSteps: stepDicts,
-            kMFActionDictKeySequenceVariantIntervalMs: @(intervalMs > 0 ? intervalMs : 120),
-        };
-    }
-    /// `toolWithTitle` is the tooltip in the table. Library names are often longer than the popup, so the tooltip repeats the name.
-    return @{ @"ui": label, @"tool": symbols, @"toolWithTitle": [NSString stringWithFormat:@"%@  %@", label, symbols], @"dict": dict };
-}
-
-@end
-"""
+TEMPLATE = open(os.path.join(HERE, "ShortcutLibrary.template.m"), encoding="utf-8").read()
 
 
 def main():
+    global FLAG_OVERRIDES
+    FLAG_OVERRIDES = load_flags()
     rows = []
     apps_out = {}
     problems = []
@@ -318,6 +263,8 @@ def main():
                 if entry is None:
                     problems.append("%s: %s (%s)" % (app["name"], row.get("action"), problem))
                     continue
+                entry.update(FLAG_OVERRIDES.get((app["name"], entry["label"]), {}))
+                entry["group"] = group_for(app["name"], entry["label"])
                 if any(e["label"] == entry["label"] and e["steps"] == entry["steps"] for e in entries["entries"]):
                     continue  # the same action listed twice (for example, a suite page repeating Word's shortcuts)
                 entries["entries"].append(entry)
@@ -335,7 +282,7 @@ def main():
         blocks.append("            @{ @\"name\": %s,\n               @\"bundleIDs\": @[%s],\n               @\"entries\": @[\n%s\n               ] },"
                       % (objc_string(app["name"]), ", ".join(objc_string(b) for b in app["bundleIDs"]), entries_text))
 
-    text = TEMPLATE.replace("__APPS__", "\n".join(blocks))
+    text = TEMPLATE.replace("__APPS__", "\n".join(blocks)).replace("__DEFAULT_GROUPS__", ", ".join(objc_string(g) for g in DEFAULT_GROUPS))
     with open(OUT, "w", encoding="utf-8") as f:
         f.write(text)
 

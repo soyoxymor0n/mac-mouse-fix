@@ -1198,35 +1198,8 @@ static NSArray *buttonAndClickTypeKey(NSDictionary *buttonTrigger) {
     return triggerPopUp;
 }
 
-/// Fills the trigger dropdown of a button trigger row with the items for all buttons and click types.
-///     Called by `RemapTableController` right before the dropdown opens.
-///     Keeps the first item, which shows the current trigger. Replaces all other items.
-+ (void)fillTriggerMenu:(NSMenu *)menu forRowDict:(NSDictionary *)rowDict host:(NSTableCellView *)host {
-
-    while (menu.numberOfItems > 1) {
-        [menu removeItemAtIndex:menu.numberOfItems - 1];
-    }
-    menu.autoenablesItems = NO; /// We enable and disable the items ourselves
-
-    NSDictionary *currentTrigger = rowDict[kMFRemapsKeyTrigger];
-    NSNumber *currentButton = currentTrigger[kMFButtonTriggerKeyButtonNumber];
-    NSNumber *currentLevel = currentTrigger[kMFButtonTriggerKeyClickLevel];
-    NSString *currentDuration = currentTrigger[kMFButtonTriggerKeyDuration];
-    NSArray *currentClickType = @[currentLevel, currentDuration];
-
-    /// Find the click types that other rows already use with the same modification precondition. Those can't be assigned again.
-    ///     Rows with other modification preconditions don't clash with this row.
-    ///     The dataModel only contains the rows of the current scope (global or one app), so rows of other apps don't clash either.
-    NSMutableSet *takenKeys = [NSMutableSet set];
-    for (NSDictionary *otherRow in self.dataModel) {
-        if ([otherRow isEqual:rowDict]) continue;
-        if (![otherRow[kMFRemapsKeyTrigger] isKindOfClass:NSDictionary.class]) continue; /// Only button triggers take up a click type
-        if (![otherRow[kMFRemapsKeyModificationPrecondition] isEqual:rowDict[kMFRemapsKeyModificationPrecondition]]) continue;
-        [takenKeys addObject:buttonAndClickTypeKey(otherRow[kMFRemapsKeyTrigger])];
-    }
-
-    /// Find the buttons to offer
-    ///     The range depends on the connected mouse. Without a mouse, we use the default range.
+/// The buttons that a button menu offers: 3 up to the connected mouse's button count (at least up to 6, at most up to 16). `currentButton` is always included.
++ (NSIndexSet *)offeredButtonsIncluding:(NSNumber *)currentButton {
     NSNumber *deviceButtonCount = [MessagePortUtility.shared activeDeviceButtonCount];
     NSInteger lastButton = kTriggerMenuDefaultLastButton;
     if (deviceButtonCount != nil) {
@@ -1235,27 +1208,33 @@ static NSArray *buttonAndClickTypeKey(NSDictionary *buttonTrigger) {
     }
     NSRange buttonRange = NSMakeRange((NSUInteger)kTriggerMenuFirstButton, (NSUInteger)(lastButton - kTriggerMenuFirstButton + 1));
     NSMutableIndexSet *buttons = [NSMutableIndexSet indexSetWithIndexesInRange:buttonRange];
-    [buttons addIndex:currentButton.unsignedIntegerValue]; /// Always offer the current button, so the current trigger can be shown
+    if (currentButton != nil) [buttons addIndex:currentButton.unsignedIntegerValue];
+    return buttons;
+}
 
-    [menu addItem:[NSMenuItem separatorItem]];
+/// Adds the button items to a menu.
+///     - `currentTrigger` (may be nil): the button of this trigger gets its items at the top level of the menu, so its click type can be switched directly. The current click type is checked.
+///     - Every other button is a submenu with its click types.
+///     - Click types in `takenKeys` (see `buttonAndClickTypeKey()`) are disabled.
+///     - `extra` (may be nil): merged into the representedObject of each item, next to the `trigger` key. Without it, the representedObject is the trigger.
++ (void)addButtonItemsToMenu:(NSMenu *)menu
+              currentTrigger:(NSDictionary *)currentTrigger
+                   takenKeys:(NSSet *)takenKeys
+                       extra:(NSDictionary *)extra
+                      target:(id)target
+                      action:(SEL)action
+                        host:(NSView *)host {
 
-    /// Add one submenu per button. Each submenu has the click types for that button.
-    [buttons enumerateIndexesUsingBlock:^(NSUInteger buttonIndex, BOOL *stop) {
+    NSNumber *currentButton = currentTrigger[kMFButtonTriggerKeyButtonNumber];
+    NSArray *currentClickType = currentTrigger ? @[currentTrigger[kMFButtonTriggerKeyClickLevel], currentTrigger[kMFButtonTriggerKeyDuration]] : nil;
 
-        NSNumber *button = @(buttonIndex);
-
-        /// The freely assignable click types, plus the current click type if it's something else (e.g. triple click)
+    /// Adds the click type items of one button to `targetMenu`
+    void (^addClickTypeItems)(NSMenu *, NSNumber *) = ^(NSMenu *targetMenu, NSNumber *button) {
         NSMutableArray *clickTypes = freelyAssignableClickTypes().mutableCopy;
-        if ([button isEqual:currentButton] && ![clickTypes containsObject:currentClickType]) {
-            [clickTypes addObject:currentClickType];
+        if (currentTrigger && [button isEqual:currentButton] && ![clickTypes containsObject:currentClickType]) {
+            [clickTypes addObject:currentClickType]; /// A current click type that is not one of the freely assignable ones (e.g. triple click)
         }
-
-        NSMenu *submenu = [[NSMenu alloc] initWithTitle:@""];
-        submenu.autoenablesItems = NO;
-        BOOL anyClickTypeAvailable = NO;
-
         for (NSArray *clickType in clickTypes) {
-
             NSNumber *level = clickType[0];
             NSString *duration = clickType[1];
             NSString *format = buttonTriggerSubstringMap()[@[level, duration]];
@@ -1269,26 +1248,101 @@ static NSArray *buttonAndClickTypeKey(NSDictionary *buttonTrigger) {
             BOOL isTaken = [takenKeys containsObject:buttonAndClickTypeKey(trigger)];
 
             /// Title is e.g. "Double Click Button 4"
-            NSString *buttonName = [UIStrings getButtonString:(MFMouseButtonNumber)buttonIndex context:kMFButtonStringUsageContextActionTableTriggerSubstring];
-            RemapTableMenuItem *item = [[RemapTableMenuItem alloc] initWithTitle:stringf(format, buttonName) action:@selector(triggerMenuItemSelected:) keyEquivalent:@""];
-            item.target = self.controller;
+            NSString *buttonName = [UIStrings getButtonString:(MFMouseButtonNumber)button.unsignedIntegerValue context:kMFButtonStringUsageContextActionTableTriggerSubstring];
+            RemapTableMenuItem *item = [[RemapTableMenuItem alloc] initWithTitle:stringf(format, buttonName) action:action keyEquivalent:@""];
+            item.target = target;
             item.host = host;
-            item.representedObject = trigger;
-            item.state = [trigger isEqual:currentTrigger] ? NSControlStateValueOn : NSControlStateValueOff;
+            if (extra) {
+                NSMutableDictionary *payload = extra.mutableCopy;
+                payload[@"trigger"] = trigger;
+                item.representedObject = payload;
+            } else {
+                item.representedObject = trigger;
+            }
+            item.state = (currentTrigger && [trigger isEqual:currentTrigger]) ? NSControlStateValueOn : NSControlStateValueOff;
             item.enabled = !isTaken;
-            [submenu addItem:item];
+            [targetMenu addItem:item];
+        }
+    };
 
-            if (!isTaken) anyClickTypeAvailable = YES;
+    /// The current button's click types go to the top level
+    if (currentButton != nil) {
+        addClickTypeItems(menu, currentButton);
+        [menu addItem:[NSMenuItem separatorItem]];
+    }
+
+    /// Every other button is a submenu
+    NSIndexSet *buttons = [self offeredButtonsIncluding:currentButton];
+    [buttons enumerateIndexesUsingBlock:^(NSUInteger buttonIndex, BOOL *stop) {
+        NSNumber *button = @(buttonIndex);
+        if (currentButton != nil && [button isEqual:currentButton]) return;
+
+        NSMenu *submenu = [[NSMenu alloc] initWithTitle:@""];
+        submenu.autoenablesItems = NO;
+        addClickTypeItems(submenu, button);
+
+        BOOL anyClickTypeAvailable = NO;
+        for (NSMenuItem *item in submenu.itemArray) {
+            if (item.enabled) anyClickTypeAvailable = YES;
         }
 
         /// Title is e.g. "Button 4"
         NSString *groupName = [[UIStrings getButtonString:(MFMouseButtonNumber)buttonIndex context:kMFButtonStringUsageContextActionTableGroupRow] firstCapitalized];
-        NSMenuItem *buttonItem = [[NSMenuItem alloc] init];
-        buttonItem.title = groupName;
+        NSMenuItem *buttonItem = [[NSMenuItem alloc] initWithTitle:groupName action:nil keyEquivalent:@""];
         buttonItem.submenu = submenu;
         buttonItem.enabled = anyClickTypeAvailable; /// A button without any free click type can't be picked
         [menu addItem:buttonItem];
     }];
+}
+
+/// Click types that the rows of an app already use, with an empty modification precondition. These can't be added again.
++ (NSSet *)takenKeysForAppBundleID:(NSString *)bundleID {
+    NSMutableSet *takenKeys = [NSMutableSet set];
+    NSArray *rows = [RemapScope rowsForScope:bundleID inRemaps:Config.shared.config[kMFConfigKeyRemaps]];
+    for (NSDictionary *row in rows) {
+        if (![row[kMFRemapsKeyTrigger] isKindOfClass:NSDictionary.class]) continue;
+        NSDictionary *precondition = row[kMFRemapsKeyModificationPrecondition] ?: @{};
+        if (![precondition isEqual:@{}]) continue;
+        [takenKeys addObject:buttonAndClickTypeKey(row[kMFRemapsKeyTrigger])];
+    }
+    return takenKeys;
+}
+
+/// Fills the trigger dropdown of a button trigger row with the items for all buttons and click types.
+///     Called by `RemapTableController` right before the dropdown opens.
+///     Keeps the first item, which shows the current trigger. Replaces all other items.
++ (void)fillTriggerMenu:(NSMenu *)menu forRowDict:(NSDictionary *)rowDict host:(NSTableCellView *)host {
+
+    while (menu.numberOfItems > 1) {
+        [menu removeItemAtIndex:menu.numberOfItems - 1];
+    }
+    menu.autoenablesItems = NO; /// We enable and disable the items ourselves
+    [menu addItem:[NSMenuItem separatorItem]];
+
+    NSDictionary *currentTrigger = rowDict[kMFRemapsKeyTrigger];
+
+    /// Find the click types that other rows already use with the same modification precondition. Those can't be assigned again.
+    ///     Rows with other modification preconditions don't clash with this row.
+    ///     The dataModel only contains the rows of the current scope (global or one app), so rows of other apps don't clash either.
+    NSMutableSet *takenKeys = [NSMutableSet set];
+    for (NSDictionary *otherRow in self.dataModel) {
+        if ([otherRow isEqual:rowDict]) continue;
+        if (![otherRow[kMFRemapsKeyTrigger] isKindOfClass:NSDictionary.class]) continue; /// Only button triggers take up a click type
+        if (![otherRow[kMFRemapsKeyModificationPrecondition] isEqual:rowDict[kMFRemapsKeyModificationPrecondition]]) continue;
+        [takenKeys addObject:buttonAndClickTypeKey(otherRow[kMFRemapsKeyTrigger])];
+    }
+
+    [self addButtonItemsToMenu:menu currentTrigger:currentTrigger takenKeys:takenKeys extra:nil target:self.controller action:@selector(triggerMenuItemSelected:) host:host];
+}
+
+/// Menu for adding a shortcut of the library to the tab of an app. Picking a button and click type adds the shortcut with that trigger.
+///     `entry` is an entry from `overviewEntriesForBundleID:`. The item's representedObject has `trigger`, `bundleID` and `entry`.
++ (NSMenu *)addMenuForBundleID:(NSString *)bundleID entry:(NSDictionary *)entry target:(id)target action:(SEL)action {
+    NSMenu *menu = [[NSMenu alloc] initWithTitle:@""];
+    menu.autoenablesItems = NO;
+    NSDictionary *extra = @{ @"bundleID": bundleID, @"entry": entry };
+    [self addButtonItemsToMenu:menu currentTrigger:nil takenKeys:[self takenKeysForAppBundleID:bundleID] extra:extra target:target action:action host:nil];
+    return menu;
 }
 
 @end

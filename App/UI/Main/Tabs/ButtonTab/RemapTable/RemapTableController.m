@@ -647,6 +647,8 @@ static void updateBorderColor(RemapTableController *object, BOOL isInitialAppear
     [self.tableView.window makeFirstResponder:self.tableView];
     
     NSMutableDictionary *rowDictToAdd = payload.mutableCopy;
+    /// A payload with an effect (for example from the shortcut library) keeps it, and its effect menu doesn't open
+    BOOL effectWasGiven = rowDictToAdd[kMFRemapsKeyEffect] != nil;
     /// ((Check if payload is valid tableEntry))
 
     /// A row added in an app tab belongs to that app. Rows added in the global tab have no app key.
@@ -669,7 +671,9 @@ static void updateBorderColor(RemapTableController *object, BOOL isInitialAppear
     if (existingIndexes.count == 0) {
         /// Fill out effect in payload with first effect from effects table (to make behaviour appropriate when user doesn't choose any effect)
         ///      We could also consider removing the tableEntry, if the user just dismisses the popup menu without choosing an effect, instead of this.
-        rowDictToAdd[kMFRemapsKeyEffect] = [RemapTableTranslator getEffectsTableForRemapsTableEntry:rowDictToAdd][0][@"dict"];
+        if (!effectWasGiven) {
+            rowDictToAdd[kMFRemapsKeyEffect] = [RemapTableTranslator getEffectsTableForRemapsTableEntry:rowDictToAdd][0][@"dict"];
+        }
         /// Add new row to data model
         self.dataModel = [self.dataModel arrayByAddingObject:rowDictToAdd];
         /// Sort data model
@@ -725,11 +729,13 @@ static void updateBorderColor(RemapTableController *object, BOOL isInitialAppear
     }];
     
     /// Open the NSMenu on the newly created row's popup button
-    NSUInteger openPopupRow = toHighlightIndexSet.firstIndex;
-    NSTableView *tv = self.tableView;
-    NSPopUpButton * popUpButton = [RemapTableUtility getPopUpButtonAtRow:openPopupRow fromTableView:tv];
-    double delay = existingIndexes.count == 1 ? 0.0 : 0.2;
-    [popUpButton performSelector:@selector(performClick:) withObject:nil afterDelay:delay];
+    if (!effectWasGiven) {
+        NSUInteger openPopupRow = toHighlightIndexSet.firstIndex;
+        NSTableView *tv = self.tableView;
+        NSPopUpButton * popUpButton = [RemapTableUtility getPopUpButtonAtRow:openPopupRow fromTableView:tv];
+        double delay = existingIndexes.count == 1 ? 0.0 : 0.2;
+        [popUpButton performSelector:@selector(performClick:) withObject:nil afterDelay:delay];
+    }
     
     /// Capture notifs
     /// 

@@ -1,0 +1,119 @@
+{
+ "note": "Curated flags per library entry. verified: checked against the vendor's documentation (shows a check badge in the Apps tab and the effect menu). layouts: keyboard layouts where the entry works (others leave it out). Applied by gen_library.py.",
+ "flags": [
+  {
+   "app": "Google Chrome",
+   "action": "Open the next page in browsing history for the current tab (alternative)",
+   "verified": true
+  },
+  {
+   "app": "Google Chrome",
+   "action": "Open the previous page in browsing history for the current tab (alternative)",
+   "verified": true
+  },
+  {
+   "app": "Microsoft Excel",
+   "action": "Toggle display of values and formulas",
+   "layouts": [
+    "us"
+   ]
+  },
+  {
+   "app": "Microsoft Outlook",
+   "action": "Cycle backward through open windows",
+   "layouts": [
+    "us"
+   ]
+  },
+  {
+   "app": "Microsoft Outlook",
+   "action": "Cycle forward through open windows",
+   "layouts": [
+    "us"
+   ]
+  },
+  {
+   "app": "Microsoft Teams",
+   "action": "Toggle mute",
+   "verified": true
+  },
+  {
+   "app": "Microsoft Teams",
+   "action": "Toggle video",
+   "verified": true
+  },
+  {
+   "app": "Microsoft Word",
+   "action": "Switch to next window",
+   "layouts": [
+    "us"
+   ]
+  },
+  {
+   "app": "Microsoft Word",
+   "action": "Switch to previous window",
+   "layouts": [
+    "us"
+   ]
+  },
+  {
+   "app": "Pixelmator Pro: Edit Images",
+   "action": "Cycle through windows",
+   "layouts": [
+    "us"
+   ]
+  },
+  {
+   "app": "Safari",
+   "action": "Switch to another Safari window",
+   "layouts": [
+    "us"
+   ]
+  },
+  {
+   "app": "Slack",
+   "action": "Add an emoji reaction to a message (keys vary by keyboard layout)",
+   "layouts": [
+    "us"
+   ]
+  },
+  {
+   "app": "Slack",
+   "action": "Toggle heading and list styles (canvas)",
+   "layouts": [
+    "us"
+   ]
+  },
+  {
+   "app": "Terminal",
+   "action": "Go to the next window",
+   "layouts": [
+    "us"
+   ]
+  },
+  {
+   "app": "Terminal",
+   "action": "Go to the previous window",
+   "layouts": [
+    "us"
+   ]
+  },
+  {
+   "app": "Visual Studio Code",
+   "action": "Create new terminal",
+   "layouts": [
+    "us"
+   ]
+  },
+  {
+   "app": "Visual Studio Code",
+   "action": "New window or instance",
+   "verified": true
+  },
+  {
+   "app": "Visual Studio Code",
+   "action": "Toggle editor layout (horizontal/vertical)",
+   "verified": true
+  }
+ ]
+}

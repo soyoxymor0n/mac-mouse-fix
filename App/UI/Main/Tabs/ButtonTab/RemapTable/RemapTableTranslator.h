@@ -28,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Fills the trigger dropdown of a button trigger row. Called right before the dropdown opens.
 + (void)fillTriggerMenu:(NSMenu *)menu forRowDict:(NSDictionary *)rowDict host:(NSTableCellView *)host;
 
+/// Menu for adding a shortcut of the library (an entry from `ShortcutLibrary overviewEntriesForBundleID:`) to the tab of an app. Each item's representedObject has `trigger`, `bundleID` and `entry`.
++ (NSMenu *)addMenuForBundleID:(NSString *)bundleID entry:(NSDictionary *)entry target:(id)target action:(SEL)action;
+
 
 + (NSMenuItem * _Nullable)getPopUpButtonItemToSelectBasedOnRowDict:(NSPopUpButton * _Nonnull)button rowDict:(NSDictionary * _Nonnull)rowDict;
 + (NSDictionary * _Nullable)getEffectDictBasedOnSelectedItemInButton:(NSPopUpButton * _Nonnull)button rowDict:(NSDictionary * _Nonnull)rowDict;

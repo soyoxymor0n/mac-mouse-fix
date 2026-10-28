@@ -10,7 +10,8 @@ import Cocoa
 
 /// Settings tab with an overview of the apps in the shortcut library and their keyboard shortcuts.
 ///     Left: the apps. The search field on top filters the list while you type.
-///     Right: the shortcuts of the selected app. A badge shows whether each shortcut was checked against the vendor's documentation.
+///     Right: the shortcuts of the selected app, under group headers. A badge shows whether a shortcut was checked against the vendor's documentation.
+///     The plus button adds a shortcut to the app's tab, with the button and click type you pick.
 ///     Recommended mouse buttons are not shown yet, because the library has no suggested buttons in this version.
 ///     See GitHub issue #13 in soyoxymor0n/mac-mouse-fix-ng.
 class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, NSSearchFieldDelegate {
@@ -20,15 +21,18 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
     private struct AppInfo {
         let name: String
         let bundleIDs: [String]
-        let entries: [[String: Any]]
     }
 
-    /// Date the shortcut library was checked. Every entry in `ShortcutLibrary.m` was checked on this date (see the header of `ShortcutLibrary.h`).
-    private static let checkedDate = "2026-10-25"
+    /// Rows of the shortcut table: group headers and shortcuts.
+    private enum DisplayRow {
+        case header(String)
+        case entry([String: Any])
+    }
 
     private var allApps: [AppInfo] = []
     private var visibleApps: [AppInfo] = []
-    private var shownEntries: [[String: Any]] = []
+    private var displayRows: [DisplayRow] = []
+    private var shownBundleID: String?
 
     // MARK: Views
 
@@ -174,7 +178,7 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
 
     override func viewDidLayout() {
         super.viewDidLayout()
-        /// The action column takes the width that the status and shortcut columns leave. Uses their real rectangles, because their rendered width can differ from the requested width.
+        /// The action column takes the width that the other columns leave. Uses their real rectangles, because their rendered width can differ from the requested width.
         guard let scrollView = actionScrollView, actionTable.numberOfColumns == 3 else { return }
         let otherColumnsWidth = actionTable.rect(ofColumn: 0).width + actionTable.rect(ofColumn: 2).width
         let available = scrollView.contentView.bounds.width - otherColumnsWidth
@@ -182,20 +186,22 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
             actionColumn.width = available
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let libraryApps = (ShortcutLibrary.apps() as? [[String: Any]]) ?? []
         allApps = libraryApps.compactMap { app -> AppInfo? in
             guard let name = app["name"] as? String else { return nil }
-            return AppInfo(name: name,
-                           bundleIDs: (app["bundleIDs"] as? [String]) ?? [],
-                           entries: (app["entries"] as? [[String: Any]]) ?? [])
+            return AppInfo(name: name, bundleIDs: (app["bundleIDs"] as? [String]) ?? [])
         }
         allApps.sort { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
 
         applyFilter()
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: Filtering
@@ -232,20 +238,24 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
         return visibleApps[row].name
     }
 
-    /// Fills the right column with the shortcuts of the selected app
+    /// Fills the right column with the shortcuts of the selected app, under their group headers
     private func showSelectedApp() {
 
         let row = appTable.selectedRow
 
         if row >= 0 && row < visibleApps.count {
             let app = visibleApps[row]
-            shownEntries = app.entries
+            shownBundleID = app.bundleIDs.first
+            let entries = overviewEntries(forBundleID: shownBundleID)
+            displayRows = buildDisplayRows(from: entries)
             appNameLabel.stringValue = app.name
+            let verifiedCount = entries.filter { AppOverviewViewController.isVerified($0) }.count
             appInfoLabel.stringValue = String.localizedStringWithFormat(
-                NSLocalizedString("apps-tab.shortcut-count", value: "%d shortcuts. Checked %@.", comment: "Under the app name in the apps overview. First value: number of shortcuts. Second value: the date they were checked, as YYYY-MM-DD."),
-                app.entries.count, AppOverviewViewController.checkedDate)
+                NSLocalizedString("apps-tab.shortcut-count", value: "%d shortcuts, %d checked against the vendor's documentation.", comment: "Under the app name in the apps overview. First value: number of shortcuts. Second value: number of shortcuts that were checked."),
+                entries.count, verifiedCount)
         } else {
-            shownEntries = []
+            shownBundleID = nil
+            displayRows = []
             appNameLabel.stringValue = NSLocalizedString("apps-tab.no-match", value: "No apps match your search", comment: "Shown in the apps overview when the search field matches no app.")
             appInfoLabel.stringValue = ""
         }
@@ -253,28 +263,31 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
         actionTable.reloadData()
     }
 
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+    /// Shortcuts of the app that work on the active keyboard layout
+    private func overviewEntries(forBundleID bundleID: String?) -> [[String: Any]] {
+        guard let bundleID = bundleID else { return [] }
+        return (ShortcutLibrary.overviewEntries(forBundleID: bundleID) as? [[String: Any]]) ?? []
     }
-    
-    @objc private func actionColumnDidResize(_ notification: Notification) {
-        guard !shownEntries.isEmpty else { return }
-        actionTable.noteHeightOfRows(withIndexesChanged: IndexSet(integersIn: 0..<shownEntries.count))
+
+    /// Group headers in a fixed order: the default groups first, then the app's specific groups in the order they first appear
+    private func buildDisplayRows(from entries: [[String: Any]]) -> [DisplayRow] {
+
+        var groupOrder = (ShortcutLibrary.defaultShortcutGroups() as? [String]) ?? []
+        for entry in entries {
+            let group = (entry["group"] as? String) ?? "Other"
+            if !groupOrder.contains(group) { groupOrder.append(group) }
+        }
+
+        var rows: [DisplayRow] = []
+        for group in groupOrder {
+            let members = entries.filter { ($0["group"] as? String) == group }
+            if members.isEmpty { continue }
+            rows.append(.header(group))
+            rows.append(contentsOf: members.map { DisplayRow.entry($0) })
+        }
+        return rows
     }
-    
-    /// Row height of an action: as many lines as the label needs in the action column, with a minimum of one line.
-    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        guard tableView === actionTable, row < shownEntries.count else { return tableView.rowHeight }
-        let columnWidth = actionTable.tableColumn(withIdentifier: NSUserInterfaceItemIdentifier("action"))?.width ?? 200
-        let text = (shownEntries[row]["label"] as? String) ?? ""
-        let font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
-        let textRect = (text as NSString).boundingRect(
-            with: NSSize(width: columnWidth - 8, height: CGFloat.greatestFiniteMagnitude),
-            options: [.usesLineFragmentOrigin, .usesFontLeading],
-            attributes: [.font: font])
-        return max(tableView.rowHeight, ceil(textRect.height) + 6)
-    }
-    
+
     // MARK: Search field
 
     func controlTextDidChange(_ notification: Notification) {
@@ -282,6 +295,11 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
     }
 
     // MARK: Tables
+
+    @objc private func actionColumnDidResize(_ notification: Notification) {
+        guard !displayRows.isEmpty else { return }
+        actionTable.noteHeightOfRows(withIndexesChanged: IndexSet(integersIn: 0..<displayRows.count))
+    }
 
     private func makeScrollView(for table: NSTableView) -> NSScrollView {
         let scrollView = NSScrollView()
@@ -294,7 +312,32 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
     }
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return tableView === appTable ? visibleApps.count : shownEntries.count
+        return tableView === appTable ? visibleApps.count : displayRows.count
+    }
+
+    /// Group headers can't be selected
+    func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+        guard tableView === actionTable, row < displayRows.count else { return true }
+        if case .header = displayRows[row] { return false }
+        return true
+    }
+
+    /// Row height: headers have a fixed height. Shortcut rows have as many lines as their name needs in the action column.
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        guard tableView === actionTable, row < displayRows.count else { return tableView.rowHeight }
+        switch displayRows[row] {
+        case .header:
+            return 26
+        case .entry(let entry):
+            let columnWidth = actionTable.tableColumn(withIdentifier: NSUserInterfaceItemIdentifier("action"))?.width ?? 200
+            let text = (entry["label"] as? String) ?? ""
+            let font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
+            let textRect = (text as NSString).boundingRect(
+                with: NSSize(width: columnWidth - 8, height: CGFloat.greatestFiniteMagnitude),
+                options: [.usesLineFragmentOrigin, .usesFontLeading],
+                attributes: [.font: font])
+            return max(tableView.rowHeight, ceil(textRect.height) + 6)
+        }
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -303,25 +346,44 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
             return textCell(in: tableView, identifier: "appCell", text: visibleApps[row].name, wraps: false)
         }
 
-        let entry = shownEntries[row]
-        switch tableColumn?.identifier.rawValue {
-        case "status":
-            return statusCell(in: tableView, isVerified: AppOverviewViewController.isVerified(entry))
-        case "shortcut":
-            return textCell(in: tableView, identifier: "shortcutCell", text: (entry["symbols"] as? String) ?? "", wraps: false)
-        default:
-            return textCell(in: tableView, identifier: "actionCell", text: (entry["label"] as? String) ?? "", wraps: true)
+        let columnID = tableColumn?.identifier.rawValue
+        switch displayRows[row] {
+
+        case .header(let title):
+            if columnID == "action" {
+                return textCell(in: tableView, identifier: "groupCell", text: title, wraps: false, bold: true, secondary: true)
+            }
+            return emptyCell(in: tableView)
+
+        case .entry(let entry):
+            switch columnID {
+            case "status":
+                return statusCell(in: tableView, isVerified: AppOverviewViewController.isVerified(entry))
+            case "shortcut":
+                return shortcutCell(in: tableView, row: row, symbols: (entry["symbols"] as? String) ?? "")
+            default:
+                return textCell(in: tableView, identifier: "actionCell", text: (entry["label"] as? String) ?? "", wraps: true)
+            }
         }
     }
 
-    /// Entries are only in the library after they were checked against the vendor's documentation, so an entry without the flag counts as checked.
+    /// Whether the library has checked the shortcut against the vendor's documentation
     private static func isVerified(_ entry: [String: Any]) -> Bool {
-        return (entry["verified"] as? Bool) ?? true
+        return (entry["verified"] as? NSNumber)?.boolValue ?? false
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
         guard let table = notification.object as? NSTableView, table === appTable else { return }
         showSelectedApp()
+    }
+
+    private func emptyCell(in tableView: NSTableView) -> NSTableCellView {
+        if let reused = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("emptyCell"), owner: self) as? NSTableCellView {
+            return reused
+        }
+        let cell = NSTableCellView()
+        cell.identifier = NSUserInterfaceItemIdentifier("emptyCell")
+        return cell
     }
 
     private func statusCell(in tableView: NSTableView, isVerified: Bool) -> NSTableCellView {
@@ -360,8 +422,86 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
         return cell
     }
 
-    /// Wrapped cells show the whole text on several lines. Single-line cells truncate, and their tooltip shows the full text.
-    private func textCell(in tableView: NSTableView, identifier: String, text: String, wraps: Bool) -> NSTableCellView {
+    /// Shortcut keys with the plus button at the trailing edge. The button's tag is the row, so the click knows which shortcut it belongs to.
+    private func shortcutCell(in tableView: NSTableView, row: Int, symbols: String) -> NSTableCellView {
+
+        let cell: NSTableCellView
+        if let reused = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("shortcutCell"), owner: self) as? NSTableCellView {
+            cell = reused
+        } else {
+            cell = NSTableCellView()
+            cell.identifier = NSUserInterfaceItemIdentifier("shortcutCell")
+            let textField = NSTextField(labelWithString: "")
+            textField.translatesAutoresizingMaskIntoConstraints = false
+            textField.lineBreakMode = .byTruncatingTail
+            textField.maximumNumberOfLines = 1
+            cell.addSubview(textField)
+            cell.textField = textField
+
+            let button = NSButton()
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.isBordered = false
+            button.imagePosition = .imageOnly
+            button.target = self
+            button.action = #selector(addButtonClicked(_:))
+            cell.addSubview(button)
+
+            NSLayoutConstraint.activate([
+                textField.leadingAnchor.constraint(equalTo: cell.leadingAnchor, constant: 4),
+                textField.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
+                textField.trailingAnchor.constraint(lessThanOrEqualTo: button.leadingAnchor, constant: -4),
+                button.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: -4),
+                button.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
+                button.widthAnchor.constraint(equalToConstant: 18),
+                button.heightAnchor.constraint(equalToConstant: 18),
+            ])
+        }
+
+        cell.textField?.stringValue = symbols
+        cell.textField?.font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
+        cell.textField?.toolTip = symbols
+        if let button = cell.subviews.compactMap({ $0 as? NSButton }).first {
+            let tooltip = NSLocalizedString("apps-tab.add.tooltip", value: "Add to this app's tab", comment: "Tooltip of the plus button in the apps overview. Adds the shortcut to the tab of the app.")
+            button.tag = row
+            button.toolTip = tooltip
+            if #available(macOS 11.0, *) {
+                button.image = NSImage(systemSymbolName: "plus.circle", accessibilityDescription: tooltip)
+            } else {
+                button.image = NSImage(named: NSImage.addTemplateName)
+            }
+        }
+        return cell
+    }
+
+    /// Plus button clicked: shows the button menu for the shortcut
+    @objc private func addButtonClicked(_ sender: NSButton) {
+        let row = sender.tag
+        guard row >= 0 && row < displayRows.count, case .entry(let entry) = displayRows[row], let bundleID = shownBundleID else { return }
+        let menu = RemapTableTranslator.addMenu(forBundleID: bundleID, entry: entry, target: self, action: #selector(addMenuItemSelected(_:)))
+        _ = menu.popUp(positioning: nil, at: NSPoint(x: 0, y: sender.bounds.height + 4), in: sender)
+    }
+
+    /// A button and click type were picked for a shortcut: creates the app's tab if needed, shows it, and adds the row
+    @objc private func addMenuItemSelected(_ item: NSMenuItem) {
+
+        guard let payload = item.representedObject as? [String: Any],
+              let trigger = payload["trigger"] as? [String: Any],
+              let bundleID = payload["bundleID"] as? String,
+              let entry = payload["entry"] as? [String: Any],
+              let effect = entry["dict"] else { return }
+
+        let row: [String: Any] = [
+            "trigger": trigger,
+            "modifiers": [String: Any](),
+            "effect": effect,
+        ]
+
+        MainAppState.shared.buttonTabController?.addAppTab(bundleID: bundleID)
+        (parent as? TabViewController)?.coolSelectTab(identifier: "buttons")
+        MainAppState.shared.remapTableController?.addRow(withHelperPayload: row)
+    }
+
+    private func textCell(in tableView: NSTableView, identifier: String, text: String, wraps: Bool, bold: Bool = false, secondary: Bool = false) -> NSTableCellView {
 
         let cell: NSTableCellView
         if let reused = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(identifier), owner: self) as? NSTableCellView {
@@ -386,7 +526,8 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
 
         cell.textField?.stringValue = text
         cell.textField?.toolTip = text
-        cell.textField?.font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
+        cell.textField?.font = bold ? NSFont.boldSystemFont(ofSize: NSFont.systemFontSize) : NSFont.systemFont(ofSize: NSFont.systemFontSize)
+        cell.textField?.textColor = secondary ? NSColor.secondaryLabelColor : NSColor.labelColor
         cell.textField?.lineBreakMode = wraps ? .byWordWrapping : .byTruncatingTail
         cell.textField?.maximumNumberOfLines = wraps ? 0 : 1
         return cell

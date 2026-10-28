@@ -21,6 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// All apps of the library. Each app is a dictionary with `name` (NSString), `bundleIDs` (NSArray of NSString) and `entries` (NSArray of dictionaries with `label` and `symbols`).
 + (NSArray *)apps;
 
+/// The shortcut groups shown for every app, in display order. Specific groups come after these.
++ (NSArray *)defaultShortcutGroups;
+
+/// Entries of an app that work on the active keyboard layout. Each entry is a dictionary with `label`, `symbols`, `group`, `verified` (NSNumber BOOL) and `dict` (the effect).
++ (NSArray *)overviewEntriesForBundleID:(NSString *)bundleID;
+
 @end
 
 NS_ASSUME_NONNULL_END
