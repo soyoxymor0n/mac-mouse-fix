@@ -108,6 +108,138 @@
         }
       }
     },
+    "add-field.explainer.click" : {
+      "comment" : "Line in the gestures popover that opens from the question mark in the add field. Explains the gesture 'Click'.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press and release a mouse button."
+          }
+        }
+      }
+    },
+    "add-field.explainer.click-and-drag" : {
+      "comment" : "Line in the gestures popover that opens from the question mark in the add field. Explains the gesture 'Click and Drag'.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press a mouse button, keep it held and move the mouse."
+          }
+        }
+      }
+    },
+    "add-field.explainer.click-and-scroll" : {
+      "comment" : "Line in the gestures popover that opens from the question mark in the add field. Explains the gesture 'Click and Scroll'.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press a mouse button, keep it held and scroll the wheel."
+          }
+        }
+      }
+    },
+    "add-field.explainer.closing" : {
+      "comment" : "Last line in the gestures popover that opens from the question mark in the add field",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Each gesture can be assigned to any button, globally or for one app."
+          }
+        }
+      }
+    },
+    "add-field.explainer.double-click" : {
+      "comment" : "Line in the gestures popover that opens from the question mark in the add field. Explains the gesture 'Double Click'.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press a mouse button twice in quick succession."
+          }
+        }
+      }
+    },
+    "add-field.explainer.hold" : {
+      "comment" : "Line in the gestures popover that opens from the question mark in the add field. Explains the gesture 'Hold'.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press a mouse button and keep it held for a moment."
+          }
+        }
+      }
+    },
+    "add-field.explainer.show-animation" : {
+      "comment" : "Button in the gestures popover. Plays the animated gesture hint in the add field again.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show animation"
+          }
+        }
+      }
+    },
+    "add-field.explainer.title" : {
+      "comment" : "Title of the popover that opens from the question mark in the add field. It explains the mouse gestures.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestures"
+          }
+        }
+      }
+    },
+    "add-field.hint.click-and-scroll" : {
+      "comment" : "Name of a gesture, shown under the mouse hint in the add field",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click and Scroll"
+          }
+        }
+      }
+    },
+    "add-field.hint.hold" : {
+      "comment" : "Name of a gesture, shown under the mouse hint in the add field",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hold"
+          }
+        }
+      }
+    },
+    "add-field.legend.accessibility-help" : {
+      "comment" : "Accessibility help of a gesture in the gesture legend under the add field. Hovering over it plays the gesture in the add field.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hover to play this gesture in the field above"
+          }
+        }
+      }
+    },
     "already-using-defaults-toast.3" : {
       "comment" : "This toast notification appears in response to selecting the 'restore-buttons-alert.radio1' radio button.",
       "localizations" : {
@@ -19688,13 +19820,13 @@
       }
     },
     "add-field.hint.help.tooltip" : {
-      "comment" : "Tooltip of the question mark in the add field. It shows the gesture hint again.",
+      "comment" : "Tooltip of the question mark in the add field. It opens a popover that explains the gestures.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Show the gesture hint again"
+            "value" : "About gestures"
           }
         }
       }

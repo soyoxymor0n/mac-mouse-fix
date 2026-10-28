@@ -409,12 +409,13 @@ import Cocoa
 
 extension AddField {
 
-    /// Puts the animated mouse hint left of the '+', and a '?' button in the corner that shows the hint again. See `MouseGestureHintView`.
+    /// Puts the animated mouse hint left of the '+', and a '?' button in the corner that explains the gestures. See `GestureHintView` and `GestureExplainer`.
     func installGestureHint() {
         guard let container = plusIconView.superview else { return }
 
-        let hint = MouseGestureHintView()
+        let hint = GestureHintView()
         hint.translatesAutoresizingMaskIntoConstraints = false
+        hint.isHidden = true
         container.addSubview(hint)
 
         let help = NSButton()
@@ -424,7 +425,7 @@ extension AddField {
         help.image = SFSymbolStrings.image(withSymbolName: "questionmark.circle", accessibilityDescription: MFLocalizedString("add-field.hint.help.tooltip", comment: ""))
         help.toolTip = MFLocalizedString("add-field.hint.help.tooltip", comment: "")
         help.target = self
-        help.action = #selector(toggleGestureHint(_:))
+        help.action = #selector(showGestureExplainer(_:))
         container.addSubview(help)
 
         NSLayoutConstraint.activate([
@@ -438,249 +439,48 @@ extension AddField {
     }
 
     /// The hint in this field, once it is installed
-    func gestureHint() -> MouseGestureHintView? {
-        return plusIconView.superview?.subviews.compactMap { $0 as? MouseGestureHintView }.first
+    func gestureHint() -> GestureHintView? {
+        return plusIconView.superview?.subviews.compactMap { $0 as? GestureHintView }.first
     }
 
-    /// Shows the hint, playing it from the start, or hides it
+    /// Shows the hint, playing the loop from the start, or hides it. While a single gesture plays (see `playGesture(_:)`), the hint stays until that gesture is over.
     func setGestureHintVisible(_ visible: Bool) {
         guard let hint = gestureHint() else { return }
-        if visible && hint.isHidden {
-            hint.isHidden = false
-            hint.restartAnimation()
+        let clock = GestureHintClock.shared
+        if visible && !clock.isLoopShown {
+            clock.isLoopShown = true
+            clock.restartLoop()
         } else if !visible {
-            hint.isHidden = true
+            clock.isLoopShown = false
+        }
+        hint.isHidden = !visible && clock.playingKind == nil
+    }
+
+    /// Plays one gesture in the hint, for the gesture legend. If the hint is hidden, it shows while the gesture plays, and hides again after.
+    func playGesture(_ kind: GestureKind) {
+        guard let hint = gestureHint() else { return }
+        let clock = GestureHintClock.shared
+        clock.play(kind) { [weak hint] in
+            hint?.isHidden = !clock.isLoopShown
+        }
+        if clock.playingKind != nil {
+            hint.isHidden = false
         }
     }
 
-    /// The '?' button: shows the hint again, or hides it if it is showing
-    @objc func toggleGestureHint(_ sender: NSButton) {
-        setGestureHintVisible(gestureHint()?.isHidden ?? false)
-    }
-}
-
-/// Animated hint for the add field. A mouse is shown on its own, and three gestures are played on it, each named under the mouse:
-/// Click, Double Click, Click and Drag. These are the gestures the button table offers. The mouse itself stays still, and the drag is shown by an arrow.
-/// The pauses between the gestures are long enough to read the names. With Reduce Motion on, it shows the mouse and the first name, without animation.
-final class MouseGestureHintView: NSView {
-
-    /// The mouse. Its left button is lit while it is pressed.
-    private let mouse = CALayer()
-    private let body = CAShapeLayer()
-    private let split = CAShapeLayer()
-    private let leftButton = CALayer()
-    private let clickRing = CAShapeLayer()
-    /// Shown during the drag, from the left button to the right
-    private let dragArrow = CAShapeLayer()
-    /// The gesture names. One of them is shown at a time, under the mouse.
-    private let nameLayers = [CATextLayer(), CATextLayer(), CATextLayer()]
-
-    /// The names of the gestures, in the order they are played
-    private static let nameKeys = ["add-field.hint.click", "add-field.hint.double-click", "add-field.hint.click-and-drag"]
-
-    /// Length of one loop in seconds. The keyframe times below are seconds within one loop.
-    private static let loopDuration: Double = 18.0
-    private static let viewSize = NSSize(width: 200, height: 130)
-    /// The mouse, in this view's coordinates
-    private static let mouseFrame = CGRect(x: 77, y: 44, width: 46, height: 66)
-    /// The center of the left button, in the mouse's coordinates
-    private static let leftButtonCenter = CGPoint(x: 11.5, y: 52)
-    /// How far the mouse moves to the right during the drag
-    private static let dragDistance: CGFloat = 44
-
-    override init(frame frameRect: NSRect) {
-        super.init(frame: NSRect(origin: .zero, size: MouseGestureHintView.viewSize))
-        setUp()
+    /// Shows the hint and plays the loop from the start, for "Show animation" in the explainer
+    func replayGestureHint() {
+        guard let hint = gestureHint() else { return }
+        let clock = GestureHintClock.shared
+        clock.isLoopShown = true
+        clock.restartLoop()
+        hint.isHidden = false
     }
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setUp()
-    }
-
-    override var intrinsicContentSize: NSSize { MouseGestureHintView.viewSize }
-
-    private func setUp() {
-
-        wantsLayer = true
-        setAccessibilityElement(false) /// Purely decorative
-
-        mouse.frame = MouseGestureHintView.mouseFrame
-        mouse.opacity = 0
-        layer?.addSublayer(mouse)
-        let mouseBounds = mouse.bounds
-
-        body.frame = mouseBounds
-        body.path = CGPath(roundedRect: mouseBounds, cornerWidth: 20, cornerHeight: 20, transform: nil)
-        body.lineWidth = 1.5
-        mouse.addSublayer(body)
-
-        /// The line that separates the buttons: across the top of the buttons, and down the middle
-        let splitPath = CGMutablePath()
-        splitPath.move(to: CGPoint(x: 0, y: 38))
-        splitPath.addLine(to: CGPoint(x: mouseBounds.width, y: 38))
-        splitPath.move(to: CGPoint(x: mouseBounds.midX, y: 38))
-        splitPath.addLine(to: CGPoint(x: mouseBounds.midX, y: mouseBounds.height))
-        split.frame = mouseBounds
-        split.path = splitPath
-        split.fillColor = nil
-        split.lineWidth = 1.5
-        mouse.addSublayer(split)
-
-        leftButton.frame = CGRect(x: 3, y: 41, width: 17, height: 22)
-        leftButton.cornerRadius = 8
-        leftButton.opacity = 0
-        mouse.addSublayer(leftButton)
-
-        let center = MouseGestureHintView.leftButtonCenter
-        clickRing.frame = mouseBounds
-        clickRing.path = CGPath(ellipseIn: CGRect(x: center.x - 15, y: center.y - 15, width: 30, height: 30), transform: nil)
-        clickRing.fillColor = nil
-        clickRing.lineWidth = 2
-        clickRing.opacity = 0
-        mouse.addSublayer(clickRing)
-
-        /// The drag arrow, in this view's coordinates: from the left button to just past where the button ends up after the drag
-        let start = CGPoint(x: MouseGestureHintView.mouseFrame.minX + center.x, y: MouseGestureHintView.mouseFrame.minY + center.y)
-        let end = CGPoint(x: start.x + MouseGestureHintView.dragDistance + 22, y: start.y)
-        let arrowPath = CGMutablePath()
-        arrowPath.move(to: start)
-        arrowPath.addLine(to: end)
-        arrowPath.move(to: CGPoint(x: end.x - 9, y: end.y + 6))
-        arrowPath.addLine(to: end)
-        arrowPath.addLine(to: CGPoint(x: end.x - 9, y: end.y - 6))
-        dragArrow.frame = CGRect(origin: .zero, size: MouseGestureHintView.viewSize)
-        dragArrow.path = arrowPath
-        dragArrow.fillColor = nil
-        dragArrow.lineWidth = 2
-        dragArrow.lineCap = .round
-        dragArrow.lineJoin = .round
-        dragArrow.strokeEnd = 0
-        dragArrow.opacity = 0
-        layer?.addSublayer(dragArrow)
-
-        for (nameLayer, key) in zip(nameLayers, MouseGestureHintView.nameKeys) {
-            nameLayer.string = MFLocalizedString(key, comment: "Name of a gesture, shown under the mouse hint in the add field")
-            nameLayer.font = NSFont.systemFont(ofSize: 12, weight: .medium)
-            nameLayer.fontSize = 12
-            nameLayer.alignmentMode = .center
-            nameLayer.frame = CGRect(x: 0, y: 14, width: MouseGestureHintView.viewSize.width, height: 18)
-            nameLayer.opacity = 0
-            layer?.addSublayer(nameLayer)
+    /// The '?' button: explains the gestures in a popover
+    @objc func showGestureExplainer(_ sender: NSButton) {
+        GestureExplainer.show(relativeTo: sender) { [weak self] in
+            self?.replayGestureHint()
         }
-
-        updateColors()
-    }
-
-    override func viewDidChangeEffectiveAppearance() {
-        super.viewDidChangeEffectiveAppearance()
-        updateColors()
-    }
-
-    private func updateColors() {
-        let apply = {
-            self.body.fillColor = NSColor.textBackgroundColor.cgColor
-            self.body.strokeColor = NSColor.tertiaryLabelColor.cgColor
-            self.split.strokeColor = NSColor.tertiaryLabelColor.cgColor
-            self.leftButton.backgroundColor = NSColor.controlAccentColor.withAlphaComponent(0.4).cgColor
-            self.clickRing.strokeColor = NSColor.controlAccentColor.cgColor
-            self.dragArrow.strokeColor = NSColor.controlAccentColor.cgColor
-            for nameLayer in self.nameLayers {
-                nameLayer.foregroundColor = NSColor.secondaryLabelColor.cgColor
-            }
-        }
-        if #available(macOS 11.0, *) {
-            effectiveAppearance.performAsCurrentDrawingAppearance(apply)
-        } else {
-            apply()
-        }
-    }
-
-    override func viewDidMoveToWindow() {
-        super.viewDidMoveToWindow()
-        guard let window = window else { return }
-        for nameLayer in nameLayers {
-            nameLayer.contentsScale = window.backingScaleFactor
-        }
-        if NSWorkspace.shared.accessibilityDisplayShouldReduceMotion {
-            showStillFrame()
-        } else {
-            startAnimation()
-        }
-    }
-
-    /// Plays the animation again from the start. Used by the '?' button.
-    func restartAnimation() {
-        removeAnimations(in: layer)
-        if NSWorkspace.shared.accessibilityDisplayShouldReduceMotion {
-            showStillFrame()
-        } else {
-            startAnimation()
-        }
-    }
-
-    private func removeAnimations(in layer: CALayer?) {
-        guard let layer = layer else { return }
-        layer.removeAllAnimations()
-        layer.sublayers?.forEach { removeAnimations(in: $0) }
-    }
-
-    /// Reduce Motion: the mouse with the first gesture name, and no animation
-    private func showStillFrame() {
-        mouse.opacity = 1
-        nameLayers[0].opacity = 1
-    }
-
-    /// One loop, in seconds:
-    ///     0.4  the mouse fades in
-    ///     1.0  click. The name "Click" stays up until 4.4
-    ///     4.8  double click, at 4.8 and 5.1. The name "Double Click" stays up until 8.4
-    ///     9.0  press and hold the left button, and drag. The mouse moves to the right until 10.8, and the arrow shows the drag until 11.3
-    ///     11.0 the button is released. The name "Click and Drag" stays up until 13.8
-    ///     14.2 the mouse fades out, and the loop pauses until it starts again
-    private func startAnimation() {
-        let loop = MouseGestureHintView.loopDuration
-        let x = mouse.position.x
-        let drag = MouseGestureHintView.dragDistance
-
-        animate(mouse, "opacity", [(0, 0), (0.4, 1), (13.8, 1), (14.2, 0), (loop, 0)])
-
-        animate(nameLayers[0], "opacity", [(0, 0), (0.4, 0), (0.7, 1), (4.2, 1), (4.4, 0), (loop, 0)])
-        animate(nameLayers[1], "opacity", [(0, 0), (4.4, 0), (4.7, 1), (8.2, 1), (8.4, 0), (loop, 0)])
-        animate(nameLayers[2], "opacity", [(0, 0), (8.4, 0), (8.7, 1), (13.5, 1), (13.8, 0), (loop, 0)])
-
-        animate(leftButton, "opacity", MouseGestureHintView.pulses([(1.0, 1.15), (4.8, 4.95), (5.1, 5.25), (9.0, 11.0)], end: loop))
-        animate(clickRing, "opacity", MouseGestureHintView.pulses([(1.0, 1.4), (4.8, 5.25)], end: loop))
-
-        /// The drag: the mouse slides to the right while the left button is held. It stays there until it fades out, then the loop starts over with the mouse back in place.
-        animate(mouse, "position.x", [(0, x), (9.0, x), (10.8, x + drag), (14.2, x + drag), (loop, x)])
-
-        /// The arrow appears with the drag, grows along with the mouse, and stays until the button is released
-        animate(dragArrow, "opacity", [(0, 0), (8.95, 0), (9.0, 1), (11.3, 1), (11.6, 0), (loop, 0)])
-        animate(dragArrow, "strokeEnd", [(0, 0), (9.0, 0), (10.8, 1), (loop, 1)])
-    }
-
-    /// Keyframes that are 1 during each interval and 0 otherwise. Each interval switches on and off over 0.02 s.
-    private static func pulses(_ intervals: [(Double, Double)], end: Double) -> [(Double, CGFloat)] {
-        var keys: [(Double, CGFloat)] = [(0, 0)]
-        for (start, stop) in intervals {
-            keys.append((start, 0))
-            keys.append((start + 0.02, 1))
-            keys.append((stop, 1))
-            keys.append((stop + 0.02, 0))
-        }
-        keys.append((end, 0))
-        return keys
-    }
-
-    /// Adds a looping animation. `keys` are (seconds within the loop, value).
-    private func animate(_ layer: CALayer, _ keyPath: String, _ keys: [(Double, CGFloat)]) {
-        let animation = CAKeyframeAnimation(keyPath: keyPath)
-        animation.keyTimes = keys.map { NSNumber(value: $0.0 / MouseGestureHintView.loopDuration) }
-        animation.values = keys.map { NSNumber(value: Double($0.1)) }
-        animation.duration = MouseGestureHintView.loopDuration
-        animation.repeatCount = .infinity
-        animation.calculationMode = .linear
-        layer.add(animation, forKey: keyPath)
     }
 }
