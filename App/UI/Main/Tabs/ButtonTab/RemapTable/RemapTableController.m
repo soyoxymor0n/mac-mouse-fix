@@ -236,7 +236,67 @@
     
     /// Reload table
     [self.tableView reloadData];
-    
+
+}
+
+#pragma mark Trigger dropdown
+
+- (void)menuNeedsUpdate:(NSMenu *)menu {
+
+    /// The items of a trigger dropdown are created right before it opens. That way they show the connected mouse and the current click types.
+    /// Find the row whose trigger dropdown this menu belongs to
+    for (NSInteger row = 0; row < self.tableView.numberOfRows; row++) {
+
+        NSTableCellView *triggerCell = [self.tableView viewAtColumn:0 row:row makeIfNecessary:NO];
+        if (triggerCell == nil) continue;
+        NSPopUpButton *triggerPopUp = (NSPopUpButton *)[triggerCell subviewsWithIdentifier:@"triggerPopUp"].firstObject;
+        if (triggerPopUp == nil || ![triggerPopUp.menu isEqual:menu]) continue;
+
+        NSInteger rowInBaseDataModel = [RemapTableUtility baseDataModelIndexFromGroupedDataModelIndex:row withGroupedDataModel:self.groupedDataModel];
+        [RemapTableTranslator fillTriggerMenu:menu forRowDict:self.dataModel[rowInBaseDataModel] host:triggerCell];
+        return;
+    }
+}
+
+- (IBAction)triggerMenuItemSelected:(id)sender {
+
+    /// Called when the user picks a button and click type in a trigger dropdown
+
+    RemapTableMenuItem *item = (RemapTableMenuItem *)sender;
+
+    NSTableCellView *host = item.host;
+    if (host == nil) return;
+
+    NSInteger rowInGroupedDataModel = [RemapTableUtility rowOfCell:host inTableView:self.tableView];
+    if (rowInGroupedDataModel == -1) {
+        DDLogError("Couldn't find row of trigger dropdown that was used to pick a trigger");
+        return;
+    }
+    NSInteger rowInBaseDataModel = [RemapTableUtility baseDataModelIndexFromGroupedDataModelIndex:rowInGroupedDataModel withGroupedDataModel:self.groupedDataModel];
+
+    /// Replace only the button and click type. The effect and the modification precondition stay the same.
+    NSMutableDictionary *newRow = [self.dataModel[rowInBaseDataModel] mutableCopy];
+    newRow[kMFRemapsKeyTrigger] = [item.representedObject copy];
+
+    NSMutableArray *newDataModel = [self.dataModel mutableCopy];
+    newDataModel[rowInBaseDataModel] = newRow;
+
+    /// Sort, so the row moves to its new button group and to its new position within the group
+    self.dataModel = [self sortedDataModel:newDataModel];
+    [self writeDataModelToConfig];
+
+    /// Redraw. The number of rows can change, because button group rows get added or removed.
+    [self.tableView reloadData];
+    /// The new trigger title can be wider than the old one, so the column widths need an update too
+    [(RemapTableView *)self.tableView updateColumnWidths];
+    [(RemapTableView *)self.tableView updateSizeWithAnimation];
+
+    /// Keep the changed row selected and visible
+    NSUInteger newRowIndex = [self.groupedDataModel indexOfObject:newRow];
+    if (newRowIndex != NSNotFound) {
+        [self.tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:newRowIndex] byExtendingSelection:NO];
+        [self.tableView scrollRowToVisible:(NSInteger)newRowIndex];
+    }
 }
 
 #pragma mark Lifecycle

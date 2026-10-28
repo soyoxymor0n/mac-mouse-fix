@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Were exposing most of this just so RemapTableTranslator can use it. Might not be the cleanest solution.
 
-@interface RemapTableController :  NSViewController <NSTableViewDelegate>
+@interface RemapTableController :  NSViewController <NSTableViewDelegate, NSMenuDelegate>
 
 
 ///
@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addRowWithHelperPayload:(NSDictionary *)payload;
 - (IBAction)handleKeystrokeMenuItemSelected:(id)sender;
 - (IBAction)updateTableAndWriteToConfig:(id _Nullable)sender;
+- (IBAction)triggerMenuItemSelected:(id)sender;
 
 ///
 /// Interation with `ButtonTabController`

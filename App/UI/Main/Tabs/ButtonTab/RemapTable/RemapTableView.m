@@ -235,7 +235,11 @@ NSMutableArray *columnConstraints = nil;
     /// Define constant
     ///     Also see RemapTableCellView > columnPadding for context
     double columnPadding = 8.0;
-    
+
+    /// Horizontal space that a trigger dropdown needs around its title inside the trigger cell.
+    ///     Left: delete button (15pt, 1pt inset) plus 8pt spacing. Right: 4pt margin. See `triggerPopUpInCell:` in RemapTableTranslator.m
+    double triggerPopUpInset = 24.0 + 4.0;
+
     /// Calculate column widths
     
     for (int c = 0; c < self.numberOfColumns; c++) {
@@ -248,8 +252,15 @@ NSMutableArray *columnConstraints = nil;
         
             NSTableCellView *v = [self viewAtColumn:c row:r makeIfNecessary:YES];
             columnWidth = MAX(columnWidth, v.fittingSize.width);
+
+            /// Trigger dropdowns don't contribute their title to the fitting size of the cell, so we add their width here.
+            ///     Otherwise the title gets truncated, e.g. "Double Click Button 5" would become "Double Cli…"
+            NSPopUpButton *triggerPopUp = [v subviewsWithIdentifier:@"triggerPopUp"].firstObject;
+            if (triggerPopUp != nil && !triggerPopUp.hidden) {
+                columnWidth = MAX(columnWidth, triggerPopUp.intrinsicContentSize.width + triggerPopUpInset);
+            }
         }
-        
+
         /// Weird hacky stuff
         ///     Makes the effectRow wider so the text in the buttons isn't as crammed.
         ///     Idk why or how any of this works

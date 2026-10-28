@@ -755,6 +755,47 @@ static NSString *effectNameForRowDict(NSDictionary * _Nonnull rowDict) {
     return triggerCell;
 }
 
+/// Localized substrings for the click type of a button trigger. The "%@" is the button name.
+///     Keys are @[clickLevel, duration]. Used for the trigger text and for the items of the trigger dropdown.
+static NSDictionary *buttonTriggerSubstringMap(void) {
+    return @{
+        @[@(1), @"click"]:  MFLocalizedString(@"trigger.substring.click.1",   @""
+            "Note: \"%@\" will be a button name (or nothing, if the button name can be inferred from context)\n"
+            "Example where %@ is \"Button 5\": ⌥⌘ Double Click Button 4 + Click Button 5"
+            ), /// || NOTE: This 'substring' will be combined with other substrings to form the 'Action Table Trigger Strings' which show up on the left side of the Action Table || NOTE 2: '%@' will be replaced by a mouse button name (or by nothing, if the button name can be inferred from context.) || EXAMPLE of an Action Table Trigger String, which is composed of this and other substrings, where '%@' in this substring was replaced by 'Button 5': ⌥⌘ Double Click Button 4 + Click Button 5 || NOTE 3: Most of the substrings that are used to build the Action Table Trigger Strings (this is one of those substrings) are capitalized in English because it's common to use 'Title Case' there. In your language, 'Title Case' might not be a thing, and so you might not want to capitalize these substrings. The first letter of the Action Table Trigger String will be programmatically capitalized in any language."),
+        
+        @[@(2), @"click"]:  MFLocalizedString(@"trigger.substring.click.2",   @""), ///|| NOTE: You might not want to capitalize this and other strings whose key starts with 'trigger.substring.' We only capitalize these strings in English because we use 'Title Case' there, which is not common in most languages aside from English. For more info, see the comments on 'trigger.substring.click.1'"),
+        @[@(3), @"click"]:  MFLocalizedString(@"trigger.substring.click.3",   @""),
+        @[@(1), @"hold"]:   MFLocalizedString(@"trigger.substring.hold.1",    @"Remember: The strings starting with \"trigger.substring.[...]\" should be lowercase in most languages. See trigger.substring.button-modifier.2 for the explanation."),
+        @[@(2), @"hold"]:   MFLocalizedString(@"trigger.substring.hold.2",    @""),
+        @[@(3), @"hold"]:   MFLocalizedString(@"trigger.substring.hold.3",    @""),
+    };
+}
+
+/// Buttons offered in the trigger dropdown. Button 1 and 2 (primary and secondary) are never offered.
+///     Buttons up to `kTriggerMenuDefaultLastButton` are always offered, so the dropdown works without a mouse connected.
+///     If the connected mouse reports more buttons, those are offered too, up to `kTriggerMenuMaxLastButton`.
+///     The cap keeps the dropdown from growing endlessly for mice that report a huge number of buttons.
+///     The current button is always offered, even if it's beyond the cap.
+static const NSInteger kTriggerMenuFirstButton = 3;
+static const NSInteger kTriggerMenuDefaultLastButton = 6;
+static const NSInteger kTriggerMenuMaxLastButton = 16;
+
+/// The click types that can be assigned freely to a button. Each one is a @[clickLevel, duration] pair.
+///     Click and Drag and Click and Scroll are not part of the dropdown, because they only work with some buttons.
+static NSArray<NSArray *> *freelyAssignableClickTypes(void) {
+    return @[
+        @[@1, kMFButtonTriggerDurationClick], /// Click
+        @[@2, kMFButtonTriggerDurationClick], /// Double Click
+        @[@1, kMFButtonTriggerDurationHold],  /// Hold
+    ];
+}
+
+/// Identifies the button and click type of a button trigger. Used to find out which click types are already taken.
+static NSArray *buttonAndClickTypeKey(NSDictionary *buttonTrigger) {
+    return @[buttonTrigger[kMFButtonTriggerKeyButtonNumber], buttonTrigger[kMFButtonTriggerKeyClickLevel], buttonTrigger[kMFButtonTriggerKeyDuration]];
+}
+
 #pragma mark - Create Trigger View
 
 
@@ -853,18 +894,7 @@ static NSString *effectNameForRowDict(NSDictionary * _Nonnull rowDict) {
         
         /// Declare map
         
-        NSDictionary *map = @{
-            @[@(1), @"click"]:  MFLocalizedString(@"trigger.substring.click.1",   @""
-                "Note: \"%@\" will be a button name (or nothing, if the button name can be inferred from context)\n"
-                "Example where %@ is \"Button 5\": ⌥⌘ Double Click Button 4 + Click Button 5"
-                ), /// || NOTE: This 'substring' will be combined with other substrings to form the 'Action Table Trigger Strings' which show up on the left side of the Action Table || NOTE 2: '%@' will be replaced by a mouse button name (or by nothing, if the button name can be inferred from context.) || EXAMPLE of an Action Table Trigger String, which is composed of this and other substrings, where '%@' in this substring was replaced by 'Button 5': ⌥⌘ Double Click Button 4 + Click Button 5 || NOTE 3: Most of the substrings that are used to build the Action Table Trigger Strings (this is one of those substrings) are capitalized in English because it's common to use 'Title Case' there. In your language, 'Title Case' might not be a thing, and so you might not want to capitalize these substrings. The first letter of the Action Table Trigger String will be programmatically capitalized in any language."),
-            
-            @[@(2), @"click"]:  MFLocalizedString(@"trigger.substring.click.2",   @""), ///|| NOTE: You might not want to capitalize this and other strings whose key starts with 'trigger.substring.' We only capitalize these strings in English because we use 'Title Case' there, which is not common in most languages aside from English. For more info, see the comments on 'trigger.substring.click.1'"),
-            @[@(3), @"click"]:  MFLocalizedString(@"trigger.substring.click.3",   @""),
-            @[@(1), @"hold"]:   MFLocalizedString(@"trigger.substring.hold.1",    @"Remember: The strings starting with \"trigger.substring.[...]\" should be lowercase in most languages. See trigger.substring.button-modifier.2 for the explanation."),
-            @[@(2), @"hold"]:   MFLocalizedString(@"trigger.substring.hold.2",    @""),
-            @[@(3), @"hold"]:   MFLocalizedString(@"trigger.substring.hold.3",    @""),
-        };
+        NSDictionary *map = buttonTriggerSubstringMap();
         
         /// Get string
         
@@ -1072,6 +1102,31 @@ static NSString *effectNameForRowDict(NSDictionary * _Nonnull rowDict) {
     /// Set string
     triggerCell.textField.attributedStringValue = fullTriggerCellString;
     triggerCell.textField.toolTip = nil;
+
+    /// Show a dropdown instead of text for button triggers, so their button and click type can be changed.
+    ///     The items of the dropdown are created when it opens. See `RemapTableController menuNeedsUpdate:`
+    ///     Drag and scroll triggers stay as text.
+    if ([triggerType isEqual: @"_button"]) {
+
+        triggerCell.textField.hidden = YES;
+
+        NSPopUpButton *triggerPopUp = [self triggerPopUpInCell:triggerCell];
+        triggerPopUp.hidden = NO;
+        [triggerPopUp removeAllItems];
+        /// The first item is what the dropdown displays. The items for the click types are added when it opens.
+        NSMenuItem *titleItem = [[NSMenuItem alloc] init];
+        titleItem.title = fullTriggerCellString.string; /// Plain title, so the dropdown can size itself to its text
+        titleItem.attributedTitle = fullTriggerCellString;
+        [triggerPopUp.menu addItem:titleItem];
+        [triggerPopUp selectItemAtIndex:0];
+
+    } else {
+
+        triggerCell.textField.hidden = NO;
+
+        NSPopUpButton *triggerPopUp = (NSPopUpButton *)[triggerCell subviewsWithIdentifier:@"triggerPopUp"].firstObject;
+        triggerPopUp.hidden = YES;
+    }
     
     /// Hook up delete button
     RemapTableButton *deleteButton = (RemapTableButton *)[triggerCell subviewsWithIdentifier:@"deleteButton"][0];
@@ -1113,6 +1168,127 @@ static NSString *effectNameForRowDict(NSDictionary * _Nonnull rowDict) {
     /// Return view!
     return triggerCell;
     
+}
+
+#pragma mark - Trigger dropdown
+
+/// Returns the trigger dropdown of a trigger cell. Creates it the first time.
++ (NSPopUpButton *)triggerPopUpInCell:(NSTableCellView *)triggerCell {
+
+    NSPopUpButton *triggerPopUp = (NSPopUpButton *)[triggerCell subviewsWithIdentifier:@"triggerPopUp"].firstObject;
+
+    if (triggerPopUp == nil) {
+
+        triggerPopUp = [[NSPopUpButton alloc] initWithFrame:NSZeroRect pullsDown:NO];
+        triggerPopUp.identifier = @"triggerPopUp";
+        triggerPopUp.translatesAutoresizingMaskIntoConstraints = NO;
+        triggerPopUp.autoenablesItems = NO;
+        triggerPopUp.menu.delegate = self.controller; /// Fills the items when the dropdown opens
+        [triggerCell addSubview:triggerPopUp];
+
+        /// Take the place of the text field
+        NSTextField *textField = triggerCell.textField;
+        [NSLayoutConstraint activateConstraints:@[
+            [triggerPopUp.leadingAnchor constraintEqualToAnchor:textField.leadingAnchor],
+            [triggerPopUp.trailingAnchor constraintEqualToAnchor:triggerCell.trailingAnchor constant:-4.0],
+            [triggerPopUp.centerYAnchor constraintEqualToAnchor:textField.centerYAnchor],
+        ]];
+    }
+
+    return triggerPopUp;
+}
+
+/// Fills the trigger dropdown of a button trigger row with the items for all buttons and click types.
+///     Called by `RemapTableController` right before the dropdown opens.
+///     Keeps the first item, which shows the current trigger. Replaces all other items.
++ (void)fillTriggerMenu:(NSMenu *)menu forRowDict:(NSDictionary *)rowDict host:(NSTableCellView *)host {
+
+    while (menu.numberOfItems > 1) {
+        [menu removeItemAtIndex:menu.numberOfItems - 1];
+    }
+    menu.autoenablesItems = NO; /// We enable and disable the items ourselves
+
+    NSDictionary *currentTrigger = rowDict[kMFRemapsKeyTrigger];
+    NSNumber *currentButton = currentTrigger[kMFButtonTriggerKeyButtonNumber];
+    NSNumber *currentLevel = currentTrigger[kMFButtonTriggerKeyClickLevel];
+    NSString *currentDuration = currentTrigger[kMFButtonTriggerKeyDuration];
+    NSArray *currentClickType = @[currentLevel, currentDuration];
+
+    /// Find the click types that other rows already use with the same modification precondition. Those can't be assigned again.
+    ///     Rows with other modification preconditions don't clash with this row.
+    ///     The dataModel only contains the rows of the current scope (global or one app), so rows of other apps don't clash either.
+    NSMutableSet *takenKeys = [NSMutableSet set];
+    for (NSDictionary *otherRow in self.dataModel) {
+        if ([otherRow isEqual:rowDict]) continue;
+        if (![otherRow[kMFRemapsKeyTrigger] isKindOfClass:NSDictionary.class]) continue; /// Only button triggers take up a click type
+        if (![otherRow[kMFRemapsKeyModificationPrecondition] isEqual:rowDict[kMFRemapsKeyModificationPrecondition]]) continue;
+        [takenKeys addObject:buttonAndClickTypeKey(otherRow[kMFRemapsKeyTrigger])];
+    }
+
+    /// Find the buttons to offer
+    ///     The range depends on the connected mouse. Without a mouse, we use the default range.
+    NSNumber *deviceButtonCount = [MessagePortUtility.shared activeDeviceButtonCount];
+    NSInteger lastButton = kTriggerMenuDefaultLastButton;
+    if (deviceButtonCount != nil) {
+        NSInteger deviceLastButton = MIN(deviceButtonCount.integerValue, kTriggerMenuMaxLastButton);
+        lastButton = MAX(lastButton, deviceLastButton);
+    }
+    NSRange buttonRange = NSMakeRange((NSUInteger)kTriggerMenuFirstButton, (NSUInteger)(lastButton - kTriggerMenuFirstButton + 1));
+    NSMutableIndexSet *buttons = [NSMutableIndexSet indexSetWithIndexesInRange:buttonRange];
+    [buttons addIndex:currentButton.unsignedIntegerValue]; /// Always offer the current button, so the current trigger can be shown
+
+    [menu addItem:[NSMenuItem separatorItem]];
+
+    /// Add one submenu per button. Each submenu has the click types for that button.
+    [buttons enumerateIndexesUsingBlock:^(NSUInteger buttonIndex, BOOL *stop) {
+
+        NSNumber *button = @(buttonIndex);
+
+        /// The freely assignable click types, plus the current click type if it's something else (e.g. triple click)
+        NSMutableArray *clickTypes = freelyAssignableClickTypes().mutableCopy;
+        if ([button isEqual:currentButton] && ![clickTypes containsObject:currentClickType]) {
+            [clickTypes addObject:currentClickType];
+        }
+
+        NSMenu *submenu = [[NSMenu alloc] initWithTitle:@""];
+        submenu.autoenablesItems = NO;
+        BOOL anyClickTypeAvailable = NO;
+
+        for (NSArray *clickType in clickTypes) {
+
+            NSNumber *level = clickType[0];
+            NSString *duration = clickType[1];
+            NSString *format = buttonTriggerSubstringMap()[@[level, duration]];
+            if (format == nil) continue;
+
+            NSDictionary *trigger = @{
+                kMFButtonTriggerKeyButtonNumber: button,
+                kMFButtonTriggerKeyClickLevel: level,
+                kMFButtonTriggerKeyDuration: duration,
+            };
+            BOOL isTaken = [takenKeys containsObject:buttonAndClickTypeKey(trigger)];
+
+            /// Title is e.g. "Double Click Button 4"
+            NSString *buttonName = [UIStrings getButtonString:(MFMouseButtonNumber)buttonIndex context:kMFButtonStringUsageContextActionTableTriggerSubstring];
+            RemapTableMenuItem *item = [[RemapTableMenuItem alloc] initWithTitle:stringf(format, buttonName) action:@selector(triggerMenuItemSelected:) keyEquivalent:@""];
+            item.target = self.controller;
+            item.host = host;
+            item.representedObject = trigger;
+            item.state = [trigger isEqual:currentTrigger] ? NSControlStateValueOn : NSControlStateValueOff;
+            item.enabled = !isTaken;
+            [submenu addItem:item];
+
+            if (!isTaken) anyClickTypeAvailable = YES;
+        }
+
+        /// Title is e.g. "Button 4"
+        NSString *groupName = [[UIStrings getButtonString:(MFMouseButtonNumber)buttonIndex context:kMFButtonStringUsageContextActionTableGroupRow] firstCapitalized];
+        NSMenuItem *buttonItem = [[NSMenuItem alloc] init];
+        buttonItem.title = groupName;
+        buttonItem.submenu = submenu;
+        buttonItem.enabled = anyClickTypeAvailable; /// A button without any free click type can't be picked
+        [menu addItem:buttonItem];
+    }];
 }
 
 @end

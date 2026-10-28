@@ -25,6 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSTableCellView *)getTriggerCellWithRowDict:(NSDictionary *)rowDict row:(NSInteger)row;
 + (NSTableCellView *)getEffectCellWithRowDict:(NSDictionary *)rowDict row:(NSUInteger)row tableViewEnabled:(BOOL)tableViewEnabled;
 
+/// Fills the trigger dropdown of a button trigger row. Called right before the dropdown opens.
++ (void)fillTriggerMenu:(NSMenu *)menu forRowDict:(NSDictionary *)rowDict host:(NSTableCellView *)host;
+
 
 + (NSMenuItem * _Nullable)getPopUpButtonItemToSelectBasedOnRowDict:(NSPopUpButton * _Nonnull)button rowDict:(NSDictionary * _Nonnull)rowDict;
 + (NSDictionary * _Nullable)getEffectDictBasedOnSelectedItemInButton:(NSPopUpButton * _Nonnull)button rowDict:(NSDictionary * _Nonnull)rowDict;

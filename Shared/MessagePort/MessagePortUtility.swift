@@ -168,6 +168,12 @@ import ReactiveSwift
             return nil
         }
     }
+
+    /// For Objective-C: The number of buttons of the active device. nil if no device is active.
+    @objc func activeDeviceButtonCount() -> NSNumber? {
+        guard let info = getActiveDeviceInfo(), info.nOfButtons > 0 else { return nil }
+        return NSNumber(value: info.nOfButtons)
+    }
     
 #endif
     
