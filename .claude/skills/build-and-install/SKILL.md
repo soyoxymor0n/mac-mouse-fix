@@ -17,16 +17,18 @@ This is a local developer build. Nothing here publishes anything. Build outside 
 
 ## Prerequisites (owner)
 
-1. Xcode must be signed in to the Apple ID that owns the signing team: Xcode, Settings, Accounts. Only the owner can do this. Check it with `defaults read com.apple.dt.Xcode DVTDeveloperAccountManagerAppleIDLists`. An empty list means no account, and `xcodebuild -allowProvisioningUpdates` then fails with "No Accounts".
+1. Xcode must be signed in to an Apple ID that has a developer team: Xcode, Settings, Accounts. Only the owner can do this. If signing fails with "No Accounts" or "No Account for Team", sign in there. The Apple ID list in the defaults is not a reliable check, so use the team list in step 2.
 2. A valid `Apple Development` identity must be in the keychain. Check with `security find-identity -v -p codesigning`.
 
 ## Steps
 
 1. **Version.** `MARKETING_VERSION` lives in `Mouse Fix.xcodeproj/project.pbxproj` (in two configurations). Change it there before a release build.
 
-2. **Team.** Read the team from the identity name. Its last part is the team ID in parentheses:
+2. **Team.** Use a team that Xcode's signed-in account belongs to. Not the team in the keychain identity: the two can differ, and signing then fails with "No Account for Team". List the candidates Xcode knows:
 
-       TEAM=$(security find-identity -v -p codesigning | sed -n 's/.*(\([A-Z0-9]\{10\}\)).*/\1/p' | head -1)
+       defaults read com.apple.dt.Xcode IDEProvisioningTeamByIdentifier | grep -oE '[A-Z0-9]{10}' | sort -u
+
+   Try each candidate with the build in step 3. The one that works is the team of the signed-in account. Keep the value in your shell only, never in a file.
 
 3. **Build.** Use a folder outside the repo. The build takes several minutes, so run it in the background and check for `** BUILD SUCCEEDED **`:
 
@@ -48,7 +50,9 @@ This is a local developer build. Nothing here publishes anything. Build outside 
    - Quit the app: `osascript -e 'tell application "Mac Mouse Fix NG" to quit'`.
    - Replace the old copy: `rm -rf "/Applications/Mac Mouse Fix NG.app" && ditto "$APP" "/Applications/Mac Mouse Fix NG.app"`. Use `ditto`, so the signature is kept.
    - Open it: `open "/Applications/Mac Mouse Fix NG.app"`.
-   - Check that the helper runs from the new location: `launchctl print gui/$(id -u)/com.soyoxymor0n.mac-mouse-fix.helper.ng | grep "program identifier"`. The path should point into `/Applications`. If it still points at an old build, quit the app again and reopen it. This step is not verified yet.
+   - Check which helper runs. `launchctl print` only shows a path relative to the app, so read the executable path of the running helper: `lsof -a -p <helper pid> -d txt -Fn | grep '^n/'`. It must be under `/Applications`.
+   - The helper starts only after the owner approves the new background item: System Settings, General, Login Items and Extensions, Background App Activity, turn on Mac Mouse Fix NG. Only the owner can do that. Until then the app's switch is on, but no helper runs. This was observed on 2026-10-28.
+   - If an older copy of the app is still registered (its helper runs from an old build folder), stop its launchd job with `launchctl bootout gui/$(id -u)/com.soyoxymor0n.mac-mouse-fix.helper.ng`, then reopen the new app. Don't run `sfltool resetbtm`, because it resets every login item on the Mac. `sfltool dumpbtm` hung in this session, so don't rely on it.
 
 6. **Permissions.** macOS may ask the owner to approve the app and the helper again under System Settings, Privacy & Security, Accessibility. Only the owner can do that.
 
@@ -56,9 +60,12 @@ This is a local developer build. Nothing here publishes anything. Build outside 
 
 To test a build without touching the owner's running helper or settings, copy the working tree (`rsync -a --exclude .git`) and change the bundle IDs in the copy only: `kMFBundleIDApp` and `kMFBundleIDHelper` in `Shared/Constants.h`, `kMFLaunchdHelperIdentifierSM`, and `PRODUCT_BUNDLE_IDENTIFIER` in the project file. Never commit those changes. Delete the test's settings folder and its launchd agent afterwards.
 
-## Status
+## Status (2026-10-28)
 
-Build and install are blocked until the owner signs Xcode in to the Apple account. Until then, the steps above stop at the build error `No Accounts`.
+- Build: a signed build of version 4.1.0 succeeded once Xcode had an account, using a team from step 2.
+- Install: the app is in `/Applications`, and its signature verifies.
+- Helper: not running yet. The owner must approve the background item (step 5).
+- Known gap: the helper target has no `MARKETING_VERSION`, so its `Info.plist` has no `CFBundleShortVersionString`. The app's version is correct.
 
 ## Never store
 
