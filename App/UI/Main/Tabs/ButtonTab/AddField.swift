@@ -468,13 +468,19 @@ extension AddField {
         }
     }
 
-    /// Shows the hint and plays the loop from the start, for "Show animation" in the explainer
+    /// Plays the loop once from the start, for "Show animation" in the explainer. If the tab has rows, the hint hides again afterwards.
     func replayGestureHint() {
         guard let hint = gestureHint() else { return }
         let clock = GestureHintClock.shared
+        let wasShown = clock.isLoopShown
         clock.isLoopShown = true
         clock.restartLoop()
         hint.isHidden = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + GestureHintTimeline.loopDuration) { [weak hint] in
+            guard !wasShown, clock.isLoopShown else { return }
+            clock.isLoopShown = false
+            hint?.isHidden = clock.playingKind == nil
+        }
     }
 
     /// The '?' button: explains the gestures in a popover
