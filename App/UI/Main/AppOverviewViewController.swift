@@ -10,7 +10,7 @@ import Cocoa
 
 /// Settings tab with an overview of the apps in the shortcut library and their keyboard shortcuts.
 ///     Left: the apps. The search field on top filters the list while you type.
-///     Right: the shortcuts of the selected app, with the date they were checked against the vendor's documentation.
+///     Right: the shortcuts of the selected app. A badge shows whether each shortcut was checked against the vendor's documentation.
 ///     Recommended mouse buttons are not shown yet, because the library has no suggested buttons in this version.
 ///     See GitHub issue #13 in soyoxymor0n/mac-mouse-fix-ng.
 class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, NSSearchFieldDelegate {
@@ -35,6 +35,7 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
     private let searchField = NSSearchField()
     private let appTable = NSTableView()
     private let actionTable = NSTableView()
+    private var actionScrollView: NSScrollView?
     private let appNameLabel = NSTextField(labelWithString: "")
     private let appInfoLabel = NSTextField(labelWithString: "")
 
@@ -92,30 +93,34 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
         rightColumn.addSubview(appInfoLabel)
 
         let actionScroll = makeScrollView(for: actionTable)
+        actionScrollView = actionScroll
         rightColumn.addSubview(actionScroll)
 
         actionTable.rowHeight = 22
         actionTable.allowsEmptySelection = true
-        actionTable.columnAutoresizingStyle = .lastColumnOnlyAutoresizingStyle
+        actionTable.columnAutoresizingStyle = .noColumnAutoresizing /// The action column width is set in viewDidLayout(), so the columns fill the table
+        let statusColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("status"))
+        statusColumn.title = ""
+        statusColumn.width = 30
+        statusColumn.minWidth = 30
+        statusColumn.maxWidth = 30
+        statusColumn.resizingMask = []
         let actionColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("action"))
         actionColumn.title = NSLocalizedString("apps-tab.column.action", value: "Action", comment: "Column title in the apps overview")
         actionColumn.resizingMask = .autoresizingMask
         actionColumn.minWidth = 160
         let shortcutColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("shortcut"))
         shortcutColumn.title = NSLocalizedString("apps-tab.column.shortcut", value: "Shortcut", comment: "Column title in the apps overview")
-        shortcutColumn.width = 110
-        shortcutColumn.minWidth = 90
+        shortcutColumn.width = 96
+        shortcutColumn.minWidth = 80
         shortcutColumn.resizingMask = []
-        let checkedColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("checked"))
-        checkedColumn.title = NSLocalizedString("apps-tab.column.checked", value: "Checked", comment: "Column title in the apps overview. The date the shortcut was checked against the vendor's documentation.")
-        checkedColumn.width = 100
-        checkedColumn.minWidth = 90
-        checkedColumn.resizingMask = []
+        actionTable.addTableColumn(statusColumn)
         actionTable.addTableColumn(actionColumn)
         actionTable.addTableColumn(shortcutColumn)
-        actionTable.addTableColumn(checkedColumn)
         actionTable.dataSource = self
         actionTable.delegate = self
+        /// Action names wrap to more lines when the column is narrower. Heights are recalculated when the column is resized.
+        NotificationCenter.default.addObserver(self, selector: #selector(actionColumnDidResize(_:)), name: NSTableView.columnDidResizeNotification, object: actionTable)
 
         /// Assemble
 
@@ -167,6 +172,17 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
         ])
     }
 
+    override func viewDidLayout() {
+        super.viewDidLayout()
+        /// The action column takes the width that the status and shortcut columns leave. Uses their real rectangles, because their rendered width can differ from the requested width.
+        guard let scrollView = actionScrollView, actionTable.numberOfColumns == 3 else { return }
+        let otherColumnsWidth = actionTable.rect(ofColumn: 0).width + actionTable.rect(ofColumn: 2).width
+        let available = scrollView.contentView.bounds.width - otherColumnsWidth
+        if let actionColumn = actionTable.tableColumn(withIdentifier: NSUserInterfaceItemIdentifier("action")), available > actionColumn.minWidth, abs(actionColumn.width - available) > 0.5 {
+            actionColumn.width = available
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -237,6 +253,28 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
         actionTable.reloadData()
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func actionColumnDidResize(_ notification: Notification) {
+        guard !shownEntries.isEmpty else { return }
+        actionTable.noteHeightOfRows(withIndexesChanged: IndexSet(integersIn: 0..<shownEntries.count))
+    }
+    
+    /// Row height of an action: as many lines as the label needs in the action column, with a minimum of one line.
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        guard tableView === actionTable, row < shownEntries.count else { return tableView.rowHeight }
+        let columnWidth = actionTable.tableColumn(withIdentifier: NSUserInterfaceItemIdentifier("action"))?.width ?? 200
+        let text = (shownEntries[row]["label"] as? String) ?? ""
+        let font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
+        let textRect = (text as NSString).boundingRect(
+            with: NSSize(width: columnWidth - 8, height: CGFloat.greatestFiniteMagnitude),
+            options: [.usesLineFragmentOrigin, .usesFontLeading],
+            attributes: [.font: font])
+        return max(tableView.rowHeight, ceil(textRect.height) + 6)
+    }
+    
     // MARK: Search field
 
     func controlTextDidChange(_ notification: Notification) {
@@ -262,18 +300,23 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 
         if tableView === appTable {
-            return textCell(in: tableView, identifier: "appCell", text: visibleApps[row].name, font: nil)
+            return textCell(in: tableView, identifier: "appCell", text: visibleApps[row].name, wraps: false)
         }
 
         let entry = shownEntries[row]
         switch tableColumn?.identifier.rawValue {
+        case "status":
+            return statusCell(in: tableView, isVerified: AppOverviewViewController.isVerified(entry))
         case "shortcut":
-            return textCell(in: tableView, identifier: "shortcutCell", text: (entry["symbols"] as? String) ?? "", font: nil)
-        case "checked":
-            return textCell(in: tableView, identifier: "checkedCell", text: AppOverviewViewController.checkedDate, font: NSFont.systemFont(ofSize: NSFont.smallSystemFontSize))
+            return textCell(in: tableView, identifier: "shortcutCell", text: (entry["symbols"] as? String) ?? "", wraps: false)
         default:
-            return textCell(in: tableView, identifier: "actionCell", text: (entry["label"] as? String) ?? "", font: nil)
+            return textCell(in: tableView, identifier: "actionCell", text: (entry["label"] as? String) ?? "", wraps: true)
         }
+    }
+
+    /// Entries are only in the library after they were checked against the vendor's documentation, so an entry without the flag counts as checked.
+    private static func isVerified(_ entry: [String: Any]) -> Bool {
+        return (entry["verified"] as? Bool) ?? true
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -281,7 +324,44 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
         showSelectedApp()
     }
 
-    private func textCell(in tableView: NSTableView, identifier: String, text: String, font: NSFont?) -> NSTableCellView {
+    private func statusCell(in tableView: NSTableView, isVerified: Bool) -> NSTableCellView {
+
+        let cell: NSTableCellView
+        if let reused = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("statusCell"), owner: self) as? NSTableCellView {
+            cell = reused
+        } else {
+            cell = NSTableCellView()
+            cell.identifier = NSUserInterfaceItemIdentifier("statusCell")
+            let imageView = NSImageView()
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            imageView.imageScaling = .scaleProportionallyDown
+            cell.addSubview(imageView)
+            cell.imageView = imageView
+            NSLayoutConstraint.activate([
+                imageView.centerXAnchor.constraint(equalTo: cell.centerXAnchor),
+                imageView.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
+                imageView.widthAnchor.constraint(equalToConstant: 14),
+                imageView.heightAnchor.constraint(equalToConstant: 14),
+            ])
+        }
+
+        if #available(macOS 11.0, *) {
+            cell.imageView?.image = NSImage(systemSymbolName: isVerified ? "checkmark.seal.fill" : "circle", accessibilityDescription: nil)
+        } else {
+            cell.imageView?.image = NSImage(named: isVerified ? NSImage.statusAvailableName : NSImage.statusNoneName)
+        }
+        cell.imageView?.contentTintColor = isVerified ? NSColor.systemGreen : NSColor.secondaryLabelColor
+
+        let tooltip = isVerified
+            ? NSLocalizedString("apps-tab.status.verified", value: "Checked against the vendor's documentation", comment: "Tooltip of the badge in the apps overview for a shortcut that was checked.")
+            : NSLocalizedString("apps-tab.status.unverified", value: "Not checked yet", comment: "Tooltip of the badge in the apps overview for a shortcut that was not checked.")
+        cell.toolTip = tooltip
+        cell.imageView?.toolTip = tooltip
+        return cell
+    }
+
+    /// Wrapped cells show the whole text on several lines. Single-line cells truncate, and their tooltip shows the full text.
+    private func textCell(in tableView: NSTableView, identifier: String, text: String, wraps: Bool) -> NSTableCellView {
 
         let cell: NSTableCellView
         if let reused = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(identifier), owner: self) as? NSTableCellView {
@@ -290,20 +370,25 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
             cell = NSTableCellView()
             cell.identifier = NSUserInterfaceItemIdentifier(identifier)
             let textField = NSTextField(labelWithString: "")
-            textField.lineBreakMode = .byTruncatingTail
             textField.translatesAutoresizingMaskIntoConstraints = false
+            /// Let the label shrink to the column width, so wrapped text stays inside its column
+            textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+            textField.setContentHuggingPriority(.defaultLow, for: .horizontal)
             cell.addSubview(textField)
             cell.textField = textField
             NSLayoutConstraint.activate([
                 textField.leadingAnchor.constraint(equalTo: cell.leadingAnchor, constant: 4),
                 textField.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: -4),
-                textField.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
+                textField.topAnchor.constraint(equalTo: cell.topAnchor, constant: 3),
+                textField.bottomAnchor.constraint(equalTo: cell.bottomAnchor, constant: -3),
             ])
         }
 
         cell.textField?.stringValue = text
         cell.textField?.toolTip = text
-        cell.textField?.font = font ?? NSFont.systemFont(ofSize: NSFont.systemFontSize)
+        cell.textField?.font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
+        cell.textField?.lineBreakMode = wraps ? .byWordWrapping : .byTruncatingTail
+        cell.textField?.maximumNumberOfLines = wraps ? 0 : 1
         return cell
     }
 }
