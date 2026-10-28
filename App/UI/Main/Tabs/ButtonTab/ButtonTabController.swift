@@ -253,6 +253,7 @@ import Foundation
         
         /// Init AddField visuals
         addField.coolInit()
+        installGestureLegend()
 
         /// Init app tabs
         refreshAppTabStrip()
@@ -426,6 +427,20 @@ import Foundation
         presetBanner = banner
     }
     
+    /// Adds the gesture legend between the add field and the hint text under it. Hovering one of its gestures plays it in the add field.
+    private func installGestureLegend() {
+        guard let stack = addField.superview as? NSStackView,
+              let index = stack.arrangedSubviews.firstIndex(of: addField) else { return }
+
+        let legend = GestureLegendView()
+        legend.onHoverGesture = { [weak self] kind in self?.addField.playGesture(kind) }
+        stack.insertArrangedSubview(legend, at: index + 1)
+        NSLayoutConstraint.activate([
+            legend.widthAnchor.constraint(equalTo: addField.widthAnchor),
+            legend.heightAnchor.constraint(equalToConstant: GestureLegendView.height),
+        ])
+    }
+
     /// Adds "Recommended setup…" right before "Restore Defaults…".
     ///     The storyboard's button stack spaces its buttons out evenly (Options on the left, Restore Defaults on the right),
     ///     so the two buttons go into a small stack of their own that takes Restore Defaults' place.
