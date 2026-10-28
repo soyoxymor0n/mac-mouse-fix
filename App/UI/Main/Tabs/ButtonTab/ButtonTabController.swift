@@ -40,6 +40,13 @@ import Foundation
     private(set) var scopeApp: String?
     /// Offers a built-in preset in an empty app tab
     private var presetBanner: AppPresetBannerView?
+    /// The add field's height in an empty tab, and in a tab with rows
+    private static let fullAddFieldHeight: CGFloat = 150
+    private static let compactAddFieldHeight: CGFloat = 64
+    private var addFieldHeight: NSLayoutConstraint?
+    /// The gesture legend and the instruction text under the add field
+    private var gestureLegend: NSView?
+    private var instructionLabel: NSView?
     /// "Recommended setup…" next to "Restore Defaults…". Shown in every app tab whose app has a preset.
     private var recommendedSetupButton: NSButton?
     
@@ -435,10 +442,27 @@ import Foundation
         let legend = GestureLegendView()
         legend.onHoverGesture = { [weak self] kind in self?.addField.playGesture(kind) }
         stack.insertArrangedSubview(legend, at: index + 1)
+        gestureLegend = legend
+        /// The instruction text under the legend is the next item of the stack
+        if index + 2 < stack.arrangedSubviews.count {
+            instructionLabel = stack.arrangedSubviews[index + 2]
+        }
+        let heightConstraint = addField.heightAnchor.constraint(equalToConstant: ButtonTabController.fullAddFieldHeight)
+        addFieldHeight = heightConstraint
         NSLayoutConstraint.activate([
             legend.widthAnchor.constraint(equalTo: addField.widthAnchor),
             legend.heightAnchor.constraint(equalToConstant: GestureLegendView.height),
+            heightConstraint,
         ])
+    }
+
+    /// Empty tabs show the full add field with the animated hint, the legend and the instruction text. A tab with rows gets a short add field,
+    /// and the legend and the instruction text are hidden, to keep the table near the top. The '?' explains the gestures in both cases.
+    func updateAddFieldLayout() {
+        let isEmpty = tableController.dataModel.count == 0
+        addFieldHeight?.constant = isEmpty ? ButtonTabController.fullAddFieldHeight : ButtonTabController.compactAddFieldHeight
+        gestureLegend?.isHidden = !isEmpty
+        instructionLabel?.isHidden = !isEmpty
     }
 
     /// Adds "Recommended setup…" right before "Restore Defaults…".
@@ -480,16 +504,18 @@ import Foundation
 
     /// Shows the preset offer for an empty app tab that has a preset, and hides it otherwise
     func updatePresetBanner() {
-        /// The gesture hint teaches how to add a button, so it is shown until the tab has its first row. The '?' button can bring it back.
-        addField.setGestureHintVisible(tableController.dataModel.count == 0)
-
-        guard let banner = presetBanner else { return }
-        guard let app = scopeApp, let preset = AppPreset.preset(for: app), tableController.dataModel.count == 0, !AppPreset.isDismissed(app) else {
-            banner.isHidden = true
-            return
+        var bannerShown = false
+        if let banner = presetBanner {
+            if let app = scopeApp, let preset = AppPreset.preset(for: app), tableController.dataModel.count == 0, !AppPreset.isDismissed(app) {
+                banner.setText(String(format: MFLocalizedString("app-presets.banner", comment: ""), AppTabs.name(for: app), MFLocalizedString(preset.summaryKey, comment: "")))
+                bannerShown = true
+            }
+            banner.isHidden = !bannerShown
         }
-        banner.setText(String(format: MFLocalizedString("app-presets.banner", comment: ""), AppTabs.name(for: app), MFLocalizedString(preset.summaryKey, comment: "")))
-        banner.isHidden = false
+
+        /// The gesture hint teaches how to add a button. It is shown in an empty tab, unless the preset banner takes that place. The '?' button can bring it back.
+        addField.setGestureHintVisible(tableController.dataModel.count == 0 && !bannerShown)
+        updateAddFieldLayout()
     }
     
     /// Opens the review sheet for the current app's preset. Nothing is written until the user confirms there.

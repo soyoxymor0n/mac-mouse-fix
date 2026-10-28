@@ -409,7 +409,7 @@ final class GestureHintView: NSView, GestureHintClockObserver {
 ///     With Reduce Motion on, nothing is highlighted, and hovering does nothing.
 final class GestureLegendView: NSView, GestureHintClockObserver {
 
-    static let height: CGFloat = 60
+    static let height: CGFloat = 48
 
     /// Called when the pointer enters an item, or VoiceOver presses it
     var onHoverGesture: ((GestureKind) -> Void)?
