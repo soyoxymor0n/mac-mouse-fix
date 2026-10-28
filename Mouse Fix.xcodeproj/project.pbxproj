@@ -419,6 +419,7 @@
 		4FFA973C2EC2576200A52849 /* LocalizedStringAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4C73D62C4FB3FA001D97C3 /* LocalizedStringAnnotation.m */; };
 		4FFA973D2EC2579200A52849 /* MFSimpleDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFA97392EC2261600A52849 /* MFSimpleDataClass.m */; };
 		4FFAEBEA2E74367300832CE2 /* AddField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFAEBE92E74367300832CE2 /* AddField.swift */; };
+		4BF503C29C22C8C15EEE5080 /* GestureHintModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606FF61A3CA9B75AA9E39B3C /* GestureHintModel.swift */; };
 		4FFBC5A8266977CA001D389B /* DoubleExponentialSmoother.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBC5A7266977CA001D389B /* DoubleExponentialSmoother.swift */; };
 		4FFE2895291B35AA0058ABE0 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		D62EBA9B629BEF75BBC26619 /* AppTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A74030334B741C66981FA7B /* AppTabs.swift */; };
@@ -1213,6 +1214,7 @@
 		4FFA97392EC2261600A52849 /* MFSimpleDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFSimpleDataClass.m; sourceTree = "<group>"; };
 		4FFAD8EF28677F94005DD496 /* PointerConfigObjC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PointerConfigObjC.h; sourceTree = "<group>"; };
 		4FFAEBE92E74367300832CE2 /* AddField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddField.swift; sourceTree = "<group>"; };
+		606FF61A3CA9B75AA9E39B3C /* GestureHintModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureHintModel.swift; sourceTree = "<group>"; };
 		4FFBC5A6266977CA001D389B /* Mac Mouse Fix Helper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mac Mouse Fix Helper-Bridging-Header.h"; sourceTree = "<group>"; };
 		4FFBC5A7266977CA001D389B /* DoubleExponentialSmoother.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExponentialSmoother.swift; sourceTree = "<group>"; };
 		4FFF9F37307B8FE300211519 /* mk_timer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mk_timer.h; sourceTree = "<group>"; };
@@ -1598,6 +1600,7 @@
 				2A9756EC51734881AE7D8E04 /* AppTabs */,
 				4F4150652927B6A40040BA7D /* AddField_New.swift */,
 				4FFAEBE92E74367300832CE2 /* AddField.swift */,
+				606FF61A3CA9B75AA9E39B3C /* GestureHintModel.swift */,
 				4FA8A30C28A9509E001E740F /* Options */,
 				4FA911E4260D00CB00553CA8 /* RemapTable */,
 			);
@@ -3610,6 +3613,7 @@
 				4F09284528B8E82B00BDC2FF /* LicenseSheetController.swift in Sources */,
 				4F0DAB552EFF4E2100129041 /* RemapTableCellView.m in Sources */,
 				4FFAEBEA2E74367300832CE2 /* AddField.swift in Sources */,
+				4BF503C29C22C8C15EEE5080 /* GestureHintModel.swift in Sources */,
 				4F909D3E28A0C3D2009349A2 /* SensitivityDisplay.swift in Sources */,
 				4F8A44522925311B00361EFF /* SFSymbolStrings.m in Sources */,
 				4F909D4528A0C4C2009349A2 /* NSArray+Extensions.swift in Sources */,
