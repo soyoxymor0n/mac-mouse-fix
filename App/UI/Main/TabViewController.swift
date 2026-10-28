@@ -46,7 +46,7 @@ class TabViewController: NSTabViewController {
     
     // MARK: Constants
     ///     TODO: Think about using validTabs in different places / if using it at all makes sense in the grand architecture
-    private var validTabs = ["general", "buttons", "scrolling", "about"]
+    private var validTabs = ["general", "buttons", "scrolling", "apps", "about"]
     
     private var window: ResizingTabWindow? {
         if let w = self.tabView.window as? ResizingTabWindow {
@@ -146,11 +146,27 @@ class TabViewController: NSTabViewController {
         DDLogDebug("TBS tabview awakeFromNib")
     }
     
+    /// The apps overview is not in the storyboard, so its tab is created in code.
+    private func addAppsTabIfNeeded() {
+        guard tabViewItem(identifier: "apps") == nil else { return }
+        let item = NSTabViewItem(identifier: "apps")
+        item.label = NSLocalizedString("apps-tab.label", value: "Apps", comment: "Sidebar item of the apps overview in the settings window")
+        if #available(macOS 11.0, *) {
+            item.image = NSImage(systemSymbolName: "square.grid.2x2", accessibilityDescription: item.label)
+        } else {
+            item.image = NSImage(named: NSImage.listViewTemplateName)
+        }
+        item.viewController = AppOverviewViewController()
+        addTabViewItem(item)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         /// Debug
         DDLogDebug("TBS tabview didLoad")
         
+        addAppsTabIfNeeded()
+
         /// Sections are listed in a sidebar on the left
         setUpSidebar()
     }
@@ -623,7 +639,7 @@ extension TabViewController {
             guard let tabItem = tabViewItem(identifier: identifier) else { return nil }
             return TabSidebarView.Item(identifier: identifier, label: tabItem.label, image: tabItem.image)
         }
-        let top = ["general", "buttons"].compactMap(item)
+        let top = ["general", "buttons", "apps"].compactMap(item)
         let bottom = ["about"].compactMap(item)
         
         let sidebarView = TabSidebarView(top: top, bottom: bottom)

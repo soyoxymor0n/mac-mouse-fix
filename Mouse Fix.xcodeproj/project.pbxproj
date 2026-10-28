@@ -147,6 +147,7 @@
 		4F909D2728A0C3D2009349A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F909CFC28A0C3D2009349A2 /* Main.storyboard */; };
 		4F909D2828A0C3D2009349A2 /* ResizingTabWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F909CFE28A0C3D2009349A2 /* ResizingTabWindow.swift */; };
 		4F909D2928A0C3D2009349A2 /* TabViewControllerDisabling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F909CFF28A0C3D2009349A2 /* TabViewControllerDisabling.swift */; };
+		4F9A0C1D28B0000100000002 /* AppOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A0C1D28B0000100000001 /* AppOverviewViewController.swift */; };
 		4F909D2A28A0C3D2009349A2 /* ResizingTabWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F909D0028A0C3D2009349A2 /* ResizingTabWindowController.swift */; };
 		4F909D2B28A0C3D2009349A2 /* NSPopUpButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F909D0328A0C3D2009349A2 /* NSPopUpButton+Extensions.swift */; };
 		4F909D2C28A0C3D2009349A2 /* NSView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F909D0428A0C3D2009349A2 /* NSView+Extensions.swift */; };
@@ -834,6 +835,7 @@
 		4F909CFD28A0C3D2009349A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4F909CFE28A0C3D2009349A2 /* ResizingTabWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizingTabWindow.swift; sourceTree = "<group>"; };
 		4F909CFF28A0C3D2009349A2 /* TabViewControllerDisabling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewControllerDisabling.swift; sourceTree = "<group>"; };
+		4F9A0C1D28B0000100000001 /* AppOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppOverviewViewController.swift; sourceTree = "<group>"; };
 		4F909D0028A0C3D2009349A2 /* ResizingTabWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizingTabWindowController.swift; sourceTree = "<group>"; };
 		4F909D0128A0C3D2009349A2 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4F909D0328A0C3D2009349A2 /* NSPopUpButton+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPopUpButton+Extensions.swift"; sourceTree = "<group>"; };
@@ -1779,6 +1781,7 @@
 				4F909CFA28A0C3D2009349A2 /* TabViewController.swift */,
 				4F1713522E6201FE00FFE14A /* storyboard-notes.md */,
 				4F909CFF28A0C3D2009349A2 /* TabViewControllerDisabling.swift */,
+				4F9A0C1D28B0000100000001 /* AppOverviewViewController.swift */,
 				4F909CF928A0C3D2009349A2 /* TabItemControllerProtocol.swift */,
 				4F909CFE28A0C3D2009349A2 /* ResizingTabWindow.swift */,
 				4F909D0028A0C3D2009349A2 /* ResizingTabWindowController.swift */,
@@ -3594,6 +3597,7 @@
 				4FA40D0B28A0D87200499E53 /* DisplayLink.m in Sources */,
 				4FC55B982915652C00663B24 /* Alerts.m in Sources */,
 				4F909D2928A0C3D2009349A2 /* TabViewControllerDisabling.swift in Sources */,
+				4F9A0C1D28B0000100000002 /* AppOverviewViewController.swift in Sources */,
 				4FCEDC92292D765600E7DA2A /* Constants.swift in Sources */,
 				4FA40D0E28A0D87200499E53 /* DynamicSystemAnimator.swift in Sources */,
 				4FB4FA202611DD6000806DDD /* KeyCaptureScrollView.m in Sources */,

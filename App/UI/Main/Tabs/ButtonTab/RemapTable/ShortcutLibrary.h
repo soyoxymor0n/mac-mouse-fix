@@ -18,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Empty if the app has no entries.
 + (NSArray *)effectsMenuEntriesForBundleID:(NSString *)bundleID;
 
+/// All apps of the library. Each app is a dictionary with `name` (NSString), `bundleIDs` (NSArray of NSString) and `entries` (NSArray of dictionaries with `label` and `symbols`).
++ (NSArray *)apps;
+
 @end
 
 NS_ASSUME_NONNULL_END
