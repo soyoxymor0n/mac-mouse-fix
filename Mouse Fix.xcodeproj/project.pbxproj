@@ -4102,7 +4102,7 @@
 					"$(PROJECT_DIR)/Frameworks/**",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15.0;
-				MARKETING_VERSION = 4.0.0;
+				MARKETING_VERSION = 4.1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.soyoxymor0n.mac-mouse-fix";
@@ -4146,7 +4146,7 @@
 					"$(PROJECT_DIR)/Frameworks/**",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15.0;
-				MARKETING_VERSION = 4.0.0;
+				MARKETING_VERSION = 4.1.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.soyoxymor0n.mac-mouse-fix";
 				PRODUCT_MODULE_NAME = Mac_Mouse_Fix;
