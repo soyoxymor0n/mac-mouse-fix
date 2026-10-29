@@ -586,6 +586,15 @@ static void _loadAndRepair(void) {
                     removeFromConfig(@"License.licenseReasonCache");
                     
                     currentVersion = 24;
+                } else if (currentVersion == 24) {
+                    
+                    /// 24 -> 25
+                    ///     Added the 'Volume' and 'Brightness' scroll effects. Existing configs have no mappings for them, so there's nothing to migrate.
+                    ///     Without this step, the upgrade would fall through to `replace` and reset the user's whole config to the defaults.
+                    
+                    log(Info, "Upgrading configVersion from 24 to 25...");
+                    
+                    currentVersion = 25;
                 }
                 /// [Oct 2026] added `License.licenseStateCacheHash_AgainstLicenseKey` and `License.licenseStateCacheHash_AgainstDeviceUID` and removed `License.licenseStateCacheHash`
                 ///     but it doesn't need migration here or a new configVersion
