@@ -393,6 +393,13 @@
    "sourceURL": "https://support.microsoft.com/office/2e8e2a70-e8d8-4a19-949b-4c36dd5292d2"
   },
   {
+   "app": "Microsoft Teams",
+   "button": 5,
+   "action": "Toggle mute",
+   "reason": "Quick mute during calls",
+   "sourceURL": "https://support.microsoft.com/office/2e8e2a70-e8d8-4a19-949b-4c36dd5292d2"
+  },
+  {
    "app": "Safari",
    "button": 4,
    "action": "Go back to previous webpage",

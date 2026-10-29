@@ -1850,7 +1850,21 @@
   },
   {
    "app": "Google Chrome",
+   "action": "Open the next page in browsing history for the current tab (alternative)",
+   "verified": true,
+   "sourceURL": "https://support.google.com/chrome/answer/157179?hl=en",
+   "verifiedOn": "2026-10-29"
+  },
+  {
+   "app": "Google Chrome",
    "action": "Open the previous page in browsing history for the current tab",
+   "verified": true,
+   "sourceURL": "https://support.google.com/chrome/answer/157179?hl=en",
+   "verifiedOn": "2026-10-29"
+  },
+  {
+   "app": "Google Chrome",
+   "action": "Open the previous page in browsing history for the current tab (alternative)",
    "verified": true,
    "sourceURL": "https://support.google.com/chrome/answer/157179?hl=en",
    "verifiedOn": "2026-10-29"
@@ -3382,7 +3396,21 @@
   },
   {
    "app": "Microsoft Teams",
+   "action": "Toggle mute",
+   "verified": true,
+   "sourceURL": "https://support.microsoft.com/office/2e8e2a70-e8d8-4a19-949b-4c36dd5292d2",
+   "verifiedOn": "2026-10-29"
+  },
+  {
+   "app": "Microsoft Teams",
    "action": "Toggle share content tray",
+   "verified": true,
+   "sourceURL": "https://support.microsoft.com/office/2e8e2a70-e8d8-4a19-949b-4c36dd5292d2",
+   "verifiedOn": "2026-10-29"
+  },
+  {
+   "app": "Microsoft Teams",
+   "action": "Toggle video",
    "verified": true,
    "sourceURL": "https://support.microsoft.com/office/2e8e2a70-e8d8-4a19-949b-4c36dd5292d2",
    "verifiedOn": "2026-10-29"
@@ -6835,6 +6863,13 @@
   {
    "app": "Visual Studio Code",
    "action": "New File",
+   "verified": true,
+   "sourceURL": "https://code.visualstudio.com/docs/reference/default-keybindings",
+   "verifiedOn": "2026-10-29"
+  },
+  {
+   "app": "Visual Studio Code",
+   "action": "New window or instance",
    "verified": true,
    "sourceURL": "https://code.visualstudio.com/docs/reference/default-keybindings",
    "verifiedOn": "2026-10-29"
