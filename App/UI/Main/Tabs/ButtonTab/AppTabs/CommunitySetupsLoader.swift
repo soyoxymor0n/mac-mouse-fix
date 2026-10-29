@@ -9,7 +9,8 @@
 import Foundation
 
 /// Downloads the community setups and caches them in the app's Application Support folder (not in the config file).
-///     It only runs when the user clicks "Community setups". Nothing runs in the background, and nothing is uploaded.
+///     It only runs when the user clicks "Community setups", and only while the "Community setups" switch is on. Nothing runs in the background.
+///     Uploading is separate, in CommunitySharing.swift.
 /// The repository has no index file, so the loader lists the `setups` folder with the GitHub contents API (works without a token)
 ///     and downloads the files that changed since the last time from raw.githubusercontent.com.
 ///     All files are downloaded, so a request never names an app. The unauthenticated API allows 60 requests an hour, so:
@@ -53,6 +54,8 @@ final class CommunitySetupsLoader {
     /// Loads the setups. `completion` is called on the main thread.
     func load(completion: @escaping (Result) -> Void) {
         assert(Thread.isMainThread)
+        /// Nothing is downloaded while the "Community setups" switch is off
+        guard CommunityConsent.isEnabled() else { completion(.failed); return }
         waiting.append(completion)
         if waiting.count > 1 { return }
 

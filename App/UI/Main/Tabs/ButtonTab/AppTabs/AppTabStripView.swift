@@ -10,7 +10,7 @@ import AppKit
 
 /// The vertical strip on the left of the Buttons tab.
 ///     The global tab is on top, then one tab per app, then a "+" button right below them.
-final class AppTabStripView: NSView {
+final class AppTabStripView: NSView, NSMenuItemValidation {
 
     static let width: CGFloat = 60
     /// The Buttons tab keeps at least this much height, so the strip fits the global tab, four app tabs and the "+" without scrolling. Without it, an empty app tab shrinks the window and the strip scrolls.
@@ -22,6 +22,8 @@ final class AppTabStripView: NSView {
     var onAddButtonClicked: ((NSButton) -> Void)?
     /// Called with the bundle ID of an app tab that the user wants to remove
     var onRemoveAppTab: ((String) -> Void)?
+    /// Called with the bundle ID of an app tab that the user wants to share ("Share this tab…")
+    var onShareAppTab: ((String) -> Void)?
 
     private let scrollView = NSScrollView()
     private let tabStack = NSStackView()
@@ -136,6 +138,11 @@ final class AppTabStripView: NSView {
 
     private func contextMenu(for bundleID: String) -> NSMenu {
         let menu = NSMenu()
+        /// Only shown while the "Community setups" switch is on (see `validateMenuItem`)
+        let shareItem = NSMenuItem(title: MFLocalizedString("community-share.menu", comment: ""), action: #selector(shareTapped(_:)), keyEquivalent: "")
+        shareItem.target = self
+        shareItem.representedObject = bundleID
+        menu.addItem(shareItem)
         let reportItem = NSMenuItem(title: MFLocalizedString("app-tabs.menu.report", comment: ""), action: #selector(reportTapped(_:)), keyEquivalent: "")
         reportItem.target = self
         reportItem.representedObject = bundleID
@@ -158,6 +165,21 @@ final class AppTabStripView: NSView {
     @objc private func removeTapped(_ sender: NSMenuItem) {
         guard let bundleID = sender.representedObject as? String else { return }
         onRemoveAppTab?(bundleID)
+    }
+
+    @objc private func shareTapped(_ sender: NSMenuItem) {
+        guard let bundleID = sender.representedObject as? String else { return }
+        onShareAppTab?(bundleID)
+    }
+
+    /// "Share this tab…" is hidden while the "Community setups" switch is off. The menu is built once per tab, so this is checked each time it opens.
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        if menuItem.action == #selector(shareTapped(_:)) {
+            let enabled = CommunityConsent.isEnabled()
+            menuItem.isHidden = !enabled
+            return enabled
+        }
+        return true
     }
 
     @objc private func reportTapped(_ sender: NSMenuItem) {

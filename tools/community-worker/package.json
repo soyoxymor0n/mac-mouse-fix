@@ -1,0 +1,11 @@
+{
+  "name": "mmf-community-worker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Submission Worker for Mac Mouse Fix NG community setups (Cloudflare Workers + D1)",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/",
+    "deploy": "npx wrangler deploy"
+  }
+}
