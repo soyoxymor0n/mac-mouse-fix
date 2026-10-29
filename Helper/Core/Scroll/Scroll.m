@@ -25,6 +25,7 @@
 #import "SharedUtility.h"
 #import "ScrollModifiers.h"
 #import "Actions.h"
+#import "ScrollStepAccumulator.h"
 #import "EventUtility.h"
 #import "MathObjc.h"
 #import "Threads.h"
@@ -226,6 +227,66 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEv
     return NULL;
 }
 
+#pragma mark - Volume and brightness effects
+
+/// Each scroll notch sends one media key step (volume or brightness) instead of scrolling.
+///     These effects don't use the animator, so each step is sent right away.
+///     Notches are computed from the event's fixed-point line delta, so high-res wheels work. See `ScrollStepAccumulator.h`.
+
+static MFScrollStepAccumulator _mediaKeyStepAccumulator;
+
+static void handleMediaKeyScrollEffect(CGEventRef event, MFAxis inputAxis, MFDirection scrollDirection, CFTimeInterval tickTS, MFScrollEffectModification effectMod) {
+
+    /// Get amount of this tick in notches
+    ///     FixedPtDelta is in lines, stored as 16.16 fixed-point (See `fixedScrollDelta()` in EventUtility.m). That gives sub-line precision for high-res wheels.
+    ///     If it's zero, fall back to PointDelta, which is 10 per line.
+
+    int64_t fixedDelta, pointDelta;
+    if (inputAxis == kMFAxisHorizontal) {
+        fixedDelta = CGEventGetIntegerValueField(event, kCGScrollWheelEventFixedPtDeltaAxis2);
+        pointDelta = CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis2);
+    } else {
+        fixedDelta = CGEventGetIntegerValueField(event, kCGScrollWheelEventFixedPtDeltaAxis1);
+        pointDelta = CGEventGetIntegerValueField(event, kCGScrollWheelEventPointDeltaAxis1);
+    }
+    double notches = (fixedDelta != 0) ? fabs(fixedDelta / 65536.0) : fabs(pointDelta / 10.0);
+
+    /// Apply direction
+    ///     `scrollDirection` already has the reverse-direction setting applied, same as for the other effects. Up and Right are increase.
+
+    BOOL increase = (scrollDirection == kMFDirectionUp || scrollDirection == kMFDirectionRight);
+    double signedNotches = increase ? notches : -notches;
+
+    /// Accumulate notches into steps
+    ///     One step per notch. The 0.3s idle timeout drops leftovers from before a pause.
+
+    int64_t steps = MFScrollStepAccumulatorAddTick(&_mediaKeyStepAccumulator, signedNotches, tickTS, 1.0, 0.3);
+    if (steps == 0) return;
+
+    /// Get media key
+
+    MFSystemDefinedEventType type;
+    if (effectMod == kMFScrollEffectModificationVolume) {
+        type = steps > 0 ? NX_KEYTYPE_SOUND_UP : NX_KEYTYPE_SOUND_DOWN;
+    } else {
+        type = steps > 0 ? NX_KEYTYPE_BRIGHTNESS_UP : NX_KEYTYPE_BRIGHTNESS_DOWN;
+    }
+
+    /// Send steps
+    ///     Actions.m posts each action as a system defined event (key down and key up), same as for remaps.
+
+    NSDictionary *mediaKeyAction = @{
+        kMFActionDictKeyType: kMFActionDictTypeSystemDefinedEvent,
+        kMFActionDictKeySystemDefinedEventVariantType: @(type),
+        kMFActionDictKeySystemDefinedEventVariantModifierFlags: @(0),
+    };
+    NSMutableArray *actionArray = [NSMutableArray array];
+    for (int64_t i = 0; i < llabs(steps); i++) {
+        [actionArray addObject:mediaKeyAction];
+    }
+    [Actions executeActionArray:actionArray phase:kMFActionPhaseStart];
+}
+
 #pragma mark - Main event processing
 
 static void heavyProcessing(CGEventRef event, int64_t scrollDeltaAxis1, int64_t scrollDeltaAxis2, CFTimeInterval tickTS) {
@@ -387,6 +448,13 @@ static void heavyProcessing(CGEventRef event, int64_t scrollDeltaAxis1, int64_t 
     
     /// Make scrollDelta positive, now that we have scrollDirection stored
     scrollDelta = llabs(scrollDelta);
+
+    /// Volume and brightness effects don't scroll. Each notch sends a media key step instead.
+    if (_modifications.effectMod == kMFScrollEffectModificationVolume
+        || _modifications.effectMod == kMFScrollEffectModificationBrightness) {
+        handleMediaKeyScrollEffect(event, inputAxis, scrollDirection, tickTS, _modifications.effectMod);
+        return;
+    }
     
     /// Return if suspended (so we dont' send any events)
     //if (_isSuspended) {

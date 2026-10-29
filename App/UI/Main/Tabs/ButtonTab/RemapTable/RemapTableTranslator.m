@@ -96,6 +96,13 @@ static NSArray *getScrollEffectsTable() {
             kMFModifiedScrollDictKeyEffectModificationType: kMFModifiedScrollEffectModificationTypeRotate
         }}, /// We only have this option so the menu layout looks better. I can't really think of a usecase
         separatorEffectsTableEntry(),
+        @{@"ui": MFLocalizedString(@"scroll-effect.volume", @""), @"tool": MFLocalizedString(@"scroll-effect.volume.hint", @""), @"dict": @{
+            kMFModifiedScrollDictKeyEffectModificationType: kMFModifiedScrollEffectModificationTypeVolume
+        }},
+        @{@"ui": MFLocalizedString(@"scroll-effect.brightness", @""), @"tool": MFLocalizedString(@"scroll-effect.brightness.hint", @""), @"dict": @{
+            kMFModifiedScrollDictKeyEffectModificationType: kMFModifiedScrollEffectModificationTypeBrightness
+        }},
+        separatorEffectsTableEntry(),
         @{@"ui": MFLocalizedString(@"scroll-effect.swift", @""), @"tool": MFLocalizedString(@"scroll-effect.swift.hint", @""), @"dict": @{
             kMFModifiedScrollDictKeyInputModificationType: kMFModifiedScrollInputModificationTypeQuickScroll
         }},

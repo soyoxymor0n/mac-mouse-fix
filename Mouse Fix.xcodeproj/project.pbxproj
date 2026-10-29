@@ -1147,6 +1147,7 @@
 		4FF6662725F2C93A00689B77 /* MomentumScroll.h (old) */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MomentumScroll.h (old)"; sourceTree = "<group>"; };
 		4FF6662825F2C93A00689B77 /* MomentumScroll.m (old) */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MomentumScroll.m (old)"; sourceTree = "<group>"; };
 		4FF6662925F2C93A00689B77 /* ScrollModifiers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollModifiers.h; sourceTree = "<group>"; };
+		4CA1CDA403C8B4BC25099B18 /* ScrollStepAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollStepAccumulator.h; sourceTree = "<group>"; };
 		4FF6662A25F2C93A00689B77 /* RoughScroll_old_.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoughScroll_old_.h; sourceTree = "<group>"; };
 		4FF6662B25F2C93A00689B77 /* ScrollUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollUtility.h; sourceTree = "<group>"; };
 		4FF6662C25F2C93A00689B77 /* Scroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scroll.h; sourceTree = "<group>"; };
@@ -2710,6 +2711,7 @@
 				4FA994BC26678AC90007F003 /* ScrollAnalyzer.h */,
 				4FA994BD26678AC90007F003 /* ScrollAnalyzer.m */,
 				4FF6662925F2C93A00689B77 /* ScrollModifiers.h */,
+				4CA1CDA403C8B4BC25099B18 /* ScrollStepAccumulator.h */,
 				4F5F3EF22756F1DB00C350C0 /* ScrollModifiers.swift */,
 				4FF6662B25F2C93A00689B77 /* ScrollUtility.h */,
 				4FF6662F25F2C93A00689B77 /* ScrollUtility.m */,
