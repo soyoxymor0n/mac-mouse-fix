@@ -1338,6 +1338,11 @@ your mouse. (**Logitech M720 Triathlon**)&gt;</string>
                                                                     <fragment content="Scrolling &gt; Scroll Speed &gt; High Option"/>
                                                                 </attributedString>
                                                             </menuItem>
+                                                            <menuItem title="Very High" identifier="veryHigh" id="Vh1-Gf-7sp">
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="Scrolling &gt; Scroll Speed &gt; Very High Option"/>
+                                                                </attributedString>
+                                                            </menuItem>
                                                         </items>
                                                     </menu>
                                                 </popUpButtonCell>

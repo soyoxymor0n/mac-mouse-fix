@@ -227,8 +227,16 @@ static NSDictionary *sideButtonActions;
     return self;
 }
 
++ (BOOL)launchedAsLoginItem {
+    /// macOS adds the `keyAELaunchedAsLogInItem` property to the open-application Apple Event when it starts an app from the Login Items list. That includes apps registered with SMAppService.mainApp.
+    NSAppleEventDescriptor *event = NSAppleEventManager.sharedAppleEventManager.currentAppleEvent;
+    if (event.eventID != kAEOpenApplication) return NO;
+    NSAppleEventDescriptor *props = [event paramDescriptorForKeyword:keyAEPropData];
+    return [props enumCodeValue] == keyAELaunchedAsLogInItem;
+}
+
 - (void)applicationWillFinishLaunching:(NSNotification *)notification {
-    
+
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
@@ -244,6 +252,13 @@ static NSDictionary *sideButtonActions;
 
     /// Hide update and license items that don't apply to the fork
     [ForkMenu tidyAppMenu];
+
+    /// Start hidden
+    ///     If the app was started as a login item and the user wants it to start hidden, hide the main window.
+    ///     The app keeps running. The menu bar item lives in the helper, so it isn't affected.
+    if ([AppDelegate launchedAsLoginItem] && [(id)config(@"General.startHidden") boolValue]) {
+        [MainAppState.shared hideMainWindow];
+    }
 
 #pragma mark Experiments
 
@@ -372,6 +387,14 @@ static NSDictionary *sideButtonActions;
 }
 
 - (BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)app {
+    return YES;
+}
+
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
+    /// Show the main window again when the app is reopened (e.g. from Finder or the Dock) while it's running with its window hidden
+    if (!flag) {
+        [MainAppState.shared showMainWindow];
+    }
     return YES;
 }
 

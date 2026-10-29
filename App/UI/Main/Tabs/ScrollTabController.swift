@@ -118,6 +118,8 @@ class ScrollTabController: NSViewController {
             identifier!.rawValue
         })
         speedPicker.reactive.selectedIdentifier <~ scrollSpeed.producer.map({ NSUserInterfaceItemIdentifier($0) })
+        /// Localized title for the `veryHigh` item. (The item itself is in the storyboard, the identifier is what the config uses.)
+        speedPicker.menu?.item(withIdentifier: NSUserInterfaceItemIdentifier("veryHigh"))?.title = MFLocalizedString("scroll-speed-very-high-option", comment: "Option in the Scrolling > Scroll Speed popup, above 'High'")
         
         /// Precise
         /// Notes:
