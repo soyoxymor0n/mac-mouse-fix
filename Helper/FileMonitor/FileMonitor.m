@@ -62,8 +62,25 @@ void Handle_FSCallback(ConstFSEventStreamRef streamRef, void *clientCallBackInfo
     NSURL *installedBundleURLFromWorkspace = [NSWorkspace.sharedWorkspace URLForApplicationWithBundleIdentifier:kMFBundleIDApp];
     
     if (installedBundleURLFromWorkspace == nil) {
-        DDLogInfo("Mac Mouse Fix cannot be found on the system anymore");
-        uninstallCompletely();
+        /// A reinstall deletes the app for a few seconds before the new copy is written.
+        ///     Don't treat that gap as an uninstall, because uninstalling trashes the settings.
+        ///     Check again after a delay, and uninstall only if the app is still missing.
+        DDLogInfo("Mac Mouse Fix cannot be found on the system. Checking again after a delay before uninstalling");
+        static BOOL recheckPending = NO;
+        if (recheckPending) {
+            return;
+        }
+        recheckPending = YES;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 30 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            recheckPending = NO;
+            NSURL *urlAfterWait = [NSWorkspace.sharedWorkspace URLForApplicationWithBundleIdentifier:kMFBundleIDApp];
+            if (urlAfterWait == nil) {
+                DDLogInfo("Mac Mouse Fix still cannot be found after the delay. Uninstalling");
+                uninstallCompletely();
+            } else {
+                DDLogInfo("Mac Mouse Fix was found again after the delay (probably a reinstall). Not uninstalling");
+            }
+        });
     } else {
         NSURL *helperURL = Locator.helperBundle.bundleURL;
         NSURL *helperURLOld = NSBundle.mainBundle.bundleURL;
