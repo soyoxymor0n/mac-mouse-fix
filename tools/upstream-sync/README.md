@@ -1,34 +1,26 @@
-# Upstream sync: Inform and Evaluate
+# Upstream sync: Inform, Evaluate and Apply
 
 Tools for issue #1 of this fork: keep informed about upstream Mac Mouse Fix
-(`noah-nuebling/mac-mouse-fix`) and judge the impact of its changes before
-anything is merged.
+(`noah-nuebling/mac-mouse-fix`), judge the impact of its changes, and apply them
+in one step.
 
 - `sync_check.py` (Inform): reports new upstream commits and tags since the last sync.
-- `evaluate.py` (Evaluate): trial-merges `upstream/master` into the fork branches and reports conflicts, risk-path changes and the upstream commit log.
+- `evaluate.py` (Evaluate): trial-merges `upstream/master` into the fork branches and reports conflicts, risk-path changes and the upstream commit log. It changes nothing.
+- `apply.py` (Apply): merges, checks, builds and pushes the sync in one command. It refuses or stops when anything fails, and pushes nothing in that case.
+- `inform.sh`, `install_inform_job.sh`, `uninstall_inform_job.sh`, `com.soyoxymor0n.mmf-upstream-check.plist.template`: the daily local launchd job that runs `sync_check.py` and shows a macOS notification.
 - `last-synced`: the upstream commit the fork has merged up to. Only a confirmed sync changes it.
 
-Both scripts use only the Python standard library. Run them from the repository
-root. Neither script changes a branch, the index, a working tree, or `last-synced`.
-
-## Apply step: not implemented
-
-The Apply step (fast-forward `master` from `upstream/master`, merge it into the
-other fork branches, build, push) is **not implemented**. It stays a manual step
-that the owner runs after reading the evaluation.
-
-After a sync you have confirmed, update the sync point and commit it with the
-sync:
-
-```sh
-git rev-parse upstream/master > tools/upstream-sync/last-synced
-```
+All scripts use only the Python standard library. Run them from the repository
+root. `sync_check.py` and `evaluate.py` never change a branch, the index, a working
+tree, or `last-synced`. `apply.py` changes the fork branches on `origin` and
+writes `last-synced`, as described below.
 
 ## Setup
 
 - Remote: `upstream` must point to `https://github.com/noah-nuebling/mac-mouse-fix.git`.
   If it is missing, add it with `git remote add upstream https://github.com/noah-nuebling/mac-mouse-fix.git`.
   The scripts stop with exit 2 and print this command when the remote is missing.
+- Remote: `origin` must be your fork (`soyoxymor0n/mac-mouse-fix-ng`). `apply.py` pushes to it.
 - `last-synced` must hold a commit SHA. It was created once with the merge base:
   `git merge-base master upstream/master > tools/upstream-sync/last-synced`.
 - Git must support `git merge-tree --write-tree --name-only --no-messages -z`.
@@ -94,8 +86,88 @@ Exit codes:
 | 1 | At least one checked branch has conflicts. |
 | 2 | Error: remote or branch missing, fetch failed, or git cannot run the trial merge. |
 
+## apply.py (Apply)
+
+```sh
+python3 tools/upstream-sync/apply.py --dry-run   # merge, check and build; push nothing
+python3 tools/upstream-sync/apply.py             # the sync
+```
+
+`--dry-run` does everything except the pushes. It moves no branch and does not
+write `last-synced`. It prints what would be pushed. Use it first.
+
+What it does, in order. Nothing is pushed until every step has passed.
+
+1. Refuses (exit 2) if the working tree has tracked changes, if `upstream` or `origin` is missing, if `master` is not an ancestor of `upstream/master`, or if one of the fork branches is checked out in any worktree. Nothing changes.
+2. Fetches `upstream/master` and the fork branches from `origin`. Only remote-tracking refs change.
+3. Fast-forwards `master` to `upstream/master` (ff-only).
+4. Merges `master` into `per-app-remaps` and `fork-setup`. Then merges the new `per-app-remaps`, `fork-setup` and `master` into `personal`. At the first conflict it runs `git merge --abort`, prints the conflicting files, and exits 1.
+5. Refuses (exit 2) if `origin` has a commit that a new branch tip does not contain, so every push is a fast-forward.
+6. Grep checks (exit 1 on failure):
+   - `SUFeedURL` is absent from `App/SupportFiles/Info.plist` on `fork-setup` and `personal`. `master` and `per-app-remaps` keep upstream's key on purpose.
+   - `com.nuebling` is absent from every file that differs from `upstream/master` on `fork-setup` and `personal`. The legacy launchd path `com.nuebling.mousefix.helper.plist` in `Shared/HelperServices/HelperServices.m` is allowed on purpose.
+7. Builds the `App` and `Helper` schemes (`xcodebuild -configuration Debug CODE_SIGNING_ALLOWED=NO`) at each tip that is pushed, and at `personal`. Derived data goes to a temp folder outside the repo. On a build failure it exits 1, keeps the full log and prints its path.
+8. Pushes `master`, `per-app-remaps`, `fork-setup` and `personal` to `origin` (fast-forward only, no force). After each push the local branch moves to the same commit. Then it writes `last-synced` and prints what changed.
+
+Merges and builds run in a temporary worktree under the system temp directory.
+The temp worktree is removed at the end, also on failure. Your checkout keeps its HEAD,
+its branch and its files. The one file it writes is `last-synced`, which is not committed.
+Commit it on your own branch. The printed commands show how. Until that commit exists,
+the next run refuses because the tree is not clean.
+
+Exit codes:
+
+| Code | Meaning |
+|------|---------|
+| 0 | Synced, already synced, or the dry run passed. |
+| 1 | Stopped before pushing: merge conflict, failed grep check, or failed build. |
+| 2 | Refused or error, for example a dirty tree or a missing remote. A failed push also exits 2. Branches pushed before it stay on `origin`, so run apply again after fixing the cause. |
+
+Test hook: the environment variable `MMF_UPSTREAM_SYNC_BUILD_CMD` replaces the
+`xcodebuild` call with a shell command. The scripts used it for tests with a
+throwaway fixture repo.
+
+After a sync, build and test the app. The merge check is textual only, and a clean
+merge can still break the build or the remap behavior.
+
+## Inform job (launchd)
+
+A local launchd job, not a GitHub Action. It runs `inform.sh` every day at 09:00.
+`inform.sh` runs `sync_check.py`. When that reports new commits or tags, it shows a
+macOS notification. Errors are written to the log only.
+
+Install from the checkout the job should use (writes the plist with this checkout's absolute paths and loads it):
+
+```sh
+sh tools/upstream-sync/install_inform_job.sh
+```
+
+Print the plist without installing anything:
+
+```sh
+sh tools/upstream-sync/install_inform_job.sh --print
+```
+
+Uninstall (unloads the job and deletes its plist; the log is kept):
+
+```sh
+sh tools/upstream-sync/uninstall_inform_job.sh
+```
+
+Other commands:
+
+```sh
+launchctl print gui/$(id -u)/com.soyoxymor0n.mmf-upstream-check | head -20   # status
+launchctl kickstart gui/$(id -u)/com.soyoxymor0n.mmf-upstream-check          # run now
+```
+
+Files: the plist is `~/Library/LaunchAgents/com.soyoxymor0n.mmf-upstream-check.plist`
+and the log is `~/Library/Logs/mmf-upstream-check.log`. The job stores no secrets.
+If the checkout moves, uninstall and install again. If no notification appears,
+check System Settings, Notifications, for Script Editor.
+
 ## Limits
 
-- Only `master`, `per-app-remaps` and `fork-setup` are evaluated. `personal` and `beta` are not.
-- The trial merge checks textual conflicts only. A clean merge can still break the build or the remap behavior, so build and test after a sync.
-- Scheduling is not set up. There is no GitHub Actions workflow. Run the scripts by hand, or wire them into a local `launchd` job later.
+- The Inform job and `evaluate.py` cover `master`, `per-app-remaps` and `fork-setup`. `apply.py` also updates `personal`. `beta` is never touched.
+- The trial merge checks textual conflicts only. `apply.py` builds the App and Helper schemes, but it does not run the tests or the app.
+- There is no GitHub Actions workflow for the sync.

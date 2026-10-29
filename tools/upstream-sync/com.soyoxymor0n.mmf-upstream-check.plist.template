@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Template. install_inform_job.sh replaces the placeholder paths with absolute paths of the checkout it runs from. -->
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.soyoxymor0n.mmf-upstream-check</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/bin/sh</string>
+		<string>/PATH/TO/CHECKOUT/tools/upstream-sync/inform.sh</string>
+	</array>
+	<key>WorkingDirectory</key>
+	<string>/PATH/TO/CHECKOUT</string>
+	<key>StartCalendarInterval</key>
+	<dict>
+		<key>Hour</key>
+		<integer>9</integer>
+		<key>Minute</key>
+		<integer>0</integer>
+	</dict>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin:/usr/local/bin</string>
+	</dict>
+	<key>StandardOutPath</key>
+	<string>/PATH/TO/LOG</string>
+	<key>StandardErrorPath</key>
+	<string>/PATH/TO/LOG</string>
+</dict>
+</plist>
