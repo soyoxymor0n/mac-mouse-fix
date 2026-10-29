@@ -103,7 +103,8 @@
         ///     Not sure if this is also necessary in the mainApp
         IOReturn ret = IOHIDDeviceOpen(self.iohidDevice, kIOHIDOptionsTypeNone);
         if (ret) {
-            assert(false); /// Should we add some error handling or just try to keep proceeding as normal?
+            /// Not fatal: the device stays attached and scrolling/buttons don't depend on this open (no input callbacks are registered).
+            /// [Oct 2026] 0xe00002e2 is kIOReturnNotPermitted, seen after Bluetooth reconnects on macOS 27 (GH #2081). We removed the assert so that Debug builds don't abort.
             DDLogError("Error opening device. Code: %x", ret);
         }
         
