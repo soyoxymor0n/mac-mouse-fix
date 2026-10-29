@@ -111,7 +111,7 @@ static void freezePointer(CGPoint origin, BOOL keepPointerMoving) {
     setSuppressionInterval(kMFEventSuppressionIntervalForStoppingCursor);
 
     /// Enable eventTap
-    CGEventTapEnable(_eventTap, true);
+    if (_eventTap != NULL) CGEventTapEnable(_eventTap, true); /// NULL if `load_Manual` couldn't create it (no permissions). [Oct 2026]
     _coolEventTapIsEnabled = true;
 
     if (keepPointerMoving) {
@@ -229,7 +229,7 @@ CGEventRef _Nullable mouseMovedCallback(CGEventTapProxy proxy, CGEventType type,
         
         /// Disable eventTap
         /// Think about the order of getting pos, unfreezing, and disabling event tap. -> I think it doesn't matter since everything is locked.
-        CGEventTapEnable(_eventTap, false);
+        if (_eventTap != NULL) CGEventTapEnable(_eventTap, false);
         _coolEventTapIsEnabled = false;
         
         CGPoint warpDestination;

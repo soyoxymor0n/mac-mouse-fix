@@ -83,10 +83,15 @@ static MFReadWriteTracker _readWriteTracker;
         CGEventMask mask = CGEventMaskBit(kCGEventScrollWheel);
         _eventTap = CGEventTapCreate(kCGHIDEventTap, kCGHeadInsertEventTap, kCGEventTapOptionDefault, mask, eventTapCallback, NULL);
         DDLogDebug("Scroll.m: _eventTap: %@", _eventTap);
-        CFRunLoopSourceRef runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, _eventTap, 0);
-        CFRunLoopAddSource(IOThread.runLoop, runLoopSource, kCFRunLoopCommonModes);
-        CFRelease(runLoopSource);
-        CGEventTapEnable(_eventTap, false); // Not sure if this does anything
+        if (_eventTap == NULL) {
+            /// Tap creation fails without the required permissions. Don't crash. `startReceiving` & co. check for NULL. (Issue #2062) [Oct 2026]
+            DDLogError("Scroll.m: CGEventTapCreate() returned NULL. Scroll interception won't work.");
+        } else {
+            CFRunLoopSourceRef runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, _eventTap, 0);
+            CFRunLoopAddSource(IOThread.runLoop, runLoopSource, kCFRunLoopCommonModes);
+            CFRelease(runLoopSource);
+            CGEventTapEnable(_eventTap, false); // Not sure if this does anything
+        }
     }
     
     /// Create animator
@@ -119,6 +124,8 @@ static MFReadWriteTracker _readWriteTracker;
     assertRunLoop(IOThread.runLoop);
     readsAndWritesState(&_readWriteTracker);
 
+    if (_eventTap == NULL) return; /// Tap creation failed in `load_Manual`. (Issue #2062) [Oct 2026]
+
     DDLogDebug("Scroll.m: startReceiving. isReceiving: %d", CGEventTapIsEnabled(_eventTap));
 
     if (!CGEventTapIsEnabled(_eventTap))
@@ -134,6 +141,8 @@ static MFReadWriteTracker _readWriteTracker;
     assertRunLoop(IOThread.runLoop);
     readsAndWritesState(&_readWriteTracker);
 
+    if (_eventTap == NULL) return; /// Tap creation failed in `load_Manual`. (Issue #2062) [Oct 2026]
+
     DDLogDebug("Scroll.m: stopReceiving. isReceiving: %d", CGEventTapIsEnabled(_eventTap));
 
     if (CGEventTapIsEnabled(_eventTap))
@@ -143,7 +152,7 @@ static MFReadWriteTracker _readWriteTracker;
 + (BOOL)isReceiving {
     /// At the time of writing we just need this for debugging. Should'nt ever need it for something else I think.
     ///     [Sep 2026] Not adding `readsState()` / `assertRunLoop` since this is just for debugging
-    return CGEventTapIsEnabled(_eventTap);
+    return _eventTap != NULL && CGEventTapIsEnabled(_eventTap);
 }
 
 #pragma mark - Event tap

@@ -83,10 +83,15 @@ static BOOL updateAppModifier(void);
         /// Create keyboard modifier event tap
         CGEventMask mask = CGEventMaskBit(kCGEventFlagsChanged);
         _kbModEventTap = CGEventTapCreate(kCGHIDEventTap, kCGHeadInsertEventTap, kCGEventTapOptionListenOnly, mask, kbModsChanged, NULL);
-        CFRunLoopSourceRef runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, _kbModEventTap, 0);
-        CFRunLoopAddSource(IOThread.runLoop, runLoopSource, kCFRunLoopDefaultMode);
-        CFRelease(runLoopSource);
-        
+        if (_kbModEventTap == NULL) {
+            /// Tap creation fails without the required permissions. Keyboard modifiers won't work, but don't crash. (Issue #2062) [Oct 2026]
+            DDLogError("Modifiers: CGEventTapCreate() returned NULL for the keyboard modifier eventTap. Keyboard modifiers won't work.");
+        } else {
+            CFRunLoopSourceRef runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, _kbModEventTap, 0);
+            CFRunLoopAddSource(IOThread.runLoop, runLoopSource, kCFRunLoopDefaultMode);
+            CFRelease(runLoopSource);
+        }
+
 //        /// Enable/Disable eventTap based on Remap.remaps
 //        CGEventTapEnable(_kbModEventTap, false); /// Disable eventTap first (Might prevent `_keyboardModifierEventTap` from always being called twice - Nope doesn't make a difference)
 //        toggleModifierListening(Remap.remaps);
@@ -210,7 +215,11 @@ static CFMachPortRef _kbModEventTap;
     /// Update: [Sep 2026] Didn't read the above but might be fixed after 'No more dispatch queues' refactor
 
     _kbModPriority = priority;
-    CGEventTapEnable(_kbModEventTap, _kbModPriority == kMFModifierPriorityActiveListen);
+    /// `_kbModEventTap` is NULL if `load_Manual` couldn't create it (See the NULL check there). [Oct 2026]
+    ///     Then this is the crash from issue #2062: `CGEventTapEnable(NULL, ...)`. Only the priority is stored in that case.
+    if (_kbModEventTap != NULL) {
+        CGEventTapEnable(_kbModEventTap, _kbModPriority == kMFModifierPriorityActiveListen);
+    }
 }
 
 + (void)setButtonModifierPriority:(MFModifierPriority)priority {
