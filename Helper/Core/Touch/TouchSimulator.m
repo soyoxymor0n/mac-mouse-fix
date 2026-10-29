@@ -52,6 +52,16 @@ static void dockSwipeRingPush(double *deltas, double *dts, int *count, int *next
     if (*count < kMFDockSwipeVelocityRingSize) (*count)++;
 }
 
+/// The ring-averaged exitSpeed and the velocity sign flip are only used on macOS 27 and later. They are only verified there, so older systems keep the values they were tuned for.
+static BOOL dockSwipeUsesMacOS27Velocity(void) {
+    static BOOL result;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        result = NSProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 27;
+    });
+    return result;
+}
+
 /// Average velocity over the ring, in exitSpeed units. Returns 0 if no time has elapsed.
 static double dockSwipeExitSpeedFromRing(const double *deltas, const double *dts, int count) {
     double deltaSum = 0.0;
@@ -221,10 +231,14 @@ static double dockSwipeExitSpeedFromRing(const double *deltas, const double *dts
     /// - Update: on macOS 27 I just observed `*300`. I'm not 100% sure whether the `velocity` value on macOS 27 is the same as the old `exitSpeed`.
     /// - Update [Oct 2026]: Now the average velocity of the last few posted deltas (`dockSwipeExitSpeedFromRing()` above), not just the last delta.
     ///      The last delta is noisy: deltas now come one per display frame (ModifiedDrag.m coalesces them), and their size depends on how many mouse reports landed in that frame.
-    ///      Ported from PR #2049 (not verified on a device). Note: this also changes the exitSpeed on macOS 26 and below.
+    ///      Ported from PR #2049 (not verified on a device). Only on macOS 27 and later. Older systems keep `lastDelta * 100`.
     double exitSpeed = 0;
     if (phase == kIOHIDEventPhaseEnded || phase == kIOHIDEventPhaseCancelled) {
-        exitSpeed = dockSwipeExitSpeedFromRing(_dockSwipeRecentDeltas, _dockSwipeRecentDts, _dockSwipeRecentCount);
+        if (dockSwipeUsesMacOS27Velocity()) {
+            exitSpeed = dockSwipeExitSpeedFromRing(_dockSwipeRecentDeltas, _dockSwipeRecentDts, _dockSwipeRecentCount);
+        } else {
+            exitSpeed = _dockSwipeLastDelta*100;
+        }
     }
     
     /// Override end phase with canceled phase
@@ -263,8 +277,8 @@ static double dockSwipeExitSpeedFromRing(const double *deltas, const double *dts
         if (phase == kIOHIDEventPhaseEnded || phase == kIOHIDEventPhaseCancelled) {
 
             /// The progress above is un-flipped when `invertedFromDevice`, so the velocity has to be un-flipped too.
-            ///     Otherwise it points against the progress at the end of every natural-direction gesture. Ported from PR #2049 (not verified on a device).
-            double velocity = invertedFromDevice ? -exitSpeed : exitSpeed;
+            ///     Otherwise it points against the progress at the end of every natural-direction gesture. Ported from PR #2049 (not verified on a device). Only on macOS 27 and later.
+            double velocity = (invertedFromDevice && dockSwipeUsesMacOS27Velocity()) ? -exitSpeed : exitSpeed;
 
             HIDEvent *childEvent = [[HIDEvent alloc] initWithType: kIOHIDEventTypeVelocity timestamp: mach_absolute_time() senderID: 0];
 
