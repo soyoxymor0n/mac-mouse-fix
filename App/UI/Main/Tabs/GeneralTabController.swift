@@ -241,6 +241,7 @@ class GeneralTabController: NSViewController {
         updatesToggle.reactive.boolValue <~ checkForUpdates
         betaToggle.reactive.boolValue <~ getBetaVersions
         
+        addCommunitySection()
         addSettingsTransferButtons()
 
         mainHidableSection.reactive.isCollapsed <~ EnabledState.shared.producer.negate()
@@ -325,6 +326,9 @@ class GeneralTabController: NSViewController {
         divider.trailingAnchor.constraint(equalTo: mainHidableSection.trailingAnchor).isActive = true
         
         mainHidableSection.addArrangedSubview(scrollStack)
+        if let community = communitySection {
+            for view in community { mainHidableSection.addArrangedSubview(view) } /// Moves the section below the scroll settings
+        }
         if let row = settingsRow {
             mainHidableSection.addArrangedSubview(row) /// Moves the row below the scroll settings
         }
@@ -337,6 +341,24 @@ class GeneralTabController: NSViewController {
         if #available(macOS 11.0, *) {
             (scrollTab as? ScrollTabController)?.tabDidAppear()
         }
+    }
+
+    /// The "Community setups" switch and the list of shared setups (divider and section). Kept above the Export and Import buttons.
+    private var communitySection: [NSView]?
+
+    private func addCommunitySection() {
+        let divider = NSBox()
+        divider.boxType = .separator
+        divider.translatesAutoresizingMaskIntoConstraints = false
+        let section = CommunitySettingsView()
+        /// Inside the collapsing section, so it hides together with the other settings while the app is disabled
+        mainHidableSection.addArrangedSubview(divider)
+        mainHidableSection.addArrangedSubview(section)
+        for view in [divider, section] {
+            view.leadingAnchor.constraint(equalTo: mainHidableSection.leadingAnchor).isActive = true
+            view.trailingAnchor.constraint(equalTo: mainHidableSection.trailingAnchor).isActive = true
+        }
+        communitySection = [divider, section]
     }
 
     /// Export and Import buttons at the bottom of the tab. Same actions as in the File menu.

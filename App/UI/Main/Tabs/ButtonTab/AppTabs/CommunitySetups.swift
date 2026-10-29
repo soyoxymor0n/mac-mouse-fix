@@ -12,7 +12,7 @@ import Foundation
 ///     https://github.com/soyoxymor0n/mac-mouse-fix-setups (one JSON file per setup under `setups/`).
 /// This file holds the parts that don't need the app: the validator, the cached index and the conversion to a preset.
 ///     It only needs Foundation and AppPresets.swift, so it can be tested on its own (see Tests/run_community_tests.sh).
-/// Phase 1 is read-only. Nothing is uploaded. See docs/features/community-sharing.md.
+/// Downloading is read-only. Sharing (phase 2) is in CommunitySharing.swift. See docs/features/community-sharing.md.
 
 /// Where the setups come from. The URLs are the same for every user and never name an app.
 enum CommunitySource {

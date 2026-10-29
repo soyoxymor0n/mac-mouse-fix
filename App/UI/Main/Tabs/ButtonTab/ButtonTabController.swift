@@ -268,6 +268,7 @@ import Foundation
         installRecommendedSetupButton()
         updateRestoreDefaultsButtonTitle()
         NotificationCenter.default.addObserver(self, selector: #selector(remapTableDidChange(_:)), name: NSNotification.Name(kMFRemapTableDidChangeNotification as String), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(communitySwitchChanged(_:)), name: CommunityConsent.didChangeNotification, object: nil)
     }
     
     func createTrackingArea() {
@@ -413,6 +414,7 @@ import Foundation
         strip.onSelectScope = { [weak self] app in self?.selectScope(app) }
         strip.onAddButtonClicked = { [weak self] button in self?.showAppPicker(relativeTo: button) }
         strip.onRemoveAppTab = { [weak self] app in self?.confirmRemoveAppTab(app) }
+        strip.onShareAppTab = { [weak self] app in self?.openShareSheet(app) }
         appTabStrip = strip
 
         installShortcutLibrarySwitch(above: strip)
@@ -556,7 +558,21 @@ import Foundation
     func updateRecommendedSetupButton() {
         guard let button = recommendedSetupButton else { return }
         button.isHidden = scopeApp.flatMap { AppPreset.preset(for: $0) } == nil
-        communitySetupsButton?.isHidden = scopeApp == nil
+        /// Hidden while the "Community setups" switch is off: then nothing is downloaded
+        communitySetupsButton?.isHidden = scopeApp == nil || !CommunityConsent.isEnabled()
+    }
+
+    @objc private func communitySwitchChanged(_ notification: Notification) {
+        if !CommunityConsent.isEnabled() { communitySetupsPopover?.close() }
+        updateRecommendedSetupButton()
+    }
+
+    /// "Share this tab…" from the app strip's menu. The sheet shows the exact data first; nothing is sent until the user clicks Share.
+    private func openShareSheet(_ app: String) {
+        guard CommunityConsent.isEnabled(), let window = MainAppState.shared.window else { return }
+        let rows = RemapScope.rows(forScope: app, inRemaps: config("Remaps") as? [Any]) as? [[String: Any]] ?? []
+        let controller = CommunityShareViewController(app: app, tabRows: rows)
+        window.beginSheet(NSWindow(contentViewController: controller))
     }
 
     @objc private func openRecommendedSetup(_ sender: Any) {
@@ -565,7 +581,7 @@ import Foundation
 
     /// Shows the community setups of the current app in a popover. The setups are loaded now, not before.
     @objc private func openCommunitySetups(_ sender: NSButton) {
-        guard let app = scopeApp else { return }
+        guard let app = scopeApp, CommunityConsent.isEnabled() else { return }
         communitySetupsPopover?.close()
 
         let controller = CommunitySetupsViewController(app: app)

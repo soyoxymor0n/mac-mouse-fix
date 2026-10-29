@@ -20140,6 +20140,424 @@
           }
         }
       }
+    },
+    "community-share.menu" : {
+      "comment" : "Item in the context menu of an app tab (right click on an app icon in the Buttons tab). Opens a sheet to share this app's button setup with other users. Only shown while 'Community setups' is on.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share this tab…"
+          }
+        }
+      }
+    },
+    "community-share.sheet.title" : {
+      "comment" : "Title of the sheet that shares an app tab. %@ is the app's name.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share the setup for %@"
+          }
+        }
+      }
+    },
+    "community-share.sheet.topic" : {
+      "comment" : "Label before a menu with a fixed list of topics (for example 'Tab switching') in the share sheet.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Topic:"
+          }
+        }
+      }
+    },
+    "community-share.sheet.preview" : {
+      "comment" : "Shown above the JSON text that the share sheet would send.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is exactly what will be sent:"
+          }
+        }
+      }
+    },
+    "community-share.sheet.public" : {
+      "comment" : "Statement in the share sheet about what is sent and that it becomes public.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Once it is reviewed and published, this setup is public and anyone can download it. It holds only the app's bundle ID and these button rows. Nothing about your Mac, your license or your other settings is sent."
+          }
+        }
+      }
+    },
+    "community-share.sheet.license" : {
+      "comment" : "License statement in the share sheet. CC0 1.0 is the name of the license and is not translated.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shared under CC0 1.0 (public domain dedication)"
+          }
+        }
+      }
+    },
+    "community-share.sheet.how-to-delete" : {
+      "comment" : "How to delete a shared setup, in the share sheet.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To delete it later, open the General tab and click Delete next to it under Shared setups. This Mac keeps a private delete key for it. If it was already published, it stays in the history of the public repository."
+          }
+        }
+      }
+    },
+    "community-share.sheet.cancel" : {
+      "comment" : "Button in the share sheet. Closes it and sends nothing.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "community-share.sheet.share" : {
+      "comment" : "Button in the share sheet. Sends the setup.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share"
+          }
+        }
+      }
+    },
+    "community-share.sheet.done" : {
+      "comment" : "Button in the share sheet after the setup was sent. Closes the sheet.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        }
+      }
+    },
+    "community-share.sending" : {
+      "comment" : "Shown in the share sheet while the setup is being sent.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sending…"
+          }
+        }
+      }
+    },
+    "community-share.done" : {
+      "comment" : "Shown in the share sheet after sending. %@ is the record ID, for example s_3f2a…",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shared. Record ID: %@\nIt waits for review and isn't public until it is published. You can delete it at any time in the General tab under Shared setups."
+          }
+        }
+      }
+    },
+    "community-share.done.token-not-saved" : {
+      "comment" : "Shown after sending if the local file with the delete key couldn't be written.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The delete key couldn't be saved on this Mac, so the app can't delete this setup. Note the record ID to ask for its deletion."
+          }
+        }
+      }
+    },
+    "community-share.unavailable.no-server" : {
+      "comment" : "Shown in the share sheet and in Settings when the app has no server URL for sharing.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sharing isn't available yet: this version of the app has no server address for shared setups. Nothing is sent."
+          }
+        }
+      }
+    },
+    "community-share.unavailable.switch-off" : {
+      "comment" : "Shown in the share sheet when the 'Community setups' switch is off.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sharing is off. Turn on Community setups in the General tab to share. Nothing is sent."
+          }
+        }
+      }
+    },
+    "community-share.problem.bundle-id" : {
+      "comment" : "Share sheet error.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This app can't be shared, because its bundle ID isn't in the allowed format."
+          }
+        }
+      }
+    },
+    "community-share.problem.sensitive" : {
+      "comment" : "Share sheet error for apps on the sensitive list.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setups for this app can't be shared, because the app's name could reveal health, dating, religious, political or financial information."
+          }
+        }
+      }
+    },
+    "community-share.problem.title" : {
+      "comment" : "Share sheet error.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a topic from the list."
+          }
+        }
+      }
+    },
+    "community-share.problem.no-rows" : {
+      "comment" : "Share sheet error.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This tab has no buttons to share yet."
+          }
+        }
+      }
+    },
+    "community-share.problem.too-many-rows" : {
+      "comment" : "Share sheet error. %1$ld is the number of rows in the tab, %2$ld the maximum.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This tab has %1$ld buttons. At most %2$ld can be shared."
+          }
+        }
+      }
+    },
+    "community-share.problem.invalid-rows" : {
+      "comment" : "Share sheet error. %ld is the number of rows that break the rules.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This tab can't be shared, because %ld of its buttons can't be shared. Only keyboard shortcuts without modifier buttons can be shared, and Quit, Log Out and Force Quit are never shared."
+          }
+        }
+      }
+    },
+    "community-share.problem.too-large" : {
+      "comment" : "Share sheet error.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This setup is larger than 16 KB and can't be shared."
+          }
+        }
+      }
+    },
+    "community-share.error.network" : {
+      "comment" : "Share sheet error after clicking Share.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The server couldn't be reached. Nothing was shared. Try again later."
+          }
+        }
+      }
+    },
+    "community-share.error.rejected" : {
+      "comment" : "Share sheet error after clicking Share.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The server didn't accept this setup. Nothing was shared."
+          }
+        }
+      }
+    },
+    "community-share.error.server" : {
+      "comment" : "Share sheet error after clicking Share.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The server had a problem. Try again later."
+          }
+        }
+      }
+    },
+    "community-settings.switch" : {
+      "comment" : "Checkbox in the General tab. Off by default. Turns on both downloading setups that other users shared and sharing your own.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Community setups"
+          }
+        }
+      }
+    },
+    "community-settings.switch.hint" : {
+      "comment" : "Hint under the 'Community setups' checkbox in the General tab.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shows button setups that other users shared for an app, and lets you share an app tab's setup. Downloads come from the public setups repository on GitHub. Shared setups go to a review queue and are public under CC0 once published. This one switch turns on both."
+          }
+        }
+      }
+    },
+    "community-settings.shared.header" : {
+      "comment" : "Header of the list of setups this Mac shared, in the General tab.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shared setups"
+          }
+        }
+      }
+    },
+    "community-settings.shared.empty" : {
+      "comment" : "Shown in the General tab when the list of shared setups is empty.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You haven't shared any setups from this Mac."
+          }
+        }
+      }
+    },
+    "community-settings.shared.row" : {
+      "comment" : "One shared setup in the General tab. %1$@ is the app's name, %2$@ the topic, for example 'Google Chrome: Tab switching'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        }
+      }
+    },
+    "community-settings.shared.detail" : {
+      "comment" : "Second line of a shared setup in the General tab. %1$@ is the date it was shared, %2$@ its record ID.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · ID %2$@"
+          }
+        }
+      }
+    },
+    "community-settings.shared.delete" : {
+      "comment" : "Button next to a shared setup in the General tab. Deletes it from the server, then from this list.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        }
+      }
+    },
+    "community-settings.delete-failed.title" : {
+      "comment" : "Title of the alert when deleting a shared setup failed.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The setup wasn't deleted"
+          }
+        }
+      }
+    },
+    "community-settings.delete-failed.not-found" : {
+      "comment" : "Alert text when the server answered that the setup doesn't exist.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The server doesn't know this setup. It may have been deleted already. It stays in the list on this Mac."
+          }
+        }
+      }
+    },
+    "community-settings.delete-failed.network" : {
+      "comment" : "Alert text when deleting failed because of the network.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The server couldn't be reached. The setup stays in the list, so you can try again later."
+          }
+        }
+      }
+    },
+    "community-settings.delete-failed.server" : {
+      "comment" : "Alert text when deleting failed on the server.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The server had a problem. The setup stays in the list, so you can try again later."
+          }
+        }
+      }
+    },
+    "community-settings.delete-failed.ok" : {
+      "comment" : "Button of the alert when deleting a shared setup failed.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "community-settings.delete-failed.forget" : {
+      "comment" : "Button of the alert when the server doesn't know a shared setup. Removes it from the local list only.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove from This Mac"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

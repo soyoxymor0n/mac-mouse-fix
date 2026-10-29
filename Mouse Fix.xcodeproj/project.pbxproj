@@ -434,6 +434,9 @@
 		E116C124C5E6F601D1A4F205 /* CommunitySetups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D39649729C8F52CBFFB385 /* CommunitySetups.swift */; };
 		3252F261029D27F88E73CF42 /* CommunitySetupsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35557AB9E9A6451C8A0DE6E8 /* CommunitySetupsLoader.swift */; };
 		A6C852A5CA213BE690C48E58 /* CommunitySetupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA461BD0CA2A79F2326782EB /* CommunitySetupsViewController.swift */; };
+		3961B1A0488FE508D6203578 /* CommunitySharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D19C2392E79A06803F089D /* CommunitySharing.swift */; };
+		3892EE76F2F83068A4E164D0 /* CommunityShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3804FB14850DCCD0FA087 /* CommunityShareViewController.swift */; };
+		2583117CD6DECCF87DAA7257 /* CommunitySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426CD12F89D5DF194C5738A6 /* CommunitySettingsView.swift */; };
 		DAB8A92172035BE009ED25EF /* ShortcutLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 948A4F8843CA112A2808DD7C /* ShortcutLibrary.m */; };
 /* End PBXBuildFile section */
 
@@ -1237,6 +1240,9 @@
 		47D39649729C8F52CBFFB385 /* CommunitySetups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitySetups.swift; sourceTree = "<group>"; };
 		35557AB9E9A6451C8A0DE6E8 /* CommunitySetupsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitySetupsLoader.swift; sourceTree = "<group>"; };
 		BA461BD0CA2A79F2326782EB /* CommunitySetupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitySetupsViewController.swift; sourceTree = "<group>"; };
+		37D19C2392E79A06803F089D /* CommunitySharing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitySharing.swift; sourceTree = "<group>"; };
+		8DD3804FB14850DCCD0FA087 /* CommunityShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityShareViewController.swift; sourceTree = "<group>"; };
+		426CD12F89D5DF194C5738A6 /* CommunitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitySettingsView.swift; sourceTree = "<group>"; };
 		B4BE5E43850C09CE5220F19A /* ShortcutLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShortcutLibrary.h; sourceTree = "<group>"; };
 		948A4F8843CA112A2808DD7C /* ShortcutLibrary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShortcutLibrary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2982,6 +2988,9 @@
 				47D39649729C8F52CBFFB385 /* CommunitySetups.swift */,
 				35557AB9E9A6451C8A0DE6E8 /* CommunitySetupsLoader.swift */,
 				BA461BD0CA2A79F2326782EB /* CommunitySetupsViewController.swift */,
+				37D19C2392E79A06803F089D /* CommunitySharing.swift */,
+				8DD3804FB14850DCCD0FA087 /* CommunityShareViewController.swift */,
+				426CD12F89D5DF194C5738A6 /* CommunitySettingsView.swift */,
 				1A74030334B741C66981FA7B /* AppTabs.swift */,
 				1FF3D217C24A16836390C3E5 /* AppTabStripView.swift */,
 				995EBBA4FD8D2B6E675A5FA7 /* AppTabPicker.swift */,
@@ -3674,6 +3683,9 @@
 				E116C124C5E6F601D1A4F205 /* CommunitySetups.swift in Sources */,
 				3252F261029D27F88E73CF42 /* CommunitySetupsLoader.swift in Sources */,
 				A6C852A5CA213BE690C48E58 /* CommunitySetupsViewController.swift in Sources */,
+				3961B1A0488FE508D6203578 /* CommunitySharing.swift in Sources */,
+				3892EE76F2F83068A4E164D0 /* CommunityShareViewController.swift in Sources */,
+				2583117CD6DECCF87DAA7257 /* CommunitySettingsView.swift in Sources */,
 				D62EBA9B629BEF75BBC26619 /* AppTabs.swift in Sources */,
 				F37757FFCE9D826F2CE0B543 /* AppTabStripView.swift in Sources */,
 				B2586079D7B1C590FE23488A /* AppTabPicker.swift in Sources */,

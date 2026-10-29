@@ -1,6 +1,26 @@
 # Community config sharing (opt-in)
 
-Status: phase 0 done (2026-10-25). The curated repository is public at https://github.com/soyoxymor0n/mac-mouse-fix-setups (validator, fixtures, CI, one approving review on main). Phase 1 (read-only download, no upload) is built (2026-10-29): "Community setups…" in an app tab, code in `App/UI/Main/Tabs/ButtonTab/AppTabs/CommunitySetups*.swift`, tests in `Tests/run_community_tests.sh` there. The repository has no index file, so the app lists `setups/` with the GitHub contents API (with ETag) and caches the files in `CommunitySetupsCache.json` in its Application Support folder. Phase 2 (the upload) still waits for your decisions on the controller question and the consent model. This plan is not legal advice. Items marked "question for you" need a decision or a lawyer.
+Status: phase 0 done (2026-10-25). The curated repository is public at https://github.com/soyoxymor0n/mac-mouse-fix-setups (validator, fixtures, CI, one approving review on main). Phase 1 (read-only download, no upload) is built (2026-10-29): "Community setups…" in an app tab, code in `App/UI/Main/Tabs/ButtonTab/AppTabs/CommunitySetups*.swift`, tests in `Tests/run_community_tests.sh` there. The repository has no index file, so the app lists `setups/` with the GitHub contents API (with ETag) and caches the files in `CommunitySetupsCache.json` in its Application Support folder. Phase 2 (the upload) is built (2026-10-29) but not deployed: see "Phase 2 status" below. This plan is not legal advice. Items marked "question for you" need a decision or a lawyer.
+
+## Phase 2 status (2026-10-29)
+
+Built, not deployed. Sending is impossible until you do the owner steps below.
+
+Your decisions (section 9): (1) Cloudflare Worker with D1. (2) One switch, "Community setups", controls downloading and sharing, off by default. This is option (b) of decision 2, the consent risk that section 7 describes (downloads depend on agreeing to share), chosen knowingly. (7) CC0.
+Defaults taken from the recommendations, without asking: (3) anonymous, a random delete token per submission, only its SHA-256 hash on the server, no account and no personal data. (4) Every submission goes to a review queue with status `pending`; you publish it to the setups repository by hand, and nothing is public before that. (5) Records are kept until deleted with their token; the Worker stores no IP address and keeps no logs beyond Cloudflare's default (Workers Logs are off in `wrangler.toml`). (6) Apps with sensitive purposes (health, dating, religious, political, financial) are refused by a short bundle ID denylist (prefixes and keywords) in the app and in the Worker; extend both.
+Not done from section 8: rate limiting per hashed IP (the Worker reads no IP; use a Cloudflare rate limiting rule if spam appears), the privacy notice, and the employer check (decision 8). Do those before you deploy.
+
+What was built:
+- App: `CommunitySharing.swift` (switch, endpoint constant, sensitive-app list, submission builder, local list of shared setups with their delete tokens in `CommunitySharedSetups.json` in Application Support, uploader), `CommunityShareViewController.swift` (the "Share this tab…" sheet: exact JSON, the public and CC0 statement, how to delete, Share and Cancel), `CommunitySettingsView.swift` (the switch and the "Shared setups" list with Delete, in the General tab). The submission is the repository file format (`schemaVersion`, `bundleID`, `title`, `rows`) and nothing else: no app version, no time, nothing about the Mac. With the switch off, the "Community setups…" button and the "Share this tab…" menu item are hidden and nothing is downloaded or sent. Delete works with the switch off, so withdrawing is always possible. The config file and `configVersion` are unchanged.
+- Worker: `tools/community-worker/` (`src/index.js`, `src/validate.js`, `src/crypto.js`, `schema.sql`, `wrangler.toml` with placeholder names, tests in `test/`).
+- Tests: `Tests/run_community_tests.sh` (also covers the switch, the builder, the token store and the uploader against a stub, including zero requests with the switch off) and `node --test tools/community-worker/test/`.
+
+Owner steps (details in `tools/community-worker/README.md`), from `tools/community-worker`:
+1. `npx wrangler login`
+2. `npx wrangler d1 create mmf-community`, then paste the printed `database_id` into `wrangler.toml`.
+3. `npx wrangler d1 execute mmf-community --remote --file schema.sql`
+4. `npx wrangler deploy`, which prints the Worker URL.
+5. Paste that URL into `CommunitySharingEndpoint.workerURL` in `App/UI/Main/Tabs/ButtonTab/AppTabs/CommunitySharing.swift` (now the placeholder `https://example.invalid/community`) and build the app.
 
 ## 1. Summary
 

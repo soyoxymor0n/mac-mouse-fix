@@ -138,6 +138,14 @@ struct CommunitySetupsTests {
             expect(false, "listing parses")
         }
 
+        //
+        // Sharing (phase 2)
+        //
+
+        let scratch = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("CommunitySharingTests-\(UUID().uuidString)")
+        sharingTests(scratch: scratch)
+        try? FileManager.default.removeItem(at: scratch)
+
         print("\(failures) failures")
         exit(failures == 0 ? 0 : 1)
     }
