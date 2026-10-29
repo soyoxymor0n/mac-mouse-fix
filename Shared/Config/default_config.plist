@@ -25,6 +25,8 @@
 		<string>high</string>
 		<key>speed</key>
 		<string>medium</string>
+		<key>excludedApps</key>
+		<array/>
 	</dict>
 	<key>License</key>
 	<dict>
