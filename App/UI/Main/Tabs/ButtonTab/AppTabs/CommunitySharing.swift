@@ -25,7 +25,7 @@ enum CommunitySharingEndpoint {
 
     /// The base URL of the deployed Worker, for example `https://<name>.<subdomain>.workers.dev`, without a trailing path.
     ///     `example.invalid` is a reserved name that can never resolve, so the placeholder can't send anything by mistake.
-    static let workerURL = "https://example.invalid/community"
+    static let workerURL = "https://mmf-community.buildfolio.workers.dev"
 
     /// The Worker's base URL, or nil while the constant is still the placeholder or isn't HTTPS
     static var url: URL? {

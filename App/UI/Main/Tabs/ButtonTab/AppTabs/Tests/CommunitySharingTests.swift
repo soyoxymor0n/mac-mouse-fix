@@ -71,8 +71,9 @@ extension CommunitySetupsTests {
         // Endpoint
         //
 
-        expect(CommunitySharingEndpoint.workerURL == "https://example.invalid/community", "the endpoint constant is the placeholder")
-        expect(CommunitySharingEndpoint.url == nil, "the placeholder counts as not configured")
+        expect(CommunitySharingEndpoint.workerURL == "https://mmf-community.buildfolio.workers.dev", "the endpoint constant is the deployed Worker")
+        expect(CommunitySharingEndpoint.url == CommunitySharingEndpoint.url(from: CommunitySharingEndpoint.workerURL), "the endpoint is the constant")
+        expect(CommunitySharingEndpoint.url(from: "https://example.invalid/community") == nil, "the placeholder counts as not configured")
         expect(CommunitySharingEndpoint.url(from: "http://worker.example.com") == nil, "plain HTTP is refused")
         expect(CommunitySharingEndpoint.url(from: "") == nil, "an empty URL is refused")
         expect(CommunitySharingEndpoint.url(from: "https://mmf-community.someone.workers.dev") != nil, "an HTTPS Worker URL is accepted")
@@ -173,7 +174,7 @@ extension CommunitySetupsTests {
 
         let session = CommunityUploader.makeSession(protocolClasses: [StubWorker.self])
         let off = CommunityUploader(endpoint: testEndpoint, isEnabled: { false }, session: session)
-        let unconfigured = CommunityUploader(endpoint: CommunitySharingEndpoint.url, isEnabled: { true }, session: session)
+        let unconfigured = CommunityUploader(endpoint: CommunitySharingEndpoint.url(from: "https://example.invalid/community"), isEnabled: { true }, session: session)
         let on = CommunityUploader(endpoint: testEndpoint, isEnabled: { true }, session: session)
 
         StubWorker.reset()
