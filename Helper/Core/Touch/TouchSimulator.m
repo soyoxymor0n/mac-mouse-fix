@@ -34,6 +34,37 @@
 static NSArray *_nullArray;
 static NSMutableDictionary *_swipeInfo;
 
+/// BEGIN_DOCKSWIPE_VELOCITY
+/// Pure C helpers for the dockSwipe exitSpeed. No ObjC in this block: `scratchpad/tests-agent-a184/run_velocity_test.sh` extracts it between the BEGIN/END markers and compiles it standalone.
+
+/// How many of the last posted `changed` deltas we average for the exitSpeed
+#define kMFDockSwipeVelocityRingSize 3
+
+/// Old exitSpeed was `lastDelta * 100`, which assumed one delta per 8ms (a 125Hz trackpad report).
+/// Velocity is delta / seconds, so `delta / 0.008s * 0.8 == delta * 100`. This keeps that calibration without depending on how often we post.
+#define kMFDockSwipeExitSpeedScale 0.8
+
+/// Records one posted delta and the time since the previous post. Overwrites the oldest entry once the ring is full.
+static void dockSwipeRingPush(double *deltas, double *dts, int *count, int *next, double delta, double dt) {
+    deltas[*next] = delta;
+    dts[*next] = dt;
+    *next = (*next + 1) % kMFDockSwipeVelocityRingSize;
+    if (*count < kMFDockSwipeVelocityRingSize) (*count)++;
+}
+
+/// Average velocity over the ring, in exitSpeed units. Returns 0 if no time has elapsed.
+static double dockSwipeExitSpeedFromRing(const double *deltas, const double *dts, int count) {
+    double deltaSum = 0.0;
+    double dtSum = 0.0;
+    for (int i = 0; i < count; i++) {
+        deltaSum += deltas[i];
+        dtSum += dts[i];
+    }
+    if (dtSum <= 0.0) return 0.0;
+    return (deltaSum / dtSum) * kMFDockSwipeExitSpeedScale;
+}
+/// END_DOCKSWIPE_VELOCITY
+
 /// This function allows you to go back and forward in apps like Safari.
 ///
 /// Navigation swipe events are actually quite complex and seem to be similar to dock swipes internally (They seem to also have an origin offset and other similar fields from what i've seen)
@@ -106,6 +137,10 @@ static NSMutableDictionary *_swipeInfo;
     ///         - Dock swipe transitions sometimes get stuck and you can't unstick it with the same dock-swipe – this is pretty bad! macOS should fix this but it doesn't happen with a Trackpad.
     ///         - (Translation issue) `scroll-effect.4-pinch.hint` confuses scrolling up and scrolling down. (At least under the default `naturalScrolling = 1` setting) (Putting this note into TouchSimulator.m because we made so many changes to translations on non-master branch.)
     ///         - Didn't test whether `double/triple sent end events` are still beneficial (or even harmful) under macOS 27
+    ///             [Oct 2026] Checked the lifetime of the events the double/triple timers post: the NSMutableDictionary retains them (verified with a CFGetRetainCount probe), so the early CFRelease at the end of this function is not the cause of the stuck bug.
+    ///     Rate of `changed` events:
+    ///         - Throttling lives in ModifiedDrag.m (`processPendingCoalescableEventsOncePerFrame`): at most one call per display frame. Don't add a second throttle here. An 8ms gate (PR #2023) or a 125Hz gate (PR #2049) would drop frames on 120/144Hz displays, where a frame is 6.9–8.3ms.
+    ///         - The "up to 19 events in 8ms" measurement (PR #2023, 2026-09-15) predates that per-frame coalescing.
     ///     Small / non-actionable problems:
     ///         - New animation curves make `scroll-effect.4-pinch` feel weird – same problem on Trackpad, I think
     
@@ -133,14 +168,27 @@ static NSMutableDictionary *_swipeInfo;
     static double _dockSwipeLastDelta = 0.0;
     static NSTimer *_doubleSendTimer;
     static NSTimer *_tripleSendTimer;
-    
+    static double _dockSwipeRecentDeltas[kMFDockSwipeVelocityRingSize];
+    static double _dockSwipeRecentDts[kMFDockSwipeVelocityRingSize];
+    static int _dockSwipeRecentCount = 0;
+    static int _dockSwipeRecentNext = 0;
+    static CFTimeInterval _dockSwipeLastChangedTime = 0.0;
+
     /// Update originOffset
-    
+
     if (phase == kIOHIDEventPhaseBegan) {
         _dockSwipeOriginOffset = d;
+        _dockSwipeRecentCount = 0;
+        _dockSwipeRecentNext = 0;
+        _dockSwipeLastChangedTime = CACurrentMediaTime();
     } else if (phase == kIOHIDEventPhaseChanged) {
         if (d == 0) return;
         _dockSwipeOriginOffset += d;
+
+        /// Remember this delta and how long it took, for the exitSpeed
+        CFTimeInterval now = CACurrentMediaTime();
+        dockSwipeRingPush(_dockSwipeRecentDeltas, _dockSwipeRecentDts, &_dockSwipeRecentCount, &_dockSwipeRecentNext, d, now - _dockSwipeLastChangedTime);
+        _dockSwipeLastChangedTime = now;
     }
     
     /// Debug
@@ -171,9 +219,12 @@ static NSMutableDictionary *_swipeInfo;
     /// - This only seems to affect the pinch dockSwipes. Doesn't seem to affect horiztonal or vertical.
     /// - `*100` is a rough approximation of how the real values look. `*50` also seemed to work well.
     /// - Update: on macOS 27 I just observed `*300`. I'm not 100% sure whether the `velocity` value on macOS 27 is the same as the old `exitSpeed`.
+    /// - Update [Oct 2026]: Now the average velocity of the last few posted deltas (`dockSwipeExitSpeedFromRing()` above), not just the last delta.
+    ///      The last delta is noisy: deltas now come one per display frame (ModifiedDrag.m coalesces them), and their size depends on how many mouse reports landed in that frame.
+    ///      Ported from PR #2049 (not verified on a device). Note: this also changes the exitSpeed on macOS 26 and below.
     double exitSpeed = 0;
     if (phase == kIOHIDEventPhaseEnded || phase == kIOHIDEventPhaseCancelled) {
-        exitSpeed = _dockSwipeLastDelta*100;
+        exitSpeed = dockSwipeExitSpeedFromRing(_dockSwipeRecentDeltas, _dockSwipeRecentDts, _dockSwipeRecentCount);
     }
     
     /// Override end phase with canceled phase
@@ -198,8 +249,8 @@ static NSMutableDictionary *_swipeInfo;
         if (invertedFromDevice) __dockSwipeOriginOffset *= -1; /// Could also apply the unflipping to the `d` argument above.
         
         /// Create HIDEvent
-        ///     Note: Setting the timestamp to `mach_absolute_time()` here would make some sense but we're not setting timestamps anywhere else when simulating gestures
-        HIDEvent *hidEvent = [[HIDEvent alloc] initWithType: kIOHIDEventTypeDockSwipe timestamp: 0 senderID: 0];
+        ///     Timestamps: real trackpad events carry a mach timestamp, and GestureScrollSimulator.m does the same. Ported from PR #2049 (reported smoother on macOS 27; not verified on a device).
+        HIDEvent *hidEvent = [[HIDEvent alloc] initWithType: kIOHIDEventTypeDockSwipe timestamp: mach_absolute_time() senderID: 0];
         
         IOHIDEventOptionBits options = (phase << kIOHIDEventEventOptionPhaseShift);
         
@@ -210,12 +261,16 @@ static NSMutableDictionary *_swipeInfo;
         
         /// Attach velocity event on exit
         if (phase == kIOHIDEventPhaseEnded || phase == kIOHIDEventPhaseCancelled) {
-            
-            HIDEvent *childEvent = [[HIDEvent alloc] initWithType: kIOHIDEventTypeVelocity timestamp: 0 senderID: 0];
-            
-            [childEvent setDoubleValue: exitSpeed forField: kIOHIDEventFieldVelocityX];
-            [childEvent setDoubleValue: exitSpeed forField: kIOHIDEventFieldVelocityY];
-            [childEvent setDoubleValue: 0.0       forField: kIOHIDEventFieldVelocityZ];
+
+            /// The progress above is un-flipped when `invertedFromDevice`, so the velocity has to be un-flipped too.
+            ///     Otherwise it points against the progress at the end of every natural-direction gesture. Ported from PR #2049 (not verified on a device).
+            double velocity = invertedFromDevice ? -exitSpeed : exitSpeed;
+
+            HIDEvent *childEvent = [[HIDEvent alloc] initWithType: kIOHIDEventTypeVelocity timestamp: mach_absolute_time() senderID: 0];
+
+            [childEvent setDoubleValue: velocity forField: kIOHIDEventFieldVelocityX];
+            [childEvent setDoubleValue: velocity forField: kIOHIDEventFieldVelocityY];
+            [childEvent setDoubleValue: 0.0      forField: kIOHIDEventFieldVelocityZ];
             
             [hidEvent appendEvent: childEvent];
         }
@@ -288,7 +343,7 @@ static NSMutableDictionary *_swipeInfo;
             ///     This makes me think the bug is about timing / how slow the events are sent, and not in which order the events are sent or with on which thread the events are sent as I suspected initially.
             ///     Another hint towards this is, that the stuck-bug seems to occur more, the slower and more stuttery the UI is (the longer the computer has been running)
             /// I fixed the stuck-bug now. (See the comment with "This fixed the stuck-bug!" in ModifiedDrag.m) But I still don't know what caused it exactly.
-            DDLogDebug("Dock Swipe exit: %f, originOffset: %f, phase: %hu", _dockSwipeLastDelta*100, _dockSwipeOriginOffset, phase);
+            DDLogDebug("Dock Swipe exit: %f, originOffset: %f, phase: %hu", exitSpeed, _dockSwipeOriginOffset, phase);
 
         } else {
             DDLogDebug("Dock Swipe delta: %f originOffset: %f, phase: %hu", d, _dockSwipeOriginOffset, phase);
