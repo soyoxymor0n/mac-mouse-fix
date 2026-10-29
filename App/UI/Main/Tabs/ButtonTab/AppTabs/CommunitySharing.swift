@@ -28,12 +28,30 @@ enum CommunitySharingEndpoint {
     static let workerURL = "https://example.invalid/community"
 
     /// The Worker's base URL, or nil while the constant is still the placeholder or isn't HTTPS
-    static var url: URL? { return url(from: workerURL) }
+    static var url: URL? {
+        #if DEBUG
+        /// Debug builds can point at a Worker running on this Mac (see `allowsEndpoint`). Release builds never read this key.
+        if let override = UserDefaults.standard.string(forKey: "CommunitySharing.debugEndpoint"), let url = URL(string: override), allowsEndpoint(url) {
+            return url
+        }
+        #endif
+        return url(from: workerURL)
+    }
 
     static func url(from string: String) -> URL? {
         guard let url = URL(string: string), url.scheme == "https", let host = url.host?.lowercased(), !host.isEmpty else { return nil }
         if host == "example.invalid" || host.hasSuffix(".invalid") { return nil }
         return url
+    }
+
+    /// HTTPS is required. Debug builds also accept plain HTTP to this Mac only, so a local test Worker (`wrangler dev`) can be used.
+    static func allowsEndpoint(_ url: URL) -> Bool {
+        if url.scheme == "https" { return true }
+        #if DEBUG
+        return url.scheme == "http" && ["localhost", "127.0.0.1"].contains(url.host?.lowercased() ?? "")
+        #else
+        return false
+        #endif
     }
 }
 
@@ -322,7 +340,7 @@ final class CommunityUploader {
         case .notConfigured: return .failure(.notConfigured)
         default: break
         }
-        guard let endpoint, endpoint.scheme == "https" else { return .failure(.notConfigured) }
+        guard let endpoint, CommunitySharingEndpoint.allowsEndpoint(endpoint) else { return .failure(.notConfigured) }
         var request = URLRequest(url: endpoint.appendingPathComponent(path), cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: CommunityUploader.timeout)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
