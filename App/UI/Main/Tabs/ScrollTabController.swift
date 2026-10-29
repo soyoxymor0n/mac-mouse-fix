@@ -32,6 +32,9 @@ class ScrollTabController: NSViewController {
     /// Outlets
     
     @IBOutlet weak var masterStack: CollapsingStackView!
+
+    /// "Don't scroll in these apps" section. Appended to `masterStack` in `viewDidLoad()`.
+    private let excludedApps = ScrollTabExcludedApps()
     
 
     
@@ -91,6 +94,8 @@ class ScrollTabController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        excludedApps.install(in: masterStack)
         
         /// There was some reason we don't use viewDidLoad here, and instead we use awakeFromNib. I think it had to do with preventing animations from playing when the app starts right into this tab or sth. But maybe it's just unnecessary.
         /// Edit: The replacing between the macOSHint and the preciseSection broke when we used awakeFromNib. Not totally sure why. Let's hope viewDidLoad works after all.

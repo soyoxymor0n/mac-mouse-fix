@@ -28,6 +28,7 @@
 #import "EventUtility.h"
 #import "MathObjc.h"
 #import "Threads.h"
+#import "ScrollExcludedApps.h"
 
 @import IOKit;
 #import "MFHIDEventImports.h"
@@ -65,6 +66,46 @@ static CFTimeInterval _lastScrollAnalysisResultTimeStamp;
 
 static MFReadWriteTracker _readWriteTracker;
 
+#pragma mark - Excluded apps
+
+/// While the frontmost app is listed in `Scroll.excludedApps`, eventTapCallback() passes scroll events through unaltered.
+/// Everything here is read and written on `IOThread.runLoop`. `handleFrontmostAppChanged()` hops there from the NSWorkspace notification.
+
+static NSString *_frontmostAppBundleID;
+static BOOL _frontmostAppIsExcluded;
+static ScrollConfig *_excludedAppsConfig; /// The `ScrollConfig` that `_frontmostAppIsExcluded` was calculated for. `ScrollConfig.shared` is replaced on every config reload, so a pointer change means the list may have changed.
+
+static void updateFrontmostAppIsExcluded(void) {
+
+    BOOL excluded = MFScrollAppIsExcluded(_frontmostAppBundleID, (NSArray *)config(@"Scroll.excludedApps"));
+    BOOL becameExcluded = excluded && !_frontmostAppIsExcluded;
+
+    _frontmostAppIsExcluded = excluded;
+    _excludedAppsConfig = ScrollConfig.shared;
+
+    if (becameExcluded) {
+        /// Stop smoothing animations that were started before the excluded app came to the front. Otherwise they keep posting events into that app.
+        ///     Scheduled, not called directly, because we may be inside the readsAndWritesState() of eventTapCallback().
+        mfrun(IOThread.runLoop, ^{ [Scroll resetState]; });
+    }
+}
+
+static BOOL frontmostAppIsExcluded(void) {
+    /// Hot path. Only recalculates after a config reload.
+    if (ScrollConfig.shared != _excludedAppsConfig) {
+        updateFrontmostAppIsExcluded();
+    }
+    return _frontmostAppIsExcluded;
+}
+
+static void handleFrontmostAppChanged(NSString *bundleID) {
+    assertRunLoop(IOThread.runLoop);
+    readsAndWritesState(&_readWriteTracker);
+
+    _frontmostAppBundleID = bundleID;
+    updateFrontmostAppIsExcluded();
+}
+
 #pragma mark - Public functions
 
 + (void) load_Manual {
@@ -100,6 +141,14 @@ static MFReadWriteTracker _readWriteTracker;
     /// Create initial config instance
     ///     Edit: I don't think this makes sense. `_scrollConfig` will be retrieved as necessary on first consecutive ticks
     _scrollConfig = nil; /// [[ScrollConfig alloc] init];
+
+    /// Track the frontmost app for `Scroll.excludedApps`
+    NSString *initialFrontmostBundleID = NSWorkspace.sharedWorkspace.frontmostApplication.bundleIdentifier;
+    mfrun(IOThread.runLoop, ^{ handleFrontmostAppChanged(initialFrontmostBundleID); });
+    [NSWorkspace.sharedWorkspace.notificationCenter addObserverForName:NSWorkspaceDidActivateApplicationNotification object:nil queue:NSOperationQueue.mainQueue usingBlock:^(NSNotification *note) {
+        NSString *bundleID = [(NSRunningApplication *)note.userInfo[NSWorkspaceApplicationKey] bundleIdentifier];
+        mfrun(IOThread.runLoop, ^{ handleFrontmostAppChanged(bundleID); });
+    }];
 }
 
 + (void)resetState {
@@ -218,6 +267,11 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEv
         return event;
     }
     
+    /// Pass scroll events through unaltered while the frontmost app is excluded (`Scroll.excludedApps`)
+    if (frontmostAppIsExcluded()) {
+        return event;
+    }
+
     /// Filter out scroll events by wacom tablet
     if (CGEvent_IsWacomEvent(event))
         return event;
