@@ -52,7 +52,8 @@ static NSMutableArray<Device *> *_attachedDevices;
 + (NSArray<Device *> *)attachedDevices {
     assertRunLoop(IOThread.runLoop);
     readsState(&_readWriteTracker);
-    return _attachedDevices;
+    /// `_attachedDevices` is only created in `load_Manual`, which runs after accessibility access is granted. Until then there are no devices. Returning nil crashed the helper when the main app asked for the active device (`getActiveDeviceInfo`) while accessibility was missing. [Oct 2026]
+    return _attachedDevices ?: @[];
 }
 
 static NSMutableDictionary<NSNumber *, Device *> *_iohidToAttachedCache;
