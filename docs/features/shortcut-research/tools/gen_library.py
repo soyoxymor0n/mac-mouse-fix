@@ -351,6 +351,11 @@ def main():
                 problems.append("no verified bundle ID: " + app["name"])
                 continue
             key = bundles[0]
+            if key in apps_out and apps_out[key]["name"] != app["name"]:
+                # Two research apps with one bundle ID (Microsoft 365 and Microsoft Word). Mixing them would show
+                # unflagged rows under the other app's name, so the first app wins.
+                problems.append("%s shares a bundle ID with %s: its shortcuts are skipped" % (app["name"], apps_out[key]["name"]))
+                continue
             entries = apps_out.setdefault(key, {"name": app["name"], "bundleIDs": bundles, "entries": []})
             for row in app.get("shortcuts", []):
                 if not mouse_suitable(row):

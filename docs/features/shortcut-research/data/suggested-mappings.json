@@ -1,0 +1,645 @@
+{
+ "note": "Suggested mouse buttons per library entry, from the same check. Suggestions only: the Apps tab shows them as 'Suggested'. Nothing is applied automatically.",
+ "suggestions": [
+  {
+   "app": "1Password",
+   "button": 4,
+   "action": "Go back",
+   "reason": "Back button navigates back through items.",
+   "sourceURL": "https://support.1password.com/keyboard-shortcuts/"
+  },
+  {
+   "app": "1Password",
+   "button": 5,
+   "action": "Go forward",
+   "reason": "Forward button mirrors back navigation.",
+   "sourceURL": "https://support.1password.com/keyboard-shortcuts/"
+  },
+  {
+   "app": "1Password",
+   "button": 3,
+   "action": "Show Quick Access",
+   "reason": "Quick access to logins from anywhere.",
+   "sourceURL": "https://support.1password.com/keyboard-shortcuts/"
+  },
+  {
+   "app": "Microsoft PowerPoint",
+   "button": 4,
+   "action": "Go to the previous slide",
+   "reason": "Back button steps to previous slide.",
+   "sourceURL": "https://support.microsoft.com/en-us/accessibility/powerpoint/use-keyboard-shortcuts-to-create-powerpoint-presentations"
+  },
+  {
+   "app": "Microsoft PowerPoint",
+   "button": 5,
+   "action": "Go to the next slide",
+   "reason": "Forward button advances slides.",
+   "sourceURL": "https://support.microsoft.com/en-us/accessibility/powerpoint/use-keyboard-shortcuts-to-create-powerpoint-presentations"
+  },
+  {
+   "app": "Finder",
+   "button": 4,
+   "action": "Go to the previous folder",
+   "reason": "Back button matches Finder history navigation.",
+   "sourceURL": "https://support.apple.com/en-us/102650"
+  },
+  {
+   "app": "Finder",
+   "button": 5,
+   "action": "Go to the next folder",
+   "reason": "Forward button matches Finder history navigation.",
+   "sourceURL": "https://support.apple.com/en-us/102650"
+  },
+  {
+   "app": "Finder",
+   "button": 3,
+   "action": "Open the folder that contains the current folder",
+   "reason": "Quick way up the folder tree.",
+   "sourceURL": "https://support.apple.com/en-us/102650"
+  },
+  {
+   "app": "Bitwarden",
+   "button": 4,
+   "action": "Copy the open item's password",
+   "reason": "Most frequent action on an open item.",
+   "sourceURL": "https://bitwarden.com/help/keyboard-shortcuts/"
+  },
+  {
+   "app": "Bitwarden",
+   "button": 5,
+   "action": "Copy the open item's username",
+   "reason": "Second most frequent action on an item.",
+   "sourceURL": "https://bitwarden.com/help/keyboard-shortcuts/"
+  },
+  {
+   "app": "Spotify",
+   "button": 4,
+   "action": "Play or pause",
+   "reason": "Most common playback control.",
+   "sourceURL": "https://support.spotify.com/us/article/keyboard-shortcuts/"
+  },
+  {
+   "app": "Spotify",
+   "button": 5,
+   "action": "Mute or unmute",
+   "reason": "Quick mute without leaving the window.",
+   "sourceURL": "https://support.spotify.com/us/article/keyboard-shortcuts/"
+  },
+  {
+   "app": "Notes",
+   "button": 4,
+   "action": "Return to the note containing the linked note",
+   "reason": "Back button follows note links backward.",
+   "sourceURL": "https://support.apple.com/guide/notes/keyboard-shortcuts-and-gestures-apd46c25187e/mac"
+  },
+  {
+   "app": "Notes",
+   "button": 5,
+   "action": "Go forward to a linked note",
+   "reason": "Forward button follows note links.",
+   "sourceURL": "https://support.apple.com/guide/notes/keyboard-shortcuts-and-gestures-apd46c25187e/mac"
+  },
+  {
+   "app": "Trello",
+   "button": 4,
+   "action": "Go back to previous board",
+   "reason": "Back button switches to previous board.",
+   "sourceURL": "https://support.atlassian.com/trello/docs/trello-desktop-apps/"
+  },
+  {
+   "app": "Trello",
+   "button": 5,
+   "action": "Go forward to next board",
+   "reason": "Forward button switches to next board.",
+   "sourceURL": "https://support.atlassian.com/trello/docs/trello-desktop-apps/"
+  },
+  {
+   "app": "Messages",
+   "button": 4,
+   "action": "Select the previous conversation",
+   "reason": "Side button moves up the conversation list.",
+   "sourceURL": "https://support.apple.com/guide/messages/keyboard-shortcuts-ichtc78b3bff/mac"
+  },
+  {
+   "app": "Messages",
+   "button": 5,
+   "action": "Select the next conversation",
+   "reason": "Side button moves down the conversation list.",
+   "sourceURL": "https://support.apple.com/guide/messages/keyboard-shortcuts-ichtc78b3bff/mac"
+  },
+  {
+   "app": "Amazon Prime Video",
+   "button": 4,
+   "action": "Rewind 10 seconds",
+   "reason": "Back button skips back during playback.",
+   "sourceURL": "https://digprjsurvey.amazon.com/csad/help/node/GE4VW9VWJD7FM6DR?theme=light"
+  },
+  {
+   "app": "Amazon Prime Video",
+   "button": 5,
+   "action": "Fast-forward 10 seconds",
+   "reason": "Forward button skips ahead during playback.",
+   "sourceURL": "https://digprjsurvey.amazon.com/csad/help/node/GE4VW9VWJD7FM6DR?theme=light"
+  },
+  {
+   "app": "Amazon Prime Video",
+   "button": 3,
+   "action": "Play or pause",
+   "reason": "Middle-area button for play and pause.",
+   "sourceURL": "https://digprjsurvey.amazon.com/csad/help/node/GE4VW9VWJD7FM6DR?theme=light"
+  },
+  {
+   "app": "CleanMyMac",
+   "button": 4,
+   "action": "Open Settings",
+   "reason": "Only available action in the library."
+  },
+  {
+   "app": "Microsoft Copilot",
+   "button": 4,
+   "action": "Open Copilot prompt window",
+   "reason": "Only available action; opens the prompt anywhere.",
+   "sourceURL": "https://support.microsoft.com/en-us/microsoft-365-copilot/getting-started-with-copilot-on-macos"
+  },
+  {
+   "app": "djay - DJ App & AI Mixer",
+   "button": 4,
+   "action": "Play/pause",
+   "reason": "Frequent transport action.",
+   "sourceURL": "https://help.algoriddim.com/user-manual/djay-pro-mac/settings/shortcuts"
+  },
+  {
+   "app": "djay - DJ App & AI Mixer",
+   "button": 5,
+   "action": "Load track on Deck 1",
+   "reason": "Fast track loading from the library.",
+   "sourceURL": "https://help.algoriddim.com/user-manual/djay-pro-mac/settings/shortcuts"
+  },
+  {
+   "app": "Microsoft Word",
+   "button": 4,
+   "action": "Undo",
+   "reason": "Back button as undo is intuitive",
+   "sourceURL": "https://support.microsoft.com/office/keyboard-shortcuts-in-word-467089f1-b4f9-4407-a80a-6a1f351fd44e"
+  },
+  {
+   "app": "Microsoft Word",
+   "button": 5,
+   "action": "Redo",
+   "reason": "Forward button as redo pairs with undo",
+   "sourceURL": "https://support.microsoft.com/office/keyboard-shortcuts-in-word-467089f1-b4f9-4407-a80a-6a1f351fd44e"
+  },
+  {
+   "app": "Microsoft Outlook",
+   "button": 4,
+   "action": "Display previous message",
+   "reason": "Step back through messages",
+   "sourceURL": "https://support.microsoft.com/en-us/accessibility/outlook/mac/keyboard-shortcuts-in-outlook-for-mac"
+  },
+  {
+   "app": "Microsoft Outlook",
+   "button": 5,
+   "action": "Display next message",
+   "reason": "Step forward through messages",
+   "sourceURL": "https://support.microsoft.com/en-us/accessibility/outlook/mac/keyboard-shortcuts-in-outlook-for-mac"
+  },
+  {
+   "app": "Slack",
+   "button": 4,
+   "action": "Go back in history",
+   "reason": "Matches browser-style back",
+   "sourceURL": "https://slack.com/help/articles/201374536"
+  },
+  {
+   "app": "Slack",
+   "button": 5,
+   "action": "Go forward in history",
+   "reason": "Matches browser-style forward",
+   "sourceURL": "https://slack.com/help/articles/201374536"
+  },
+  {
+   "app": "Goodnotes: AI Notes",
+   "button": 4,
+   "action": "Undo",
+   "reason": "Quick undo while writing",
+   "sourceURL": "https://support.goodnotes.com/hc/en-us/articles/17220521238159"
+  },
+  {
+   "app": "Goodnotes: AI Notes",
+   "button": 5,
+   "action": "Redo",
+   "reason": "Pairs with undo",
+   "sourceURL": "https://support.goodnotes.com/hc/en-us/articles/17220521238159"
+  },
+  {
+   "app": "Music",
+   "button": 3,
+   "action": "Start playing or pause the selected song",
+   "reason": "Play and pause on middle-adjacent button",
+   "sourceURL": "https://support.apple.com/guide/music/keyboard-shortcuts-mus1019/mac"
+  },
+  {
+   "app": "Music",
+   "button": 4,
+   "action": "While a song is playing, play the previous song in the list",
+   "reason": "Previous track",
+   "sourceURL": "https://support.apple.com/guide/music/keyboard-shortcuts-mus1019/mac"
+  },
+  {
+   "app": "Music",
+   "button": 5,
+   "action": "While a song is playing, play the next song in the list",
+   "reason": "Next track",
+   "sourceURL": "https://support.apple.com/guide/music/keyboard-shortcuts-mus1019/mac"
+  },
+  {
+   "app": "Preview",
+   "button": 4,
+   "action": "Move to the previous page",
+   "reason": "Page back through documents",
+   "sourceURL": "https://support.apple.com/guide/preview/keyboard-shortcuts-cpprvw0003/mac"
+  },
+  {
+   "app": "Preview",
+   "button": 5,
+   "action": "Move to the next page",
+   "reason": "Page forward through documents",
+   "sourceURL": "https://support.apple.com/guide/preview/keyboard-shortcuts-cpprvw0003/mac"
+  },
+  {
+   "app": "Final Cut Pro",
+   "button": 3,
+   "action": "Blade",
+   "reason": "Most frequent editing cut",
+   "sourceURL": "https://support.apple.com/guide/final-cut-pro/ver90ba5929/mac"
+  },
+  {
+   "app": "Final Cut Pro",
+   "button": 4,
+   "action": "Undo",
+   "reason": "Quick undo",
+   "sourceURL": "https://support.apple.com/guide/final-cut-pro/ver90ba5929/mac"
+  },
+  {
+   "app": "Final Cut Pro",
+   "button": 5,
+   "action": "Redo",
+   "reason": "Pairs with undo",
+   "sourceURL": "https://support.apple.com/guide/final-cut-pro/ver90ba5929/mac"
+  },
+  {
+   "app": "Obsidian",
+   "button": 4,
+   "action": "Undo",
+   "reason": "Quick undo",
+   "sourceURL": "https://obsidian.md/help/editing-shortcuts"
+  },
+  {
+   "app": "Obsidian",
+   "button": 5,
+   "action": "Redo",
+   "reason": "Pairs with undo",
+   "sourceURL": "https://obsidian.md/help/editing-shortcuts"
+  },
+  {
+   "app": "Calendar",
+   "button": 3,
+   "action": "Go to today's date",
+   "reason": "Quick return to today",
+   "sourceURL": "https://support.apple.com/guide/calendar/keyboard-shortcuts-ical002/mac"
+  },
+  {
+   "app": "Calendar",
+   "button": 4,
+   "action": "Go to the previous day, week, month, or year",
+   "reason": "Navigate back in time",
+   "sourceURL": "https://support.apple.com/guide/calendar/keyboard-shortcuts-ical002/mac"
+  },
+  {
+   "app": "Calendar",
+   "button": 5,
+   "action": "Go to the next day, week, month, or year",
+   "reason": "Navigate forward in time",
+   "sourceURL": "https://support.apple.com/guide/calendar/keyboard-shortcuts-ical002/mac"
+  },
+  {
+   "app": "Mail",
+   "button": 4,
+   "action": "Get new emails",
+   "reason": "Fast refresh of inbox",
+   "sourceURL": "https://support.apple.com/guide/mail/keyboard-shortcuts-mlhlb94f262b/mac"
+  },
+  {
+   "app": "Mail",
+   "button": 5,
+   "action": "Forward the selected email",
+   "reason": "Common one-click mail action",
+   "sourceURL": "https://support.apple.com/guide/mail/keyboard-shortcuts-mlhlb94f262b/mac"
+  },
+  {
+   "app": "Home Assistant",
+   "button": 4,
+   "action": "Open Quick search",
+   "reason": "Fastest way to reach any entity",
+   "sourceURL": "https://www.home-assistant.io/docs/tools/quick-bar/"
+  },
+  {
+   "app": "Pixelmator Pro: Edit Images",
+   "button": 4,
+   "action": "Undo",
+   "reason": "Frequent edit step, easy to reach",
+   "sourceURL": "https://support.pixelmator.com/pixelmator-pro-user-guide/pixelmator-pro-keyboard-shortcuts"
+  },
+  {
+   "app": "Pixelmator Pro: Edit Images",
+   "button": 5,
+   "action": "Redo",
+   "reason": "Pairs with Undo",
+   "sourceURL": "https://support.pixelmator.com/pixelmator-pro-user-guide/pixelmator-pro-keyboard-shortcuts"
+  },
+  {
+   "app": "Terminal",
+   "button": 4,
+   "action": "Go to the previous tab",
+   "reason": "Tab navigation mirrors browser back",
+   "sourceURL": "https://support.apple.com/guide/terminal/keyboard-shortcuts-trmlshtcts/mac"
+  },
+  {
+   "app": "Terminal",
+   "button": 5,
+   "action": "Go to the next tab",
+   "reason": "Pairs with previous tab",
+   "sourceURL": "https://support.apple.com/guide/terminal/keyboard-shortcuts-trmlshtcts/mac"
+  },
+  {
+   "app": "Brave",
+   "button": 4,
+   "action": "Go back one page in this tab",
+   "reason": "Standard browser back",
+   "sourceURL": "https://support.brave.app/hc/en-us/articles/360032272171-What-keyboard-shortcuts-can-I-use-in-Brave"
+  },
+  {
+   "app": "Brave",
+   "button": 5,
+   "action": "Go forward one page in this tab",
+   "reason": "Standard browser forward",
+   "sourceURL": "https://support.brave.app/hc/en-us/articles/360032272171-What-keyboard-shortcuts-can-I-use-in-Brave"
+  },
+  {
+   "app": "Microsoft Teams",
+   "button": 4,
+   "action": "Go back",
+   "reason": "Navigate back through views",
+   "sourceURL": "https://support.microsoft.com/office/2e8e2a70-e8d8-4a19-949b-4c36dd5292d2"
+  },
+  {
+   "app": "Safari",
+   "button": 4,
+   "action": "Go back to previous webpage",
+   "reason": "Standard browser back",
+   "sourceURL": "https://support.apple.com/guide/safari/keyboard-shortcuts-and-gestures-cpsh003/mac"
+  },
+  {
+   "app": "Safari",
+   "button": 5,
+   "action": "Go forward to next webpage",
+   "reason": "Standard browser forward",
+   "sourceURL": "https://support.apple.com/guide/safari/keyboard-shortcuts-and-gestures-cpsh003/mac"
+  },
+  {
+   "app": "Photos",
+   "button": 4,
+   "action": "Move to the previous photo",
+   "reason": "Browse photos backward",
+   "sourceURL": "https://support.apple.com/guide/photos/keyboard-shortcuts-and-gestures-pht9b4411b24/mac"
+  },
+  {
+   "app": "Photos",
+   "button": 5,
+   "action": "Move to the next photo",
+   "reason": "Browse photos forward",
+   "sourceURL": "https://support.apple.com/guide/photos/keyboard-shortcuts-and-gestures-pht9b4411b24/mac"
+  },
+  {
+   "app": "VN: Video Editor",
+   "button": 4,
+   "action": "Play or pause editor video",
+   "reason": "Most used timeline control",
+   "sourceURL": "https://vlognow.me/help/others/vn-mac-shortcut/"
+  },
+  {
+   "app": "VN: Video Editor",
+   "button": 5,
+   "action": "Split video clip",
+   "reason": "Core editing action",
+   "sourceURL": "https://vlognow.me/help/others/vn-mac-shortcut/"
+  },
+  {
+   "app": "Photomator",
+   "button": 4,
+   "action": "Previous photo",
+   "reason": "Browse photos backward",
+   "sourceURL": "https://support.pixelmator.com/photomator-user-guide/keyboard-shortcuts"
+  },
+  {
+   "app": "Photomator",
+   "button": 5,
+   "action": "Next photo",
+   "reason": "Browse photos forward",
+   "sourceURL": "https://support.pixelmator.com/photomator-user-guide/keyboard-shortcuts"
+  },
+  {
+   "app": "Infuse",
+   "button": 4,
+   "action": "Skip back 15 seconds",
+   "reason": "Quick rewind while watching",
+   "sourceURL": "https://support.firecore.com/hc/en-us/articles/215090987-Playback-Controls"
+  },
+  {
+   "app": "Infuse",
+   "button": 5,
+   "action": "Skip forward 15 seconds",
+   "reason": "Quick skip ahead",
+   "sourceURL": "https://support.firecore.com/hc/en-us/articles/215090987-Playback-Controls"
+  },
+  {
+   "app": "VLC media player",
+   "button": 4,
+   "action": "Jump backward",
+   "reason": "Quick rewind",
+   "sourceURL": "https://docs.videolan.me/vlc-user/desktop/3.0/en/basic/hotkeys.html"
+  },
+  {
+   "app": "VLC media player",
+   "button": 5,
+   "action": "Jump forward",
+   "reason": "Quick skip ahead",
+   "sourceURL": "https://docs.videolan.me/vlc-user/desktop/3.0/en/basic/hotkeys.html"
+  },
+  {
+   "app": "Windows App",
+   "button": 4,
+   "action": "Copy",
+   "reason": "Clipboard in remote sessions",
+   "sourceURL": "https://learn.microsoft.com/en-us/windows-app/input-keyboard-mouse-touch-pen"
+  },
+  {
+   "app": "Windows App",
+   "button": 5,
+   "action": "Paste",
+   "reason": "Pairs with Copy",
+   "sourceURL": "https://learn.microsoft.com/en-us/windows-app/input-keyboard-mouse-touch-pen"
+  },
+  {
+   "app": "Snipit - Snipping Tool",
+   "button": 4,
+   "action": "Capture selected area (Select Area)",
+   "reason": "Most common capture mode",
+   "sourceURL": "https://snipit.app/resources/guides/how-to-take-a-screenshot-on-mac-with-snipit"
+  },
+  {
+   "app": "Visual Studio Code",
+   "button": 4,
+   "action": "Go back",
+   "reason": "Back in the navigation history, like a browser"
+  },
+  {
+   "app": "Visual Studio Code",
+   "button": 5,
+   "action": "Go forward",
+   "reason": "Forward in the navigation history"
+  },
+  {
+   "app": "Google Chrome",
+   "button": 4,
+   "action": "Open the previous page in browsing history for the current tab",
+   "reason": "Standard Back button action in a browser"
+  },
+  {
+   "app": "Google Chrome",
+   "button": 5,
+   "action": "Open the next page in browsing history for the current tab",
+   "reason": "Standard Forward button action in a browser"
+  },
+  {
+   "app": "Zoom",
+   "button": 4,
+   "action": "Mute/unmute audio",
+   "reason": "Mute quickly during a meeting without the keyboard"
+  },
+  {
+   "app": "Zoom",
+   "button": 5,
+   "action": "Start/stop video",
+   "reason": "Toggle camera during a meeting"
+  },
+  {
+   "app": "Microsoft Excel",
+   "button": 4,
+   "action": "Move to previous sheet (source row lists Option+Left Arrow as the alternative; recorded as such)",
+   "reason": "Step back through worksheets"
+  },
+  {
+   "app": "Microsoft Excel",
+   "button": 5,
+   "action": "Move to next sheet",
+   "reason": "Step forward through worksheets"
+  },
+  {
+   "app": "Microsoft OneNote",
+   "button": 4,
+   "action": "Switch between sections (previous)",
+   "reason": "Move to the previous section"
+  },
+  {
+   "app": "Microsoft OneNote",
+   "button": 5,
+   "action": "Switch between sections (next)",
+   "reason": "Move to the next section"
+  },
+  {
+   "app": "Sweet Home 3D Plan Your House",
+   "button": 4,
+   "action": "Undo",
+   "reason": "Frequent while drawing plans"
+  },
+  {
+   "app": "Sweet Home 3D Plan Your House",
+   "button": 5,
+   "action": "Redo",
+   "reason": "Pairs with Undo"
+  },
+  {
+   "app": "Raycast",
+   "button": 4,
+   "action": "Go back (closes window from Root Search)",
+   "reason": "Back out of a view or close Raycast"
+  },
+  {
+   "app": "Raycast",
+   "button": 5,
+   "action": "Toggle Quick Look preview",
+   "reason": "Preview the selected item quickly"
+  },
+  {
+   "app": "Notion",
+   "button": 4,
+   "action": "Go back",
+   "reason": "Back one page, like a browser"
+  },
+  {
+   "app": "Notion",
+   "button": 5,
+   "action": "Go forward",
+   "reason": "Forward one page, like a browser"
+  },
+  {
+   "app": "Discord",
+   "button": 4,
+   "action": "Navigate back",
+   "reason": "Back to the previous channel"
+  },
+  {
+   "app": "Discord",
+   "button": 5,
+   "action": "Mute/unmute microphone",
+   "reason": "Mute fast during voice chat"
+  },
+  {
+   "app": "GeoGebra Calculator Suite",
+   "button": 4,
+   "action": "Undo (if enabled)",
+   "reason": "Undo construction steps"
+  },
+  {
+   "app": "GeoGebra Calculator Suite",
+   "button": 5,
+   "action": "Redo (if enabled)",
+   "reason": "Pairs with Undo"
+  },
+  {
+   "app": "GeoGebra Classic 6",
+   "button": 4,
+   "action": "Undo",
+   "reason": "Undo construction steps"
+  },
+  {
+   "app": "GeoGebra Classic 6",
+   "button": 5,
+   "action": "Redo",
+   "reason": "Pairs with Undo"
+  },
+  {
+   "app": "LocalSend",
+   "button": 4,
+   "action": "Go back to previous page",
+   "reason": "Back out of the current page"
+  },
+  {
+   "app": "iTerm2",
+   "button": 4,
+   "action": "Open Quickly (View menu)",
+   "reason": "Jump to any session or tab"
+  }
+ ]
+}
