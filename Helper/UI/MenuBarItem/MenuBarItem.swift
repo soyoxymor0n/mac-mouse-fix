@@ -29,6 +29,10 @@ import Foundation
     
     @IBOutlet weak var scrollEnabledItem: NSMenuItem!
     @IBOutlet weak var buttonsEnabledItem: NSMenuItem!
+    @IBOutlet weak var smoothScrollingItem: NSMenuItem!
+
+    /// The smoothing that 'Smooth Scrolling' restores when it's turned back on. Only accessed on the IO thread.
+    private static var smoothnessBeforeOff: String = "high"
     
     @IBOutlet weak var appCompatItem: NSMenuItem!
     @IBOutlet var appCompatView: NSView!
@@ -72,7 +76,10 @@ import Foundation
         
         /// Turn off hint
         menu.removeItem(appCompatHintItem)
-        
+
+        /// Title of the smooth scrolling item. Set in code so it can be localized.
+        smoothScrollingItem.title = MFLocalizedString("menu-bar-smooth-scrolling-item", comment: "Menu bar item. Turns smooth scrolling on or off. Shown under 'Scrolling'.")
+
         /// Load state
         MenuBarItem.reload()
     }
@@ -111,12 +118,14 @@ import Foundation
 
         let buttonsKilled = config("General.buttonKillSwitch") as? Bool ?? false
         let scrollKilled = config("General.scrollKillSwitch") as? Bool ?? false
-        
+        let smoothIsOn = (config("Scroll.smooth") as? String ?? "off") != "off"
+
         if shouldShow {
 
             mfrun(CFRunLoopGetMain()) {
                 instance?.buttonsEnabledItem.state = !buttonsKilled ? .on : .off
                 instance?.scrollEnabledItem.state = !scrollKilled ? .on : .off
+                instance?.smoothScrollingItem.state = smoothIsOn ? .on : .off
             }
             
         }
@@ -154,6 +163,27 @@ import Foundation
         }
     }
     
+    @IBAction func toggleSmoothScrolling(_ sender: NSMenuItem) {
+        assertRunLoop(CFRunLoopGetMain())
+        /// Toggle
+        sender.state = sender.state == .on ? .off : .on
+        let turnOn = sender.state == .on
+        /// Set to config
+        ///     Turning it back on restores the smoothing that was active before, so 'Regular' or 'High' isn't lost.
+        mfrun(IOThread.runLoop()) {
+            if turnOn {
+                setConfig("Scroll.smooth", MenuBarItem.smoothnessBeforeOff as NSString)
+            } else {
+                let current = config("Scroll.smooth") as? String ?? "off"
+                if current != "off" {
+                    MenuBarItem.smoothnessBeforeOff = current
+                }
+                setConfig("Scroll.smooth", "off" as NSString)
+            }
+            commitConfig()
+        }
+    }
+
     @IBAction func disableButtons(_ sender: NSMenuItem) {
         assertRunLoop(CFRunLoopGetMain())
         /// Toggle

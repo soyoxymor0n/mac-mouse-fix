@@ -55,6 +55,8 @@
 		<true/>
 		<key>lockPointerDuringDrag</key>
 		<false/>
+		<key>startHidden</key>
+		<false/>
 	</dict>
 	<key>Pointer</key>
 	<dict>

@@ -482,6 +482,7 @@ import Cocoa
         case "low":     return kMFScrollSpeedLow
         case "medium":  return kMFScrollSpeedMedium
         case "high":    return kMFScrollSpeedHigh
+        case "veryHigh": return kMFScrollSpeedVeryHigh
         default: fatalError()
         }
     }()
@@ -864,6 +865,10 @@ fileprivate func animationCurveParamsMap(name: MFScrollAnimationCurveName) -> MF
     }
 }
 
+/// Sensitivity multiplier for the `veryHigh` scroll speed setting, relative to `high`.
+///     Chosen to be roughly the same step as the ones between the other speed settings. Not tested on device.
+fileprivate let kVeryHighScrollSpeedFactor: Double = 1.5
+
 /// Define function that maps userSettings -> accelerationCurve
 fileprivate func getAccelerationCurve(forSpeed speedArg: MFScrollSpeed, precise: Bool, smoothness: MFScrollSmoothness, animationCurve: MFScrollAnimationCurveName, inputAxis: MFAxis, display: CGDirectDisplayID, scaleToDisplay: Bool, modifiers: MFScrollModificationResult, useQuickModSpeed: Bool, usePreciseModSpeed: Bool, consecutiveScrollTickIntervalMax: Double, consecutiveScrollTickInterval_AccelerationEnd: Double) -> Curve {
     
@@ -910,6 +915,7 @@ fileprivate func getAccelerationCurve(forSpeed speedArg: MFScrollSpeed, precise:
         case kMFScrollSpeedLow: 0.0
         case kMFScrollSpeedMedium: 0.5
         case kMFScrollSpeedHigh: 1.0
+        case kMFScrollSpeedVeryHigh: 1.0 /// Same curves as `high`. The extra speed is applied below, after the curves are evaluated.
         case kMFScrollSpeedSystem: -1.0
         default: -1.0
         }
@@ -995,10 +1001,16 @@ fileprivate func getAccelerationCurve(forSpeed speedArg: MFScrollSpeed, precise:
     } else {
         fatalError()
     }
-    
-    
+
+    /// Very high speed
+    ///     Scales the sensitivity of the `high` curves above. Quick- and precise-mod don't use the speed setting, so we skip them.
+    if speedArg == kMFScrollSpeedVeryHigh && !useQuickModSpeed && !usePreciseModSpeed {
+        minSens *= kVeryHighScrollSpeedFactor
+        maxSens *= kVeryHighScrollSpeedFactor
+    }
+
     /// Precise
-    
+
     if precise {
         minSens = 10
     }
