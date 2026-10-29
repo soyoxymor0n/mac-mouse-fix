@@ -48,6 +48,9 @@ import Foundation
     private var instructionLabel: NSView?
     /// "Recommended setup…" next to "Restore Defaults…". Shown in every app tab whose app has a preset.
     private var recommendedSetupButton: NSButton?
+    /// "Community setups…" before "Recommended setup…". Shown in every app tab. It loads the setups only when clicked.
+    private var communitySetupsButton: NSButton?
+    private var communitySetupsPopover: NSPopover?
     
     //
     // - MARK: IBActions
@@ -489,7 +492,14 @@ import Foundation
         buttonsStack.addView(filler, in: .trailing)
         buttonsStack.removeArrangedSubview(restoreDefaultButton)
         restoreDefaultButton.removeFromSuperview()
-        let pair = NSStackView(views: [button, restoreDefaultButton])
+        let communityButton = NSButton(title: MFLocalizedString("community-setups.button", comment: ""), target: self, action: #selector(openCommunitySetups(_:)))
+        communityButton.bezelStyle = restoreDefaultButton.bezelStyle
+        communityButton.font = restoreDefaultButton.font
+        communityButton.setContentHuggingPriority(.required, for: .horizontal)
+        communityButton.setContentCompressionResistancePriority(.required, for: .vertical)
+        communityButton.setAccessibilityIdentifier("axButtonsCommunitySetupsButton")
+
+        let pair = NSStackView(views: [communityButton, button, restoreDefaultButton])
         pair.orientation = .horizontal
         pair.alignment = .centerY
         pair.spacing = 8
@@ -497,6 +507,7 @@ import Foundation
         buttonsStack.addView(pair, in: .leading) /// The row is laid out in gravity areas, so the pair sits at the leading edge
 
         recommendedSetupButton = button
+        communitySetupsButton = communityButton
         updateRecommendedSetupButton()
     }
 
@@ -510,10 +521,44 @@ import Foundation
     func updateRecommendedSetupButton() {
         guard let button = recommendedSetupButton else { return }
         button.isHidden = scopeApp.flatMap { AppPreset.preset(for: $0) } == nil
+        communitySetupsButton?.isHidden = scopeApp == nil
     }
 
     @objc private func openRecommendedSetup(_ sender: Any) {
         reviewPreset(comparingWithTab: true)
+    }
+
+    /// Shows the community setups of the current app in a popover. The setups are loaded now, not before.
+    @objc private func openCommunitySetups(_ sender: NSButton) {
+        guard let app = scopeApp else { return }
+        communitySetupsPopover?.close()
+
+        let controller = CommunitySetupsViewController(app: app)
+        let popover = NSPopover()
+        popover.behavior = .transient
+        popover.contentViewController = controller
+        controller.onAdd = { [weak self, weak popover] setup in
+            popover?.performClose(nil)
+            self?.reviewCommunitySetup(setup)
+        }
+        popover.show(relativeTo: sender.bounds, of: sender, preferredEdge: .maxY)
+        communitySetupsPopover = popover
+    }
+
+    /// Opens the preset review sheet for a community setup, compared with the tab's rows. Nothing is written until the user confirms there.
+    private func reviewCommunitySetup(_ setup: CommunitySetup) {
+        guard let app = scopeApp, app == setup.bundleID, let window = MainAppState.shared.window else { return }
+
+        let preset = setup.asPreset { CommunitySetupsViewController.actionTitle(of: $0) }
+        let remaps = config("Remaps") as? [Any]
+        let controller = AppPresetReviewController(app: app, preset: preset,
+                                                   globalRows: RemapScope.rows(forScope: nil, inRemaps: remaps) as? [[String: Any]] ?? [],
+                                                   tabRows: RemapScope.rows(forScope: app, inRemaps: remaps) as? [[String: Any]] ?? [],
+                                                   communityTitleKey: setup.titleKey)
+        controller.onFinishComparison = { [weak self] added, replacing, _ in
+            self?.applyPresetRows(app: app, added: added, replacing: replacing, dontSuggestAgain: false)
+        }
+        window.beginSheet(NSWindow(contentViewController: controller))
     }
 
     /// Shows the preset offer for an empty app tab that has a preset, and hides it otherwise

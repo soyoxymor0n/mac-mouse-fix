@@ -1,0 +1,50 @@
+[
+  {
+    "name": "com.apple.finder-navigation.json",
+    "path": "setups/com.apple.finder-navigation.json",
+    "sha": "6875fade8f53a011b1c520edb55a66be236ffaa1",
+    "size": 650,
+    "type": "file",
+    "download_url": "https://raw.githubusercontent.com/soyoxymor0n/mac-mouse-fix-setups/main/setups/com.apple.finder-navigation.json"
+  },
+  {
+    "name": "com.google.Chrome-tabs.json",
+    "path": "setups/com.google.Chrome-tabs.json",
+    "sha": "493520136d89d12ca4fab7189a9a1fe07ba5513f",
+    "size": 655,
+    "type": "file",
+    "download_url": "https://raw.githubusercontent.com/soyoxymor0n/mac-mouse-fix-setups/main/setups/com.google.Chrome-tabs.json"
+  },
+  {
+    "name": "README.md",
+    "path": "setups/README.md",
+    "sha": "1111111111111111111111111111111111111111",
+    "size": 10,
+    "type": "file",
+    "download_url": "https://raw.githubusercontent.com/soyoxymor0n/mac-mouse-fix-setups/main/setups/README.md"
+  },
+  {
+    "name": "drafts",
+    "path": "setups/drafts",
+    "sha": "2222222222222222222222222222222222222222",
+    "size": 0,
+    "type": "dir",
+    "download_url": null
+  },
+  {
+    "name": "elsewhere.json",
+    "path": "setups/elsewhere.json",
+    "sha": "3333333333333333333333333333333333333333",
+    "size": 10,
+    "type": "file",
+    "download_url": "https://example.com/elsewhere.json"
+  },
+  {
+    "name": "huge.json",
+    "path": "setups/huge.json",
+    "sha": "4444444444444444444444444444444444444444",
+    "size": 20000,
+    "type": "file",
+    "download_url": "https://raw.githubusercontent.com/soyoxymor0n/mac-mouse-fix-setups/main/setups/huge.json"
+  }
+]

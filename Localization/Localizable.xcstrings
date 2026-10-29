@@ -872,6 +872,292 @@
         }
       }
     },
+    "community-setups.button" : {
+      "comment" : "Button at the bottom of the Buttons tab, in every app tab. Opens a popover with button setups that other users shared for this app.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Community setups…"
+          }
+        }
+      }
+    },
+    "community-setups.popover.title" : {
+      "comment" : "Title of the Community setups popover. %@ is the app's name.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Community setups for %@"
+          }
+        }
+      }
+    },
+    "community-setups.loading" : {
+      "comment" : "Shown in the Community setups popover while the setups are downloaded.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading setups…"
+          }
+        }
+      }
+    },
+    "community-setups.error" : {
+      "comment" : "Shown in the Community setups popover when the setups could not be downloaded and there is no saved copy.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The community setups could not be loaded. Check your internet connection and try again. Your own settings are not affected."
+          }
+        }
+      }
+    },
+    "community-setups.retry" : {
+      "comment" : "Button in the Community setups popover after loading failed.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try Again"
+          }
+        }
+      }
+    },
+    "community-setups.empty" : {
+      "comment" : "Shown in the Community setups popover when nobody shared a setup for this app. %@ is the app's name.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There are no community setups for %@ yet."
+          }
+        }
+      }
+    },
+    "community-setups.rejected-rows" : {
+      "comment" : "Note in the Community setups popover. %ld is the number of rows that failed the checks (for example a shortcut that quits the app).",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%ld rows were left out because they break the rules for shared setups."
+          }
+        }
+      }
+    },
+    "community-setups.newer-format" : {
+      "comment" : "Note in the Community setups popover. %ld is the number of setups in a newer file format.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%ld setups need a newer version of Mac Mouse Fix and are not shown."
+          }
+        }
+      }
+    },
+    "community-setups.footer" : {
+      "comment" : "Footer of the Community setups popover. %@ is the date and time the list was last checked.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shared by other users and reviewed before publishing. Checked %@."
+          }
+        }
+      }
+    },
+    "community-setups.footer.offline" : {
+      "comment" : "Footer of the Community setups popover when the server could not be reached and a saved copy is shown. %@ is the date and time of that copy.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New setups could not be checked. Showing the copy from %@."
+          }
+        }
+      }
+    },
+    "community-setups.repository-link" : {
+      "comment" : "Link in the Community setups popover. Opens the public GitHub repository that holds the shared setups.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the setups repository"
+          }
+        }
+      }
+    },
+    "community-setups.review-hint" : {
+      "comment" : "Note under the rows of a community setup, before the user adds it.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing changes until you confirm in the next step."
+          }
+        }
+      }
+    },
+    "community-setups.back" : {
+      "comment" : "Button in the Community setups popover. Goes back from one setup's rows to the list of setups.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        }
+      }
+    },
+    "community-setups.add" : {
+      "comment" : "Button in the Community setups popover. Opens the review sheet, where the user picks which rows of the setup to add to this app tab.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to This Tab…"
+          }
+        }
+      }
+    },
+    "community-setups.review.title" : {
+      "comment" : "Title of the review sheet for a community setup. %1$@ is the setup's title (for example 'Tab switching'), %2$@ is the app's name.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Community setup “%1$@” for %2$@"
+          }
+        }
+      }
+    },
+    "community-setups.review.intro" : {
+      "comment" : "Text at the top of the review sheet for a community setup.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other users shared this setup. Choose what to use. You can change the button or the action of any row, or untick it."
+          }
+        }
+      }
+    },
+    "community-setups.title.mic-and-camera" : {
+      "comment" : "Title of a community setup. The titles come from a fixed list.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mic and camera"
+          }
+        }
+      }
+    },
+    "community-setups.title.browser-navigation" : {
+      "comment" : "Title of a community setup. The titles come from a fixed list.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Browser navigation"
+          }
+        }
+      }
+    },
+    "community-setups.title.tab-switching" : {
+      "comment" : "Title of a community setup. The titles come from a fixed list.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tab switching"
+          }
+        }
+      }
+    },
+    "community-setups.title.finder-navigation" : {
+      "comment" : "Title of a community setup. The titles come from a fixed list.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finder navigation"
+          }
+        }
+      }
+    },
+    "community-setups.title.other" : {
+      "comment" : "Title of a community setup. The titles come from a fixed list.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other"
+          }
+        }
+      }
+    },
+    "community-setups.trigger.click.2" : {
+      "comment" : "Trigger of a row in a community setup. %@ is the button's name, for example 'Button 4'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double click %@"
+          }
+        }
+      }
+    },
+    "community-setups.trigger.click.3" : {
+      "comment" : "Trigger of a row in a community setup. %@ is the button's name, for example 'Button 4'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Triple click %@"
+          }
+        }
+      }
+    },
+    "community-setups.trigger.hold.1" : {
+      "comment" : "Trigger of a row in a community setup. %@ is the button's name, for example 'Button 4'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hold %@"
+          }
+        }
+      }
+    },
+    "community-setups.trigger.hold.2" : {
+      "comment" : "Trigger of a row in a community setup. %@ is the button's name, for example 'Button 4'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double click and hold %@"
+          }
+        }
+      }
+    },
+    "community-setups.trigger.hold.3" : {
+      "comment" : "Trigger of a row in a community setup. %@ is the button's name, for example 'Button 4'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Triple click and hold %@"
+          }
+        }
+      }
+    },
     "app-version" : {
       "comment" : "Note: %@ will be the app version, e.g. '3.0.0 (22027)'",
       "localizations" : {
