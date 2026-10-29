@@ -1,5 +1,5 @@
 # Cloudflare Worker for Mac Mouse Fix NG community setups. See README.md for the owner steps.
-# All names here are placeholders. Replace database_id with the ID that `npx wrangler d1 create` prints.
+# database_id is the ID that `npx wrangler d1 create mmf-community` printed. A new database needs a new ID here.
 # This file holds no account ID and no token: wrangler takes them from `npx wrangler login`.
 
 name = "mmf-community"
@@ -10,7 +10,7 @@ workers_dev = true
 [[d1_databases]]
 binding = "DB"
 database_name = "mmf-community"
-database_id = "REPLACE_WITH_THE_DATABASE_ID"
+database_id = "f4f6c269-677c-43c0-b78b-39c37e0d0417"
 
 # Workers Logs stay off: the Worker keeps no request logs of its own.
 [observability]
