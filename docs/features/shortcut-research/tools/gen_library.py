@@ -6,6 +6,15 @@ Input:
   - data/shortcuts.json            (research rows for the first apps, each with bundleIDs)
   - data/top100-shortcuts.json     (research rows for the top-100 Mac App Store apps)
   - data/layouts-us-de-at.tsv      (measured key tables: key code and character for US, German, Austrian)
+  - data/library-flags.json        (optional: verified, sourceURL, verifiedOn and layouts per entry)
+  - data/suggested-mappings.json   (optional: the mouse button the Apps tab suggests for an entry, with a reason)
+
+Every entry that uses a character key (not an arrow, function or other special key) is layout dependent. It stores
+one variant per layout (us, de, at), each with its own key codes and flags, resolved from the measured key tables.
+A layout where the character can't be typed (or needs a modifier the shortcut already uses) is left out of the
+entry's `layouts`, so the entry is hidden there instead of sending the wrong key.
+
+An entry counts as verified only when its flags have `verified`, `sourceURL` and `verifiedOn` (YYYY-MM-DD).
 
 Only rows with mouseSuitable == true and destructive == false are used. Rows with unknown key names are
 reported and skipped. Apps without a verified bundle ID are reported and skipped.
@@ -22,6 +31,18 @@ DATA = os.path.join(HERE, "..", "data")
 REPO = os.path.abspath(os.path.join(HERE, "..", "..", "..", ".."))
 OUT = os.path.join(REPO, "App", "UI", "Main", "Tabs", "ButtonTab", "RemapTable", "ShortcutLibrary.m")
 FLAGS_PATH = os.path.join(DATA, "library-flags.json")
+SUGGESTIONS_PATH = os.path.join(DATA, "suggested-mappings.json")
+LAYOUT_IDS = ("us", "de", "at")
+DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+# Labels of the most used entries are localizable (phase 3). (app, action) -> localization key. The English text stays the default.
+LOCALIZED_LABELS = {
+    ("Google Chrome", "Open the previous page in browsing history for the current tab (alternative)"): "shortcut-library.chrome.back",
+    ("Google Chrome", "Open the next page in browsing history for the current tab (alternative)"): "shortcut-library.chrome.forward",
+    ("Microsoft Teams", "Toggle mute"): "shortcut-library.teams.mute",
+    ("Microsoft Teams", "Toggle video"): "shortcut-library.teams.video",
+    ("Visual Studio Code", "New window or instance"): "shortcut-library.vscode.new-window",
+}
 
 # Bundle IDs read from the Info.plist of the installed apps on the owner's Mac (2026-10-26), for apps whose research row says "unverified".
 BUNDLE_OVERRIDES = {
@@ -63,12 +84,12 @@ SPECIFIC_GROUPS = [
 
 # Default groups: the first pattern that matches the label wins. Order matters.
 DEFAULT_RULES = [
-    ("Windows and tabs", re.compile(r"\b(windows?|tabs?|spaces?|mission control|desktop|minimi[sz]e|maximi[sz]e|full ?screen|split view|pin|app exposé|exposé|switch to .*app|switch apps?|applications?)\b", re.I)),
+    ("Windows and tabs", re.compile(r"\b(windows?|tabs?|spaces?|mission control|desktop|minimi[sz]e|maximi[sz]e|full[ -]?screen|split view|pin|app exposé|exposé|switch to .*app|switch apps?|applications?)\b", re.I)),
     ("Playback and media", re.compile(r"\b(play|pause|stop|next track|previous track|skip|volume|shuffle|repeat|seek|rewind|fast forward|recording|record|mute|unmute|subtitles|captions|crossfade|reverse|deck|locate track|loop|cue)\b", re.I)),
     ("Search", re.compile(r"\b(find|search|spotlight|filter|look ?up|quick open|go to file|go to line|go to dialog|go to|jump to)\b", re.I)),
-    ("Editing", re.compile(r"\b(copy|paste|cut|undo|redo|select all|duplicate|format|bold|italic|underline|strikethrough|indent|outdent|insert|paragraph|comment|uncomment|replace|clear|delete|split|trim|append|clip|formula|highlight|bullet|heading|style|font|align|spelling|dictation|password|username)\b", re.I)),
-    ("Navigation", re.compile(r"\b(back|forward|next|previous|prev|up|down|left|right|arrow|focus|scroll|page up|page down|home|end|top|bottom|beginning|start of|end of|section|move|jump|row|column|cell|item|field|control|tab key|select|reload|refresh|playhead)\b", re.I)),
-    ("View and zoom", re.compile(r"\b(zoom|view|sidebar|toolbar|inspector|preview|outline|show|hide|expand|collapse|display|appearance|dark mode|light mode|reader|grid|gallery|actual size|fit|magnif|full screen|toggle)\b", re.I)),
+    ("Editing", re.compile(r"\b(copy|paste|cut|undo|redo|select all|duplicate|format|bold|italic|underline|strikethrough|indent|outdent|insert|paragraph|comment|uncomment|replace|clear|delete|split|trim|append|clip|formula|highlight|bullet|heading|style|font|align|justify|italics|deselect|^center$|spelling|dictation|password|username)\b", re.I)),
+    ("Navigation", re.compile(r"\b(back|forward|next|previous|prev|up|down|left|right|arrow|focus|scroll|page up|page down|home|end|top|bottom|beginning|start of|end of|section|move|jump|row|column|cell|item|field|control|tab key|select|reload|refresh|playhead|navigate|return to the)\b", re.I)),
+    ("View and zoom", re.compile(r"\b(zoom|view|sidebar|toolbar|inspector|preview|outline|show|hide|expand|collapse|display|appearance|dark mode|light mode|reader|grid|gallery|actual size|fit|magnif|full screen|toggle|bigger|smaller|thumbnail size)\b", re.I)),
     ("File", re.compile(r"\b(new|open|save|print|export|import|share|rename|file|document|folder|close|quit|page setup|archive|upload|download|attach|page)\b", re.I)),
 ]
 
@@ -84,11 +105,31 @@ def group_for(app_name, label):
     return "Other"
 
 
+def load_json_list(path, key):
+    """The list under `key` in a JSON file. A missing or empty file gives an empty list."""
+    if not os.path.exists(path) or os.path.getsize(path) == 0:
+        return []
+    doc = json.load(open(path, encoding="utf-8"))
+    return doc.get(key) or []
+
+
 def load_flags():
-    if not os.path.exists(FLAGS_PATH):
-        return {}
-    doc = json.load(open(FLAGS_PATH, encoding="utf-8"))
-    return {(f["app"], f["action"]): {k: v for k, v in f.items() if k not in ("app", "action")} for f in doc.get("flags", [])}
+    return {(f["app"], f["action"]): {k: v for k, v in f.items() if k not in ("app", "action")} for f in load_json_list(FLAGS_PATH, "flags")}
+
+
+def load_suggestions():
+    """(app, action) -> {"suggestedButton": int, "suggestionReason": str, "suggestionSourceURL": str (optional)}"""
+    out = {}
+    for sug in load_json_list(SUGGESTIONS_PATH, "suggestions"):
+        try:
+            button = int(sug["button"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        value = {"suggestedButton": button, "suggestionReason": sug.get("reason", "")}
+        if sug.get("sourceURL"):
+            value["suggestionSourceURL"] = sug["sourceURL"]
+        out[(sug.get("app"), sug.get("action"))] = value
+    return out
 
 
 FLAG = {"cmd": 1048576, "shift": 131072, "opt": 524288, "ctrl": 262144}
@@ -102,7 +143,11 @@ SPECIAL = {
     "f1": 122, "f2": 120, "f3": 99, "f4": 118, "f5": 96, "f6": 97, "f7": 98, "f8": 100,
     "f9": 101, "f10": 109, "f11": 103, "f12": 111, "f14": 107,
     "comma": 43, "period": 47, "slash": 44, "semicolon": 41, "quote": 39, "minus": 27,
-    "equal": 24, "backslash": 42, "grave": 50, "left bracket": 33, "right bracket": 30,
+}
+# Named symbols are characters, so their key depends on the layout
+NAMED_CHARS = {
+    "comma": ",", "period": ".", "slash": "/", "semicolon": ";", "quote": "'", "minus": "-",
+    "equal": "=", "backslash": "\\", "grave": "`", "left bracket": "[", "right bracket": "]",
 }
 SYMBOL_NAMES = {
     ",": 43, ".": 47, "/": 44, ";": 41, "'": 39, "-": 27, "=": 24, "\\": 42, "`": 50, "[": 33, "]": 30,
@@ -151,21 +196,31 @@ def modifier_flags(mods):
     return flags
 
 
+def is_character_key(key_name):
+    """Whether a key is a character, whose key code depends on the layout. Special keys have the same code everywhere."""
+    return (key_name or "").strip().lower() not in SPECIAL
+
+
 def step_for(layout, key_name, mods):
-    """(keycode, flags) for one key on one layout. Special keys have the same code everywhere. Returns None if unknown."""
+    """(keycode, flags) for one key on one layout. Special keys have the same code everywhere.
+    Returns None if the key is unknown, or if typing the character needs a modifier that the shortcut already uses."""
     name = (key_name or "").strip()
     lower = name.lower()
     base = modifier_flags(mods)
     if lower in SPECIAL:
         return (SPECIAL[lower], base)
-    if len(name) == 1:
-        ch = name
+    ch = NAMED_CHARS.get(lower, name)
+    if len(ch) == 1:
         if ch.isalpha():
             ch = ch.lower()
         if ch in SYMBOL_NAMES and layout == "us":
             return (SYMBOL_NAMES[ch], base)
+        if ch in LAYOUTS["us"] and LAYOUTS["us"][ch][1] & FLAG["shift"]:
+            base &= ~FLAG["shift"]  # the research lists Shift for a shifted character like } or ". The character brings its own modifiers below.
         if ch in LAYOUTS[layout]:
             code, extra = LAYOUTS[layout][ch]
+            if extra & base:
+                return None  # for example Option+Command+[ on German, where [ itself needs Option
             return (code, base | extra)
     return None
 
@@ -200,14 +255,33 @@ def entry_for(row):
         "steps": us,
         "intervalMs": 120 if kind == "sequence" else 0,
     }
-    variants = {}
-    for layout in ("de", "at"):
-        alt = steps_for(steps_list, layout)
-        if alt is not None and alt != us:
-            variants[layout] = alt
-    if variants:
+    if any(is_character_key(s.get("keyUS", "")) for s in steps_list):
+        # Character based: one variant per layout. Layouts where the character can't be typed are left out.
+        entry["layoutDependent"] = True
+        variants = {}
+        for layout in LAYOUT_IDS:
+            v = steps_for(steps_list, layout)
+            if v is not None:
+                variants[layout] = v
         entry["variants"] = variants
+        if len(variants) < len(LAYOUT_IDS):
+            entry["layouts"] = [l for l in LAYOUT_IDS if l in variants]
     return entry, None
+
+
+def apply_flags(entry, flags, problems, app_name):
+    """Merges the curated flags into an entry. `verified` needs `sourceURL` and `verifiedOn`. Without them it is dropped and reported."""
+    if "layouts" in flags:
+        allowed = entry.get("layouts", list(LAYOUT_IDS))
+        entry["layouts"] = [l for l in flags["layouts"] if l in allowed]
+    for key in ("sourceURL", "verifiedOn"):
+        if flags.get(key):
+            entry[key] = flags[key]
+    if flags.get("verified"):
+        if entry.get("sourceURL") and DATE.match(str(entry.get("verifiedOn", ""))):
+            entry["verified"] = True
+        else:
+            problems.append("%s: %s (verified, but no sourceURL and verifiedOn: shown as not verified)" % (app_name, entry["label"]))
 
 
 def objc_string(s):
@@ -218,17 +292,37 @@ def objc_steps(steps):
     return "@[" + ", ".join("@[@%d, @%d]" % (k, f) for k, f in steps) + "]"
 
 
+def objc_label(e):
+    if e.get("labelKey"):
+        return "NSLocalizedStringWithDefaultValue(%s, nil, NSBundle.mainBundle, %s, @\"Name of a keyboard shortcut in the shortcut library (Apps tab and the action menu of the Buttons tab).\")" % (
+            objc_string(e["labelKey"]), objc_string(e["label"]))
+    return objc_string(e["label"])
+
+
 def objc_entry(e):
-    parts = ["@\"label\": " + objc_string(e["label"]), "@\"symbols\": " + objc_string(e["symbols"]),
-             "@\"steps\": " + objc_steps(e["steps"])]
+    parts = ["@\"label\": " + objc_label(e)]
+    if e.get("labelKey"):
+        parts.append("@\"labelKey\": " + objc_string(e["labelKey"]))
+    parts += ["@\"symbols\": " + objc_string(e["symbols"]), "@\"steps\": " + objc_steps(e["steps"])]
     if e["intervalMs"]:
         parts.append("@\"intervalMs\": @%d" % e["intervalMs"])
+    if e.get("layoutDependent"):
+        parts.append("@\"layoutDependent\": @YES")
     if e.get("variants"):
-        parts.append("@\"variants\": @{" + ", ".join("@\"%s\": %s" % (k, objc_steps(v)) for k, v in sorted(e["variants"].items())) + "}")
-    if e.get("layouts"):
+        parts.append("@\"variants\": @{" + ", ".join("@\"%s\": %s" % (k, objc_steps(e["variants"][k])) for k in LAYOUT_IDS if k in e["variants"]) + "}")
+    if "layouts" in e:
         parts.append("@\"layouts\": @[" + ", ".join(objc_string(l) for l in e["layouts"]) + "]")
     if e.get("verified"):
         parts.append("@\"verified\": @YES")
+    if e.get("sourceURL"):
+        parts.append("@\"sourceURL\": " + objc_string(e["sourceURL"]))
+    if e.get("verifiedOn"):
+        parts.append("@\"verifiedOn\": " + objc_string(e["verifiedOn"]))
+    if e.get("suggestedButton"):
+        parts.append("@\"suggestedButton\": @%d" % e["suggestedButton"])
+        parts.append("@\"suggestionReason\": " + objc_string(e.get("suggestionReason", "")))
+        if e.get("suggestionSourceURL"):
+            parts.append("@\"suggestionSourceURL\": " + objc_string(e["suggestionSourceURL"]))
     parts.append("@\"group\": " + objc_string(e["group"]))
     return "@{ " + ", ".join(parts) + " }"
 
@@ -239,6 +333,8 @@ TEMPLATE = open(os.path.join(HERE, "ShortcutLibrary.template.m"), encoding="utf-
 def main():
     global FLAG_OVERRIDES
     FLAG_OVERRIDES = load_flags()
+    suggestions = load_suggestions()
+    used_suggestions = set()
     rows = []
     apps_out = {}
     problems = []
@@ -263,11 +359,21 @@ def main():
                 if entry is None:
                     problems.append("%s: %s (%s)" % (app["name"], row.get("action"), problem))
                     continue
-                entry.update(FLAG_OVERRIDES.get((app["name"], entry["label"]), {}))
+                key_ = (app["name"], entry["label"])
+                apply_flags(entry, FLAG_OVERRIDES.get(key_, {}), problems, app["name"])
+                if key_ in suggestions:
+                    entry.update(suggestions[key_])
+                    used_suggestions.add(key_)
+                if key_ in LOCALIZED_LABELS:
+                    entry["labelKey"] = LOCALIZED_LABELS[key_]
                 entry["group"] = group_for(app["name"], entry["label"])
                 if any(e["label"] == entry["label"] and e["steps"] == entry["steps"] for e in entries["entries"]):
                     continue  # the same action listed twice (for example, a suite page repeating Word's shortcuts)
                 entries["entries"].append(entry)
+
+    for key in suggestions:
+        if key not in used_suggestions:
+            problems.append("suggestion matches no library entry: %s: %s" % key)
 
     blocks = []
     kept_apps = 0
@@ -286,7 +392,14 @@ def main():
     with open(OUT, "w", encoding="utf-8") as f:
         f.write(text)
 
+    kept = [e for a in apps_out.values() for e in a["entries"]]
     print("apps in library:", kept_apps, "entries:", kept_entries)
+    print("layout dependent:", sum(1 for e in kept if e.get("layoutDependent")),
+          "| hidden on some layout:", sum(1 for e in kept if "layouts" in e and len(e["layouts"]) < len(LAYOUT_IDS)),
+          "| verified:", sum(1 for e in kept if e.get("verified")),
+          "| with suggestion:", sum(1 for e in kept if e.get("suggestedButton")),
+          "| localized labels:", sum(1 for e in kept if e.get("labelKey")),
+          "| in group Other:", sum(1 for e in kept if e["group"] == "Other"))
     print("problems:", len(problems))
     for p in problems[:80]:
         print("  -", p)

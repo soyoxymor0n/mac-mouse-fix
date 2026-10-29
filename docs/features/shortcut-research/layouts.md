@@ -37,6 +37,6 @@ Key codes that give the same character on all three layouts:
 
 ## Decision in effect (per layout)
 
-The owner chose "per layout": each entry that uses a layout-dependent key stores one variant per layout (US, German, Austrian), each with its own key code and flags. The runtime does not change. The helper still receives a plain key code and flags. The app chooses the variant that matches the active input source when a row is created. That selection is a later implementation step.
+The owner chose "per layout": each entry that uses a layout-dependent key stores one variant per layout (US, German, Austrian), each with its own key code and flags. The runtime does not change. The helper still receives a plain key code and flags. The app chooses the variant that matches the active input source when a row is created (`ShortcutLibrary stepsForEntry:inputSourceID:`; unknown layouts use US). A layout where the character can't be typed, or where it needs a modifier the shortcut already uses, is left out of the entry's `layouts`, so the entry is hidden there.
 
 Not verified here: whether Chrome and Teams accept a key code plus Option as a match for the symbol on the German layout. Test it on the owner's Mac before shipping any symbol-based entry.

@@ -12,7 +12,8 @@ import Cocoa
 ///     Left: the apps. The search field on top filters the list while you type.
 ///     Right: the shortcuts of the selected app, under group headers. A badge shows whether a shortcut was checked against the vendor's documentation.
 ///     The plus button adds a shortcut to the app's tab, with the button and click type you pick.
-///     Recommended mouse buttons are not shown yet, because the library has no suggested buttons in this version.
+///     A shortcut with a suggested mouse button shows "Suggested: Button N" (the reason is the tooltip), and the add menu offers that button first. Nothing is added automatically.
+///     The "Show shortcut library" switch in the Buttons tab hides all of this.
 ///     See GitHub issue #13 in soyoxymor0n/mac-mouse-fix-ng.
 class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, NSSearchFieldDelegate {
 
@@ -190,14 +191,23 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let libraryApps = (ShortcutLibrary.apps() as? [[String: Any]]) ?? []
+        loadApps()
+        NotificationCenter.default.addObserver(self, selector: #selector(libraryVisibilityDidChange(_:)), name: .shortcutLibraryVisibilityDidChange, object: nil)
+    }
+
+    /// The apps of the library. None while the library is switched off in the Buttons tab.
+    private func loadApps() {
+        let libraryApps = ShortcutLibrary.isEnabled() ? ((ShortcutLibrary.apps() as? [[String: Any]]) ?? []) : []
         allApps = libraryApps.compactMap { app -> AppInfo? in
             guard let name = app["name"] as? String else { return nil }
             return AppInfo(name: name, bundleIDs: (app["bundleIDs"] as? [String]) ?? [])
         }
         allApps.sort { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
-
         applyFilter()
+    }
+
+    @objc private func libraryVisibilityDidChange(_ notification: Notification) {
+        loadApps()
     }
 
     deinit {
@@ -256,8 +266,13 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
         } else {
             shownBundleID = nil
             displayRows = []
-            appNameLabel.stringValue = NSLocalizedString("apps-tab.no-match", value: "No apps match your search", comment: "Shown in the apps overview when the search field matches no app.")
-            appInfoLabel.stringValue = ""
+            if ShortcutLibrary.isEnabled() {
+                appNameLabel.stringValue = NSLocalizedString("apps-tab.no-match", value: "No apps match your search", comment: "Shown in the apps overview when the search field matches no app.")
+                appInfoLabel.stringValue = ""
+            } else {
+                appNameLabel.stringValue = NSLocalizedString("apps-tab.library-off", value: "The shortcut library is turned off", comment: "Shown in the apps overview when the user turned off 'Show shortcut library' in the Buttons tab.")
+                appInfoLabel.stringValue = NSLocalizedString("apps-tab.library-off.hint", value: "Turn on \"Show shortcut library\" in the Buttons tab to see it.", comment: "Shown under 'The shortcut library is turned off' in the apps overview.")
+            }
         }
 
         actionTable.reloadData()
@@ -336,7 +351,8 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
                 with: NSSize(width: columnWidth - 8, height: CGFloat.greatestFiniteMagnitude),
                 options: [.usesLineFragmentOrigin, .usesFontLeading],
                 attributes: [.font: font])
-            return max(tableView.rowHeight, ceil(textRect.height) + 6)
+            let suggestionHeight: CGFloat = AppOverviewViewController.suggestionText(entry) == nil ? 0 : ceil(NSFont.systemFont(ofSize: NSFont.smallSystemFontSize).boundingRectForFont.height) + 1
+            return max(tableView.rowHeight, ceil(textRect.height) + suggestionHeight + 6)
         }
     }
 
@@ -358,11 +374,21 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
         case .entry(let entry):
             switch columnID {
             case "status":
-                return statusCell(in: tableView, isVerified: AppOverviewViewController.isVerified(entry))
+                return statusCell(in: tableView, entry: entry)
             case "shortcut":
                 return shortcutCell(in: tableView, row: row, symbols: (entry["symbols"] as? String) ?? "")
             default:
-                return textCell(in: tableView, identifier: "actionCell", text: (entry["label"] as? String) ?? "", wraps: true)
+                let label = (entry["label"] as? String) ?? ""
+                let cell = textCell(in: tableView, identifier: "actionCell", text: label, wraps: true)
+                /// A suggested mouse button goes on a second line. Its reason is the tooltip.
+                if let suggestion = AppOverviewViewController.suggestionText(entry) {
+                    let text = NSMutableAttributedString(string: label, attributes: [.font: NSFont.systemFont(ofSize: NSFont.systemFontSize), .foregroundColor: NSColor.labelColor])
+                    text.append(NSAttributedString(string: "\n" + suggestion, attributes: [.font: NSFont.systemFont(ofSize: NSFont.smallSystemFontSize), .foregroundColor: NSColor.secondaryLabelColor]))
+                    cell.textField?.attributedStringValue = text
+                    let reason = (entry["suggestionReason"] as? String) ?? ""
+                    cell.textField?.toolTip = reason.isEmpty ? suggestion : "\(suggestion): \(reason)"
+                }
+                return cell
             }
         }
     }
@@ -370,6 +396,15 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
     /// Whether the library has checked the shortcut against the vendor's documentation
     private static func isVerified(_ entry: [String: Any]) -> Bool {
         return (entry["verified"] as? NSNumber)?.boolValue ?? false
+    }
+
+    /// The suggested mouse button of a shortcut, e.g. "Suggested: Button 4". nil if the library suggests none.
+    private static func suggestionText(_ entry: [String: Any]) -> String? {
+        guard let button = (entry["suggestedButton"] as? NSNumber)?.intValue, button > 0 else { return nil }
+        var buttonName = UIStrings.getButtonString(MFMouseButtonNumber(UInt32(button)), context: kMFButtonStringUsageContextActionTableGroupRow)
+        buttonName = buttonName.prefix(1).uppercased() + buttonName.dropFirst()
+        let format = NSLocalizedString("apps-tab.suggested-button", value: "Suggested: %@", comment: "Suggested mouse button for a shortcut in the apps overview, and the header of its click types in the add menu. The value is a button name, for example 'Button 4'.")
+        return String(format: format, buttonName)
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -386,7 +421,9 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
         return cell
     }
 
-    private func statusCell(in tableView: NSTableView, isVerified: Bool) -> NSTableCellView {
+    private func statusCell(in tableView: NSTableView, entry: [String: Any]) -> NSTableCellView {
+
+        let isVerified = AppOverviewViewController.isVerified(entry)
 
         let cell: NSTableCellView
         if let reused = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("statusCell"), owner: self) as? NSTableCellView {
@@ -414,9 +451,14 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
         }
         cell.imageView?.contentTintColor = isVerified ? NSColor.systemGreen : NSColor.secondaryLabelColor
 
-        let tooltip = isVerified
+        var tooltip = isVerified
             ? NSLocalizedString("apps-tab.status.verified", value: "Checked against the vendor's documentation", comment: "Tooltip of the badge in the apps overview for a shortcut that was checked.")
             : NSLocalizedString("apps-tab.status.unverified", value: "Not checked yet", comment: "Tooltip of the badge in the apps overview for a shortcut that was not checked.")
+        /// The source of a checked shortcut. Same text as in the effect menu (see RemapTableTranslator).
+        if isVerified, let sourceURL = entry["sourceURL"] as? String {
+            let format = NSLocalizedString("shortcut-library.source.tooltip", value: "Checked against the vendor's documentation on %@: %@", comment: "Tooltip of the check badge of a shortcut library entry. First value: the date of the check (YYYY-MM-DD). Second value: the address of the vendor's page.")
+            tooltip = String(format: format, (entry["verifiedOn"] as? String) ?? "", sourceURL)
+        }
         cell.toolTip = tooltip
         cell.imageView?.toolTip = tooltip
         return cell
@@ -478,7 +520,9 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
         let row = sender.tag
         guard row >= 0 && row < displayRows.count, case .entry(let entry) = displayRows[row], let bundleID = shownBundleID else { return }
         let menu = RemapTableTranslator.addMenu(forBundleID: bundleID, entry: entry, target: self, action: #selector(addMenuItemSelected(_:)))
-        _ = menu.popUp(positioning: nil, at: NSPoint(x: 0, y: sender.bounds.height + 4), in: sender)
+        /// With a suggested button, its first free click type is preselected. The row is added only when the user picks an item.
+        let preselected = AppOverviewViewController.suggestionText(entry) == nil ? nil : menu.items.first { $0.isEnabled && $0.action != nil && $0.submenu == nil }
+        _ = menu.popUp(positioning: preselected, at: NSPoint(x: 0, y: sender.bounds.height + 4), in: sender)
     }
 
     /// A button and click type were picked for a shortcut: creates the app's tab if needed, shows it, and adds the row
@@ -490,11 +534,9 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
               let entry = payload["entry"] as? [String: Any],
               let effect = entry["dict"] else { return }
 
-        let row: [String: Any] = [
-            "trigger": trigger,
-            "modifiers": [String: Any](),
-            "effect": effect,
-        ]
+        guard let effectDict = effect as? [AnyHashable: Any] else { return }
+        /// The same row as recording the key by hand (see ShortcutLibraryTests)
+        let row = ShortcutLibrary.row(withTrigger: trigger, effect: effectDict)
 
         MainAppState.shared.buttonTabController?.addAppTab(bundleID: bundleID)
         (parent as? TabViewController)?.coolSelectTab(identifier: "buttons")

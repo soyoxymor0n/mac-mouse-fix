@@ -12,11 +12,21 @@
 #import "Constants.h"
 #import <Carbon/Carbon.h>
 
+NSString *const kShortcutLibraryVisibilityDidChangeNotification = @"ShortcutLibraryVisibilityDidChange";
+
+/// UserDefaults key of the "Show shortcut library" switch. Not in the config, so the config version stays the same. Missing means on.
+static NSString *const kShowShortcutLibraryDefaultsKey = @"ShowShortcutLibrary";
+
 @implementation ShortcutLibrary
 
 /// Library data. Each app has its bundle IDs and entries.
-/// Each entry has a label, the symbols shown as a hint, the steps as [keycode, flags] for the US layout,
-/// optional `variants` for the German and Austrian layouts, and `intervalMs` for sequences (steps with more than one key).
+/// Each entry has
+///     - `label` (localized for a few entries, see `labelKey`), `symbols` (shown as a hint) and `group`
+///     - `steps` as [keycode, flags] for the US layout, and `intervalMs` for sequences (steps with more than one key)
+///     - `layoutDependent` and `variants` (`us`, `de`, `at`) for entries that use a character key. Each variant has its own key codes and flags.
+///     - optional `layouts`: the layouts where the entry works. It is hidden on the others.
+///     - optional `verified`, `sourceURL`, `verifiedOn`: checked against the vendor's documentation
+///     - optional `suggestedButton`, `suggestionReason`: the mouse button the Apps tab suggests. Not verified.
 + (NSArray *)apps {
     static NSArray *apps;
     static dispatch_once_t once;
@@ -28,42 +38,89 @@ __APPS__
     return apps;
 }
 
-/// The layout the user types with. German and Austrian have their own variants, everything else uses US.
-+ (NSString *)activeLayoutID {
+#pragma mark - Switch
+
++ (BOOL)isEnabled {
+    id value = [NSUserDefaults.standardUserDefaults objectForKey:kShowShortcutLibraryDefaultsKey];
+    return value == nil ? YES : [value boolValue];
+}
+
++ (void)setEnabled:(BOOL)enabled {
+    [NSUserDefaults.standardUserDefaults setBool:enabled forKey:kShowShortcutLibraryDefaultsKey];
+    [NSNotificationCenter.defaultCenter postNotificationName:kShortcutLibraryVisibilityDidChangeNotification object:nil];
+}
+
+#pragma mark - Layouts
+
+/// The input source ID of the active keyboard layout, for example `com.apple.keylayout.German`.
+///     Uses the keyboard *layout* input source, so an input method (for example Japanese) still reports the layout it types with.
++ (NSString *)activeInputSourceID {
     TISInputSourceRef source = TISCopyCurrentKeyboardLayoutInputSource();
     NSString *ident = nil;
     if (source != NULL) {
-        ident = (__bridge NSString *)TISGetInputSourceProperty(source, kTISPropertyInputSourceID);
+        ident = [(__bridge NSString *)TISGetInputSourceProperty(source, kTISPropertyInputSourceID) copy];
         CFRelease(source);
     }
-    if ([ident isEqualToString:@"com.apple.keylayout.German"]) return @"de";
-    if ([ident isEqualToString:@"com.apple.keylayout.Austrian"]) return @"at";
+    return ident ?: @"com.apple.keylayout.US";
+}
+
+/// The variant key (`us`, `de`, `at`) for an input source ID. Unknown layouts use US.
++ (NSString *)layoutKeyForInputSourceID:(NSString *)inputSourceID {
+    if ([inputSourceID isEqualToString:@"com.apple.keylayout.German"]) return @"de";
+    if ([inputSourceID isEqualToString:@"com.apple.keylayout.Austrian"]) return @"at";
     return @"us";
 }
 
+/// The steps ([keycode, flags] pairs) of an entry for an input source. Pure function: rows are created from its result.
+///     nil if the entry doesn't work on that layout.
++ (NSArray *)stepsForEntry:(NSDictionary *)entry inputSourceID:(NSString *)inputSourceID {
+    NSString *layout = [self layoutKeyForInputSourceID:inputSourceID];
+    if (entry[@"layouts"] && ![entry[@"layouts"] containsObject:layout]) return nil;
+    NSArray *steps = entry[@"variants"][layout] ?: entry[@"steps"];
+    return [self stepsAreValid:steps] ? steps : nil;
+}
+
+#pragma mark - Effect menu
+
 + (NSArray *)effectsMenuEntriesForBundleID:(NSString *)bundleID {
-    return [self effectsMenuEntriesForBundleID:bundleID layout:[self activeLayoutID]];
+    return [self effectsMenuEntriesForBundleID:bundleID inputSourceID:[self activeInputSourceID] enabled:[self isEnabled]];
 }
 
 + (NSArray *)effectsMenuEntriesForBundleID:(NSString *)bundleID layout:(NSString *)layout {
+    NSDictionary *ids = @{ @"us": @"com.apple.keylayout.US", @"de": @"com.apple.keylayout.German", @"at": @"com.apple.keylayout.Austrian" };
+    return [self effectsMenuEntriesForBundleID:bundleID inputSourceID:ids[layout] ?: layout enabled:YES];
+}
+
+/// Effect-menu entries of an app for an input source. Empty when the library is switched off.
++ (NSArray *)effectsMenuEntriesForBundleID:(NSString *)bundleID inputSourceID:(NSString *)inputSourceID enabled:(BOOL)enabled {
     NSMutableArray *result = [NSMutableArray array];
+    if (!enabled) return result;
+    for (NSDictionary *entry in [self entriesForBundleID:bundleID]) {
+        /// Some entries only work on some layouts. Leave them out on the others, rather than offering a key that does nothing there.
+        NSArray *steps = [self stepsForEntry:entry inputSourceID:inputSourceID];
+        if (steps == nil) continue;
+        NSMutableDictionary *menuEntry = [[self menuEntryForLabel:entry[@"label"]
+                                                          symbols:entry[@"symbols"]
+                                                            steps:steps
+                                                       intervalMs:[entry[@"intervalMs"] doubleValue]] mutableCopy];
+        /// Drives the small badge in the effect menu, and its source in the tooltip. See RemapTableTranslator.
+        menuEntry[@"libraryVerified"] = @([entry[@"verified"] boolValue]);
+        if ([entry[@"verified"] boolValue] && entry[@"sourceURL"]) {
+            menuEntry[@"librarySourceURL"] = entry[@"sourceURL"];
+            menuEntry[@"libraryVerifiedOn"] = entry[@"verifiedOn"] ?: @"";
+        }
+        [result addObject:menuEntry];
+    }
+    return result;
+}
+
+/// The entries of the apps that have this bundle ID. Library entries appear only for matching bundle IDs.
++ (NSArray *)entriesForBundleID:(NSString *)bundleID {
+    NSMutableArray *result = [NSMutableArray array];
+    if (bundleID == nil) return result;
     for (NSDictionary *app in [self apps]) {
         if (![app[@"bundleIDs"] containsObject:bundleID]) continue;
-        for (NSDictionary *entry in app[@"entries"]) {
-            /// Some entries only work on some layouts. Leave them out on the others, rather than offering a key that does nothing there.
-            if (entry[@"layouts"] && ![entry[@"layouts"] containsObject:layout]) continue;
-            NSArray *steps = entry[@"variants"][layout] ?: entry[@"steps"];
-            if (![self stepsAreValid:steps]) {
-                assert(false);
-                continue;
-            }
-            NSMutableDictionary *menuEntry = [[self menuEntryForLabel:entry[@"label"]
-                                                              symbols:entry[@"symbols"]
-                                                                steps:steps
-                                                           intervalMs:[entry[@"intervalMs"] doubleValue]] mutableCopy];
-            menuEntry[@"libraryVerified"] = @([entry[@"verified"] boolValue]); /// Drives the small badge in the effect menu. See RemapTableTranslator.
-            [result addObject:menuEntry];
-        }
+        [result addObjectsFromArray:app[@"entries"]];
     }
     return result;
 }
@@ -84,15 +141,31 @@ __APPS__
     return YES;
 }
 
-/// One effect-menu entry. A single key is a keyboardShortcut effect. Several keys are a keySequence effect.
+#pragma mark - Effects and rows
+
+/// The effect that recording a key in the table creates. The key capture field in RemapTableTranslator uses this too.
++ (NSDictionary *)effectForRecordedKeyCode:(CGKeyCode)keyCode flags:(CGEventFlags)flags {
+    return @{
+        kMFActionDictKeyType: kMFActionDictTypeKeyboardShortcut,
+        kMFActionDictKeyKeyboardShortcutVariantKeycode: @(keyCode),
+        kMFActionDictKeyKeyboardShortcutVariantModifierFlags: @(flags),
+    };
+}
+
+/// A new row for a trigger and an effect, without a modification precondition. The Apps tab adds library entries with this.
++ (NSDictionary *)rowWithTrigger:(NSDictionary *)trigger effect:(NSDictionary *)effect {
+    return @{
+        kMFRemapsKeyTrigger: trigger,
+        kMFRemapsKeyModificationPrecondition: @{},
+        kMFRemapsKeyEffect: effect,
+    };
+}
+
+/// One effect-menu entry. A single key is a keyboardShortcut effect, the same as recording it. Several keys are a keySequence effect.
 + (NSDictionary *)menuEntryForLabel:(NSString *)label symbols:(NSString *)symbols steps:(NSArray *)steps intervalMs:(double)intervalMs {
     NSDictionary *dict;
     if (steps.count == 1) {
-        dict = @{
-            kMFActionDictKeyType: kMFActionDictTypeKeyboardShortcut,
-            kMFActionDictKeyKeyboardShortcutVariantKeycode: steps[0][0],
-            kMFActionDictKeyKeyboardShortcutVariantModifierFlags: steps[0][1],
-        };
+        dict = [self effectForRecordedKeyCode:(CGKeyCode)[steps[0][0] unsignedShortValue] flags:(CGEventFlags)[steps[0][1] unsignedLongLongValue]];
     } else {
         NSMutableArray *stepDicts = [NSMutableArray array];
         for (NSArray *step in steps) {
@@ -111,34 +184,39 @@ __APPS__
     return @{ @"ui": label, @"tool": symbols, @"toolWithTitle": [NSString stringWithFormat:@"%@  %@", label, symbols], @"dict": dict };
 }
 
+#pragma mark - Apps tab
+
 /// The shortcut groups shown for every app, in this order. Specific groups of an app come after these.
 + (NSArray *)defaultShortcutGroups {
     return @[__DEFAULT_GROUPS__];
 }
 
-/// Entries of an app for the Apps tab and its add menu. Each entry is a dictionary with `label`, `symbols`, `group`, `verified` (NSNumber BOOL) and `dict` (the effect, as in the effect menu).
-/// Only entries that work on the active keyboard layout, with the steps of that layout.
 + (NSArray *)overviewEntriesForBundleID:(NSString *)bundleID {
-    NSString *layout = [self activeLayoutID];
+    return [self overviewEntriesForBundleID:bundleID inputSourceID:[self activeInputSourceID] enabled:[self isEnabled]];
+}
+
+/// Entries of an app for the Apps tab and its add menu, with the steps of the input source's layout. Empty when the library is switched off.
++ (NSArray *)overviewEntriesForBundleID:(NSString *)bundleID inputSourceID:(NSString *)inputSourceID enabled:(BOOL)enabled {
     NSMutableArray *result = [NSMutableArray array];
-    for (NSDictionary *app in [self apps]) {
-        if (![app[@"bundleIDs"] containsObject:bundleID]) continue;
-        for (NSDictionary *entry in app[@"entries"]) {
-            if (entry[@"layouts"] && ![entry[@"layouts"] containsObject:layout]) continue;
-            NSArray *steps = entry[@"variants"][layout] ?: entry[@"steps"];
-            if (![self stepsAreValid:steps]) continue;
-            NSDictionary *menuEntry = [self menuEntryForLabel:entry[@"label"]
-                                                      symbols:entry[@"symbols"]
-                                                        steps:steps
-                                                   intervalMs:[entry[@"intervalMs"] doubleValue]];
-            [result addObject:@{
-                @"label": entry[@"label"],
-                @"symbols": entry[@"symbols"] ?: @"",
-                @"group": entry[@"group"] ?: @"Other",
-                @"verified": @([entry[@"verified"] boolValue]),
-                @"dict": menuEntry[@"dict"],
-            }];
+    if (!enabled) return result;
+    for (NSDictionary *entry in [self entriesForBundleID:bundleID]) {
+        NSArray *steps = [self stepsForEntry:entry inputSourceID:inputSourceID];
+        if (steps == nil) continue;
+        NSDictionary *menuEntry = [self menuEntryForLabel:entry[@"label"]
+                                                  symbols:entry[@"symbols"]
+                                                    steps:steps
+                                               intervalMs:[entry[@"intervalMs"] doubleValue]];
+        NSMutableDictionary *overviewEntry = [@{
+            @"label": entry[@"label"],
+            @"symbols": entry[@"symbols"] ?: @"",
+            @"group": entry[@"group"] ?: @"Other",
+            @"verified": @([entry[@"verified"] boolValue]),
+            @"dict": menuEntry[@"dict"],
+        } mutableCopy];
+        for (NSString *key in @[@"sourceURL", @"verifiedOn", @"suggestedButton", @"suggestionReason"]) {
+            if (entry[key]) overviewEntry[key] = entry[key];
         }
+        [result addObject:overviewEntry];
     }
     return result;
 }
