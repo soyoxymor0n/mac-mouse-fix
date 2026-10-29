@@ -29269,6 +29269,102 @@
             "state" : "translated",
             "value" : "Share this tab…"
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sdílet tuto záložku…"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diesen Tab teilen…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartir esta pestaña…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partager cet onglet…"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Condividi questo pannello…"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このタブを共有…"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 탭 공유…"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Del denne fanen…"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartilhar esta aba…"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поделиться этой вкладкой…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu sekmeyi paylaş…"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поділитися цією вкладкою…"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chia sẻ tab này…"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分享此標籤頁⋯"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分享此标签页…"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分享此標籤頁…"
+          }
         }
       }
     },
@@ -29279,6 +29375,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Share the setup for %@"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sdílet nastavení pro %@"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belegung für %@ teilen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartir la configuración de %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partager la configuration pour %@"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Condividi la configurazione per %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@の設定を共有"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 구성 공유"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Del oppsettet for %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartilhar a configuração do %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поделиться набором для %@"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ yapılandırmasını paylaş"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поділитися набором для %@"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chia sẻ cấu hình cho %@"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分享%@的設定"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分享 %@ 的设置"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分享%@的設定"
           }
         }
       }
@@ -29291,6 +29483,102 @@
             "state" : "translated",
             "value" : "Topic:"
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Téma:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thema:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thème :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Argomento:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "トピック:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주제:"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emne:"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konu:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема:"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chủ đề:"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "主題："
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "主题："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "主題："
+          }
         }
       }
     },
@@ -29301,6 +29589,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "This is exactly what will be sent:"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přesně toto se odešle:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Genau das wird gesendet:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esto es exactamente lo que se enviará:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voici exactement ce qui sera envoyé :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ecco esattamente cosa verrà inviato:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "送信される内容はこれですべてです:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "전송되는 내용은 정확히 다음과 같습니다:"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nøyaktig dette blir sendt:"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isto é exatamente o que será enviado:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Будет отправлено ровно это:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gönderilecek içerik tam olarak bu:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Буде надіслано саме це:"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đây chính xác là nội dung sẽ được gửi:"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以下就是會傳送的全部內容："
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "将发送的内容如下，一字不差："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "實際送出的內容如下："
           }
         }
       }
@@ -29313,6 +29697,102 @@
             "state" : "translated",
             "value" : "Once it is reviewed and published, this setup is public and anyone can download it. It holds only the app's bundle ID and these button rows. Nothing about your Mac, your license or your other settings is sent."
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jakmile bude zkontrolováno a zveřejněno, je toto nastavení veřejné a může si ho stáhnout kdokoli. Obsahuje jen ID balíku aplikace a tyto řádky tlačítek. Nic o vašem Macu, vaší licenci ani ostatních nastaveních se neodesílá."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sobald sie geprüft und veröffentlicht ist, ist diese Belegung öffentlich und jeder kann sie herunterladen. Sie enthält nur die Bundle-ID der App und diese Tastenzeilen. Über deinen Mac, deine Lizenz oder deine anderen Einstellungen wird nichts gesendet."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuando se revise y se publique, esta configuración será pública y cualquiera podrá descargarla. Solo contiene el ID de paquete (bundle ID) de la aplicación y estas filas de botones. No se envía nada sobre tu Mac, tu licencia ni tus otros ajustes."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une fois vérifiée et publiée, cette configuration est publique et tout le monde peut la télécharger. Elle contient seulement l'identifiant de paquet (bundle ID) de l'app et ces lignes de boutons. Rien sur votre Mac, votre licence ou vos autres réglages n'est envoyé."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dopo il controllo e la pubblicazione, questa configurazione è pubblica e chiunque può scaricarla. Contiene solo il bundle ID dell'app e queste righe di pulsanti. Non viene inviato nulla sul tuo Mac, sulla tua licenza o sulle altre impostazioni."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確認を経て公開されると、この設定は一般公開され、誰でもダウンロードできるようになります。含まれるのはアプリのバンドルIDとこれらのボタンの行だけです。お使いのMac、ライセンス、ほかの設定に関する情報は送信されません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "검토를 거쳐 게시되면 이 구성은 공개되며 누구나 다운로드할 수 있습니다. 여기에는 앱의 번들 ID와 이 버튼 행만 들어 있습니다. 사용자의 Mac, 라이센스, 다른 설정에 관한 정보는 전송되지 않습니다."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Når oppsettet er gjennomgått og publisert, er det offentlig, og hvem som helst kan laste det ned. Det inneholder bare appens pakke-ID og disse knapperadene. Ingenting om Macen din, lisensen din eller de andre innstillingene dine blir sendt."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depois de revisada e publicada, esta configuração fica pública e qualquer pessoa pode baixá-la. Ela contém só o bundle ID do app e estas linhas de botões. Nada sobre o seu Mac, a sua licença ou os seus outros ajustes é enviado."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "После проверки и публикации набор станет общедоступным, и его сможет скачать кто угодно. В нем есть только идентификатор пакета приложения и эти строки кнопок. Ничего о вашем Mac, вашей лицензии или других ваших настройках не отправляется."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İncelenip yayımlandıktan sonra bu yapılandırma herkese açık olur ve herkes indirebilir. Yalnızca uygulamanın paket kimliğini ve bu düğme satırlarını içerir. Mac'iniz, lisansınız veya diğer ayarlarınız hakkında hiçbir bilgi gönderilmez."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Після перевірки й публікації цей набір стане публічним, і будь-хто зможе його завантажити. У ньому є лише ідентифікатор пакета програми (bundle ID) і ці рядки кнопок. Жодних даних про ваш Mac, вашу ліцензію чи інші налаштування не надсилається."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sau khi được duyệt và đăng, cấu hình này sẽ công khai và ai cũng tải về được. Nó chỉ chứa ID gói của ứng dụng và các dòng nút này. Không có thông tin nào về máy Mac, bản quyền hay các cài đặt khác của bạn được gửi đi."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "經審查並發佈後，此設定會公開，任何人都可以下載。設定只包含App的Bundle ID和這些按鈕列。你的Mac、許可證或其他設定的資料一概不會傳送。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此设置经审核并发布后即为公开内容，任何人都可以下载。其中只包含该 App 的 Bundle ID 和下面这些按键行。不会发送关于您的 Mac、许可证或其他设置的任何信息。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "經審核並發布後，這組設定就會公開，任何人都能下載。內容只有應用程式的套件識別碼和這些按鈕列。不會傳送任何關於您的Mac、許可證或其他設定的資訊。"
+          }
         }
       }
     },
@@ -29323,6 +29803,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shared under CC0 1.0 (public domain dedication)"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sdíleno pod licencí CC0 1.0 (uvolnění jako volné dílo)"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geteilt unter CC0 1.0 (Widmung an die Public Domain)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartida bajo CC0 1.0 (cesión al dominio público)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partagée sous CC0 1.0 (versée dans le domaine public)"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Condivisa con licenza CC0 1.0 (dedicata al pubblico dominio)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CC0 1.0（パブリックドメイン提供）で共有されます"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CC0 1.0(퍼블릭 도메인 헌정)으로 공유됨"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delt under CC0 1.0 (gitt til allemannseie)"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartilhada sob CC0 1.0 (dedicação ao domínio público)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Публикуется под CC0 1.0 (передача в общественное достояние)"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CC0 1.0 kapsamında paylaşılır (kamu malına adama)"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поширюється за CC0 1.0 (передача у суспільне надбання)"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chia sẻ theo CC0 1.0 (hiến tặng vào phạm vi công cộng)"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以CC0 1.0（公有領域貢獻宣告）分享"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以 CC0 1.0（公有领域贡献）分享"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以CC0 1.0（公眾領域貢獻宣告）分享"
           }
         }
       }
@@ -29335,6 +29911,102 @@
             "state" : "translated",
             "value" : "To delete it later, open the General tab and click Delete next to it under Shared setups. This Mac keeps a private delete key for it. If it was already published, it stays in the history of the public repository."
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokud ho budete chtít později smazat, otevřete záložku Obecné a v části Sdílená nastavení klikněte vedle něj na Smazat. Tento Mac si k němu uchovává soukromý klíč pro smazání. Pokud už bylo zveřejněno, zůstane v historii veřejného repozitáře."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Um sie später zu löschen, öffne den Tab „Allgemein“ und klicke unter „Geteilte Belegungen“ daneben auf „Löschen“. Dieser Mac bewahrt dafür einen privaten Löschschlüssel auf. Wurde sie schon veröffentlicht, bleibt sie im Verlauf des öffentlichen Repositorys erhalten."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para eliminarla más adelante, abre la pestaña General y haz clic en Eliminar junto a ella, en Configuraciones compartidas. Este Mac guarda una clave privada para eliminarla. Si ya se ha publicado, seguirá en el historial del repositorio público."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour la supprimer plus tard, ouvrez l'onglet Général et cliquez sur Supprimer à côté d'elle, sous Configurations partagées. Ce Mac garde pour elle une clé de suppression privée. Si elle a déjà été publiée, elle reste dans l'historique du dépôt public."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Per eliminarla in seguito, apri il pannello Generale e fai clic su Elimina accanto alla configurazione, sotto Configurazioni condivise. Questo Mac conserva una chiave privata per eliminarla. Se era già stata pubblicata, resta nella cronologia del repository pubblico."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "あとで削除するには、「一般」タブを開き、「共有した設定」にあるこの設定の横の「削除」をクリックします。削除用の非公開キーはこのMacに保存されます。すでに公開されている場合は、公開リポジトリの履歴に残ります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "나중에 삭제하려면 일반 탭을 열고 공유한 구성에서 해당 항목 옆의 삭제를 클릭하세요. 이 Mac에는 이 구성의 비공개 삭제 키가 보관됩니다. 이미 게시된 경우에는 공개 저장소의 기록에 남습니다."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vil du slette det senere, åpner du fanen Generell og klikker på Slett ved siden av det under Delte oppsett. Denne Macen har en privat slettenøkkel for det. Hvis det allerede er publisert, blir det liggende i historikken til det offentlige repositoriet."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para apagá-la depois, abra a aba Geral e clique em Apagar ao lado dela em Configurações compartilhadas. Este Mac guarda uma chave privada de exclusão para ela. Se ela já tiver sido publicada, continua no histórico do repositório público."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтобы потом удалить его, откройте вкладку «Общее» и нажмите «Удалить» рядом с ним в разделе «Отправленные наборы». Этот Mac хранит для него личный ключ удаления. Если набор уже опубликован, он останется в истории публичного репозитория."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daha sonra silmek için Genel sekmesini açın ve Paylaşılan yapılandırmalar altında yanındaki Sil'e tıklayın. Bu Mac, onun için gizli bir silme anahtarı saklar. Zaten yayımlandıysa herkese açık deponun geçmişinde kalır."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Щоб пізніше видалити набір, відкрийте вкладку «Загальні» й натисніть «Видалити» поруч із ним у розділі «Спільні набори». Цей Mac зберігає для нього приватний ключ видалення. Якщо набір уже опубліковано, він залишиться в історії публічного репозиторію."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muốn xóa sau này, hãy mở tab Chung và bấm Xóa bên cạnh nó trong mục Cấu hình đã chia sẻ. Máy Mac này giữ một khóa xóa riêng tư cho cấu hình đó. Nếu nó đã được đăng, nó vẫn còn trong lịch sử của kho công khai."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日後如要刪除，請打開「一般」標籤頁，在「已分享的設定」下按一下其旁邊的「刪除」。此Mac會為它保存一個私人刪除密鑰。如果設定已經發佈，它會保留在公開儲存庫的歷史記錄中。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以后要删除它，请打开“通用”标签页，在“共享设置”下点按它旁边的“删除”。这台 Mac 为它保存了一个私有的删除密钥。如果它已经发布，它会保留在公开仓库的历史记录中。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日後若要刪除，請打開「一般」標籤頁，在「已分享的設定」下按一下該設定旁的「刪除」。這台Mac會為它保存一把私密的刪除金鑰。如果已經發布，它仍會留在公開儲存庫的歷史記錄中。"
+          }
         }
       }
     },
@@ -29345,6 +30017,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancel"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zrušit"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abbrechen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuler"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annulla"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャンセル"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "취소"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avbryt"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отменить"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İptal"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скасувати"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hủy"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
           }
         }
       }
@@ -29357,6 +30125,102 @@
             "state" : "translated",
             "value" : "Share"
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sdílet"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teilen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartir"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partager"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Condividi"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "共有"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공유"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Del"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartilhar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поделиться"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylaş"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поділитися"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chia sẻ"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分享"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分享"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分享"
+          }
         }
       }
     },
@@ -29367,6 +30231,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Done"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hotovo"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fertig"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terminé"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fine"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完了"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완료"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ferdig"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Concluído"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готово"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitti"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готово"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xong"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完成"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完成"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完成"
           }
         }
       }
@@ -29379,6 +30339,102 @@
             "state" : "translated",
             "value" : "Sending…"
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odesílání…"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird gesendet…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enviando…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envoi…"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invio in corso…"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "送信中…"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "전송 중…"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sender…"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enviando…"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отправка…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gönderiliyor…"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Надсилання…"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đang gửi…"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在傳送⋯"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在发送…"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在傳送…"
+          }
         }
       }
     },
@@ -29389,6 +30445,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shared. Record ID: %@\nIt waits for review and isn't public until it is published. You can delete it at any time in the General tab under Shared setups."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sdíleno. ID záznamu: %@\nČeká na kontrolu a veřejné bude až po zveřejnění. Smazat ho můžete kdykoli v záložce Obecné v části Sdílená nastavení."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geteilt. Eintrags-ID: %@\nSie wartet auf die Prüfung und ist erst öffentlich, wenn sie veröffentlicht wurde. Löschen kannst du sie jederzeit im Tab „Allgemein“ unter „Geteilte Belegungen“."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartida. ID del registro: %@\nQueda pendiente de revisión y no será pública hasta que se publique. Puedes eliminarla cuando quieras en la pestaña General, en Configuraciones compartidas."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partagée. ID de l'enregistrement : %@\nElle attend d'être vérifiée et ne sera publique qu'une fois publiée. Vous pouvez la supprimer à tout moment dans l'onglet Général, sous Configurations partagées."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Condivisa. ID record: %@\nOra è in attesa di controllo e non è pubblica finché non viene pubblicata. Puoi eliminarla quando vuoi nel pannello Generale, sotto Configurazioni condivise."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "共有しました。レコードID: %@\n確認待ちの状態で、公開されるまでは一般には表示されません。「一般」タブの「共有した設定」から、いつでも削除できます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공유했습니다. 레코드 ID: %@\n검토를 기다리는 중이며, 게시되기 전까지는 공개되지 않습니다. 일반 탭의 공유한 구성에서 언제든지 삭제할 수 있습니다."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delt. Post-ID: %@\nOppsettet venter på gjennomgang og er ikke offentlig før det publiseres. Du kan når som helst slette det i fanen Generell under Delte oppsett."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartilhada. ID do registro: %@\nEla aguarda revisão e só fica pública depois de publicada. Você pode apagá-la quando quiser na aba Geral, em Configurações compartilhadas."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отправлено. ID записи: %@\nНабор ждет проверки и не станет общедоступным, пока его не опубликуют. Удалить его можно в любой момент на вкладке «Общее» в разделе «Отправленные наборы»."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylaşıldı. Kayıt kimliği: %@\nİnceleme bekliyor ve yayımlanana kadar herkese açık değil. İstediğiniz zaman Genel sekmesinde, Paylaşılan yapılandırmalar altından silebilirsiniz."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Надіслано. ID запису: %@\nНабір чекає на перевірку й не стане публічним, доки його не опублікують. Видалити його можна будь-коли на вкладці «Загальні» в розділі «Спільні набори»."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã chia sẻ. ID bản ghi: %@\nCấu hình đang chờ duyệt và chưa công khai cho đến khi được đăng. Bạn có thể xóa nó bất cứ lúc nào trong tab Chung, mục Cấu hình đã chia sẻ."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已分享。記錄ID：%@\n設定正在等候審查，發佈前不會公開。你可以隨時在「一般」標籤頁的「已分享的設定」下刪除它。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已分享。记录 ID：%@\n它正在等待审核，发布之前不会公开。您可以随时在“通用”标签页的“共享设置”下删除它。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已分享。記錄ID：%@\n設定正在等待審核，發布前不會公開。您隨時可以在「一般」標籤頁的「已分享的設定」下刪除它。"
           }
         }
       }
@@ -29401,6 +30553,102 @@
             "state" : "translated",
             "value" : "The delete key couldn't be saved on this Mac, so the app can't delete this setup. Note the record ID to ask for its deletion."
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klíč pro smazání se na tomto Macu nepodařilo uložit, takže aplikace toto nastavení smazat nemůže. Poznamenejte si ID záznamu, abyste mohli o smazání požádat."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Löschschlüssel konnte auf diesem Mac nicht gespeichert werden, daher kann die App diese Belegung nicht löschen. Notiere dir die Eintrags-ID, um die Löschung anzufragen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se ha podido guardar la clave de eliminación en este Mac, así que la aplicación no puede eliminar esta configuración. Apunta el ID del registro para pedir que la eliminen."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La clé de suppression n'a pas pu être enregistrée sur ce Mac, donc l'app ne pourra pas supprimer cette configuration. Notez l'ID de l'enregistrement pour demander sa suppression."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non è stato possibile salvare la chiave di eliminazione su questo Mac, quindi l'app non può eliminare questa configurazione. Annota l'ID record per chiederne l'eliminazione."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "削除用キーをこのMacに保存できなかったため、アプリからはこの設定を削除できません。削除を依頼するときのために、レコードIDを控えておいてください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 Mac에 삭제 키를 저장하지 못해 앱에서 이 구성을 삭제할 수 없습니다. 삭제를 요청하려면 레코드 ID를 적어 두세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slettenøkkelen kunne ikke lagres på denne Macen, så appen kan ikke slette dette oppsettet. Noter post-ID-en hvis du vil be om å få det slettet."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível salvar a chave de exclusão neste Mac, então o app não consegue apagar esta configuração. Anote o ID do registro para pedir a exclusão dela."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось сохранить ключ удаления на этом Mac, поэтому приложение не сможет удалить этот набор. Запишите ID записи, чтобы запросить его удаление."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Silme anahtarı bu Mac'e kaydedilemedi, bu yüzden uygulama bu yapılandırmayı silemez. Silinmesini istemek için kayıt kimliğini not edin."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося зберегти ключ видалення на цьому Mac, тож програма не зможе видалити цей набір. Запишіть ID запису, щоб попросити про видалення."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không lưu được khóa xóa trên máy Mac này, nên ứng dụng không thể xóa cấu hình này. Hãy ghi lại ID bản ghi để yêu cầu xóa nó."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除密鑰無法儲存在此Mac上，因此App無法刪除此設定。請記下記錄ID，以便要求刪除。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除密钥无法保存在这台 Mac 上，因此 App 无法删除此设置。请记下记录 ID，以便申请删除。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法將刪除金鑰儲存在這台Mac上，因此應用程式無法刪除這組設定。請記下記錄ID，以便要求刪除。"
+          }
         }
       }
     },
@@ -29411,6 +30659,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sharing isn't available yet: this version of the app has no server address for shared setups. Nothing is sent."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sdílení zatím není k dispozici: tato verze aplikace nemá adresu serveru pro sdílená nastavení. Nic se neodesílá."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teilen ist noch nicht verfügbar: Diese Version der App hat keine Serveradresse für geteilte Belegungen. Es wird nichts gesendet."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todavía no se puede compartir: esta versión de la aplicación no tiene dirección de servidor para las configuraciones compartidas. No se envía nada."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le partage n'est pas encore disponible : cette version de l'app n'a pas d'adresse de serveur pour les configurations partagées. Rien n'est envoyé."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La condivisione non è ancora disponibile: questa versione dell'app non ha un indirizzo server per le configurazioni condivise. Non viene inviato nulla."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "共有はまだ利用できません。このバージョンのアプリには、共有設定用のサーバのアドレスがありません。何も送信されません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아직 공유를 사용할 수 없습니다: 이 버전의 앱에는 공유 구성용 서버 주소가 없습니다. 아무것도 전송되지 않습니다."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deling er ikke tilgjengelig ennå: denne versjonen av appen har ingen serveradresse for delte oppsett. Ingenting blir sendt."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O compartilhamento ainda não está disponível: esta versão do app não tem endereço de servidor para configurações compartilhadas. Nada é enviado."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Делиться пока нельзя: в этой версии приложения нет адреса сервера для общих наборов. Ничего не отправляется."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylaşım henüz kullanılamıyor: uygulamanın bu sürümünde paylaşılan yapılandırmalar için bir sunucu adresi yok. Hiçbir şey gönderilmez."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ділитися поки не можна: у цій версії програми немає адреси сервера для спільних наборів. Нічого не надсилається."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chưa thể chia sẻ: phiên bản ứng dụng này không có địa chỉ máy chủ cho cấu hình chia sẻ. Không có gì được gửi đi."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暫時未能分享：此版本的App沒有共享設定的伺服器地址。不會傳送任何內容。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暂时无法分享：此版本的 App 没有共享设置的服务器地址。不会发送任何内容。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目前還無法分享：此版本的應用程式沒有分享設定用的伺服器位址。不會傳送任何內容。"
           }
         }
       }
@@ -29423,6 +30767,102 @@
             "state" : "translated",
             "value" : "Sharing is off. Turn on Community setups in the General tab to share. Nothing is sent."
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sdílení je vypnuté. Chcete-li sdílet, zapněte v záložce Obecné volbu Nastavení komunity. Nic se neodesílá."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teilen ist aus. Schalte im Tab „Allgemein“ „Belegungen der Community“ ein, um zu teilen. Es wird nichts gesendet."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartir está desactivado. Activa Configuraciones de la comunidad en la pestaña General para compartir. No se envía nada."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le partage est désactivé. Activez Configurations de la communauté dans l'onglet Général pour partager. Rien n'est envoyé."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La condivisione è disattivata. Per condividere, attiva Configurazioni della community nel pannello Generale. Non viene inviato nulla."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "共有はオフです。共有するには、「一般」タブで「コミュニティの設定」をオンにしてください。何も送信されません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공유가 꺼져 있습니다. 공유하려면 일반 탭에서 커뮤니티 구성을 켜세요. 아무것도 전송되지 않습니다."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deling er slått av. Slå på Fellesskapsoppsett i fanen Generell for å dele. Ingenting blir sendt."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O compartilhamento está desativado. Ative Configurações da comunidade na aba Geral para compartilhar. Nada é enviado."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отправка выключена. Чтобы поделиться, включите «Наборы сообщества» на вкладке «Общее». Ничего не отправляется."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylaşım kapalı. Paylaşmak için Genel sekmesinde Topluluk yapılandırmaları'nı açın. Hiçbir şey gönderilmez."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обмін вимкнено. Щоб поділитися, увімкніть «Набори спільноти» на вкладці «Загальні». Нічого не надсилається."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tính năng chia sẻ đang tắt. Hãy bật Cấu hình cộng đồng trong tab Chung để chia sẻ. Không có gì được gửi đi."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分享已關閉。請在「一般」標籤頁開啟「社群設定」來分享。不會傳送任何內容。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分享已关闭。要分享，请在“通用”标签页中打开“社区设置”。不会发送任何内容。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分享功能已關閉。若要分享，請在「一般」標籤頁開啟「社群設定」。不會傳送任何內容。"
+          }
         }
       }
     },
@@ -29433,6 +30873,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "This app can't be shared, because its bundle ID isn't in the allowed format."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tuto aplikaci nelze sdílet, protože její ID balíku nemá povolený formát."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese App kann nicht geteilt werden, weil ihre Bundle-ID nicht im erlaubten Format ist."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta aplicación no se puede compartir porque su ID de paquete no tiene el formato permitido."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de partager cette app, car son identifiant de paquet (bundle ID) n'a pas le format autorisé."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questa app non si può condividere, perché il suo bundle ID non è nel formato consentito."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このアプリのバンドルIDは許可された形式ではないため、共有できません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "번들 ID가 허용된 형식이 아니므로 이 앱은 공유할 수 없습니다."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne appen kan ikke deles, fordi pakke-ID-en ikke har et tillatt format."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este app não pode ser compartilhado, porque o bundle ID dele não está no formato permitido."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этим приложением нельзя поделиться: его идентификатор пакета не в допустимом формате."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu uygulama paylaşılamaz, çünkü paket kimliği izin verilen biçimde değil."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цією програмою не можна поділитися, бо її ідентифікатор пакета (bundle ID) має недозволений формат."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể chia sẻ ứng dụng này, vì ID gói của nó không đúng định dạng cho phép."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法分享此App，因為其Bundle ID的格式不獲允許。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法分享此 App，因为它的 Bundle ID 不符合允许的格式。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法分享此應用程式，因為它的套件識別碼不符合允許的格式。"
           }
         }
       }
@@ -29445,6 +30981,102 @@
             "state" : "translated",
             "value" : "Setups for this app can't be shared, because the app's name could reveal health, dating, religious, political or financial information."
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nastavení pro tuto aplikaci nelze sdílet, protože z jejího názvu by se dalo vyčíst něco o zdraví, seznamování, víře, politice nebo financích."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belegungen für diese App können nicht geteilt werden, weil der Name der App Rückschlüsse auf Gesundheit, Dating, Religion, Politik oder Finanzen zulassen könnte."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Las configuraciones de esta aplicación no se pueden compartir porque su nombre podría revelar información de salud, citas, religión, política o finanzas."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de partager des configurations pour cette app, car son nom pourrait révéler des informations sur la santé, les rencontres, la religion, les opinions politiques ou les finances."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le configurazioni per questa app non si possono condividere, perché il nome dell'app potrebbe rivelare informazioni su salute, incontri, religione, politica o finanze."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このアプリの設定は共有できません。アプリ名から健康、出会い、宗教、政治、金融に関する情報がわかるおそれがあるためです。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱 이름으로 건강, 데이트, 종교, 정치 또는 금융 관련 정보가 드러날 수 있으므로 이 앱의 구성은 공유할 수 없습니다."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oppsett for denne appen kan ikke deles, fordi navnet på appen kan avsløre opplysninger om helse, dating, religion, politikk eller økonomi."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "As configurações deste app não podem ser compartilhadas, porque o nome do app pode revelar informações de saúde, relacionamentos, religião, política ou finanças."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Наборами для этого приложения делиться нельзя: его название может раскрыть сведения о здоровье, знакомствах, религии, политике или финансах."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu uygulamanın yapılandırmaları paylaşılamaz, çünkü uygulamanın adı sağlık, flört, din, siyaset veya mali durumla ilgili bilgileri açığa çıkarabilir."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Наборами для цієї програми не можна ділитися, бо її назва може розкрити інформацію про здоров’я, знайомства, релігійні чи політичні погляди або фінанси."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể chia sẻ cấu hình cho ứng dụng này, vì tên ứng dụng có thể tiết lộ thông tin về sức khỏe, hẹn hò, tôn giáo, chính trị hoặc tài chính."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法分享此App的設定，因為App的名稱可能透露健康、交友約會、宗教、政治或財務資料。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法分享此 App 的设置，因为 App 的名称可能透露健康、交友、宗教、政治或财务方面的信息。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法分享此應用程式的設定，因為應用程式名稱可能透露健康、交友、宗教、政治或財務資訊。"
+          }
         }
       }
     },
@@ -29455,6 +31087,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choose a topic from the list."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyberte téma ze seznamu."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle ein Thema aus der Liste."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige un tema de la lista."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez un thème dans la liste."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scegli un argomento dall'elenco."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リストからトピックを選んでください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "목록에서 주제를 선택하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg et emne fra listen."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escolha um tema da lista."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите тему из списка."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listeden bir konu seçin."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Виберіть тему зі списку."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hãy chọn một chủ đề trong danh sách."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "請從列表中選擇主題。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请从列表中选择一个主题。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "請從清單中選擇一個主題。"
           }
         }
       }
@@ -29467,6 +31195,102 @@
             "state" : "translated",
             "value" : "This tab has no buttons to share yet."
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tato záložka zatím nemá žádná tlačítka ke sdílení."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser Tab hat noch keine Tasten zum Teilen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta pestaña aún no tiene botones que compartir."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet onglet n'a encore aucun bouton à partager."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In questo pannello non ci sono ancora pulsanti da condividere."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このタブには、共有できるボタンがまだありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 탭에는 아직 공유할 버튼이 없습니다."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne fanen har ingen knapper å dele ennå."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta aba ainda não tem botões para compartilhar."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На этой вкладке пока нет кнопок, которыми можно поделиться."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu sekmede henüz paylaşılacak düğme yok."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На цій вкладці ще немає кнопок, якими можна поділитися."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tab này chưa có nút nào để chia sẻ."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此標籤頁暫時未有可分享的按鈕。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此标签页还没有可分享的按键。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此標籤頁還沒有可分享的按鈕。"
+          }
         }
       }
     },
@@ -29477,6 +31301,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "This tab has %1$ld buttons. At most %2$ld can be shared."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Počet tlačítek v této záložce: %1$ld. Sdílet jich lze nejvýše %2$ld."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser Tab hat %1$ld Tasten. Geteilt werden können höchstens %2$ld."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta pestaña tiene %1$ld botones. Se pueden compartir como máximo %2$ld."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet onglet a %1$ld boutons. %2$ld au maximum peuvent être partagés."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questo pannello ha %1$ld pulsanti. Se ne possono condividere al massimo %2$ld."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このタブには%1$ld個のボタンがあります。共有できるのは最大%2$ld個です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 탭에는 버튼이 %1$ld개 있습니다. 최대 %2$ld개까지 공유할 수 있습니다."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne fanen har %1$ld knapper. Maks %2$ld kan deles."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta aba tem %1$ld botões. É possível compartilhar no máximo %2$ld."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кнопок на этой вкладке: %1$ld. Поделиться можно не более чем %2$ld."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu sekmede %1$ld düğme var. En fazla %2$ld düğme paylaşılabilir."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На цій вкладці кнопок: %1$ld. Поділитися можна щонайбільше %2$ld."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tab này có %1$ld nút. Chỉ chia sẻ được tối đa %2$ld nút."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此標籤頁有%1$ld個按鈕，最多只可分享%2$ld個。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此标签页有 %1$ld 个按键。最多只能分享 %2$ld 个。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此標籤頁有%1$ld個按鈕。最多只能分享%2$ld個。"
           }
         }
       }
@@ -29489,6 +31409,102 @@
             "state" : "translated",
             "value" : "This tab can't be shared, because %ld of its buttons can't be shared. Only keyboard shortcuts without modifier buttons can be shared, and Quit, Log Out and Force Quit are never shared."
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tuto záložku nelze sdílet, protože některá její tlačítka (%ld) sdílet nejde. Sdílet lze jen klávesové zkratky bez modifikačních tlačítek a Ukončit, Odhlásit a Vynutit ukončení se nesdílí nikdy."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser Tab kann nicht geteilt werden, weil %ld seiner Tasten nicht geteilt werden können. Teilen lassen sich nur Tastaturkurzbefehle ohne zusätzlich gehaltene Maustaste, und Beenden, Abmelden und Sofort beenden werden nie geteilt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta pestaña no se puede compartir porque %ld de sus botones no se pueden compartir. Solo se pueden compartir atajos de teclado sin botones modificadores, y Salir, Cerrar sesión y Forzar salida nunca se comparten."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de partager cet onglet, car %ld de ses boutons ne peuvent pas être partagés. Seuls les raccourcis clavier sans bouton modificateur peuvent être partagés, et Quitter, Fermer la session et Forcer à quitter ne sont jamais partagés."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questo pannello non si può condividere, perché %ld dei suoi pulsanti non si possono condividere. Si possono condividere solo scorciatoie da tastiera senza pulsanti di modifica, e Esci, Logout e Uscita forzata non vengono mai condivisi."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このタブのボタンのうち%ld個が共有できないため、このタブは共有できません。共有できるのは修飾ボタンを使わないキーボードショートカットだけです。また、「終了」「ログアウト」「強制終了」は共有されません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 탭의 버튼 중 %ld개를 공유할 수 없으므로 이 탭은 공유할 수 없습니다. 보조 버튼 없이 쓰는 키보드 단축키만 공유할 수 있으며, 종료, 로그아웃, 강제 종료는 어떤 경우에도 공유되지 않습니다."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne fanen kan ikke deles, fordi %ld av knappene i den ikke kan deles. Bare tastatursnarveier uten modifikatorknapper kan deles, og Avslutt, Logg ut og Tvangsavslutt deles aldri."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta aba não pode ser compartilhada, porque %ld dos botões dela não podem ser compartilhados. Só atalhos de teclado sem botões modificadores podem ser compartilhados, e Encerrar, Finalizar Sessão e Forçar Encerrar nunca são compartilhados."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этой вкладкой нельзя поделиться: кнопок, которые нельзя отправить, — %ld. Отправить можно только сочетания клавиш без кнопок-модификаторов, а «Завершить», «Завершить сеанс» и «Завершить принудительно» не отправляются никогда."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu sekme paylaşılamaz, çünkü düğmelerinden %ld tanesi paylaşılamaz. Yalnızca değiştirici düğme içermeyen klavye kısayolları paylaşılabilir; Çık, Çıkış Yap ve Zorla Çık ise hiçbir zaman paylaşılmaz."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цією вкладкою не можна поділитися, бо %ld її кнопок не підходять для спільних наборів. Ділитися можна лише клавіатурними скороченнями без кнопок-модифікаторів, а «Завершити», «Вийти» і «Примусово завершити» не передаються ніколи."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể chia sẻ tab này, vì có %ld nút trong đó không chia sẻ được. Chỉ chia sẻ được các phím tắt không kèm nút bổ trợ, và Thoát, Đăng xuất, Buộc thoát không bao giờ được chia sẻ."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法分享此標籤頁，因為其中有%ld個按鈕不可分享。只有不含變更按鈕的鍵盤快捷鍵才可分享，而「結束」、「登出」和「強制結束」一律不會分享。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法分享此标签页，因为其中有 %ld 个按键无法分享。只能分享不带修饰按键的键盘快捷键，且“退出”、“退出登录”和“强制退出”永远不会被分享。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法分享此標籤頁，因為其中有%ld個按鈕不能分享。只能分享不搭配變更按鈕的鍵盤快速鍵，「結束」、「登出」和「強制結束」一律不會分享。"
+          }
         }
       }
     },
@@ -29499,6 +31515,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "This setup is larger than 16 KB and can't be shared."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toto nastavení je větší než 16 KB a nelze ho sdílet."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Belegung ist größer als 16 KB und kann nicht geteilt werden."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta configuración ocupa más de 16 KB y no se puede compartir."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette configuration dépasse 16 Ko et ne peut pas être partagée."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questa configurazione supera i 16 KB e non si può condividere."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この設定は16 KBを超えているため、共有できません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 구성은 16 KB보다 커서 공유할 수 없습니다."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dette oppsettet er større enn 16 kB og kan ikke deles."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta configuração tem mais de 16 KB e não pode ser compartilhada."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этот набор больше 16 КБ, им нельзя поделиться."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu yapılandırma 16 KB'tan büyük ve paylaşılamaz."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цей набір більший за 16 КБ, тому ним не можна поділитися."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cấu hình này lớn hơn 16 KB nên không thể chia sẻ."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此設定大於16 KB，無法分享。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此设置超过 16 KB，无法分享。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "這組設定大於16 KB，無法分享。"
           }
         }
       }
@@ -29511,6 +31623,102 @@
             "state" : "translated",
             "value" : "The server couldn't be reached. Nothing was shared. Try again later."
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server se nepodařilo kontaktovat. Nic se nesdílelo. Zkuste to později."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Server war nicht erreichbar. Es wurde nichts geteilt. Versuche es später noch einmal."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se ha podido conectar con el servidor. No se ha compartido nada. Inténtalo de nuevo más tarde."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de joindre le serveur. Rien n'a été partagé. Réessayez plus tard."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile raggiungere il server. Non è stato condiviso nulla. Riprova più tardi."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サーバに接続できませんでした。何も共有されていません。しばらくしてからもう一度お試しください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서버에 연결할 수 없습니다. 아무것도 공유되지 않았습니다. 나중에 다시 시도하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fikk ikke kontakt med serveren. Ingenting ble delt. Prøv igjen senere."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível conectar ao servidor. Nada foi compartilhado. Tente de novo mais tarde."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось связаться с сервером. Ничего не отправлено. Попробуйте позже."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunucuya ulaşılamadı. Hiçbir şey paylaşılmadı. Daha sonra tekrar deneyin."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося з’єднатися із сервером. Нічим не поділилися. Спробуйте пізніше."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không kết nối được tới máy chủ. Chưa có gì được chia sẻ. Hãy thử lại sau."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法連接伺服器。未有分享任何內容。請稍後再試。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法连接服务器。没有分享任何内容。请稍后重试。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法連線到伺服器。未分享任何內容。請稍後再試。"
+          }
         }
       }
     },
@@ -29521,6 +31729,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The server didn't accept this setup. Nothing was shared."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server toto nastavení nepřijal. Nic se nesdílelo."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Server hat diese Belegung nicht angenommen. Es wurde nichts geteilt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El servidor no ha aceptado esta configuración. No se ha compartido nada."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le serveur a refusé cette configuration. Rien n'a été partagé."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il server non ha accettato questa configurazione. Non è stato condiviso nulla."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サーバがこの設定を受け付けませんでした。何も共有されていません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서버가 이 구성을 받아들이지 않았습니다. 아무것도 공유되지 않았습니다."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serveren godtok ikke dette oppsettet. Ingenting ble delt."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O servidor não aceitou esta configuração. Nada foi compartilhado."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сервер не принял этот набор. Ничего не отправлено."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunucu bu yapılandırmayı kabul etmedi. Hiçbir şey paylaşılmadı."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сервер не прийняв цей набір. Нічим не поділилися."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Máy chủ không chấp nhận cấu hình này. Chưa có gì được chia sẻ."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "伺服器不接受此設定。未有分享任何內容。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "服务器未接受此设置。没有分享任何内容。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "伺服器不接受這組設定。未分享任何內容。"
           }
         }
       }
@@ -29533,6 +31837,102 @@
             "state" : "translated",
             "value" : "The server had a problem. Try again later."
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Na serveru nastal problém. Zkuste to později."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beim Server ist ein Problem aufgetreten. Versuche es später noch einmal."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El servidor ha tenido un problema. Inténtalo de nuevo más tarde."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le serveur a rencontré un problème. Réessayez plus tard."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il server ha avuto un problema. Riprova più tardi."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サーバで問題が発生しました。しばらくしてからもう一度お試しください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서버에 문제가 발생했습니다. 나중에 다시 시도하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serveren fikk et problem. Prøv igjen senere."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O servidor teve um problema. Tente de novo mais tarde."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На сервере произошла ошибка. Попробуйте позже."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunucuda bir sorun oluştu. Daha sonra tekrar deneyin."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На сервері сталася проблема. Спробуйте пізніше."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Máy chủ gặp sự cố. Hãy thử lại sau."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "伺服器發生問題。請稍後再試。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "服务器出现问题。请稍后重试。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "伺服器發生問題。請稍後再試。"
+          }
         }
       }
     },
@@ -29543,6 +31943,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Community setups"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nastavení komunity"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belegungen der Community"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuraciones de la comunidad"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurations de la communauté"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurazioni della community"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コミュニティの設定"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "커뮤니티 구성"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fellesskapsoppsett"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurações da comunidade"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Наборы сообщества"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Topluluk yapılandırmaları"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Набори спільноти"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cấu hình cộng đồng"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "社群設定"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "社区设置"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "社群設定"
           }
         }
       }
@@ -29555,6 +32051,102 @@
             "state" : "translated",
             "value" : "Shows button setups that other users shared for an app, and lets you share an app tab's setup. Downloads come from the public setups repository on GitHub. Shared setups go to a review queue and are public under CC0 once published. This one switch turns on both."
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazuje nastavení tlačítek, která pro danou aplikaci sdíleli jiní uživatelé, a umožňuje sdílet nastavení záložky aplikace. Stahuje se z veřejného repozitáře nastavení na GitHubu. Sdílená nastavení jdou nejdřív ke kontrole a po zveřejnění jsou veřejná pod licencí CC0. Tento jeden přepínač zapíná obojí."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeigt Tastenbelegungen, die andere Nutzer für eine App geteilt haben, und du kannst die Belegung eines App-Tabs teilen. Heruntergeladen wird aus dem öffentlichen Repository der Belegungen auf GitHub. Geteilte Belegungen werden erst geprüft und sind nach der Veröffentlichung öffentlich unter CC0. Dieser eine Schalter aktiviert beides."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muestra configuraciones de botones que otros usuarios han compartido para una aplicación y te permite compartir la configuración de la pestaña de una aplicación. Las descargas vienen del repositorio público de configuraciones en GitHub. Las configuraciones que compartes pasan a una cola de revisión y, una vez publicadas, son públicas bajo CC0. Este interruptor activa ambas cosas."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Affiche les configurations de boutons que d'autres utilisateurs ont partagées pour une app, et vous permet de partager la configuration d'un onglet d'app. Les téléchargements viennent du dépôt public des configurations sur GitHub. Les configurations partagées passent d'abord en file de vérification, puis sont publiques sous CC0 une fois publiées. Cette seule option active les deux."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostra le configurazioni dei pulsanti che altri utenti hanno condiviso per un'app e ti permette di condividere la configurazione del pannello di un'app. I download arrivano dal repository pubblico delle configurazioni su GitHub. Le configurazioni condivise passano da una coda di controllo e, una volta pubblicate, sono pubbliche con licenza CC0. Questo solo interruttore attiva entrambe le cose."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ほかのユーザがアプリ用に共有したボタンの設定を表示し、アプリのタブの設定を共有できるようにします。ダウンロードはGitHub上の公開の設定リポジトリから行います。共有した設定は確認待ちのキューに入り、公開されるとCC0のもとで一般公開されます。このスイッチ1つで両方がオンになります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다른 사용자가 앱별로 공유한 버튼 구성을 보여 주고, 앱 탭의 구성을 공유할 수 있게 합니다. 다운로드는 GitHub의 공개 구성 저장소에서 받습니다. 공유한 구성은 검토 대기열로 들어가며, 게시되면 CC0으로 공개됩니다. 이 스위치 하나로 두 기능이 모두 켜집니다."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viser knappeoppsett som andre brukere har delt for en app, og lar deg dele oppsettet i en appfane. Nedlastinger kommer fra det offentlige repositoriet med oppsett på GitHub. Delte oppsett havner i en kø for gjennomgang og er offentlige under CC0 når de er publisert. Denne ene bryteren slår på begge deler."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostra configurações de botões que outros usuários compartilharam para um app e permite compartilhar a configuração de uma aba de app. Os downloads vêm do repositório público de configurações no GitHub. Configurações compartilhadas entram numa fila de revisão e, depois de publicadas, ficam públicas sob CC0. Esta única opção ativa as duas coisas."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показывает наборы кнопок, которыми другие пользователи поделились для приложения, и позволяет поделиться набором вкладки приложения. Наборы скачиваются из публичного репозитория наборов на GitHub. Отправленные наборы попадают в очередь на проверку, а после публикации становятся общедоступными под CC0. Этот переключатель включает и то, и другое."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diğer kullanıcıların bir uygulama için paylaştığı düğme yapılandırmalarını gösterir ve bir uygulama sekmesinin yapılandırmasını paylaşmanızı sağlar. İndirmeler GitHub'daki herkese açık yapılandırma deposundan gelir. Paylaşılan yapılandırmalar bir inceleme kuyruğuna girer ve yayımlandıktan sonra CC0 kapsamında herkese açık olur. Bu tek anahtar ikisini birden açar."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показує набори кнопок, якими інші користувачі поділилися для програми, і дає змогу поділитися набором вкладки програми. Завантаження йдуть із публічного репозиторію наборів на GitHub. Надіслані набори потрапляють у чергу на перевірку, а після публікації стають публічними за CC0. Цей один перемикач вмикає обидві функції."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiển thị cấu hình nút mà người dùng khác đã chia sẻ cho một ứng dụng, và cho phép bạn chia sẻ cấu hình của một tab ứng dụng. Nội dung tải về lấy từ kho cấu hình công khai trên GitHub. Cấu hình bạn chia sẻ sẽ vào hàng chờ duyệt và trở nên công khai theo CC0 sau khi được đăng. Một công tắc này bật cả hai."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示其他用戶為某個App分享的按鈕設定，並讓你分享App標籤頁的設定。下載內容來自GitHub上的公開設定儲存庫。分享的設定會進入審查佇列，發佈後以CC0公開。此開關會同時開啟這兩項功能。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示其他用户为某个 App 分享的按键设置，并让您分享 App 标签页的设置。下载内容来自 GitHub 上的公开设置仓库。分享的设置会进入审核队列，发布后以 CC0 公开。这一个开关同时打开这两项功能。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示其他使用者為應用程式分享的按鈕設定，也讓您分享應用程式標籤頁的設定。下載內容來自GitHub上的公開設定儲存庫。分享的設定會進入審核佇列，發布後即依CC0公開。這一個開關會同時開啟這兩項功能。"
+          }
         }
       }
     },
@@ -29565,6 +32157,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shared setups"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sdílená nastavení"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geteilte Belegungen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuraciones compartidas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurations partagées"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurazioni condivise"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "共有した設定"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공유한 구성"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delte oppsett"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurações compartilhadas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отправленные наборы"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylaşılan yapılandırmalar"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спільні набори"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cấu hình đã chia sẻ"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已分享的設定"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "共享设置"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已分享的設定"
           }
         }
       }
@@ -29577,6 +32265,102 @@
             "state" : "translated",
             "value" : "You haven't shared any setups from this Mac."
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Z tohoto Macu jste zatím žádná nastavení nesdíleli."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du hast von diesem Mac noch keine Belegungen geteilt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No has compartido ninguna configuración desde este Mac."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous n'avez partagé aucune configuration depuis ce Mac."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non hai condiviso configurazioni da questo Mac."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このMacから共有した設定はありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 Mac에서 공유한 구성이 없습니다."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ikke delt noen oppsett fra denne Macen."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você ainda não compartilhou nenhuma configuração deste Mac."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы пока не делились наборами с этого Mac."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu Mac'ten henüz hiç yapılandırma paylaşmadınız."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ви ще не ділилися наборами з цього Mac."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn chưa chia sẻ cấu hình nào từ máy Mac này."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你未曾從此Mac分享任何設定。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您还没有从这台 Mac 分享过任何设置。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您還沒有從這台Mac分享任何設定。"
+          }
         }
       }
     },
@@ -29588,6 +32372,102 @@
             "state" : "translated",
             "value" : "%1$@: %2$@"
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ : %2$@"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@：%2$@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@：%2$@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@：%2$@"
+          }
         }
       }
     },
@@ -29595,6 +32475,102 @@
       "comment" : "Second line of a shared setup in the General tab. %1$@ is the date it was shared, %2$@ its record ID.",
       "localizations" : {
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · ID %2$@"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · ID %2$@"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · ID %2$@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · ID %2$@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · ID %2$@"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · ID %2$@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · ID %2$@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · ID %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · ID %2$@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · ID %2$@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · ID %2$@"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · Kimlik %2$@"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · ID %2$@"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · ID %2$@"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · ID %2$@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · ID %2$@"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ · ID %2$@"
@@ -29610,6 +32586,102 @@
             "state" : "translated",
             "value" : "Delete"
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smazat"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Löschen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "削除"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slett"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apagar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sil"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Видалити"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xóa"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除"
+          }
         }
       }
     },
@@ -29620,6 +32692,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The setup wasn't deleted"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nastavení nebylo smazáno"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Belegung wurde nicht gelöscht"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se ha eliminado la configuración"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La configuration n'a pas été supprimée"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La configurazione non è stata eliminata"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定は削除されませんでした"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구성을 삭제하지 못했습니다"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oppsettet ble ikke slettet"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A configuração não foi apagada"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Набор не удален"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yapılandırma silinmedi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Набір не видалено"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chưa xóa được cấu hình"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未能刪除設定"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未删除设置"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定未刪除"
           }
         }
       }
@@ -29632,6 +32800,102 @@
             "state" : "translated",
             "value" : "The server doesn't know this setup. It may have been deleted already. It stays in the list on this Mac."
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server toto nastavení nezná. Možná už bylo smazáno. V seznamu na tomto Macu zůstává."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Server kennt diese Belegung nicht. Vielleicht wurde sie schon gelöscht. Auf diesem Mac bleibt sie in der Liste."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El servidor no conoce esta configuración. Puede que ya se haya eliminado. Sigue en la lista de este Mac."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le serveur ne connaît pas cette configuration. Elle a peut-être déjà été supprimée. Elle reste dans la liste sur ce Mac."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il server non conosce questa configurazione. Forse è già stata eliminata. Resta nell'elenco su questo Mac."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サーバにこの設定が見つかりません。すでに削除されている可能性があります。このMacのリストには残ります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서버에 이 구성이 없습니다. 이미 삭제되었을 수 있습니다. 이 Mac의 목록에는 그대로 남습니다."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serveren kjenner ikke til dette oppsettet. Det kan allerede være slettet. Det blir stående i listen på denne Macen."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O servidor não conhece esta configuração. Talvez ela já tenha sido apagada. Ela continua na lista deste Mac."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сервер не знает этот набор. Возможно, он уже удален. В списке на этом Mac он останется."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunucu bu yapılandırmayı tanımıyor. Daha önce silinmiş olabilir. Bu Mac'teki listede kalır."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сервер не знає цього набору. Можливо, його вже видалено. Він залишається у списку на цьому Mac."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Máy chủ không tìm thấy cấu hình này. Có thể nó đã bị xóa rồi. Nó vẫn nằm trong danh sách trên máy Mac này."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "伺服器找不到此設定，它可能已被刪除。此設定會保留在此Mac的列表中。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "服务器上没有此设置，可能已被删除。它会保留在这台 Mac 的列表中。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "伺服器上找不到這組設定，可能已經刪除了。它會保留在這台Mac的清單中。"
+          }
         }
       }
     },
@@ -29642,6 +32906,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The server couldn't be reached. The setup stays in the list, so you can try again later."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server se nepodařilo kontaktovat. Nastavení v seznamu zůstává, takže to můžete zkusit později znovu."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Server war nicht erreichbar. Die Belegung bleibt in der Liste, du kannst es also später noch einmal versuchen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se ha podido conectar con el servidor. La configuración sigue en la lista, así que puedes volver a intentarlo más tarde."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de joindre le serveur. La configuration reste dans la liste, vous pourrez donc réessayer plus tard."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile raggiungere il server. La configurazione resta nell'elenco, così puoi riprovare più tardi."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サーバに接続できませんでした。設定はリストに残るので、あとでもう一度お試しください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서버에 연결할 수 없습니다. 구성이 목록에 남아 있으므로 나중에 다시 시도할 수 있습니다."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fikk ikke kontakt med serveren. Oppsettet blir stående i listen, så du kan prøve igjen senere."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível conectar ao servidor. A configuração continua na lista, então você pode tentar de novo mais tarde."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось связаться с сервером. Набор останется в списке, и можно будет попробовать позже."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunucuya ulaşılamadı. Yapılandırma listede kalır, daha sonra tekrar deneyebilirsiniz."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося з’єднатися із сервером. Набір залишається у списку, тож можна спробувати пізніше."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không kết nối được tới máy chủ. Cấu hình vẫn nằm trong danh sách để bạn thử lại sau."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法連接伺服器。設定會保留在列表中，你可以稍後再試。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法连接服务器。此设置会保留在列表中，您可以稍后重试。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法連線到伺服器。設定會保留在清單中，您可以稍後再試。"
           }
         }
       }
@@ -29654,6 +33014,102 @@
             "state" : "translated",
             "value" : "The server had a problem. The setup stays in the list, so you can try again later."
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Na serveru nastal problém. Nastavení v seznamu zůstává, takže to můžete zkusit později znovu."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beim Server ist ein Problem aufgetreten. Die Belegung bleibt in der Liste, du kannst es also später noch einmal versuchen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El servidor ha tenido un problema. La configuración sigue en la lista, así que puedes volver a intentarlo más tarde."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le serveur a rencontré un problème. La configuration reste dans la liste, vous pourrez donc réessayer plus tard."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il server ha avuto un problema. La configurazione resta nell'elenco, così puoi riprovare più tardi."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サーバで問題が発生しました。設定はリストに残るので、あとでもう一度お試しください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서버에 문제가 발생했습니다. 구성이 목록에 남아 있으므로 나중에 다시 시도할 수 있습니다."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serveren fikk et problem. Oppsettet blir stående i listen, så du kan prøve igjen senere."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O servidor teve um problema. A configuração continua na lista, então você pode tentar de novo mais tarde."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На сервере произошла ошибка. Набор останется в списке, и можно будет попробовать позже."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunucuda bir sorun oluştu. Yapılandırma listede kalır, daha sonra tekrar deneyebilirsiniz."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На сервері сталася проблема. Набір залишається у списку, тож можна спробувати пізніше."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Máy chủ gặp sự cố. Cấu hình vẫn nằm trong danh sách để bạn thử lại sau."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "伺服器發生問題。設定會保留在列表中，你可以稍後再試。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "服务器出现问题。此设置会保留在列表中，您可以稍后重试。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "伺服器發生問題。設定會保留在清單中，您可以稍後再試。"
+          }
         }
       }
     },
@@ -29665,6 +33121,102 @@
             "state" : "translated",
             "value" : "OK"
           }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "확인"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ОК"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamam"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гаразд"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "好"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "好"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "好"
+          }
         }
       }
     },
@@ -29675,6 +33227,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Remove from This Mac"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odstranit z tohoto Macu"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Von diesem Mac entfernen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quitar de este Mac"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retirer de ce Mac"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rimuovi da questo Mac"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このMacから削除"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 Mac에서 제거"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fjern fra denne Macen"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remover Deste Mac"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить с этого Mac"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu Mac'ten Kaldır"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вилучити з цього Mac"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xóa khỏi máy Mac này"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "從此Mac移除"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "从这台 Mac 移除"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "從這台Mac移除"
           }
         }
       }
