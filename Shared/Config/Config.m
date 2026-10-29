@@ -155,6 +155,9 @@ void commitConfig(void) {
     ///         Isn't it an error to call `[loadConfigFromFile]` without calling `[updateDerivedStates]` afterwards? - should we make loadConfigFromFile private?
     assertRunLoop(configRunLoop());
 
+    /// The helper only creates the config after it has accessibility access (see AccessibilityCheck.m). Until then there is nothing to reload, and `updateDerivedStates()` would write into the nil config. That crashed the helper when the main app sent `configFileChanged` while accessibility was missing. [Oct 2026]
+    if (self.shared == nil) return;
+
     [self.shared loadConfigFromFile];
     updateDerivedStates();
 }
