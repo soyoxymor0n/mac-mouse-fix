@@ -43,6 +43,20 @@ import Foundation
                     }
                 }
             },
+        ],
+        [
+            "key": "k-enable-failed-toast",
+            "block": {
+                var messageRaw = MFLocalizedString("enable-failed-toast", comment: "Shown when Mac Mouse Fix NG can't be enabled for a reason other than the Login Items switch being off. The link goes to the setup guide.")
+                messageRaw = String(format: messageRaw, Links.link(kMFLinkID_VenturaEnablingGuide) ?? "")
+
+                let message = MarkdownParser.attributedString(withCoolMarkdown: messageRaw, fillOutBase: false)
+                mfrun(CFRunLoopGetMain()) { /// UI stuff needs to be called from the main thread
+                    if let window = NSApp.mainWindow, let message = message {
+                        ToastController.attachNotification(withMessage: message, forDuration: kMFToastDurationAutomatic)
+                    }
+                }
+            },
         ]
     ]
     static let simpleToastMap_Buttons = [

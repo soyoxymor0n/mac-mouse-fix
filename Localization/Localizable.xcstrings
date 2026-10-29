@@ -33326,6 +33326,114 @@
           }
         }
       }
+    },
+    "enable-failed-toast" : {
+      "comment" : "Shown when Mac Mouse Fix NG can't be enabled for a reason other than the Login Items switch being off. The link goes to the setup guide.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Mac Mouse Fix NG couldn't be enabled.** Try again. If it keeps failing, see the [setup guide](%@)."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Mac Mouse Fix NG se nepodařilo povolit.** Zkuste to znovu. Pokud to stále nejde, podívejte se do [průvodce nastavením](%@)."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Mac Mouse Fix NG konnte nicht aktiviert werden.** Versuch es noch mal. Wenn es weiter nicht klappt, schau in die [Einrichtungsanleitung](%@)."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**No se pudo activar Mac Mouse Fix NG.** Inténtalo de nuevo. Si sigue fallando, consulta la [guía de configuración](%@)."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Impossible d'activer Mac Mouse Fix NG.** Réessayez. Si le problème persiste, consultez le [guide de configuration](%@)."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Impossibile attivare Mac Mouse Fix NG.** Riprova. Se continua a non funzionare, consulta la [guida alla configurazione](%@)."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Mac Mouse Fix NG を有効にできませんでした。**もう一度お試しください。それでもうまくいかない場合は、[セットアップガイド](%@)をご覧ください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Mac Mouse Fix NG를 활성화할 수 없습니다.** 다시 시도해 보세요. 계속 실패하면 [설정 가이드](%@)를 확인하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Kunne ikke aktivere Mac Mouse Fix NG.** Prøv igjen. Hvis det fortsatt ikke virker, se [oppsettsveiledningen](%@)."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Não foi possível ativar o Mac Mouse Fix NG.** Tente de novo. Se continuar falhando, veja o [guia de configuração](%@)."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Не удалось включить Mac Mouse Fix NG.** Попробуйте ещё раз. Если не получается, загляните в [руководство по настройке](%@)."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Mac Mouse Fix NG etkinleştirilemedi.** Tekrar deneyin. Sorun devam ederse [kurulum kılavuzuna](%@) bakın."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Не вдалося увімкнути Mac Mouse Fix NG.** Спробуйте ще раз. Якщо не виходить, перегляньте [посібник із налаштування](%@)."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Không thể bật Mac Mouse Fix NG.** Hãy thử lại. Nếu vẫn không được, xem [hướng dẫn cài đặt](%@)."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**無法啟用 Mac Mouse Fix NG。**請再試一次。如果仍然失敗，請參閱[設定指南](%@)。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**无法启用 Mac Mouse Fix NG。**请再试一次。如果仍然失败，请查看[设置指南](%@)。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**無法啟用 Mac Mouse Fix NG。**請再試一次。如果仍然失敗，請參閱[設定指南](%@)。"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

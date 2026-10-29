@@ -200,14 +200,18 @@ class GeneralTabController: NSViewController {
                         
                     } else { /// error != nil
                         
-                        guard let error = error else { assert(false); return }
+                        guard let error = error else { DDLogError("GeneralTabController - enabling the helper failed without an error"); return }
                         
                         
                         if #available(macOS 13.0, *), error.domain == "SMAppServiceErrorDomain", error.code == 1 {
                             
                             Toasts.showSimpleToast(name: "k-is-disabled-toast")
                         }
-                        else { assert(false) }
+                        else {
+                            /// Any other failure, for example an unsigned build that can't register the helper. Tell the user instead of crashing.
+                            DDLogError("GeneralTabController - enabling the helper failed: \(error)")
+                            Toasts.showSimpleToast(name: "k-enable-failed-toast")
+                        }
                     }
                 })
                 
