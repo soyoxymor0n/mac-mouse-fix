@@ -1,6 +1,6 @@
 # App presets
 
-Status: v1 on `beta`, with the review sheet (2026-10-26). Teams and Chrome only. The review sheet is implemented and compiles. It has not been clicked through in the app yet.
+Status: v1 on `beta`, with the review sheet (2026-10-26), Teams and Chrome only. The review sheet is implemented and compiles. Layout check (phase 3, 2026-10-29): the Teams keys M and O are key codes 46 and 31, and these are the same on the US, German and Austrian layouts (`shortcut-research/data/layouts-us-de-at.tsv`). The Chrome arrow keys do not depend on the layout. Still open: a click-through of the review sheet in the running app.
 Deviations from this plan: the data is Swift (`AppPresets.swift`), not a plist. Chrome uses the arrow keys (decision 5, option d). The banner sits inside the add field and opens a review sheet, which replaces the "Show" popover from the first plan. Rows are chosen in that sheet before anything is written. "Don't suggest this again" is stored in UserDefaults, not in the config, so `configVersion` stays at 24. Not in v1: recording a custom shortcut in the sheet, and a session Undo. Restore Defaults on the tab removes the rows.
 
 ## 1. Summary

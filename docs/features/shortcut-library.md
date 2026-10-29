@@ -1,6 +1,6 @@
 # Shortcut library
 
-Status: v1 implemented on `beta` (2026-10-25). Three apps only: Google Chrome, Microsoft Teams and Finder. Firefox, Safari, VS Code, Zoom and Slack are not in v1: their shortcuts could not be checked against the vendor's page in this session, and Slack's bundle ID could not be verified (Slack is not installed here). Not in v1: the Settings switch, the "Browse shortcuts" entry on Global, and the "Usually button 4" hint. Library entries appear at the top of the effect menu of that app's rows. Choosing one writes the same row as recording the key.
+Status: v1 on `beta`, updated 2026-10-29. 48 apps and 1161 entries. 1122 entries are verified: each has a source URL on the vendor's own page and a check date of 2026-10-29. The other 39 are not verified and show a ring badge. Each layout-dependent entry stores one variant for the US, German and Austrian layouts; the app picks the variant of the active input source when a row is created. Five labels are localizable. The switch 'Show shortcut library' hides every library entry. 95 suggested mouse buttons (buttons 3 to 5) are shown as 'Suggested' in the Apps tab; nothing is applied automatically. Not done: a test on a real German Mac (the layout result comes from the measured table), and a second review of the verification by a person.
 
 Phases 2 and 3 (2026-10-29): character-based entries store one variant each for US, German and Austrian (`layoutDependent`, `variants`). Rows get the variant of the active input source (TIS); unknown layouts use US. A "Show shortcut library" switch sits in the Buttons tab above the app list. It is stored in UserDefaults, not in the config (`configVersion` stays 24), and hides the effect-menu section, the Apps tab entries and the suggestions; existing rows stay. `sourceURL` and `verifiedOn` come from `library-flags.json` and show as the tooltip of the check badge; an entry counts as verified only with both. Suggested buttons come from `suggested-mappings.json` (optional) and show as "Suggested: Button N" in the Apps tab; the add menu offers that button first. Five labels are localizable (`shortcut-library.*` keys, English default). Tests: `ShortcutLibraryTests.m` (row equality with recording, bundle ID rule, switch filter, layout selection); `tools/check_library.py`.
 
@@ -164,6 +164,13 @@ Phase 3: layout and release.
 - Labels exist in English. German labels exist for at least the five most used entries, if the app is shipped in German. Check the existing `Localization` folder for which languages are supported.
 
 ## 9. Open decisions for the owner
+
+Decided 2026-10-29 (owner):
+- Apps: all 48 stay. Verified entries get the check badge, the rest a ring. The verification uses the vendor's own page, per the owner's choice.
+- Which apps are listed: only the library apps. Installed apps without an entry are not listed.
+- Verification: a vendor page check (source URL and date per entry), not a press test.
+- Suggested mouse buttons: suggested for every app, marked as suggestions for review.
+- Shared setups (issue 5) are a separate decision and are documented in community-sharing.md.
 
 1. Which apps are in v1?
    (a) Chrome, Firefox, Safari, Teams, Slack and VS Code (six apps). (b) 10 to 12 apps, adding Zoom, Finder, Obsidian and iTerm2. (c) Only the apps you use.
