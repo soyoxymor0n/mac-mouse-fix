@@ -18,6 +18,11 @@ struct AppPresetSuggestion {
     let symbols: String
     /// Action dict in the same format as the effects of remap rows (`type`, `keycode`, `flags`)
     let effect: [String: Any]
+    /// Trigger of the row. Built-in presets use a single click; community setups can also use hold and double or triple clicks.
+    var duration: String = "click"
+    var level: Int = 1
+    /// Action name shown in the review sheet instead of `titleKey` and `symbols`. Used for community setups, whose actions have no localization key.
+    var title: String? = nil
 }
 
 /// How a suggestion compares to the rows an app tab already has
@@ -72,9 +77,9 @@ struct AppPreset {
     }
 
     /// A remap row for `app`, in the same shape as the rows the Buttons tab writes.
-    static func remapRow(button: Int, effect: [String: Any], app: String) -> [String: Any] {
+    static func remapRow(button: Int, effect: [String: Any], app: String, duration: String = "click", level: Int = 1) -> [String: Any] {
         return [
-            "trigger": ["button": button, "duration": "click", "level": 1] as [String: Any],
+            "trigger": ["button": button, "duration": duration, "level": level] as [String: Any],
             "modifiers": [String: Any](),
             "effect": effect,
             "app": app,
@@ -108,7 +113,7 @@ struct AppPreset {
 
     /// Compares each suggestion of `preset`, as it would be written for `app`, with `rows`. One result per suggestion, in the same order.
     static func classify(_ preset: AppPreset, against rows: [[String: Any]], app: String) -> [AppPresetMatch] {
-        return preset.suggestions.map { classify(remapRow(button: $0.button, effect: $0.effect, app: app), against: rows, app: app) }
+        return preset.suggestions.map { classify(remapRow(button: $0.button, effect: $0.effect, app: app, duration: $0.duration, level: $0.level), against: rows, app: app) }
     }
 
     private static func keyboardShortcut(keycode: Int, flags: Int) -> [String: Any] {

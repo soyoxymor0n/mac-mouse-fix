@@ -1,6 +1,6 @@
 # Community config sharing (opt-in)
 
-Status: phase 0 done (2026-10-25). The curated repository is public at https://github.com/soyoxymor0n/mac-mouse-fix-setups (validator, fixtures, CI, one approving review on main). No app change and no server. Phases 1 and 2 (the in-app download, the upload) wait for your decisions on the controller question and the consent model. This plan is not legal advice. Items marked "question for you" need a decision or a lawyer.
+Status: phase 0 done (2026-10-25). The curated repository is public at https://github.com/soyoxymor0n/mac-mouse-fix-setups (validator, fixtures, CI, one approving review on main). Phase 1 (read-only download, no upload) is built (2026-10-29): "Community setups…" in an app tab, code in `App/UI/Main/Tabs/ButtonTab/AppTabs/CommunitySetups*.swift`, tests in `Tests/run_community_tests.sh` there. The repository has no index file, so the app lists `setups/` with the GitHub contents API (with ETag) and caches the files in `CommunitySetupsCache.json` in its Application Support folder. Phase 2 (the upload) still waits for your decisions on the controller question and the consent model. This plan is not legal advice. Items marked "question for you" need a decision or a lawyer.
 
 ## 1. Summary
 
