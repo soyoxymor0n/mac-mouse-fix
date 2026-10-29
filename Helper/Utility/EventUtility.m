@@ -29,31 +29,6 @@ int64_t fixedScrollDelta(double scrollDelta) {
     return (int64_t)round(scrollDelta * pow(2, 16));
 }
 
-#pragma mark - Event synthesis
-
-bool canPostSyntheticEvents(void) {
-
-    /// Whether this process currently has event-synthesis access (CGPreflightPostEventAccess).
-    ///     Why: Event taps swallow physical input and rely on posting replacement events. If WindowServer rejects the replacements ("Sender is prohibited from synthesizing events", GH #2065, #2081), the input is lost. Callers can let the physical input through instead when this returns false.
-    ///     Caveat: CGEventPost() returns nothing, so this is the only signal we have. It doesn't catch every rejection, and we haven't confirmed it changes in the failure state.
-    ///     Performance: Cached for 1 second, because the scroll tap calls this for every tick.
-    ///     Threading: Only call on IOThread.runLoop (the cache is not synchronized).
-
-    static CFAbsoluteTime lastCheckTime = 0.0;
-    static bool lastResult = true;
-
-    CFAbsoluteTime now = CFAbsoluteTimeGetCurrent();
-    if (now - lastCheckTime > 1.0) {
-        bool result = CGPreflightPostEventAccess();
-        if (result != lastResult) {
-            DDLogInfo("Event synthesis access changed. CGPreflightPostEventAccess: %d", result);
-        }
-        lastResult = result;
-        lastCheckTime = now;
-    }
-    return lastResult;
-}
-
 #pragma mark - Event filtering
 
 bool CGEvent_IsWacomEvent(CGEventRef event) {

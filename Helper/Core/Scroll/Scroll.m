@@ -222,10 +222,6 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEv
     if (CGEvent_IsWacomEvent(event))
         return event;
 
-    /// If we can't post synthetic events, the replacement for this scroll would be rejected and the scroll would be lost. So let it through instead. (GH #2081, #2065)
-    if (!canPostSyntheticEvents())
-        return event;
-
     /// Get timestamp
     ///     Get timestamp here instead of _scrollQueue for accurate timing
     ///     @afterNoGCDTodo We found that the HIDEvent's timestamps are much more accurate.

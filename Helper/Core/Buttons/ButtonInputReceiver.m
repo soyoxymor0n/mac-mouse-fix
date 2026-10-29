@@ -17,19 +17,14 @@
 #import "HelperUtility.h"
 #import "GestureScrollSimulator.h"
 #import "Mac_Mouse_Fix_Helper-Swift.h"
-#import "EventUtility.h"
 
 @implementation ButtonInputReceiver
 
 static CFMachPortRef _eventTap;
 
-/// Button numbers whose press we let through because we couldn't post synthetic events. Their release is let through too.
-static NSMutableIndexSet *_buttonsPassedThrough;
-
 + (void)load_Manual {
     registerInputCallback();
     _buttonParseBlacklist = @[@(1),@(2)]; /// Ignore inputs from left and right mouse buttons
-    _buttonsPassedThrough = [NSMutableIndexSet indexSet];
 }
 
 + (void)start {
@@ -138,12 +133,6 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEv
     /// Filter buttons
     if ([_buttonParseBlacklist containsObject:@(buttonNumber)]) return event;
 
-    /// Let the release through if we let the press through (see below)
-    if (!mouseDown && [_buttonsPassedThrough containsIndex:buttonNumber]) {
-        [_buttonsPassedThrough removeIndex:buttonNumber];
-        return event;
-    }
-
     /// Debug
     DDLogDebug("Input Receiver - Received event: %@", [NSEvent eventWithCGEvent:event].description);
     
@@ -189,14 +178,6 @@ static CGEventRef eventTapCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 
             return event;
         #endif
-    }
-
-    /// If we can't post synthetic events, the replacement for this press would be rejected and the click would be lost. So let the press through instead (and its release, see above). (GH #2065)
-    [_buttonsPassedThrough removeIndex:buttonNumber];
-    if (mouseDown && !canPostSyntheticEvents()) {
-        DDLogDebug("Input Receiver - Can't post synthetic events. Letting button %@ press through.", @(buttonNumber));
-        [_buttonsPassedThrough addIndex:buttonNumber];
-        return event;
     }
 
     /// Log
