@@ -39,12 +39,12 @@ CFMachPortRef _keyCaptureEventTap;
             runLoop: IOThread.runLoop
         ];
     }
-    CGEventTapEnable(_keyCaptureEventTap, true);
+    if (_keyCaptureEventTap != NULL) CGEventTapEnable(_keyCaptureEventTap, true); /// NULL if creation failed (no permissions). Creation is retried on the next `enable`. [Oct 2026]
 }
 
 + (void)disable {
     assertRunLoop(IOThread.runLoop);
-    CGEventTapEnable(_keyCaptureEventTap, false);
+    if (_keyCaptureEventTap != NULL) CGEventTapEnable(_keyCaptureEventTap, false);
 }
 
 CGEventRef _Nullable keyCaptureModeCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *userInfo) {

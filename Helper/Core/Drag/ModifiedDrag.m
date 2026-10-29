@@ -234,7 +234,7 @@ static void initDragState(void) {
 
     [_drag.outputPlugin initializeWithDragState:&_drag]; /// We just want to reset the plugin state here. The plugin will already hold ref to `_drag`. So this is not super pretty/semantic
     
-    CGEventTapEnable(_drag.eventTap, true);
+    if (_drag.eventTap != NULL) CGEventTapEnable(_drag.eventTap, true); /// NULL if `load_Manual` couldn't create the tap (no permissions). [Oct 2026]
     DDLogDebug("Enabled drag eventTap");
 }
 
@@ -562,7 +562,7 @@ static void handleMouseInputWhileInUse(int64_t deltaX, int64_t deltaY) {
     _drag.activationState = kMFModifiedInputActivationStateNone;
     
     /// Disable eventTap
-    CGEventTapEnable(_drag.eventTap, false);
+    if (_drag.eventTap != NULL) CGEventTapEnable(_drag.eventTap, false);
     
     /// Debug
     DDLogDebug("modifiedDrag disabled drag eventTap. Caller info: %@", [SharedUtility callerInfo]);

@@ -83,6 +83,12 @@ BOOL directionChanged(MFDirection direction1, MFDirection direction2) {
                                     runLoop:(CFRunLoopRef)runLoop {
     CFMachPortRef eventTap = CGEventTapCreate(location, placement, option, mask, callback, NULL);
     /// ^ Make sure to use the same EventTapLocation and EventTapPlacement here as you do in ButtonInputReceiver, otherwise there'll be timing and ordering issues! (This was one of the causes for the stuck bug and also caused other issues)
+    if (eventTap == NULL) {
+        /// CGEventTapCreate() returns NULL if the helper lacks the permissions for the tap (Accessibility, or Input Monitoring for listen-only taps). Don't crash here.
+        /// Callers must handle a NULL tap. (Issue #2062: the helper crashed in CGEventTapEnable() with a NULL tap) [Oct 2026]
+        DDLogError("ModificationUtility: CGEventTapCreate() returned NULL. The helper probably lacks Accessibility permission.");
+        return NULL;
+    }
     CFRunLoopSourceRef runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0);
     CFRunLoopAddSource(runLoop, runLoopSource, kCFRunLoopCommonModes);
     CFRelease(runLoopSource);
