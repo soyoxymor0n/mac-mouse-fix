@@ -48,7 +48,8 @@ This is a local developer build. Nothing here publishes anything. Build outside 
 
 5. **Install.** Do this only when the owner asks for it.
    - Quit the app: `osascript -e 'tell application "Mac Mouse Fix NG" to quit'`.
-   - Replace the old copy: `rm -rf "/Applications/Mac Mouse Fix NG.app" && ditto "$APP" "/Applications/Mac Mouse Fix NG.app"`. Use `ditto`, so the signature is kept.
+   - Back up the settings first: `cp -R ~/Library/Application\ Support/com.soyoxymor0n.mac-mouse-fix "<folder outside the repo>/settings-backup"`. Do not skip this. If the old helper is still running when its bundle disappears, it treats that as an uninstall and moves the whole settings folder to the Trash, and the app then starts with default settings. Restoring from the Trash needs Finder's "Put Back" by the owner, because the Trash is protected from scripts.
+   - Replace the old copy: `rm -rf "/Applications/Mac Mouse Fix NG.app" && ditto --noextattr --noacl "$APP" "/Applications/Mac Mouse Fix NG.app"`. Use `ditto`, so the signature is kept. `--noextattr --noacl` avoids `Operation not permitted` errors on the Sparkle files. After the copy, run `codesign --verify --deep --strict` on the new copy and check that the settings folder still exists.
    - Open it: `open "/Applications/Mac Mouse Fix NG.app"`.
    - Check which helper runs. `launchctl print` only shows a path relative to the app, so read the executable path of the running helper: `lsof -a -p <helper pid> -d txt -Fn | grep '^n/'`. It must be under `/Applications`.
    - The helper starts only after the owner approves the new background item: System Settings, General, Login Items and Extensions, Background App Activity, turn on Mac Mouse Fix NG. Only the owner can do that. Until then the app's switch is on, but no helper runs. This was observed on 2026-10-28.

@@ -1114,9 +1114,11 @@ static NSArray *buttonAndClickTypeKey(NSDictionary *buttonTrigger) {
         triggerPopUp.hidden = NO;
         [triggerPopUp removeAllItems];
         /// The first item is what the dropdown displays. The items for the click types are added when it opens.
+        ///     It's hidden, so the menu doesn't list the current trigger twice. The button still shows its title, and the matching entry in the menu is checked.
         NSMenuItem *titleItem = [[NSMenuItem alloc] init];
         titleItem.title = fullTriggerCellString.string; /// Plain title, so the dropdown can size itself to its text
         titleItem.attributedTitle = fullTriggerCellString;
+        titleItem.hidden = YES;
         [triggerPopUp.menu addItem:titleItem];
         [triggerPopUp selectItemAtIndex:0];
 
