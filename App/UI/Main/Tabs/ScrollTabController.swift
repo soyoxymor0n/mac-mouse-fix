@@ -18,6 +18,8 @@ class ScrollTabController: NSViewController {
     var smooth = ConfigValue<String>(configPath: "Scroll.smooth")
     var trackpad = ConfigValue<Bool>(configPath: "Scroll.trackpadSimulation")
     var reverseDirection = ConfigValue<Bool>(configPath: "Scroll.reverseDirection")
+    var reverseHorizontal = ConfigValue<Bool>(configPath: "Scroll.reverseHorizontalDirection")
+    var reverseClickAndDrag = ConfigValue<Bool>(configPath: "Scroll.reverseClickAndDragDirection")
     var scrollSpeed = ConfigValue<String>(configPath: "Scroll.speed")
     var precise = ConfigValue<Bool>(configPath: "Scroll.precise")
     var horizontalMod = ConfigValue<UInt>(configPath: "Scroll.modifiers.horizontal")
@@ -112,7 +114,33 @@ class ScrollTabController: NSViewController {
         /// Natural direction
         reverseDirection.bindingTarget <~ reverseDirectionToggle.reactive.boolValues
         reverseDirectionToggle.reactive.boolValue <~ reverseDirection.producer
-        
+
+        /// Reverse horizontal direction and Click & Drag direction
+        /// Notes:
+        /// - Created in code, and inserted into the same stack right below `reverseDirectionToggle`.
+        /// - The horizontal checkbox shows the effective value. While `Scroll.reverseHorizontalDirection` has never been set (key missing), it follows `Scroll.reverseDirection`. See `u_invertHorizontalDirection` in `ScrollConfig.swift`.
+        let reverseHorizontalToggle = NSButton(checkboxWithTitle: MFLocalizedString("reverse-horizontal-direction-toggle", comment: "Checkbox in the Scrolling tab. Reverses only horizontal scrolling, for example from a tilt wheel or horizontal buttons. Keep it short."), target: nil, action: nil)
+        let reverseClickAndDragToggle = NSButton(checkboxWithTitle: MFLocalizedString("reverse-click-and-drag-direction-toggle", comment: "Checkbox in the Scrolling tab. Reverses the direction of Click & Drag actions (Spaces & Mission Control, Scroll & Navigate), independently of the system's natural scrolling setting. Keep it short."), target: nil, action: nil)
+        if let stack = reverseDirectionToggle.superview as? NSStackView, let index = stack.arrangedSubviews.firstIndex(of: reverseDirectionToggle) {
+            stack.insertArrangedSubview(reverseHorizontalToggle, at: index + 1)
+            stack.insertArrangedSubview(reverseClickAndDragToggle, at: index + 2)
+        } else {
+            assertionFailure("reverseDirectionToggle is not inside an NSStackView")
+        }
+
+        let reverseHorizontalEffective: SignalProducer<Bool, Never> = ReactiveConfig.shared.producer.map({ (cfg: NSDictionary) -> Bool in
+            if let explicit = cfg.object(forCoolKeyPath: "Scroll.reverseHorizontalDirection") as? Bool {
+                return explicit
+            }
+            return (cfg.object(forCoolKeyPath: "Scroll.reverseDirection") as? Bool) ?? true
+        }).skipRepeats()
+
+        reverseHorizontal.bindingTarget <~ reverseHorizontalToggle.reactive.boolValues
+        reverseHorizontalToggle.reactive.boolValue <~ reverseHorizontalEffective
+
+        reverseClickAndDrag.bindingTarget <~ reverseClickAndDragToggle.reactive.boolValues
+        reverseClickAndDragToggle.reactive.boolValue <~ reverseClickAndDrag.producer
+
         /// Scroll speed
         scrollSpeed.bindingTarget <~ speedPicker.reactive.selectedIdentifiers.map({ identifier in
             identifier!.rawValue
@@ -230,7 +258,8 @@ class ScrollTabController: NSViewController {
         ///     - Once we shipped it, we should probably update the Captured Buttons Guide: https://redirect.macmousefix.com/?target=mmf-captured-buttons-guide - or create a new guide.
         
         let modProducer = SignalProducer.combineLatest(horizontalMod.producer, zoomMod.producer, swiftMod.producer, preciseMod.producer) /// We could reuse this down in the Keyboard modifier section, but currently, we're not
-        let captureProducer = SignalProducer.combineLatest(smooth.producer, reverseDirection.producer, scrollSpeed.producer, modProducer).combinePrevious()
+        let reverseAnyProducer = SignalProducer.combineLatest(reverseDirection.producer, reverseHorizontalEffective).map({ $0.0 || $0.1 })
+        let captureProducer = SignalProducer.combineLatest(smooth.producer, reverseAnyProducer, scrollSpeed.producer, modProducer).combinePrevious()
             
         captureProducer.startWithValues { (previous, current) in
             
