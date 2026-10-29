@@ -24,6 +24,9 @@ static ModifiedDragState *_drag;
 static int16_t _nOfSpaces = 1;
 static NSSize _screenSize = {};
 
+static double _threeFingerScaleH = 1.0;
+static double _threeFingerScaleV = 1.0;
+
 /// Interface funcs
 
 + (void)initializeWithDragState:(ModifiedDragState *)dragStateRef {
@@ -57,6 +60,18 @@ static NSSize _screenSize = {};
         _nOfSpaces = [[entry objectForKey: @"Spaces"] count];
     }
 
+    /// Get scale factors
+    ///     Computed once per drag, from `_screenSize` and `_nOfSpaces` (only known here). Ported from PR #2049 (not verified on a device).
+    ///     Horizontal dockSwipe scaling: makes horizontal dockSwipes (switch between spaces) follow the pointer exactly.
+    ///         I arrived at these value through testing documented in the NotePlan note "MMF - Scraps - Testing DockSwipe scaling"
+    ///         TODO: Test this on a vertical screen
+    double originOffsetForOneSpace = _nOfSpaces <= 1 ? 2.0 : 1.0 + (1.0 / (_nOfSpaces-1));
+    double spaceSeparatorWidth = 63;
+    _threeFingerScaleH = originOffsetForOneSpace / (_screenSize.width + spaceSeparatorWidth);
+    /// Vertical dockSwipe scaling
+    ///     Not sure if it makes sense to scale this with screen height
+    _threeFingerScaleV = 1.0 / _screenSize.height;
+
     /// Freeze pointer
     if (GeneralConfig.freezePointerDuringModifiedDrag) {
         [PointerFreeze freezePointerAtPosition:_drag->usageOrigin];
@@ -65,20 +80,6 @@ static NSSize _screenSize = {};
 
 + (void)handleMouseInputWhileInUseWithDeltaX:(double)deltaX deltaY:(double)deltaY {
     
-    /**
-     Horizontal dockSwipe scaling
-     This makes horizontal dockSwipes (switch between spaces) follow the pointer exactly
-     I arrived at these value through testing documented in the NotePlan note "MMF - Scraps - Testing DockSwipe scaling"
-     TODO: Test this on a vertical screen
-     */
-    double originOffsetForOneSpace = _nOfSpaces <= 1 ? 2.0 : 1.0 + (1.0 / (_nOfSpaces-1));
-    double spaceSeparatorWidth = 63;
-    double threeFingerScaleH = originOffsetForOneSpace / (_screenSize.width + spaceSeparatorWidth);
-
-    /// Vertical dockSwipe scaling
-    ///     Not sure if it makes sense to scale this with screen height
-    double threeFingerScaleV = 1.0 / _screenSize.height;
-
     /// Get phase
     
     IOHIDEventPhaseBits eventPhase = _drag->firstCallback ? kIOHIDEventPhaseBegan : kIOHIDEventPhaseChanged;
@@ -86,10 +87,10 @@ static NSSize _screenSize = {};
     /// Send events
     
     if (_drag->usageAxis == kMFAxisHorizontal) {
-        double delta = -deltaX * threeFingerScaleH;
+        double delta = -deltaX * _threeFingerScaleH;
         [TouchSimulator postDockSwipeEventWithDelta:delta type:kMFDockSwipeTypeHorizontal phase:eventPhase invertedFromDevice:_drag->naturalDirection];
     } else if (_drag->usageAxis == kMFAxisVertical) {
-        double delta = deltaY * threeFingerScaleV;
+        double delta = deltaY * _threeFingerScaleV;
         [TouchSimulator postDockSwipeEventWithDelta:delta type:kMFDockSwipeTypeVertical phase:eventPhase invertedFromDevice:_drag->naturalDirection];
     }
 }
