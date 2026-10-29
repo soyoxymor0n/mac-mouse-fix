@@ -622,6 +622,12 @@ static NSString *effectNameForRowDict(NSDictionary * _Nonnull rowDict) {
         i.action = @selector(updateTableAndWriteToConfig:);
         i.target = self.tableView.delegate;
         i.toolTip = itemModel[@"toolWithTitle"] ?: itemModel[@"tool"]; /// Shortcut library entries show their full name, which often doesn't fit the popup
+        /// A menu item's image can't have its own tooltip, so the source of a checked library entry goes into the item's tooltip
+        if (itemModel[@"librarySourceURL"] != nil) {
+            NSString *sourceFormat = NSLocalizedStringWithDefaultValue(@"shortcut-library.source.tooltip", nil, NSBundle.mainBundle, @"Checked against the vendor's documentation on %@: %@", @"Tooltip of the check badge of a shortcut library entry. First value: the date of the check (YYYY-MM-DD). Second value: the address of the vendor's page.");
+            NSString *source = [NSString stringWithFormat:sourceFormat, itemModel[@"libraryVerifiedOn"], itemModel[@"librarySourceURL"]];
+            i.toolTip = i.toolTip.length > 0 ? [NSString stringWithFormat:@"%@\n%@", i.toolTip, source] : source;
+        }
         assert(i.accessibilityHelp == nil); /// Most UI elements publish their tooltips as accessibilityHelp automatically, but NSMenuItems don't do that by default, so we do it manually. We do this mainly so that the tooltip string is associated with its NSMenuItem in a way that is visible to accessibility API, which lets us link the menuItem to the tooltip string when creating localizationScreenshots.
         i.accessibilityHelp = i.toolTip;
         i.host = tableCell;
@@ -695,11 +701,8 @@ static NSString *effectNameForRowDict(NSDictionary * _Nonnull rowDict) {
             NSDictionary *newEffectDict;
             
             if (keyCodeValid) {
-                newEffectDict = @{
-                    kMFActionDictKeyType: kMFActionDictTypeKeyboardShortcut,
-                    kMFActionDictKeyKeyboardShortcutVariantKeycode: @(keyCode),
-                    kMFActionDictKeyKeyboardShortcutVariantModifierFlags: @(flags),
-                };
+                /// Shared with the shortcut library, so a library entry creates exactly the row that recording the key creates (see ShortcutLibraryTests)
+                newEffectDict = [ShortcutLibrary effectForRecordedKeyCode:keyCode flags:flags];
             } else {
                 newEffectDict = @{
                     kMFActionDictKeyType: kMFActionDictTypeSystemDefinedEvent,
@@ -1219,6 +1222,7 @@ static NSArray *buttonAndClickTypeKey(NSDictionary *buttonTrigger) {
 ///     - Every other button is a submenu with its click types.
 ///     - Click types in `takenKeys` (see `buttonAndClickTypeKey()`) are disabled.
 ///     - `extra` (may be nil): merged into the representedObject of each item, next to the `trigger` key. Without it, the representedObject is the trigger.
+///     - `suggestedButton` (may be nil, used when there is no current trigger): this button gets its items at the top level instead, under a "Suggested" header. Nothing is checked.
 + (void)addButtonItemsToMenu:(NSMenu *)menu
               currentTrigger:(NSDictionary *)currentTrigger
                    takenKeys:(NSSet *)takenKeys
@@ -1226,8 +1230,19 @@ static NSArray *buttonAndClickTypeKey(NSDictionary *buttonTrigger) {
                       target:(id)target
                       action:(SEL)action
                         host:(NSView *)host {
+    [self addButtonItemsToMenu:menu currentTrigger:currentTrigger suggestedButton:nil takenKeys:takenKeys extra:extra target:target action:action host:host];
+}
 
-    NSNumber *currentButton = currentTrigger[kMFButtonTriggerKeyButtonNumber];
++ (void)addButtonItemsToMenu:(NSMenu *)menu
+              currentTrigger:(NSDictionary *)currentTrigger
+             suggestedButton:(NSNumber *)suggestedButton
+                   takenKeys:(NSSet *)takenKeys
+                       extra:(NSDictionary *)extra
+                      target:(id)target
+                      action:(SEL)action
+                        host:(NSView *)host {
+
+    NSNumber *currentButton = currentTrigger[kMFButtonTriggerKeyButtonNumber] ?: suggestedButton;
     NSArray *currentClickType = currentTrigger ? @[currentTrigger[kMFButtonTriggerKeyClickLevel], currentTrigger[kMFButtonTriggerKeyDuration]] : nil;
 
     /// Adds the click type items of one button to `targetMenu`
@@ -1269,6 +1284,14 @@ static NSArray *buttonAndClickTypeKey(NSDictionary *buttonTrigger) {
 
     /// The current button's click types go to the top level
     if (currentButton != nil) {
+        if (currentTrigger == nil) {
+            /// Header for the suggested button, e.g. "Suggested: Button 4"
+            NSString *buttonName = [[UIStrings getButtonString:(MFMouseButtonNumber)currentButton.unsignedIntegerValue context:kMFButtonStringUsageContextActionTableGroupRow] firstCapitalized];
+            NSString *format = NSLocalizedStringWithDefaultValue(@"apps-tab.suggested-button", nil, NSBundle.mainBundle, @"Suggested: %@", @"Suggested mouse button for a shortcut in the apps overview, and the header of its click types in the add menu. The value is a button name, for example 'Button 4'.");
+            NSMenuItem *header = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:format, buttonName] action:nil keyEquivalent:@""];
+            header.enabled = NO;
+            [menu addItem:header];
+        }
         addClickTypeItems(menu, currentButton);
         [menu addItem:[NSMenuItem separatorItem]];
     }
@@ -1343,7 +1366,10 @@ static NSArray *buttonAndClickTypeKey(NSDictionary *buttonTrigger) {
     NSMenu *menu = [[NSMenu alloc] initWithTitle:@""];
     menu.autoenablesItems = NO;
     NSDictionary *extra = @{ @"bundleID": bundleID, @"entry": entry };
-    [self addButtonItemsToMenu:menu currentTrigger:nil takenKeys:[self takenKeysForAppBundleID:bundleID] extra:extra target:target action:action host:nil];
+    /// The suggested button (if the entry has one) comes first, so it is preselected. Nothing is added until the user picks an item.
+    NSNumber *suggestedButton = [entry[@"suggestedButton"] isKindOfClass:NSNumber.class] ? entry[@"suggestedButton"] : nil;
+    if (suggestedButton != nil && (suggestedButton.integerValue < kTriggerMenuFirstButton || suggestedButton.integerValue > kMFMaxButtonNumber)) suggestedButton = nil;
+    [self addButtonItemsToMenu:menu currentTrigger:nil suggestedButton:suggestedButton takenKeys:[self takenKeysForAppBundleID:bundleID] extra:extra target:target action:action host:nil];
     return menu;
 }
 

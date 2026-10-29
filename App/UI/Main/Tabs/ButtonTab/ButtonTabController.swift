@@ -414,6 +414,41 @@ import Foundation
         strip.onAddButtonClicked = { [weak self] button in self?.showAppPicker(relativeTo: button) }
         strip.onRemoveAppTab = { [weak self] app in self?.confirmRemoveAppTab(app) }
         appTabStrip = strip
+
+        installShortcutLibrarySwitch(above: strip)
+    }
+
+    /// The "Show shortcut library" switch, above the app list. Everything below moves down by its height, and the tab grows by that much.
+    ///     Stored in UserDefaults (not in the config). Off hides every library entry: the effect menu section, the Apps tab and its suggestions. Rows that were already added stay.
+    private func installShortcutLibrarySwitch(above strip: NSView) {
+
+        let root = view
+        let switchHeight: CGFloat = 26
+
+        /// Move everything that is pinned to the root's top edge down. The strip's constraint is in this list, too.
+        for constraint in root.constraints where constraint.firstAttribute == .top && constraint.secondAttribute == .top {
+            if (constraint.secondItem as AnyObject?) === root && (constraint.firstItem as AnyObject?) !== root {
+                constraint.constant += switchHeight
+            } else if (constraint.firstItem as AnyObject?) === root && (constraint.secondItem as AnyObject?) !== root {
+                constraint.constant -= switchHeight
+            }
+        }
+
+        let checkbox = NSButton(checkboxWithTitle: NSLocalizedString("buttons-tab.show-shortcut-library", value: "Show shortcut library", comment: "Switch in the Buttons tab, above the list of apps. When off, the built-in keyboard shortcuts of apps are hidden in the action menu and in the Apps tab. Rows that were already added stay."), target: self, action: #selector(shortcutLibrarySwitchChanged(_:)))
+        checkbox.state = ShortcutLibrary.isEnabled() ? .on : .off
+        checkbox.toolTip = NSLocalizedString("buttons-tab.show-shortcut-library.hint", value: "Shows the built-in keyboard shortcuts of apps in the action menu and in the Apps tab. Turning it off doesn't remove rows you already added.", comment: "Tooltip of the 'Show shortcut library' switch in the Buttons tab.")
+        checkbox.translatesAutoresizingMaskIntoConstraints = false
+        root.addSubview(checkbox)
+        NSLayoutConstraint.activate([
+            checkbox.leadingAnchor.constraint(equalTo: root.leadingAnchor, constant: 20),
+            checkbox.bottomAnchor.constraint(equalTo: strip.topAnchor, constant: -6),
+        ])
+    }
+
+    @objc private func shortcutLibrarySwitchChanged(_ sender: NSButton) {
+        ShortcutLibrary.setEnabled(sender.state == .on)
+        /// Rebuild the effect menus, so the library section appears or disappears
+        tableController.reloadAll()
     }
 
     /// Adds the preset banner at the top of the add field. It is shown only in an empty app tab that has a preset.
