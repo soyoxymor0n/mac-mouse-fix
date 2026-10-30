@@ -4138,7 +4138,7 @@
 					"$(PROJECT_DIR)/Frameworks/**",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15.0;
-				MARKETING_VERSION = 4.2.0;
+				MARKETING_VERSION = 4.3.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.soyoxymor0n.mac-mouse-fix";
@@ -4182,7 +4182,7 @@
 					"$(PROJECT_DIR)/Frameworks/**",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15.0;
-				MARKETING_VERSION = 4.2.0;
+				MARKETING_VERSION = 4.3.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.soyoxymor0n.mac-mouse-fix";
 				PRODUCT_MODULE_NAME = Mac_Mouse_Fix;
@@ -4421,7 +4421,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.soyoxymor0n.mac-mouse-fix.helper";
-				MARKETING_VERSION = 4.2.0;
+				MARKETING_VERSION = 4.3.0;
 				PRODUCT_MODULE_NAME = Mac_Mouse_Fix_Helper;
 				PRODUCT_NAME = "Mac Mouse Fix NG Helper";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4468,7 +4468,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.soyoxymor0n.mac-mouse-fix.helper";
-				MARKETING_VERSION = 4.2.0;
+				MARKETING_VERSION = 4.3.0;
 				PRODUCT_MODULE_NAME = Mac_Mouse_Fix_Helper;
 				PRODUCT_NAME = "Mac Mouse Fix NG Helper";
 				PROVISIONING_PROFILE_SPECIFIER = "";
