@@ -27,6 +27,8 @@
     setStreamToCurrentInstallLoc();
 }
 
+static void handleInstallFolderChange(BOOL isRecheck);
+
 FSEventStreamRef _stream;
 static void setStreamToCurrentInstallLoc() {
     
@@ -59,30 +61,39 @@ void Handle_FSCallback(ConstFSEventStreamRef streamRef, void *clientCallBackInfo
     
     DDLogInfo("File system even in Mac Mouse Fix install folder");
     
-    NSURL *installedBundleURLFromWorkspace = [NSWorkspace.sharedWorkspace URLForApplicationWithBundleIdentifier:kMFBundleIDApp];
-    
-    if (installedBundleURLFromWorkspace == nil) {
-        /// A reinstall deletes the app for a few seconds before the new copy is written.
-        ///     Don't treat that gap as an uninstall, because uninstalling trashes the settings.
-        ///     Check again after a delay, and uninstall only if the app is still missing.
-        DDLogInfo("Mac Mouse Fix cannot be found on the system. Checking again after a delay before uninstalling");
-        static BOOL recheckPending = NO;
-        if (recheckPending) {
-            return;
-        }
+    handleInstallFolderChange(NO);
+}
+
+/// A reinstall deletes the app for a few seconds before the new copy is written.
+///     Don't treat that gap as an uninstall or a removal, because uninstalling trashes the settings and disabling stops the Helper.
+///     Check again after a delay, and act only if the app is still missing.
+static void handleInstallFolderChange(BOOL isRecheck) {
+
+    static BOOL recheckPending = NO;
+    if (recheckPending && !isRecheck) {
+        return;
+    }
+    void (^recheckAfterDelay)(void) = ^{
         recheckPending = YES;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 30 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             recheckPending = NO;
-            NSURL *urlAfterWait = [NSWorkspace.sharedWorkspace URLForApplicationWithBundleIdentifier:kMFBundleIDApp];
-            if (urlAfterWait == nil) {
-                DDLogInfo("Mac Mouse Fix still cannot be found after the delay. Uninstalling");
-                uninstallCompletely();
-            } else {
-                DDLogInfo("Mac Mouse Fix was found again after the delay (probably a reinstall). Not uninstalling");
-            }
+            handleInstallFolderChange(YES);
         });
+    };
+
+    NSURL *installedBundleURLFromWorkspace = [NSWorkspace.sharedWorkspace URLForApplicationWithBundleIdentifier:kMFBundleIDApp];
+
+    if (installedBundleURLFromWorkspace == nil) {
+        if (!isRecheck) {
+            DDLogInfo("Mac Mouse Fix cannot be found on the system. Checking again after a delay before uninstalling");
+            recheckAfterDelay();
+        } else {
+            DDLogInfo("Mac Mouse Fix still cannot be found after the delay. Uninstalling");
+            uninstallCompletely();
+        }
     } else {
-        NSURL *helperURL = Locator.helperBundle.bundleURL;
+        /// The bundles can be missing here (the app is being deleted or replaced), so don't use the asserting getters
+        NSURL *helperURL = Locator.helperBundleIfPresent.bundleURL;
         NSURL *helperURLOld = NSBundle.mainBundle.bundleURL;
         BOOL isInOldLocation = [helperURL isEqualTo:helperURLOld];
         if (isInOldLocation) {
@@ -90,13 +101,16 @@ void Handle_FSCallback(ConstFSEventStreamRef streamRef, void *clientCallBackInfo
             return;
         }
         DDLogInfo("Mac Mouse Fix Helper was launched at: %@ but is now at: %@", helperURLOld, helperURL);
-        NSBundle *appBundle = Locator.mainAppBundle;
+        NSBundle *appBundle = Locator.mainAppBundleIfPresent;
         BOOL isInTrash = [appBundle.bundleURL.URLByDeletingLastPathComponent.lastPathComponent isEqualToString:trashFolderName()];
         BOOL isRemoved = appBundle == nil;
         BOOL workspaceURLIsInTrash = [installedBundleURLFromWorkspace.URLByDeletingLastPathComponent.lastPathComponent isEqualToString:trashFolderName()];
         if (workspaceURLIsInTrash) {
             DDLogInfo("Workspace found Mac Mouse Fix in the trash. This probably means that Mac Mouse Fix has just been moved to the trash and that this is the only version of Mac Mouse Fix on the system.");
             uninstallCompletely();
+        } else if (isRemoved && !isRecheck) {
+            DDLogInfo("Mac Mouse Fix cannot be found at its location. Checking again after a delay before disabling");
+            recheckAfterDelay();
         } else if (!workspaceURLIsInTrash && (isInTrash || isRemoved)) {
             DDLogInfo("Mac Mouse Fix has been deleted but is still installed at: %@", installedBundleURLFromWorkspace);
             disableHelper();

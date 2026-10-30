@@ -40,6 +40,19 @@
     assert(mainAppBundle != nil);
     return mainAppBundle;
 }
+/// Like `mainAppBundle` and `helperBundle`, but nil instead of an assert when the bundle is gone, e.g. while the app is being deleted or replaced.
++ (NSBundle *_Nullable)mainAppBundleIfPresent {
+    NSBundle *mainAppBundle;
+    NSBundle *hhh;
+    [self getBundlesForMainApp:&mainAppBundle helper:&hhh];
+    return mainAppBundle;
+}
++ (NSBundle *_Nullable)helperBundleIfPresent {
+    NSBundle *hhh;
+    NSBundle *helperBundle;
+    [self getBundlesForMainApp:&hhh helper:&helperBundle];
+    return helperBundle;
+}
 /// Return bundle at the location at which the app was launched - even after the app has been moved while running
 + (NSBundle *)helperOriginalBundle { /// Get pre-move location if moved while running
     NSBundle *hhh;
