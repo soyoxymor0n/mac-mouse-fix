@@ -11,11 +11,11 @@ import Cocoa
 /// Settings tab with an overview of the apps in the shortcut library and their keyboard shortcuts.
 ///     Left: the apps. The search field on top filters the list while you type.
 ///     Right: the shortcuts of the selected app, under group headers. A badge shows whether a shortcut was checked against the vendor's documentation.
-///     The plus button adds a shortcut to the app's tab, with the button and click type you pick.
+///     The plus button adds a shortcut to the app's tab, with the button and click type you pick. Double click and the context menu of a shortcut do the same.
 ///     A shortcut with a suggested mouse button shows "Suggested: Button N" (the reason is the tooltip), and the add menu offers that button first. Nothing is added automatically.
 ///     The "Show shortcut library" switch in the Buttons tab hides all of this.
 ///     See GitHub issue #13 in soyoxymor0n/mac-mouse-fix-ng.
-class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, NSSearchFieldDelegate {
+class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, NSSearchFieldDelegate, NSMenuDelegate {
 
     // MARK: Model
 
@@ -99,6 +99,8 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
 
         let actionScroll = makeScrollView(for: actionTable)
         actionScrollView = actionScroll
+        actionScroll.contentView.postsFrameChangedNotifications = true
+        NotificationCenter.default.addObserver(self, selector: #selector(actionClipViewFrameDidChange(_:)), name: NSView.frameDidChangeNotification, object: actionScroll.contentView)
         rightColumn.addSubview(actionScroll)
 
         actionTable.rowHeight = 22
@@ -124,6 +126,12 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
         actionTable.addTableColumn(shortcutColumn)
         actionTable.dataSource = self
         actionTable.delegate = self
+        /// Double click and the context menu of a shortcut add it, like the plus button
+        actionTable.target = self
+        actionTable.doubleAction = #selector(actionTableDoubleClicked(_:))
+        let contextMenu = NSMenu()
+        contextMenu.delegate = self
+        actionTable.menu = contextMenu
         /// Action names wrap to more lines when the column is narrower. Heights are recalculated when the column is resized.
         NotificationCenter.default.addObserver(self, selector: #selector(actionColumnDidResize(_:)), name: NSTableView.columnDidResizeNotification, object: actionTable)
 
@@ -181,19 +189,33 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
 
             actionScroll.topAnchor.constraint(equalTo: appInfoLabel.bottomAnchor, constant: 12),
             actionScroll.leadingAnchor.constraint(equalTo: rightColumn.leadingAnchor),
-            actionScroll.trailingAnchor.constraint(equalTo: rightColumn.trailingAnchor),
+            actionScroll.trailingAnchor.constraint(equalTo: rightColumn.trailingAnchor, constant: -8), /// Keeps the plus buttons off the window's edge
             actionScroll.bottomAnchor.constraint(equalTo: rightColumn.bottomAnchor),
         ])
     }
 
     override func viewDidLayout() {
         super.viewDidLayout()
-        /// The action column takes the width that the other columns leave. Uses their real rectangles, because their rendered width can differ from the requested width.
-        guard let scrollView = actionScrollView, actionTable.numberOfColumns == 3 else { return }
-        let otherColumnsWidth = actionTable.rect(ofColumn: 0).width + actionTable.rect(ofColumn: 2).width
-        let available = scrollView.contentView.bounds.width - otherColumnsWidth
-        if let actionColumn = actionTable.tableColumn(withIdentifier: NSUserInterfaceItemIdentifier("action")), available > actionColumn.minWidth, abs(actionColumn.width - available) > 0.5 {
-            actionColumn.width = available
+        fitActionColumn()
+    }
+
+    /// The scroll view's visible area gets its final width after `viewDidLayout()` (the scroll view lays itself out later), so the column is fitted again when it changes.
+    ///     Fitting only in `viewDidLayout()` used a stale width, and the table came out wider than its visible area, which hid the plus buttons at its trailing edge.
+    @objc private func actionClipViewFrameDidChange(_ notification: Notification) {
+        fitActionColumn()
+    }
+
+    private func fitActionColumn() {
+        /// The action column takes the width that the other columns leave: it grows or shrinks by the difference between the columns' extent and the visible width.
+        ///     Measured on the column rectangles, because the cell spacing (17 pt) and the table style's edge padding come on top of the column widths. Adding up column widths left the table 37 pt too wide.
+        ///     Not measured on the table's frame: it lags behind a width change, and this runs several times during one layout.
+        guard let scrollView = actionScrollView, actionTable.numberOfColumns == 3,
+              let actionColumn = actionTable.tableColumn(withIdentifier: NSUserInterfaceItemIdentifier("action")) else { return }
+        let edgePadding = actionTable.rect(ofColumn: 0).minX /// The same on both sides
+        let overflow = actionTable.rect(ofColumn: 2).maxX + edgePadding - scrollView.contentView.bounds.width
+        let target = actionColumn.width - overflow
+        if abs(overflow) > 0.5, target > actionColumn.minWidth {
+            actionColumn.width = target
         }
     }
 
@@ -526,12 +548,37 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
 
     /// Plus button clicked: shows the button menu for the shortcut
     @objc private func addButtonClicked(_ sender: NSButton) {
-        let row = sender.tag
-        guard row >= 0 && row < displayRows.count, case .entry(let entry) = displayRows[row], let bundleID = shownBundleID else { return }
-        let menu = RemapTableTranslator.addMenu(forBundleID: bundleID, entry: entry, target: self, action: #selector(addMenuItemSelected(_:)))
-        /// With a suggested button, its first free click type is preselected. The row is added only when the user picks an item.
+        showAddMenu(forRow: sender.tag, at: NSPoint(x: 0, y: sender.bounds.height + 4), in: sender)
+    }
+
+    /// Double click on a shortcut: shows the same menu as the plus button, at the row
+    @objc private func actionTableDoubleClicked(_ sender: NSTableView) {
+        let row = sender.clickedRow
+        guard row >= 0 else { return }
+        let rowRect = sender.rect(ofRow: row)
+        showAddMenu(forRow: row, at: NSPoint(x: rowRect.midX, y: rowRect.maxY), in: sender)
+    }
+
+    /// The button menu for the shortcut in `row`. Nothing is added until the user picks an item.
+    private func addMenu(forRow row: Int) -> (menu: NSMenu, entry: [String: Any])? {
+        guard row >= 0 && row < displayRows.count, case .entry(let entry) = displayRows[row], let bundleID = shownBundleID else { return nil }
+        return (RemapTableTranslator.addMenu(forBundleID: bundleID, entry: entry, target: self, action: #selector(addMenuItemSelected(_:))), entry)
+    }
+
+    private func showAddMenu(forRow row: Int, at point: NSPoint, in view: NSView) {
+        guard let (menu, entry) = addMenu(forRow: row) else { return }
+        /// With a suggested button, its first free click type is preselected
         let preselected = AppOverviewViewController.suggestionText(entry) == nil ? nil : menu.items.first { $0.isEnabled && $0.action != nil && $0.submenu == nil }
-        _ = menu.popUp(positioning: preselected, at: NSPoint(x: 0, y: sender.bounds.height + 4), in: sender)
+        _ = menu.popUp(positioning: preselected, at: point, in: view)
+    }
+
+    /// Right click on a shortcut: "Add to this app's tab" with the button menu as its submenu
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        menu.removeAllItems()
+        guard let (addMenu, _) = addMenu(forRow: actionTable.clickedRow) else { return }
+        let item = NSMenuItem(title: NSLocalizedString("apps-tab.add.tooltip", value: "Add to this app's tab", comment: "Tooltip of the plus button in the apps overview. Adds the shortcut to the tab of the app."), action: nil, keyEquivalent: "")
+        item.submenu = addMenu
+        menu.addItem(item)
     }
 
     /// A button and click type were picked for a shortcut: creates the app's tab if needed, shows it, and adds the row
