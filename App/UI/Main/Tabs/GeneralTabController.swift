@@ -301,55 +301,7 @@ class GeneralTabController: NSViewController {
         for view in toHide { view.isHidden = true }
     }
 
-    /// Scroll settings
-    ///     The Scrolling tab was merged into this tab. Its sections go below "Show in Menu Bar" and collapse together with the rest of the settings when the app is disabled.
-    private var scrollTab: NSViewController?
-    /// Export and Import buttons. Kept at the end of the section, below the scroll settings.
-    private var settingsRow: NSStackView?
-
-    @available(macOS 11.0, *)
-    func absorbScrollTab(_ scrollTab: ScrollTabController) {
-
-        /// Load both views so their outlets are connected
-        _ = self.view
-        _ = scrollTab.view
-
-        self.scrollTab = scrollTab
-
-        /// Move the whole scroll stack in as one section
-        ///     Moving its arranged subviews one by one doesn't work, because CollapsingStackView wraps them.
-        let scrollStack: NSView = scrollTab.masterStack
-        scrollStack.removeFromSuperview()
-        
-        /// Divider between the General settings and the scroll settings, like the dividers between the scroll groups
-        let divider = NSBox()
-        divider.boxType = .separator
-        divider.translatesAutoresizingMaskIntoConstraints = false
-        mainHidableSection.addArrangedSubview(divider)
-        divider.leadingAnchor.constraint(equalTo: mainHidableSection.leadingAnchor).isActive = true
-        divider.trailingAnchor.constraint(equalTo: mainHidableSection.trailingAnchor).isActive = true
-        
-        mainHidableSection.addArrangedSubview(scrollStack)
-        if let community = communitySection {
-            for view in community { mainHidableSection.addArrangedSubview(view) } /// Moves the section below the scroll settings
-        }
-        if let row = settingsRow {
-            mainHidableSection.addArrangedSubview(row) /// Moves the row below the scroll settings
-        }
-        scrollStack.leadingAnchor.constraint(equalTo: mainHidableSection.leadingAnchor).isActive = true
-        scrollStack.trailingAnchor.constraint(equalTo: mainHidableSection.trailingAnchor).isActive = true
-    }
-
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        if #available(macOS 11.0, *) {
-            (scrollTab as? ScrollTabController)?.tabDidAppear()
-        }
-    }
-
-    /// The "Community setups" switch and the list of shared setups (divider and section). Kept above the Export and Import buttons.
-    private var communitySection: [NSView]?
-
+    /// The "Community setups" switch and the list of shared setups, above the Export and Import buttons
     private func addCommunitySection() {
         let divider = NSBox()
         divider.boxType = .separator
@@ -359,10 +311,10 @@ class GeneralTabController: NSViewController {
         mainHidableSection.addArrangedSubview(divider)
         mainHidableSection.addArrangedSubview(section)
         for view in [divider, section] {
+            view.setContentHuggingPriority(.required, for: .vertical) /// Otherwise it stretches while the tab measures its height. See `CommunitySettingsView.hugVertically()`.
             view.leadingAnchor.constraint(equalTo: mainHidableSection.leadingAnchor).isActive = true
             view.trailingAnchor.constraint(equalTo: mainHidableSection.trailingAnchor).isActive = true
         }
-        communitySection = [divider, section]
     }
 
     /// Export and Import buttons at the bottom of the tab. Same actions as in the File menu.
@@ -373,6 +325,7 @@ class GeneralTabController: NSViewController {
             button.bezelStyle = .rounded
             button.controlSize = .small
             button.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
+            button.setContentHuggingPriority(.required, for: .vertical)
         }
         let row = NSStackView(views: [exportButton, importButton])
         row.orientation = .horizontal
@@ -384,7 +337,6 @@ class GeneralTabController: NSViewController {
         row.setContentCompressionResistancePriority(.required, for: .vertical)
         /// Inside the collapsing section, so it hides together with the other settings while the app is disabled
         row.edgeInsets = NSEdgeInsets(top: 12, left: 0, bottom: 0, right: 0)
-        settingsRow = row
         mainHidableSection.addArrangedSubview(row)
     }
 }

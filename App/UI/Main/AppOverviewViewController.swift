@@ -128,19 +128,28 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
         NotificationCenter.default.addObserver(self, selector: #selector(actionColumnDidResize(_:)), name: NSTableView.columnDidResizeNotification, object: actionTable)
 
         /// Assemble
+        ///     Everything goes into one wrapper view, like the tabs in the storyboard. The tab switch animation (`TabViewController`) fades and centers `view.subviews[0]`, which used to be only the left column and broke its constraints.
 
-        root.addSubview(leftColumn)
-        root.addSubview(divider)
-        root.addSubview(rightColumn)
+        let content = NSView()
+        content.translatesAutoresizingMaskIntoConstraints = false
+        root.addSubview(content)
+        content.addSubview(leftColumn)
+        content.addSubview(divider)
+        content.addSubview(rightColumn)
 
         NSLayoutConstraint.activate([
             /// Fixed size, so the window fits this tab
             root.widthAnchor.constraint(equalToConstant: 680),
             root.heightAnchor.constraint(equalToConstant: 470),
 
-            leftColumn.leadingAnchor.constraint(equalTo: root.leadingAnchor),
-            leftColumn.topAnchor.constraint(equalTo: root.topAnchor),
-            leftColumn.bottomAnchor.constraint(equalTo: root.bottomAnchor),
+            content.leadingAnchor.constraint(equalTo: root.leadingAnchor),
+            content.trailingAnchor.constraint(equalTo: root.trailingAnchor),
+            content.topAnchor.constraint(equalTo: root.topAnchor),
+            content.bottomAnchor.constraint(equalTo: root.bottomAnchor),
+
+            leftColumn.leadingAnchor.constraint(equalTo: content.leadingAnchor),
+            leftColumn.topAnchor.constraint(equalTo: content.topAnchor),
+            leftColumn.bottomAnchor.constraint(equalTo: content.bottomAnchor),
             leftColumn.widthAnchor.constraint(equalToConstant: 220),
 
             searchField.topAnchor.constraint(equalTo: leftColumn.topAnchor, constant: 12),
@@ -153,14 +162,14 @@ class AppOverviewViewController: NSViewController, NSTableViewDataSource, NSTabl
             appScroll.bottomAnchor.constraint(equalTo: leftColumn.bottomAnchor),
 
             divider.leadingAnchor.constraint(equalTo: leftColumn.trailingAnchor),
-            divider.topAnchor.constraint(equalTo: root.topAnchor),
-            divider.bottomAnchor.constraint(equalTo: root.bottomAnchor),
+            divider.topAnchor.constraint(equalTo: content.topAnchor),
+            divider.bottomAnchor.constraint(equalTo: content.bottomAnchor),
             divider.widthAnchor.constraint(equalToConstant: 1),
 
             rightColumn.leadingAnchor.constraint(equalTo: divider.trailingAnchor),
-            rightColumn.trailingAnchor.constraint(equalTo: root.trailingAnchor),
-            rightColumn.topAnchor.constraint(equalTo: root.topAnchor),
-            rightColumn.bottomAnchor.constraint(equalTo: root.bottomAnchor),
+            rightColumn.trailingAnchor.constraint(equalTo: content.trailingAnchor),
+            rightColumn.topAnchor.constraint(equalTo: content.topAnchor),
+            rightColumn.bottomAnchor.constraint(equalTo: content.bottomAnchor),
 
             appNameLabel.topAnchor.constraint(equalTo: rightColumn.topAnchor, constant: 16),
             appNameLabel.leadingAnchor.constraint(equalTo: rightColumn.leadingAnchor, constant: 16),

@@ -89,7 +89,7 @@ extension NSView {
         else { assert(false); return nil }
         let windowID = CGWindowID(window.windowNumber)
         guard let screenshot = CGWindowListCreateImage(screenRect, .optionIncludingWindow, windowID, [])
-        else { assert(false); return nil }
+        else { DDLogError("takeScreenshot - CGWindowListCreateImage failed for rect \(screenRect)"); return nil } /// Not an assert: this fails at runtime, e.g. for a window that's too large to capture. The tab-switch fade just skips the old tab's image then.
         
         /// Approach 2: CGWindowListCreateImageFromArray
         ///    Didn't test this because approach 3 works

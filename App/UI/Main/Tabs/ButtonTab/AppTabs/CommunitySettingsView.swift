@@ -57,7 +57,10 @@ final class CommunitySettingsView: NSStackView {
         listStack.alignment = .leading
         listStack.spacing = 4
 
-        for view in [toggle, hint, header, listStack] { addArrangedSubview(view) }
+        for view in [toggle, hint, header, listStack] {
+            addArrangedSubview(view)
+            hugVertically(view)
+        }
         setCustomSpacing(10, after: hint)
         for view in [hint, listStack] {
             view.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
@@ -65,6 +68,13 @@ final class CommunitySettingsView: NSStackView {
 
         reloadList()
         NotificationCenter.default.addObserver(self, selector: #selector(storeChanged(_:)), name: SharedSetupStore.didChangeNotification, object: nil)
+    }
+
+    /// The General tab measures its height inside a 99999 pt tall window (see `TabViewController.resizeWindowToFit`). The window's size only holds at priority 500,
+    ///     so every view here has to hug its content more strongly. Views made in code default to 250 (Interface Builder uses 750), so without this they stretch and the window becomes huge.
+    private func hugVertically(_ view: NSView) {
+        view.setContentHuggingPriority(.required, for: .vertical)
+        (view as? NSStackView)?.setHuggingPriority(.required, for: .vertical)
     }
 
     private func wrappingLabel(_ text: String, secondary: Bool) -> NSTextField {
@@ -94,6 +104,7 @@ final class CommunitySettingsView: NSStackView {
         if records.isEmpty {
             let empty = wrappingLabel(MFLocalizedString("community-settings.shared.empty", comment: ""), secondary: true)
             listStack.addArrangedSubview(empty)
+            hugVertically(empty)
             empty.widthAnchor.constraint(equalTo: listStack.widthAnchor).isActive = true
             return
         }
@@ -131,6 +142,7 @@ final class CommunitySettingsView: NSStackView {
             row.orientation = .horizontal
             row.alignment = .centerY
             row.spacing = 8
+            for view in [nameLabel, detailLabel, texts, delete, row] { hugVertically(view) }
             listStack.addArrangedSubview(row)
             row.widthAnchor.constraint(equalTo: listStack.widthAnchor).isActive = true
         }

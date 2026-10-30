@@ -80,22 +80,7 @@ class TabViewController: NSTabViewController {
         
         guard !tabsAreConfigured else { assert(false); return }
         tabsAreConfigured = true
-        
-        ///
-        /// Merge Scrolling tab into General tab
-        ///     Its settings are shown below the General settings now (see `GeneralTabController.absorbScrollTab()`). The Scrolling tab has no sidebar item.
-        ///
-        
-        if #available(macOS 11.0, *) {
-            if let general = tabViewItem(identifier: "general")?.viewController as? GeneralTabController,
-               let scrolling = tabViewItem(identifier: "scrolling")?.viewController as? ScrollTabController {
-                general.absorbScrollTab(scrolling)
-                validTabs.removeAll { $0 == "scrolling" } /// Selecting it falls back to General
-            } else {
-                assert(false)
-            }
-        }
-        
+
         ///
         /// Switch tab
         ///
@@ -389,6 +374,12 @@ class TabViewController: NSTabViewController {
                 }
                 self.window?.setContentSize(oldWindowSize)
             }
+            /// A view that hugs its content with less than the window's priority (500) stretches to the 99999 window above. That made the window huge, and `takeScreenshot()` crashed on it.
+            ///     Fall back to the compressed size. The real fix is raising that view's vertical hugging. See `CommunitySettingsView.hugVertically()`.
+            if let measured = size, measured.height > 10000 || measured.width > 10000, let view = tabViewItem.view {
+                DDLogError("TBS Tab \(tabViewItem.identifier ?? "") measured \(measured), a view inside doesn't hug its content. Using fittingSize \(view.fittingSize)")
+                size = view.fittingSize
+            }
         }
         
         /// Setup constraints for resizing
@@ -500,16 +491,16 @@ class TabViewController: NSTabViewController {
     /// Helper functions
 
     fileprivate func restoreConstraintsAfterWindowResizing() {
-        
-        /// Add removed constraints back in
-        
-        for c in deactivatedConstraints {
-            c.isActive = true
-        }
-        
+
         /// Remove added constraints
+        ///     First, so they're never active together with the removed ones. That conflicted, e.g. the injected centerX with the Buttons tab's leading and trailing margins.
         for c in injectedConstraints {
             c.isActive = false
+        }
+
+        /// Add removed constraints back in
+        for c in deactivatedConstraints {
+            c.isActive = true
         }
     }
     
@@ -540,6 +531,9 @@ class TabViewController: NSTabViewController {
         let wrapperView = contentView.subviews[0]
         let wrapWidth = wrapperView.widthAnchor.constraint(equalToConstant: wrapperView.frame.width)
         let wrapHeight = wrapperView.heightAnchor.constraint(equalToConstant: wrapperView.frame.height)
+        /// Just below required: if the tab changes its own layout before these are removed again, these give way instead of one of the tab's constraints
+        wrapWidth.priority = .init(999)
+        wrapHeight.priority = .init(999)
         
         contentWidth.isActive = false
         contentHeigth.isActive = false
@@ -553,7 +547,9 @@ class TabViewController: NSTabViewController {
         
         let centerXOffset = wrapperView.frame.midX - contentView.bounds.midX
         let centerYOffset = wrapperView.frame.midY - contentView.bounds.midY
-        let centerX = wrapperView.centerXAnchor.constraint(equalTo: wrapperView.superview!.centerXAnchor, constant: -centerXOffset)
+        /// Frame x and constraint constants both grow to the right, so the x offset keeps its sign. Frame y grows up but constraint constants grow down, so the y offset flips.
+        ///     The x sign used to be flipped too. That only showed in tabs whose wrapper isn't centered, e.g. the Buttons tab with the app strip on its left, and caused conflicting constraints.
+        let centerX = wrapperView.centerXAnchor.constraint(equalTo: wrapperView.superview!.centerXAnchor, constant: centerXOffset)
         let centerY = wrapperView.centerYAnchor.constraint(equalTo: wrapperView.superview!.centerYAnchor, constant: -centerYOffset)
         centerX.isActive = true
         centerY.isActive = true
@@ -639,19 +635,20 @@ extension TabViewController {
             guard let tabItem = tabViewItem(identifier: identifier) else { return nil }
             return TabSidebarView.Item(identifier: identifier, label: tabItem.label, image: tabItem.image)
         }
-        let top = ["general", "buttons", "apps"].compactMap(item)
+        let top = ["general", "buttons", "scrolling", "apps"].compactMap(item)
         let bottom = ["about"].compactMap(item)
-        
+
         let sidebarView = TabSidebarView(top: top, bottom: bottom)
         sidebarView.onSelect = { [weak self] identifier in
             self?.coolSelectTab(identifier: identifier)
         }
         self.sidebar = sidebarView
-        
-        /// The Buttons section is disabled while the app is disabled
-        if let buttonsButton = sidebarView.button(for: "buttons") {
-            EnabledState.shared.producer.startWithValues { [weak buttonsButton] appIsEnabled in
-                buttonsButton?.isEnabled = appIsEnabled
+
+        /// The Buttons and Scrolling sections are disabled while the app is disabled
+        for identifier in (top + bottom).map(\.identifier) where !alwaysEnabledTabs.contains(identifier) {
+            guard let button = sidebarView.button(for: identifier) else { continue }
+            EnabledState.shared.producer.startWithValues { [weak button] appIsEnabled in
+                button?.isEnabled = appIsEnabled
             }
         }
         

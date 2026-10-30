@@ -128,6 +128,21 @@
     
     /// Set column widths
     [self updateColumnWidths];
+
+    /// Give the table its content height now
+    ///     The full size update (`updateSizeWithAnimation:tabContentView:`) only runs once the table is in a window with its final column widths (see `RemapTableColumn.setWidth:`). That is after the tab switch measures the Buttons tab (`TabViewController.resizeWindowToFit`).
+    ///     Without a height the scroll view stretched to its max height during that measurement (658 instead of 371 in one case), and when the real height arrived, it conflicted with the tab height the switch had pinned. [Oct 2026]
+    ///     The row heights can still change a little once the column widths are final. The full size update corrects that.
+    [self initHeightConstraintIfNeeded];
+    _heightConstraint.constant = self.intrinsicContentSize.height + 1; /// `+ 1` like in `updateSizeWithAnimation:tabContentView:`
+}
+
+- (void)initHeightConstraintIfNeeded {
+    if (_heightConstraint == nil) {
+        _heightConstraint = [self.heightAnchor constraintEqualToConstant:0];
+        _heightConstraint.priority = 1000;
+        [_heightConstraint setActive:YES];
+    }
 }
 
 - (void)didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
@@ -376,12 +391,8 @@ NSMutableArray *columnConstraints = nil;
     ///
     
     /// Init self height constraint
-    
-    if (_heightConstraint == nil) {
-        _heightConstraint = [self.heightAnchor constraintEqualToConstant:0];
-        _heightConstraint.priority = 1000;
-        [_heightConstraint setActive:YES];
-    }
+
+    [self initHeightConstraintIfNeeded];
     
     /// Get newSize
     /// - `+ 1` to prevent overlap between scrollView border and tableView grid, which looks weird. Also doing that in [RemapTableView coolDidLoad]
