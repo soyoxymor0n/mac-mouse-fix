@@ -22,7 +22,7 @@ This is a local developer build. Nothing here publishes anything. Build outside 
 
 ## Steps
 
-1. **Version.** `MARKETING_VERSION` lives in `Mouse Fix.xcodeproj/project.pbxproj` (in two configurations). Change it there before a release build.
+1. **Version.** Follow `docs/standards/versioning.md`. `MARKETING_VERSION` lives in `Mouse Fix.xcodeproj/project.pbxproj` (app and Helper, Debug and Release: four places). Bump it only for a build that is handed out. The build number (30000 + commit count) and the commit are set automatically on every build. The About tab shows them, e.g. `4.2.0 (38720 · 1a2b3c4 · Debug)`, so you can check which build is installed.
 
 2. **Team.** Use a team that Xcode's signed-in account belongs to. Not the team in the keychain identity: the two can differ, and signing then fails with "No Account for Team". List the candidates Xcode knows:
 
@@ -34,7 +34,10 @@ This is a local developer build. Nothing here publishes anything. Build outside 
 
        xcodebuild -project "Mouse Fix.xcodeproj" -scheme App -configuration Debug \
          -derivedDataPath "<folder outside the repo>" -allowProvisioningUpdates \
-         DEVELOPMENT_TEAM="$TEAM" CODE_SIGN_STYLE=Automatic build
+         DEVELOPMENT_TEAM="$TEAM" CODE_SIGN_STYLE=Automatic \
+         'SWIFT_ACTIVE_COMPILATION_CONDITIONS=$(inherited) FORCE_LICENSED' build
+
+   Always pass `FORCE_LICENSED`. The project doesn't set it, and without it the About tab shows the trial section ("free days") again. `$(inherited)` keeps the targets' own conditions (`DEBUG IS_MAIN_APP` for the app). Check with `-showBuildSettings` and the same arguments if in doubt.
 
    Manual signing with `CODE_SIGN_IDENTITY` fails on this project. The frameworks ask for a "Mac Development" certificate, and the app needs a provisioning profile for its keychain access group entitlement. Use automatic signing with a signed-in Xcode account.
 
@@ -42,9 +45,11 @@ This is a local developer build. Nothing here publishes anything. Build outside 
 
        APP=$(ls -d "<folder>/Build/Products/Debug/Mac Mouse Fix NG.app")
        codesign -dv --verbose=2 "$APP" 2>&1 | grep -E "Authority|TeamIdentifier|Identifier"
-       /usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "$APP/Contents/Info.plist"
+       for p in "$APP/Contents/Info.plist" "$APP/Contents/Library/LoginItems/Mac Mouse Fix NG Helper.app/Contents/Info.plist"; do
+         /usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" -c "Print :CFBundleVersion" -c "Print :MFGitCommit" "$p"
+       done
 
-   The version must match what you expect, and the signature must be `Apple Development` with your team.
+   The version must match what you expect, the app and the Helper must have the same build number and commit, and the signature must be `Apple Development` with your team.
 
 5. **Install.** Do this only when the owner asks for it.
    - Quit the app: `osascript -e 'tell application "Mac Mouse Fix NG" to quit'`.

@@ -154,7 +154,16 @@ static CFDataRef _Nullable didReceiveMessage(CFMessagePortRef port, SInt32 messa
     
     /// Process message
     NSObject *response = nil;
-    
+
+    #if IS_HELPER
+        /// Without accessibility access the Helper skips its post-check init (see `AccessibilityCheck.m`), so `Config`, `DeviceManager`, `Remap` etc. don't exist.
+        ///     Messages that use them crashed the Helper (nil `Config.shared` in `loadOverridesForApp()`, nil `attachedDevices` in `HelperState.activeDevice`). Only answer the messages that don't need them. [Oct 2026]
+        if (Config.shared == nil && ![@[@"terminate", @"checkAccessibility", @"getBundleVersion", @"getEnvAndArgs", @"isDarkMode"] containsObject: message]) {
+            DDLogInfo("Ignoring message '%@', because the Helper isn't fully started (no accessibility access)", message);
+            return NULL;
+        }
+    #endif
+
     /// Handle commands
     ///     Note: [Jul 2025] We're using NSString to identify the commands. I think this is what `SInt32 messageID` is for, but it's nice to be able to debug-print the strings. To replicate that with `SInt32 messageID`, we might wanna use a `FOR_EACH` macro or `X-MACRO` ... or just keep using strings, it works fine.
     

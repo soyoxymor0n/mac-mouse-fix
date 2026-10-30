@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 //+ (NSString *)currentBundleID;
 + (NSBundle *)mainAppBundle;
 + (NSBundle *)helperBundle;
++ (NSBundle *_Nullable)mainAppBundleIfPresent;
++ (NSBundle *_Nullable)helperBundleIfPresent;
 + (NSBundle *)mainAppOriginalBundle;
 + (NSBundle *)helperOriginalBundle;
 + (NSURL *)currentExecutableURL;

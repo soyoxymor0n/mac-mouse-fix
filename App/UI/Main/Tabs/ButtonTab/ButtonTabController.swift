@@ -50,6 +50,8 @@ import Foundation
     private var recommendedSetupButton: NSButton?
     /// "Community setups…" before "Recommended setup…". Shown in every app tab. It loads the setups only when clicked.
     private var communitySetupsButton: NSButton?
+    /// "Setups ▾" with both of the above, used instead of the two buttons when both are shown
+    private var setupsPullDown: NSPopUpButton?
     private var communitySetupsPopover: NSPopover?
     
     //
@@ -282,6 +284,9 @@ import Foundation
         super.viewWillAppear()
         /// The strip may have been built before the app's tabs were loaded. Rebuild it whenever this tab appears.
         refreshAppTabStrip()
+        /// Pick the full or the compact add field before the tab switch measures this tab (`TabViewController.resizeWindowToFit`). The rows are loaded in `RemapTableController.viewDidLoad`.
+        ///     Doing this only in viewDidAppear changed the layout while the switch had pinned the tab's height, which broke the table's height constraint.
+        updatePresetBanner()
     }
     override func viewDidAppear() {
         super.viewDidAppear()
@@ -483,6 +488,10 @@ import Foundation
         if index + 2 < stack.arrangedSubviews.count {
             instructionLabel = stack.arrangedSubviews[index + 2]
         }
+        /// Replace the storyboard's fixed height. Otherwise it conflicts with the compact height and AppKit breaks one of them at random.
+        for constraint in addField.constraints where constraint.firstAttribute == .height && constraint.secondItem == nil && (constraint.firstItem as? NSView) === addField {
+            constraint.isActive = false
+        }
         let heightConstraint = addField.heightAnchor.constraint(equalToConstant: ButtonTabController.fullAddFieldHeight)
         addFieldHeight = heightConstraint
         NSLayoutConstraint.activate([
@@ -522,10 +531,13 @@ import Foundation
         ///     only the Recommended setup / Restore pair. Things that did NOT help: hiding the removed button instead, a spacer in the parent stack
         ///     (that one is worse, it stretches during the measurement), and changing the row's distribution in the storyboard.
         ///     This zero-size view is the cheapest way to keep a second child in the row. Remove it when the measurement problem is understood.
+        ///     [Oct 2026] Probably understood: the row pins all its views to its top and bottom insets, so its views all get the same height, and nothing gave the row the buttons' height.
+        ///         The fixed heights below fix that. Try removing the filler again.
         let filler = NSView()
         filler.translatesAutoresizingMaskIntoConstraints = false
         filler.widthAnchor.constraint(equalToConstant: 0).isActive = true
-        filler.heightAnchor.constraint(equalToConstant: 0).isActive = true
+        /// Its height is set to the buttons' height below. The row pins every view to its top and bottom insets, so a 0 pt filler made the buttons 0 pt tall, too
+        ///     (squeezed and pushed below the window's edge, so they couldn't be clicked). With no height at all, the filler stretched the row.
         buttonsStack.addView(filler, in: .trailing)
         buttonsStack.removeArrangedSubview(restoreDefaultButton)
         restoreDefaultButton.removeFromSuperview()
@@ -536,15 +548,39 @@ import Foundation
         communityButton.setContentCompressionResistancePriority(.required, for: .vertical)
         communityButton.setAccessibilityIdentifier("axButtonsCommunitySetupsButton")
 
-        let pair = NSStackView(views: [communityButton, button, restoreDefaultButton])
+        /// "Setups ▾" replaces the two buttons above when both are shown. The three buttons together are wider than the row, and "Remove Buttons…" was cut off.
+        let setupsPullDown = NSPopUpButton(frame: .zero, pullsDown: true)
+        setupsPullDown.font = restoreDefaultButton.font
+        setupsPullDown.setContentHuggingPriority(.required, for: .horizontal)
+        setupsPullDown.setContentCompressionResistancePriority(.required, for: .vertical)
+        setupsPullDown.setAccessibilityIdentifier("axButtonsSetupsPullDown")
+        setupsPullDown.addItem(withTitle: MFLocalizedString("buttons.setups.pulldown", comment: "")) /// The first item of a pull-down is its title
+        for (title, action) in [(button.title, #selector(openRecommendedSetup(_:))), (communityButton.title, #selector(openCommunitySetups(_:)))] {
+            let item = NSMenuItem(title: title, action: action, keyEquivalent: "")
+            item.target = self
+            setupsPullDown.menu?.addItem(item)
+        }
+        setupsPullDown.isHidden = true
+
+        let pair = NSStackView(views: [setupsPullDown, communityButton, button, restoreDefaultButton])
         pair.orientation = .horizontal
         pair.alignment = .centerY
         pair.spacing = 8
         pair.detachesHiddenViews = true
         buttonsStack.addView(pair, in: .leading) /// The row is laid out in gravity areas, so the pair sits at the leading edge
+        /// The row has to be as tall as the buttons, also when the tab is measured for the window size (`TabViewController.resizeWindowToFit`).
+        ///     The pair's height comes from "Restore Defaults", which is always shown. (Constraints to the other buttons would get lost while they're hidden, because the pair detaches hidden views.)
+        NSLayoutConstraint.activate([
+            pair.heightAnchor.constraint(equalToConstant: restoreDefaultButton.intrinsicContentSize.height),
+            filler.heightAnchor.constraint(equalTo: pair.heightAnchor),
+        ])
+        /// The row takes the extra height when the app strip (min height) makes the tab taller than the add field, table and row. The buttons stay at the bottom (the row aligns to its bottom).
+        ///     Before, nothing could grow, and the table's height constraint broke. Above 500, so the row doesn't stretch while the tab is measured inside a huge window (the window's size holds at 500).
+        buttonsStack.setHuggingPriority(.init(600), for: .vertical)
 
         recommendedSetupButton = button
         communitySetupsButton = communityButton
+        self.setupsPullDown = setupsPullDown
         updateRecommendedSetupButton()
     }
 
@@ -557,9 +593,14 @@ import Foundation
     /// Shows "Recommended setup…" in an app tab whose app has a preset, with or without rows, and even if the user chose "Don't suggest this again"
     func updateRecommendedSetupButton() {
         guard let button = recommendedSetupButton else { return }
-        button.isHidden = scopeApp.flatMap { AppPreset.preset(for: $0) } == nil
+        let showsRecommended = scopeApp.flatMap { AppPreset.preset(for: $0) } != nil
         /// Hidden while the "Community setups" switch is off: then nothing is downloaded
-        communitySetupsButton?.isHidden = scopeApp == nil || !CommunityConsent.isEnabled()
+        let showsCommunity = scopeApp != nil && CommunityConsent.isEnabled()
+        /// Both together go into the "Setups" pull-down, so the row fits
+        let usesPullDown = showsRecommended && showsCommunity
+        setupsPullDown?.isHidden = !usesPullDown
+        button.isHidden = !showsRecommended || usesPullDown
+        communitySetupsButton?.isHidden = !showsCommunity || usesPullDown
     }
 
     @objc private func communitySwitchChanged(_ notification: Notification) {
@@ -580,8 +621,10 @@ import Foundation
     }
 
     /// Shows the community setups of the current app in a popover. The setups are loaded now, not before.
-    @objc private func openCommunitySetups(_ sender: NSButton) {
+    @objc private func openCommunitySetups(_ sender: Any) {
         guard let app = scopeApp, CommunityConsent.isEnabled() else { return }
+        /// The popover points at the visible control: the button, or the "Setups" pull-down when the menu item was used
+        guard let anchor: NSView = [communitySetupsButton, setupsPullDown].compactMap({ $0 }).first(where: { !$0.isHidden }) else { return }
         communitySetupsPopover?.close()
 
         let controller = CommunitySetupsViewController(app: app)
@@ -592,7 +635,7 @@ import Foundation
             popover?.performClose(nil)
             self?.reviewCommunitySetup(setup)
         }
-        popover.show(relativeTo: sender.bounds, of: sender, preferredEdge: .maxY)
+        popover.show(relativeTo: anchor.bounds, of: anchor, preferredEdge: .maxY)
         communitySetupsPopover = popover
     }
 

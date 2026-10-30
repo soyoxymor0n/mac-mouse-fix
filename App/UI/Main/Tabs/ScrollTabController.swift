@@ -63,9 +63,10 @@ class ScrollTabController: NSViewController {
     
     /// Did appear
     
-    /// Called by GeneralTabController when that tab appears. The scroll settings are part of the General tab now.
-    func tabDidAppear() {
-        
+    override func viewDidAppear() {
+
+        super.viewDidAppear()
+
         /// Remove focus
         ///     Sometimes, one of the modifierCapture fields is randomly selected. This hopefully prevents that.
         ///     Need to do asynAfter 0.0 seconds for it to work (I think - not well tested) that makes it do it on the next runLoop cycle I think.
