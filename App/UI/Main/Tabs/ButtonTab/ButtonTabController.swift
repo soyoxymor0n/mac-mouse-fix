@@ -50,6 +50,8 @@ import Foundation
     private var recommendedSetupButton: NSButton?
     /// "Community setups…" before "Recommended setup…". Shown in every app tab. It loads the setups only when clicked.
     private var communitySetupsButton: NSButton?
+    /// "Setups ▾" with both of the above, used instead of the two buttons when both are shown
+    private var setupsPullDown: NSPopUpButton?
     private var communitySetupsPopover: NSPopover?
     
     //
@@ -546,7 +548,21 @@ import Foundation
         communityButton.setContentCompressionResistancePriority(.required, for: .vertical)
         communityButton.setAccessibilityIdentifier("axButtonsCommunitySetupsButton")
 
-        let pair = NSStackView(views: [communityButton, button, restoreDefaultButton])
+        /// "Setups ▾" replaces the two buttons above when both are shown. The three buttons together are wider than the row, and "Remove Buttons…" was cut off.
+        let setupsPullDown = NSPopUpButton(frame: .zero, pullsDown: true)
+        setupsPullDown.font = restoreDefaultButton.font
+        setupsPullDown.setContentHuggingPriority(.required, for: .horizontal)
+        setupsPullDown.setContentCompressionResistancePriority(.required, for: .vertical)
+        setupsPullDown.setAccessibilityIdentifier("axButtonsSetupsPullDown")
+        setupsPullDown.addItem(withTitle: MFLocalizedString("buttons.setups.pulldown", comment: "")) /// The first item of a pull-down is its title
+        for (title, action) in [(button.title, #selector(openRecommendedSetup(_:))), (communityButton.title, #selector(openCommunitySetups(_:)))] {
+            let item = NSMenuItem(title: title, action: action, keyEquivalent: "")
+            item.target = self
+            setupsPullDown.menu?.addItem(item)
+        }
+        setupsPullDown.isHidden = true
+
+        let pair = NSStackView(views: [setupsPullDown, communityButton, button, restoreDefaultButton])
         pair.orientation = .horizontal
         pair.alignment = .centerY
         pair.spacing = 8
@@ -564,6 +580,7 @@ import Foundation
 
         recommendedSetupButton = button
         communitySetupsButton = communityButton
+        self.setupsPullDown = setupsPullDown
         updateRecommendedSetupButton()
     }
 
@@ -576,9 +593,14 @@ import Foundation
     /// Shows "Recommended setup…" in an app tab whose app has a preset, with or without rows, and even if the user chose "Don't suggest this again"
     func updateRecommendedSetupButton() {
         guard let button = recommendedSetupButton else { return }
-        button.isHidden = scopeApp.flatMap { AppPreset.preset(for: $0) } == nil
+        let showsRecommended = scopeApp.flatMap { AppPreset.preset(for: $0) } != nil
         /// Hidden while the "Community setups" switch is off: then nothing is downloaded
-        communitySetupsButton?.isHidden = scopeApp == nil || !CommunityConsent.isEnabled()
+        let showsCommunity = scopeApp != nil && CommunityConsent.isEnabled()
+        /// Both together go into the "Setups" pull-down, so the row fits
+        let usesPullDown = showsRecommended && showsCommunity
+        setupsPullDown?.isHidden = !usesPullDown
+        button.isHidden = !showsRecommended || usesPullDown
+        communitySetupsButton?.isHidden = !showsCommunity || usesPullDown
     }
 
     @objc private func communitySwitchChanged(_ notification: Notification) {
@@ -599,8 +621,10 @@ import Foundation
     }
 
     /// Shows the community setups of the current app in a popover. The setups are loaded now, not before.
-    @objc private func openCommunitySetups(_ sender: NSButton) {
+    @objc private func openCommunitySetups(_ sender: Any) {
         guard let app = scopeApp, CommunityConsent.isEnabled() else { return }
+        /// The popover points at the visible control: the button, or the "Setups" pull-down when the menu item was used
+        guard let anchor: NSView = [communitySetupsButton, setupsPullDown].compactMap({ $0 }).first(where: { !$0.isHidden }) else { return }
         communitySetupsPopover?.close()
 
         let controller = CommunitySetupsViewController(app: app)
@@ -611,7 +635,7 @@ import Foundation
             popover?.performClose(nil)
             self?.reviewCommunitySetup(setup)
         }
-        popover.show(relativeTo: sender.bounds, of: sender, preferredEdge: .maxY)
+        popover.show(relativeTo: anchor.bounds, of: anchor, preferredEdge: .maxY)
         communitySetupsPopover = popover
     }
 
