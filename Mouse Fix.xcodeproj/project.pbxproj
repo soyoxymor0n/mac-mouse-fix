@@ -3041,13 +3041,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4F94F61225E5EC2800D9F24A /* Build configuration list for PBXNativeTarget "Mac Mouse Fix" */;
 			buildPhases = (
-				4F94F75125E614D500D9F24A /* Increment Build Number */,
 				4F94F5EA25E5EC2500D9F24A /* Sources */,
 				4F94F5EB25E5EC2500D9F24A /* Frameworks */,
 				4F94F68E25E5EF1100D9F24A /* Embed Frameworks (Redundant with Link Binary Phase?) */,
 				4F94F5EC25E5EC2500D9F24A /* Resources */,
 				4F9111F8289FF25D00D2DD8C /* Copy sm_launchd.plist */,
 				4F94F72E25E612AB00D9F24A /* Copy MMF Helper */,
+				4F94F75125E614D500D9F24A /* Set Build Number and Commit */,
 			);
 			buildRules = (
 			);
@@ -3066,10 +3066,10 @@
 			buildConfigurationList = 4FCECDA721092354001F1078 /* Build configuration list for PBXNativeTarget "Mac Mouse Fix Helper" */;
 			buildPhases = (
 				4FD148D928AA45FE00FE688C /* Not BartyCrouch */,
-				4FEEEC53263C164000C50193 /* Copy Version From Main App */,
 				4FCECD7C21092354001F1078 /* Sources */,
 				4FCECD7D21092354001F1078 /* Frameworks */,
 				4FCECD7E21092354001F1078 /* Resources */,
+				4FEEEC53263C164000C50193 /* Set Build Number and Commit */,
 			);
 			buildRules = (
 			);
@@ -3412,7 +3412,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4F94F75125E614D500D9F24A /* Increment Build Number */ = {
+		4F94F75125E614D500D9F24A /* Set Build Number and Commit */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -3421,15 +3421,16 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Increment Build Number";
+			name = "Set Build Number and Commit";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\nif [ \"${CONFIGURATION}\" = \"Release\" ]; then # Only increment in release builds to prevent annoying churn in git history [Nov 12 2025]\n    # Notes:\n    # - We're storing the `version` (aka build number) directly inside the info plist so that we can increment it here. The `shortVersion` (such as 3.0.1) is instead stored inside the Xcode project under General > Identity > Version\n    buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\n    buildNumber=$((buildNumber+1))\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\nfi\n";
+			shellScript = "# Build number (30000 + commit count) and commit, written into the built Info.plist. See tools/build/set-build-version.sh\n\"${PROJECT_DIR}/tools/build/set-build-version.sh\"\n";
 		};
 		4FD148D928AA45FE00FE688C /* Not BartyCrouch */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3450,7 +3451,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\n# Update: Commenting this out now, since we've moved everything to .xcstrings files instead of .strings files. Later, maybe we want to reactivate this and change the script so that it extracts strings from .md.skeleton files which we plan to introduce. \n# Update2: No we're extracting strings from the .md files before building the .md files probably\n\n# Run UpdateStrings/script.py. \n# Notes:\n# - Using xcrun everywhere for hopefully better compatibility? It looks up the command in Xcode dev tools and other places, even if it's not in the path - if I understand correctly.\n# - This script takes around 2-3s from what I've seen. Should maybe optimize. Edit: Optimized a little. It's around 2s. BartyCrouch wasn't much faster - also hovers around 2s.\n# - Activating the venv doens't work here for some reason, so we do this weird ${SRCROOT}/venv/bin/pip3 stuff.\n \n# Install dependencies into venv\n#xcrun python3 -m venv ${SRCROOT}/venv\n#${SRCROOT}/venv/bin/pip3 install -r ${SRCROOT}/Localization/Code/UpdateStrings/requirements.txt\n\n# Run script \n#${SRCROOT}/venv/bin/python3 ${SRCROOT}/Localization/Code/UpdateStrings/script.py --wet_run\n";
 		};
-		4FEEEC53263C164000C50193 /* Copy Version From Main App */ = {
+		4FEEEC53263C164000C50193 /* Set Build Number and Commit */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -3459,15 +3460,16 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Version From Main App";
+			name = "Set Build Number and Commit";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\n# I originally made this because sometimes I get crashlogs of the Helper which just say -1 for the version.\n# Now I'm trying to use the build number to check if an instance of the Helper and an instance of the mainApp belong together.\n# Note: Where do INFOPLIST_FILE_MAINAPP and INFOPLIST_FILE_HELPER come from?\n\n# Get versions from Main App\nversion=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE_MAINAPP}\")\nshortVersion=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE_MAINAPP}\")\n\nif [ \"${CONFIGURATION}\" = \"Release\" ]; then # [Nov 12 2025]\n    $((version++)) \n    # ^ Because we'll also be incrementing Main App version when it builds\n    #   Can't get any build phase from Main App to run before the Helper is compiled. Otherwise we wouldn't need to do this. We could increment the Main App version and then simply copy it over.\n    #   For some reason is not always in sync with the Main App version. I saw it lag one behind. I think it might have to do with Xcode optimizing builds and not always running this if the Helper hasn't changed, but not sure.\n    #   Edit: I think I fixed the bug where the Helper build number is lagging behind the main app build number by simply moving the \"Copy Version From Main App\" build phase up - ergo executing it before other build phases. Previously it was the last build phase that was executed.\nfi\n\n# Set versions to Helper\n/usr/libexec/PlistBuddy -c \"Set CFBundleVersion ${version}\" \"${PROJECT_DIR}/${INFOPLIST_FILE_HELPER}\"\n/usr/libexec/PlistBuddy -c \"Set CFBundleShortVersionString ${shortVersion}\" \"${PROJECT_DIR}/${INFOPLIST_FILE_HELPER}\"\n";
+			shellScript = "# Build number (30000 + commit count) and commit, written into the built Info.plist. See tools/build/set-build-version.sh\n\"${PROJECT_DIR}/tools/build/set-build-version.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -4130,7 +4132,7 @@
 					"$(PROJECT_DIR)/Frameworks/**",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15.0;
-				MARKETING_VERSION = 4.1.0;
+				MARKETING_VERSION = 4.2.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.soyoxymor0n.mac-mouse-fix";
@@ -4174,7 +4176,7 @@
 					"$(PROJECT_DIR)/Frameworks/**",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15.0;
-				MARKETING_VERSION = 4.1.0;
+				MARKETING_VERSION = 4.2.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.soyoxymor0n.mac-mouse-fix";
 				PRODUCT_MODULE_NAME = Mac_Mouse_Fix;
@@ -4413,7 +4415,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.soyoxymor0n.mac-mouse-fix.helper";
-				MARKETING_VERSION = 4.1.0;
+				MARKETING_VERSION = 4.2.0;
 				PRODUCT_MODULE_NAME = Mac_Mouse_Fix_Helper;
 				PRODUCT_NAME = "Mac Mouse Fix NG Helper";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4460,7 +4462,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.soyoxymor0n.mac-mouse-fix.helper";
-				MARKETING_VERSION = 4.1.0;
+				MARKETING_VERSION = 4.2.0;
 				PRODUCT_MODULE_NAME = Mac_Mouse_Fix_Helper;
 				PRODUCT_NAME = "Mac Mouse Fix NG Helper";
 				PROVISIONING_PROFILE_SPECIFIER = "";

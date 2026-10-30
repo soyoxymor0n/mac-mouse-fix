@@ -94,7 +94,13 @@ class AboutTabController: NSViewController {
         
         let versionFormat = MFLocalizedString("app-version", comment: "Note: %@ will be the app version, e.g. '3.0.0 (22027)'")
         let versionFormatExists = versionFormat.count != 0 && versionFormat != "app-version"
-        let versionNumbers = "\(Locator.bundleVersionShort()) (\(Locator.bundleVersion()))"
+        /// [Fork] The build number is followed by the commit, and "Debug" in debug builds, so every build can be identified. E.g. "4.2.0 (38718 · 30eb68a · Debug)". See tools/build/set-build-version.sh
+        var buildInfo = ["\(Locator.bundleVersion())"]
+        if let commit = Locator.mainAppBundle().object(forInfoDictionaryKey: "MFGitCommit") as? String, !commit.isEmpty { buildInfo.append(commit) }
+        #if DEBUG
+        buildInfo.append("Debug")
+        #endif
+        let versionNumbers = "\(Locator.bundleVersionShort()) (\(buildInfo.joined(separator: " · ")))"
         versionField.stringValue = versionFormatExists ? String(format: versionFormat, versionNumbers) : versionNumbers
         
         /// Init trialSectionManager
